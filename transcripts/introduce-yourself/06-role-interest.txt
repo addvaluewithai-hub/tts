@@ -1,0 +1,5 @@
+---
+audio_profile: A warm, patient Arabic-speaking English teacher speaking directly to one adult beginner.
+director_notes: Keep the examples lively but concise. Pause slightly between each English example. Preserve the transcript exactly.
+---
+والتفصيلة الأخيرة مرنة. يمكنك أن تذكر عملك: I'm a teacher. أو: I'm an engineer. ويمكنك أن تذكر شيئًا تحبه: I like football. أو: I like photography. اختر تفصيلة واحدة بسيطة تساعد الناس على تذكّرك.
