@@ -70,7 +70,10 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add audio done transcripts final
+          git add audio done transcripts
+          if [ -d final ]; then
+            git add final
+          fi
           git commit -m "chore(tts): generate and assemble lesson audio"
           git push
 
