@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate timestamped JSON/VTT transcripts for final lesson MP3 files."""
+"""Build complete lesson-wide word timings from short TTS audio parts."""
 
 from __future__ import annotations
 
@@ -16,16 +16,20 @@ from dotenv import load_dotenv
 from google import genai
 
 from transcription_core import (
+    SCHEMA_VERSION,
     TranscriptionError,
     audio_duration_ms,
-    build_prompt,
+    build_part_prompt,
     config_fingerprint,
     existing_matches,
+    load_part_cache,
+    part_cache_path,
     part_timeline,
     reference_parts,
+    reference_word_count,
     render_vtt,
     sha256_file,
-    transcribe_with_router,
+    transcribe_part_with_router,
 )
 
 
@@ -67,30 +71,97 @@ def transcript_path(audio_path: Path) -> Path:
     return audio_path.with_name(f"{audio_path.stem}.transcript.json")
 
 
-def write_outputs(
+def write_part_cache(
+    path: Path,
+    *,
+    audio_hash: str,
+    config_hash: str,
+    model: str,
+    duration_ms: int,
+    payload: dict[str, Any],
+) -> dict[str, Any]:
+    data = {
+        "schema_version": SCHEMA_VERSION,
+        "source_audio": path.with_name(path.name.replace(".timing.json", ".wav")).as_posix(),
+        "audio_sha256": audio_hash,
+        "transcription_config_sha256": config_hash,
+        "model": model,
+        "duration_ms": duration_ms,
+        "text": payload["text"],
+        "language": payload["language"],
+        "words": payload["words"],
+    }
+    temp = path.with_suffix(path.suffix + ".tmp")
+    temp.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    temp.replace(path)
+    return data
+
+
+def consolidate(
+    parts: list[dict[str, Any]], caches: list[dict[str, Any]]
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
+    segments: list[dict[str, Any]] = []
+    words: list[dict[str, Any]] = []
+    enriched_parts: list[dict[str, Any]] = []
+
+    for index, (part, cache) in enumerate(zip(parts, caches, strict=True)):
+        segments.append(
+            {
+                "start_ms": part["start_ms"],
+                "end_ms": part["end_ms"],
+                "speaker": "teacher",
+                "language": cache.get("language", "und"),
+                "text": cache["text"],
+            }
+        )
+        for word in cache["words"]:
+            words.append(
+                {
+                    "start_ms": part["start_ms"] + int(word["start_ms"]),
+                    "end_ms": part["start_ms"] + int(word["end_ms"]),
+                    "text": word["text"],
+                    "language": word.get("language", "und"),
+                    "segment_index": index,
+                }
+            )
+        enriched = dict(part)
+        enriched.update(
+            model=cache.get("model"),
+            word_count=len(cache["words"]),
+            audio_sha256=cache.get("audio_sha256"),
+        )
+        enriched_parts.append(enriched)
+
+    words.sort(key=lambda item: (item["start_ms"], item["end_ms"]))
+    return enriched_parts, segments, words
+
+
+def write_final_outputs(
     audio_path: Path,
     *,
     lesson: Path,
     audio_hash: str,
     config_hash: str,
-    model: str,
     duration_ms: int,
+    models: list[str],
     parts: list[dict[str, Any]],
-    payload: dict[str, Any],
+    segments: list[dict[str, Any]],
+    words: list[dict[str, Any]],
     write_vtt: bool,
 ) -> None:
     output = {
-        "schema_version": 1,
+        "schema_version": SCHEMA_VERSION,
+        "alignment_mode": "per_part",
         "lesson": lesson.as_posix(),
         "source_audio": audio_path.as_posix(),
         "audio_sha256": audio_hash,
         "transcription_config_sha256": config_hash,
-        "model": model,
+        "model_router": models,
         "duration_ms": duration_ms,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "parts": parts,
-        "segments": payload["segments"],
-        "words": payload["words"],
+        "segments": segments,
+        "words": words,
     }
     json_path = transcript_path(audio_path)
     temp = json_path.with_suffix(json_path.suffix + ".tmp")
@@ -100,7 +171,7 @@ def write_outputs(
     if write_vtt:
         vtt = audio_path.with_name(f"{audio_path.stem}.transcript.vtt")
         temp_vtt = vtt.with_suffix(vtt.suffix + ".tmp")
-        temp_vtt.write_text(render_vtt(payload["segments"]), encoding="utf-8")
+        temp_vtt.write_text(render_vtt(segments), encoding="utf-8")
         temp_vtt.replace(vtt)
 
 
@@ -122,8 +193,8 @@ def main() -> int:
         print("Final audio transcription is disabled.")
         return 0
 
-    audio_files = discover(args.final)
-    if not audio_files:
+    final_audio = discover(args.final)
+    if not final_audio:
         print("No final MP3 files found. Nothing to transcribe.")
         return 0
     if not os.getenv("GEMINI_API_KEY") and not os.getenv("GOOGLE_API_KEY"):
@@ -135,51 +206,89 @@ def main() -> int:
     client = genai.Client()
     failures: list[tuple[Path, str]] = []
 
-    print(f"Found {len(audio_files)} final lesson(s).")
+    print(f"Found {len(final_audio)} final lesson(s).")
     print("Audio router: " + " -> ".join(settings["models"]))
 
-    for index, audio_path in enumerate(audio_files):
-        lesson = audio_path.relative_to(args.final).with_suffix("")
-        audio_hash = sha256_file(audio_path)
-        output_path = transcript_path(audio_path)
-        if existing_matches(output_path, audio_hash, config_hash):
-            print(f"- {lesson}: unchanged; reusing timestamp transcript")
+    for lesson_index, final_mp3 in enumerate(final_audio):
+        lesson = final_mp3.relative_to(args.final).with_suffix("")
+        final_hash = sha256_file(final_mp3)
+        output = transcript_path(final_mp3)
+        if existing_matches(output, final_hash, config_hash):
+            print(f"- {lesson}: unchanged; reusing complete word alignment")
             continue
 
         try:
             duration_ms = audio_duration_ms(
-                audio_path.with_suffix(".wav"), audio_path.with_suffix(".json")
+                final_mp3.with_suffix(".wav"), final_mp3.with_suffix(".json")
             )
             parts = part_timeline(args.audio, lesson, gap_ms)
-            prompt = build_prompt(
-                lesson, duration_ms, parts, reference_parts(args.done, lesson)
-            )
-            print(f"- {lesson}: transcribing {duration_ms / 1000:.1f}s")
-            model, payload = transcribe_with_router(
-                client,
-                audio_path=audio_path,
-                prompt=prompt,
-                models=settings["models"],
-                item_index=index,
-                attempts_per_model=settings["attempts_per_model"],
-                initial_delay=settings["initial_delay_seconds"],
-                max_delay=settings["max_delay_seconds"],
-                duration_ms=duration_ms,
-            )
-            write_outputs(
-                audio_path,
+            if not parts:
+                raise TranscriptionError(f"No source WAV parts found for {lesson}")
+            references = reference_parts(args.done, lesson)
+            caches: list[dict[str, Any]] = []
+
+            print(f"- {lesson}: aligning {len(parts)} short audio parts")
+            for part_index, part in enumerate(parts):
+                part_audio = args.audio / lesson / part["file"]
+                part_hash = sha256_file(part_audio)
+                cache_path = part_cache_path(part_audio)
+                cache = load_part_cache(cache_path, part_hash, config_hash)
+                if cache:
+                    print(f"    {part['file']}: cached ({len(cache['words'])} words)")
+                    caches.append(cache)
+                    continue
+
+                reference = references.get(Path(part["file"]).stem, "")
+                prompt = build_part_prompt(
+                    part["file"], int(part["duration_ms"]), reference
+                )
+                route_index = lesson_index + part_index
+                model, payload = transcribe_part_with_router(
+                    client,
+                    audio_path=part_audio,
+                    prompt=prompt,
+                    models=settings["models"],
+                    item_index=route_index,
+                    attempts_per_model=settings["attempts_per_model"],
+                    initial_delay=settings["initial_delay_seconds"],
+                    max_delay=settings["max_delay_seconds"],
+                    duration_ms=int(part["duration_ms"]),
+                    expected_words=reference_word_count(reference),
+                )
+                cache = write_part_cache(
+                    cache_path,
+                    audio_hash=part_hash,
+                    config_hash=config_hash,
+                    model=model,
+                    duration_ms=int(part["duration_ms"]),
+                    payload=payload,
+                )
+                caches.append(cache)
+                print(
+                    f"    {part['file']}: {model}, {len(payload['words'])} timed words"
+                )
+
+            enriched_parts, segments, words = consolidate(parts, caches)
+            if not words:
+                raise TranscriptionError("No global word timings produced")
+            if words[-1]["end_ms"] > duration_ms:
+                raise TranscriptionError("Global word timing exceeds final lesson duration")
+
+            write_final_outputs(
+                final_mp3,
                 lesson=lesson,
-                audio_hash=audio_hash,
+                audio_hash=final_hash,
                 config_hash=config_hash,
-                model=model,
                 duration_ms=duration_ms,
-                parts=parts,
-                payload=payload,
+                models=settings["models"],
+                parts=enriched_parts,
+                segments=segments,
+                words=words,
                 write_vtt=settings["write_vtt"],
             )
             print(
-                f"  {model}: {len(payload['segments'])} segments, "
-                f"{len(payload['words'])} timed words -> {output_path}"
+                f"  complete: {len(segments)} segments, {len(words)} timed words "
+                f"-> {output}"
             )
         except Exception as exc:
             failures.append((lesson, f"{type(exc).__name__}: {exc}"))
@@ -191,7 +300,7 @@ def main() -> int:
             print(f"- {lesson}: {reason}", file=sys.stderr)
         return 1
 
-    print("All final lesson timing transcripts are ready.")
+    print("All final lesson timing transcripts are complete.")
     return 0
 
 

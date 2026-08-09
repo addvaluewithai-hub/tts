@@ -1,4 +1,4 @@
-"""Helpers for timestamping final lesson audio with Gemini."""
+"""Helpers for reliable per-part word alignment with Gemini audio understanding."""
 
 from __future__ import annotations
 
@@ -15,26 +15,14 @@ from typing import Any
 from google import genai
 from google.genai import errors
 
-SCHEMA_VERSION = 1
+SCHEMA_VERSION = 2
 REFERENCE_EXTENSIONS = {".txt", ".md"}
 
-TRANSCRIPT_SCHEMA: dict[str, Any] = {
+PART_SCHEMA: dict[str, Any] = {
     "type": "object",
     "properties": {
-        "segments": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "start_ms": {"type": "integer", "minimum": 0},
-                    "end_ms": {"type": "integer", "minimum": 0},
-                    "speaker": {"type": "string"},
-                    "language": {"type": "string"},
-                    "text": {"type": "string"},
-                },
-                "required": ["start_ms", "end_ms", "speaker", "language", "text"],
-            },
-        },
+        "text": {"type": "string"},
+        "language": {"type": "string"},
         "words": {
             "type": "array",
             "items": {
@@ -44,13 +32,12 @@ TRANSCRIPT_SCHEMA: dict[str, Any] = {
                     "end_ms": {"type": "integer", "minimum": 0},
                     "text": {"type": "string"},
                     "language": {"type": "string"},
-                    "segment_index": {"type": "integer", "minimum": 0},
                 },
-                "required": ["start_ms", "end_ms", "text", "language", "segment_index"],
+                "required": ["start_ms", "end_ms", "text", "language"],
             },
         },
     },
-    "required": ["segments", "words"],
+    "required": ["text", "language", "words"],
 }
 
 
@@ -69,9 +56,10 @@ def sha256_file(path: Path) -> str:
 def config_fingerprint(settings: dict[str, Any]) -> str:
     stable = {
         "schema_version": SCHEMA_VERSION,
+        "alignment_mode": "per_part",
         "models": settings["models"],
         "attempts_per_model": settings["attempts_per_model"],
-        "prompt_version": 1,
+        "prompt_version": 2,
     }
     return hashlib.sha256(
         json.dumps(stable, sort_keys=True, ensure_ascii=False).encode()
@@ -85,10 +73,14 @@ def route_order(models: list[str], item_index: int) -> list[str]:
     return models[offset:] + models[:offset]
 
 
+def wav_duration_ms(path: Path) -> int:
+    with wave.open(str(path), "rb") as wf:
+        return round(wf.getnframes() / wf.getframerate() * 1000)
+
+
 def audio_duration_ms(final_wav: Path, manifest: Path) -> int:
     if final_wav.exists():
-        with wave.open(str(final_wav), "rb") as wf:
-            return round(wf.getnframes() / wf.getframerate() * 1000)
+        return wav_duration_ms(final_wav)
     if manifest.exists():
         data = json.loads(manifest.read_text(encoding="utf-8"))
         return round(float(data["duration_seconds"]) * 1000)
@@ -103,9 +95,15 @@ def part_timeline(audio_dir: Path, lesson: Path, gap_ms: int) -> list[dict[str, 
     cursor = 0
     result: list[dict[str, Any]] = []
     for index, part in enumerate(parts):
-        with wave.open(str(part), "rb") as wf:
-            duration = round(wf.getnframes() / wf.getframerate() * 1000)
-        result.append({"file": part.name, "start_ms": cursor, "end_ms": cursor + duration})
+        duration = wav_duration_ms(part)
+        result.append(
+            {
+                "file": part.name,
+                "start_ms": cursor,
+                "end_ms": cursor + duration,
+                "duration_ms": duration,
+            }
+        )
         cursor += duration
         if index != len(parts) - 1:
             cursor += gap_ms
@@ -124,105 +122,94 @@ def clean_reference_text(text: str) -> str:
     text = strip_front_matter(text)
     text = re.sub(r"<[^>]+>", "", text)
     text = re.sub(r"\[[A-Z][A-Z0-9 ,_-]*\]\s*", "", text)
+    text = re.sub(r"(?m)^Speaker\s+\d+\s*:\s*", "", text, flags=re.IGNORECASE)
     return "\n".join(line.strip() for line in text.splitlines() if line.strip()).strip()
 
 
-def reference_parts(done_dir: Path, lesson: Path) -> list[dict[str, str]]:
+def reference_parts(done_dir: Path, lesson: Path) -> dict[str, str]:
     lesson_dir = done_dir / lesson
     if not lesson_dir.exists():
-        return []
-    result = []
+        return {}
+    result: dict[str, str] = {}
     for path in sorted(p for p in lesson_dir.iterdir() if p.is_file()):
         if path.suffix.lower() not in REFERENCE_EXTENSIONS:
             continue
         cleaned = clean_reference_text(path.read_text(encoding="utf-8"))
         if cleaned:
-            result.append({"file": path.name, "text": cleaned})
+            result[path.stem] = cleaned
     return result
 
 
-def build_prompt(
-    lesson: Path,
-    duration_ms: int,
-    parts: list[dict[str, Any]],
-    references: list[dict[str, str]],
-) -> str:
-    boundaries = "\n".join(
-        f"- {p['file']}: {p['start_ms']}ms to {p['end_ms']}ms" for p in parts
-    ) or "- unavailable"
-    reference = "\n\n".join(
-        f"### {p['file']}\n{p['text']}" for p in references
-    ) or "(No source transcript reference is available.)"
-    return f"""Create a precise timing transcript for lesson \"{lesson.as_posix()}\".
+def build_part_prompt(part_name: str, duration_ms: int, reference: str) -> str:
+    reference = reference or "(No source transcript reference is available.)"
+    return f"""Align the spoken words in audio part "{part_name}" to timestamps.
 
 Audio duration: {duration_ms} ms.
-
-KNOWN ASSEMBLY BOUNDARIES
-{boundaries}
 
 SOURCE TRANSCRIPT REFERENCE
 {reference}
 
 Requirements:
-1. Transcribe exactly what is audibly spoken. Preserve Arabic and English as spoken.
-2. Do not translate, paraphrase, normalize, or invent speech.
-3. Do not include silent SSML, IPA, YAML, performance tags, or source labels.
-4. Return semantic segments with start_ms/end_ms relative to the final audio start.
-5. Return best-effort word-level timing: one entry per spoken word with start_ms,
-   end_ms, text, language, and its zero-based segment_index.
-6. Keep timestamps monotonic and inside 0..{duration_ms}. Do not emit punctuation-only
-   word entries; punctuation may stay attached to a neighboring spoken word.
-7. Label mixed Arabic/English speech using short language codes such as \"ar\" and \"en\".
-8. Assume one teacher unless the audio clearly contains multiple distinct speakers.
-9. The source transcript is only a spelling/reference aid; the audio is authoritative.
-10. Timing drives video synchronization. Return only the requested structured data.
+1. The audio is authoritative. Transcribe exactly what is audibly spoken.
+2. Preserve Arabic and English exactly as spoken. Do not translate or paraphrase.
+3. Use the source reference only for spelling and expected word order.
+4. Return `text` containing the complete spoken part.
+5. Return one `words` entry for EVERY spoken lexical word from beginning to end.
+6. A words entry must contain exactly one lexical word/token, never a multi-word phrase.
+   Contractions such as "I'm" count as one word. Punctuation may attach to a word.
+7. Each word needs start_ms/end_ms relative to THIS AUDIO PART, not the whole lesson.
+8. Keep timestamps monotonic and within 0..{duration_ms}.
+9. Label each word with a short language code such as "ar" or "en".
+10. Do not output silent SSML, IPA, YAML, performance tags, or speaker/source labels.
+11. Return only the requested structured data.
 """
 
 
-def normalize_payload(payload: dict[str, Any], duration_ms: int) -> dict[str, Any]:
+def reference_word_count(reference: str) -> int:
+    return len(re.findall(r"\S+", reference.strip())) if reference else 0
+
+
+def normalize_part_payload(
+    payload: dict[str, Any], duration_ms: int, expected_words: int = 0
+) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise TranscriptionError("Model response is not an object")
-    if not isinstance(payload.get("segments"), list) or not payload["segments"]:
-        raise TranscriptionError("Model returned no transcript segments")
-    if not isinstance(payload.get("words"), list) or not payload["words"]:
-        raise TranscriptionError("Model returned no word timings")
+    text = str(payload.get("text", "")).strip()
+    language = str(payload.get("language", "")).strip() or "und"
+    words_raw = payload.get("words")
+    if not text or not isinstance(words_raw, list) or not words_raw:
+        raise TranscriptionError("Model returned incomplete part transcript")
 
-    def item(raw: Any, word: bool) -> dict[str, Any]:
+    words: list[dict[str, Any]] = []
+    for raw in words_raw:
         if not isinstance(raw, dict):
-            raise TranscriptionError("Timing entry is not an object")
+            raise TranscriptionError("Word timing entry is not an object")
         start, end = int(raw["start_ms"]), int(raw["end_ms"])
-        if start < 0 or end < start or end > duration_ms + 3000:
-            raise TranscriptionError(f"Invalid timing {start}..{end} for {duration_ms}ms")
-        out = dict(raw)
-        out.update(
-            start_ms=min(start, duration_ms),
-            end_ms=min(end, duration_ms),
-            text=str(raw.get("text", "")).strip(),
-            language=str(raw.get("language", "")).strip() or "und",
+        if start < 0 or end < start or end > duration_ms + 1500:
+            raise TranscriptionError(f"Invalid word timing {start}..{end} for {duration_ms}ms")
+        token = str(raw.get("text", "")).strip()
+        if not token:
+            raise TranscriptionError("Empty timed word")
+        if len(token.split()) > 1:
+            raise TranscriptionError(f"Grouped multi-word timing entry: {token!r}")
+        words.append(
+            {
+                "start_ms": min(start, duration_ms),
+                "end_ms": min(end, duration_ms),
+                "text": token,
+                "language": str(raw.get("language", "")).strip() or "und",
+            }
         )
-        if not out["text"]:
-            raise TranscriptionError("Empty transcript entry")
-        if word:
-            out["segment_index"] = int(raw["segment_index"])
-        else:
-            out["speaker"] = str(raw.get("speaker", "")).strip() or "Speaker 1"
-        return out
 
-    segments = sorted(
-        (item(raw, False) for raw in payload["segments"]),
-        key=lambda x: (x["start_ms"], x["end_ms"]),
-    )
-    words = sorted(
-        (item(raw, True) for raw in payload["words"]),
-        key=lambda x: (x["start_ms"], x["end_ms"]),
-    )
-    for index, word in enumerate(words):
-        if not 0 <= word["segment_index"] < len(segments):
-            raise TranscriptionError(f"Word {index} has invalid segment_index")
-    return {"segments": segments, "words": words}
+    words.sort(key=lambda item: (item["start_ms"], item["end_ms"]))
+    if expected_words and len(words) < max(1, round(expected_words * 0.7)):
+        raise TranscriptionError(
+            f"Only {len(words)} timed words for ~{expected_words} reference words"
+        )
+    return {"text": text, "language": language, "words": words}
 
 
-def transcribe_with_router(
+def transcribe_part_with_router(
     client: genai.Client,
     *,
     audio_path: Path,
@@ -233,10 +220,11 @@ def transcribe_with_router(
     initial_delay: float,
     max_delay: float,
     duration_ms: int,
+    expected_words: int,
 ) -> tuple[str, dict[str, Any]]:
     uploaded = client.files.upload(
         file=str(audio_path),
-        config={"mime_type": "audio/mpeg", "display_name": audio_path.name},
+        config={"mime_type": "audio/wav", "display_name": audio_path.name},
     )
     failures: list[str] = []
     try:
@@ -250,15 +238,18 @@ def transcribe_with_router(
                             {
                                 "type": "audio",
                                 "uri": uploaded.uri,
-                                "mime_type": uploaded.mime_type or "audio/mpeg",
+                                "mime_type": uploaded.mime_type or "audio/wav",
                             },
                         ],
-                        response_format=TRANSCRIPT_SCHEMA,
+                        response_format=PART_SCHEMA,
                     )
                     raw = getattr(response, "output_text", None)
                     if not raw:
                         raise TranscriptionError(f"{model} returned no transcript")
-                    return model, normalize_payload(json.loads(raw), duration_ms)
+                    payload = normalize_part_payload(
+                        json.loads(raw), duration_ms, expected_words
+                    )
+                    return model, payload
                 except errors.APIError as exc:
                     status = getattr(exc, "code", None)
                     if status in {401, 403}:
@@ -270,7 +261,7 @@ def transcribe_with_router(
                     if retryable and attempt < attempts_per_model:
                         delay = min(max_delay, initial_delay * 2 ** (attempt - 1))
                         delay += random.uniform(0, 1)
-                        print(f"    {model}: retrying in {delay:.1f}s")
+                        print(f"      {model}: retrying in {delay:.1f}s")
                         time.sleep(delay)
                         continue
                     break
@@ -292,6 +283,29 @@ def transcribe_with_router(
             print(f"Warning: could not delete uploaded Gemini file: {exc}", file=sys.stderr)
 
 
+def part_cache_path(audio_path: Path) -> Path:
+    return audio_path.with_name(f"{audio_path.stem}.timing.json")
+
+
+def load_part_cache(
+    path: Path, audio_hash: str, config_hash: str
+) -> dict[str, Any] | None:
+    if not path.exists():
+        return None
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    if (
+        data.get("schema_version") != SCHEMA_VERSION
+        or data.get("audio_sha256") != audio_hash
+        or data.get("transcription_config_sha256") != config_hash
+        or not data.get("words")
+    ):
+        return None
+    return data
+
+
 def existing_matches(path: Path, audio_hash: str, config_hash: str) -> bool:
     if not path.exists():
         return False
@@ -300,7 +314,8 @@ def existing_matches(path: Path, audio_hash: str, config_hash: str) -> bool:
     except (OSError, json.JSONDecodeError):
         return False
     return (
-        data.get("audio_sha256") == audio_hash
+        data.get("schema_version") == SCHEMA_VERSION
+        and data.get("audio_sha256") == audio_hash
         and data.get("transcription_config_sha256") == config_hash
         and bool(data.get("words"))
     )
