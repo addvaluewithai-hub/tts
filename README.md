@@ -1,6 +1,6 @@
 # Gemini 3.1 Flash TTS batch pipeline
 
-Drop transcript files into `transcripts/`. GitHub Actions converts them to WAV audio with Google's `gemini-3.1-flash-tts-preview`, writes the results to `audio/`, and moves successfully processed transcript files to `done/`.
+Drop transcript files into `transcripts/`. GitHub Actions converts them to WAV audio with Google's `gemini-3.1-flash-tts-preview`, writes the results to `audio/`, moves successfully processed transcript files to `done/`, assembles each lesson, then creates a timestamped transcript for video synchronization.
 
 The pipeline is designed for batch work: add 1 file or 10 files, push once, and let the workflow process them sequentially.
 
@@ -16,7 +16,7 @@ transcripts/
     03-examples.txt
     04-closing.txt
         |
-        | GitHub Actions + Gemini TTS
+        | Gemini TTS
         v
 audio/
   lesson-01/
@@ -28,11 +28,15 @@ audio/
     03-examples.json
     04-closing.wav
     04-closing.json
-
+        |
+        | local assembly + Gemini audio understanding
+        v
 final/
   lesson-01.wav
   lesson-01.mp3
   lesson-01.json
+  lesson-01.transcript.json
+  lesson-01.transcript.vtt
 
 done/
   lesson-01/
@@ -42,9 +46,40 @@ done/
     04-closing.txt
 ```
 
-The small WAV files remain available so one bad section can be regenerated without rebuilding the whole lesson. After TTS succeeds, `scripts/assemble_lessons.py` sorts the WAV parts by filename and creates one final lossless WAV plus one MP3 for each lesson folder.
+The small WAV files remain available so one bad section can be regenerated without rebuilding the whole lesson. `scripts/assemble_lessons.py` sorts them by filename and creates the final WAV/MP3. `scripts/transcribe_final.py` then sends the final MP3 to Gemini audio understanding and creates the video-sync timing files.
 
-The JSON beside each small WAV is a generation manifest containing the source hash, effective voice configuration, model, chunk count, and audio format. The JSON beside the final lesson records the ordered component files, assembly hash, gap, duration, and MP3 settings. These manifests make safe reruns idempotent.
+## Video-sync transcript
+
+`final/<lesson>.transcript.json` is the machine-readable handoff for the video agent. It includes:
+
+- final audio duration in milliseconds;
+- exact start/end boundaries for every numbered source audio part, calculated locally from the WAV files;
+- semantic transcript segments with start/end timestamps, speaker, language, and text;
+- best-effort word-level start/end timestamps with Arabic/English language labels;
+- the Gemini model that produced the timing alignment;
+- hashes so unchanged lessons are not transcribed again.
+
+`final/<lesson>.transcript.vtt` contains the same semantic segments in standard WebVTT form for players/editors.
+
+The source transcript in `done/<lesson>/` is supplied to Gemini as a spelling/alignment reference after silent YAML, SSML/IPA markup, and performance tags are removed. The final audio remains authoritative.
+
+## Transcription model router
+
+The router uses only models that accept audio input:
+
+```yaml
+transcription:
+  enabled: true
+  models:
+    - gemini-3.5-flash-lite
+    - gemini-3.1-flash-lite
+  attempts_per_model: 2
+  initial_delay_seconds: 3
+  max_delay_seconds: 20
+  write_vtt: true
+```
+
+Lessons rotate between the configured models to spread daily usage. If the selected model is rate-limited or has a service/model failure, the router retries/falls back to the other model. The hosted `gemma-4-26b-a4b-it` and `gemma-4-31b-it` models are intentionally not in this router because those Gemma 4 sizes do not accept audio input. Embedding models are also irrelevant to this stage.
 
 ## One-time setup
 
@@ -85,7 +120,7 @@ Gemini TTS supports expressive inline audio tags such as `[excited]`, `[whispers
 
 ### Useful built-in voices
 
-All 30 documented voices are supported. A few starting points:
+All documented TTS voices are supported. A few starting points:
 
 - `Kore` — firm
 - `Puck` — upbeat
@@ -100,7 +135,7 @@ All 30 documented voices are supported. A few starting points:
 
 ## Multi-speaker transcript
 
-Gemini 3.1 Flash TTS supports up to two speakers. Their names in the metadata must match the names in the spoken transcript.
+Gemini TTS supports up to two speakers. Their names in the metadata must match the names in the spoken transcript.
 
 ```text
 ---
@@ -121,14 +156,11 @@ See `examples/` for ready-to-copy files.
 
 ## Global configuration
 
-Edit `tts_config.yaml` to change defaults for every transcript and lesson assembly:
+Edit `tts_config.yaml` to change defaults for TTS, lesson assembly, and final transcription:
 
 ```yaml
 model: gemini-3.1-flash-tts-preview
 voice: Kore
-audio_profile: A natural, trustworthy narrator.
-scene: A clean, quiet recording studio.
-director_notes: Speak naturally and conversationally.
 max_chars_per_request: 5000
 request_delay_seconds: 2
 retry:
@@ -138,52 +170,39 @@ retry:
 assembly:
   gap_ms: 300
   mp3_bitrate: 192k
+transcription:
+  enabled: true
+  models:
+    - gemini-3.5-flash-lite
+    - gemini-3.1-flash-lite
+  attempts_per_model: 2
+  write_vtt: true
 ```
 
-`assembly.gap_ms` controls the silence inserted between small lesson files. `assembly.mp3_bitrate` controls the final MP3 quality. The lossless WAV master is always kept as well.
-
-Per-transcript front matter overrides the global `model`, `voice`, `audio_profile`, `scene`, `director_notes`, and `max_chars_per_request` values.
+`assembly.gap_ms` controls silence between small lesson files. The lossless WAV master is always kept. Per-transcript front matter overrides the global TTS model/voice/profile/scene/director notes/chunk size.
 
 ## Reliability behavior
 
-The processor intentionally runs requests sequentially. It retries `429` and `5xx` API errors with exponential backoff and jitter. A transcript is moved to `done/` only after its WAV and manifest are safely written.
+TTS requests run sequentially and retry `429`/`5xx` errors with exponential backoff. A source transcript moves to `done/` only after its WAV and manifest are safely written.
 
-Long transcript files can also be split internally near paragraph/sentence boundaries. Each internal chunk is generated separately as 24 kHz, mono, 16-bit PCM and stitched into that part's WAV file.
+Final lesson assembly validates WAV format consistency before joining files. Final transcription is hash-based and idempotent: unchanged MP3s with the same router configuration do not spend another API request. Uploaded Gemini Files API copies are deleted after each transcription attempt.
 
-Final lesson assembly happens only after the TTS processing step succeeds. The assembler validates that every component WAV uses the same channel count, sample width, and sample rate before joining them. It keeps the small files and produces `final/<lesson>.wav`, `final/<lesson>.mp3`, and a final manifest.
-
-If one transcript fails after all retries, the workflow continues processing the remaining files. Successful outputs are committed, the failed transcript remains in `transcripts/`, and the workflow ends in a failed state so the problem is visible. It does not publish an incomplete newly assembled lesson master from that failed batch.
+The workflow commits successful outputs even if a later pipeline stage fails, then ends failed so the problem remains visible and can be retried without losing completed work.
 
 ## Local use
-
-Validate transcript parsing/chunking without making Gemini requests:
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-python scripts/process_tts.py --dry-run
-```
-
-Generate TTS locally:
-
-```bash
 export GEMINI_API_KEY="..."
+
 python scripts/process_tts.py
-```
-
-Assemble existing lesson WAV parts locally (requires `ffmpeg` for MP3 output):
-
-```bash
 python scripts/assemble_lessons.py
-```
-
-Run tests:
-
-```bash
+python scripts/transcribe_final.py
 python -m unittest discover -s tests -v
 ```
 
 ## Notes on quota
 
-Gemini rate limits are project-level and can include RPM, token, and daily request limits. Your exact active limits should be checked in Google AI Studio. Because transcript chunking can use more than one request per file, the number of API requests can be higher than the number of transcript files. Final WAV/MP3 assembly is local processing and uses no Gemini requests.
+Final WAV/MP3 assembly is local and uses no Gemini requests. Final timestamping uses one audio-understanding request per lesson in the normal case. The router spreads lessons across the configured audio-capable Flash-Lite models and only consumes fallback calls when a primary attempt fails.
