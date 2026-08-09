@@ -1,0 +1,5 @@
+---
+audio_profile: A warm, patient Arabic-speaking English teacher speaking directly to one adult beginner.
+director_notes: Introduce the example naturally, then say each English sentence distinctly with a small pause after it. Preserve the transcript exactly.
+---
+مثال آخر، هذه المرة مع عمر. Hi, I'm Omar. I'm from Egypt. I live in Dubai. I'm an engineer. I like football.
