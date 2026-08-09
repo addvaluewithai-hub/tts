@@ -58,9 +58,43 @@ jobs:
       - name: Run factory
         id: factory
         continue-on-error: true
+        shell: bash
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python scripts/run_factory.py
+        run: |
+          set -uo pipefail
+          max_factory_attempts=5
+          retry_delay_seconds=60
+
+          for attempt in $(seq 1 "$max_factory_attempts"); do
+            echo "Factory attempt ${attempt}/${max_factory_attempts}"
+            log_file="$(mktemp)"
+
+            set +e
+            python scripts/run_factory.py 2>&1 | tee "$log_file"
+            status=${PIPESTATUS[0]}
+            set -e
+
+            if [ "$status" -eq 0 ]; then
+              rm -f "$log_file"
+              exit 0
+            fi
+
+            if ! grep -q "Error code: 429" "$log_file"; then
+              echo "Factory failed for a non-rate-limit reason; not retrying automatically."
+              rm -f "$log_file"
+              exit "$status"
+            fi
+
+            rm -f "$log_file"
+            if [ "$attempt" -ge "$max_factory_attempts" ]; then
+              echo "Gemini rate limit persisted after ${max_factory_attempts} attempts."
+              exit "$status"
+            fi
+
+            echo "Gemini returned 429. Waiting ${retry_delay_seconds}s, then retrying remaining work in this same run."
+            sleep "$retry_delay_seconds"
+          done
 
       - name: Record factory run status
         if: always()
