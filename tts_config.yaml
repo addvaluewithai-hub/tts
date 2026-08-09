@@ -24,3 +24,5 @@ retry:
   max_attempts: 5
   initial_delay_seconds: 4
   max_delay_seconds: 60
+
+# Touching this config intentionally retriggers the Golden Lesson batch after secret setup.
