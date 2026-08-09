@@ -1,0 +1,16 @@
+{
+  "source": "golden-lesson/08-closing.txt",
+  "source_sha256": "b74c9f3e32f2bb19bf6c8772c982e82cff9b68c4908841b90f247b572c77ed58",
+  "effective_config_sha256": "ffaee35b8dc9e18a52541f7acdc06bed9ad326e49c1b6c1ae84816c7e0a5b251",
+  "model": "gemini-3.1-flash-tts-preview",
+  "speech_config": [
+    {
+      "voice": "Sulafat"
+    }
+  ],
+  "chunks": 1,
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "generated_at": "2026-08-09T08:59:55.397611+00:00"
+}
