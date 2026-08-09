@@ -1,8 +1,8 @@
 {
-  "run_id": "31323196733",
-  "run_attempt": "3",
+  "run_id": "31323976345",
+  "run_attempt": "1",
   "event": "push",
-  "source_sha": "3a486bdbe67a862296adbecbdea2c5da46f9fec1",
+  "source_sha": "2a7ab109c0043e3bf7c5e52f24abfece3e2e6669",
   "factory_outcome": "failure",
-  "recorded_at": "2026-08-09T16:27:44Z"
+  "recorded_at": "2026-08-09T16:31:17Z"
 }
