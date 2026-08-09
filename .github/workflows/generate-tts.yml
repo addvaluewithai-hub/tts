@@ -10,6 +10,7 @@ on:
       - "transcripts/**/*.md"
       - "tts_config.yaml"
       - "scripts/process_tts.py"
+      - "scripts/assemble_lessons.py"
       - "requirements.txt"
 
 permissions:
@@ -37,7 +38,10 @@ jobs:
           cache: pip
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
 
       - name: Run tests
         run: python -m unittest discover -s tests -v
@@ -48,6 +52,11 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/process_tts.py
+
+      - name: Assemble final lesson audio
+        id: assemble
+        if: steps.tts.outcome == 'success'
+        run: python scripts/assemble_lessons.py
 
       - name: Commit generated audio and archived transcripts
         id: commit
@@ -61,8 +70,8 @@ jobs:
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add audio done transcripts
-          git commit -m "chore(tts): generate audio and archive transcripts"
+          git add audio done transcripts final
+          git commit -m "chore(tts): generate and assemble lesson audio"
           git push
 
       - name: Fail workflow if any transcript failed
