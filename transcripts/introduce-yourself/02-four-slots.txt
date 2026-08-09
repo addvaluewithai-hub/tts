@@ -16,24 +16,24 @@ director_notes: |
 
   Bracketed audio tags are performance directions and must not be spoken. Preserve the transcript exactly. Do not add, remove, translate, or paraphrase any words.
 ---
-Speaker 1: آخر حاجة، أضف تفصيلة صغيرة عنك.
+Speaker 1: [CLEAR, SLIGHTLY SLOWER] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="haɪ | aɪm ˈmaɪə | aɪm frəm ˈdʒɔɹdən | aɪ lɪv ɪn əˈmɑːn | aɪm ə dɪˈzaɪnɚ | aɪ laɪk fəˈtɑɡrəfi">Hi, I'm Maya. I'm from Jordan. I live in Amman. I'm a designer. I like photography.</phoneme></lang>
 
-Speaker 1: مايا قالت:
+Speaker 1: بس كده.
 
-Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ laɪk fəˈtɑɡrəfi">I like photography.</phoneme></lang>
+Speaker 1: مايا قالت اسمها، بلدها، مكان سكنها، شغلها، وحاجة بتحبها.
 
-Speaker 1: التفصيلة دي مهمة؛ لأنها بتدي الشخص اللي قدامك موضوع يقدر يسألك عنه.
+Speaker 1: تعال نفهم كل جزء.
 
-Speaker 1: ممكن تقول:
+Speaker 1: أول حاجة، التحية والاسم.
 
-Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ laɪk ˈriːdɪŋ">I like reading.</phoneme></lang>
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="haɪ | aɪm ˈmaɪə">Hi, I'm Maya.</phoneme></lang>
 
-Speaker 1: أو:
+Speaker 1: كلمة <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm">I'm</phoneme></lang> هي الصورة المختصرة والطبيعية من:
 
-Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ laɪk ˈfʊtˌbɔl">I like football.</phoneme></lang>
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ æm">I am.</phoneme></lang>
 
-Speaker 1: أو:
+Speaker 1: لكن في المحادثات العادية، الأغلب إنك هتسمع وتستخدم:
 
-Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ laɪk ˈkuːkɪŋ">I like cooking.</phoneme></lang>
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm">I'm.</phoneme></lang>
 
-Speaker 1: [PLAYFUL] حتى لو النتيجة النهائية في المطبخ مش مضمونة.
+Speaker 1: قولها كوحدة واحدة خفيفة. ما تفصلش الكلمتين عن بعض.

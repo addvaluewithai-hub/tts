@@ -16,24 +16,16 @@ director_notes: |
 
   Bracketed audio tags are performance directions and must not be spoken. Preserve the transcript exactly. Do not add, remove, translate, or paraphrase any words.
 ---
-Speaker 1: آخر حاجة، أضف تفصيلة صغيرة عنك.
+Speaker 1: بعد الاسم، مايا قالت بلدها.
 
-Speaker 1: مايا قالت:
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm frəm ˈdʒɔɹdən">I'm from Jordan.</phoneme></lang>
 
-Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ laɪk fəˈtɑɡrəfi">I like photography.</phoneme></lang>
+Speaker 1: التعبير <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm frəm">I'm from</phoneme></lang> معناه "أنا من". استخدمه عشان تقول بلدك أو المكان اللي أنت أصلك منه.
 
-Speaker 1: التفصيلة دي مهمة؛ لأنها بتدي الشخص اللي قدامك موضوع يقدر يسألك عنه.
+Speaker 1: مثلًا:
 
-Speaker 1: ممكن تقول:
-
-Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ laɪk ˈriːdɪŋ">I like reading.</phoneme></lang>
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm frəm ˈiːdʒɪpt">I'm from Egypt.</phoneme></lang>
 
 Speaker 1: أو:
 
-Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ laɪk ˈfʊtˌbɔl">I like football.</phoneme></lang>
-
-Speaker 1: أو:
-
-Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ laɪk ˈkuːkɪŋ">I like cooking.</phoneme></lang>
-
-Speaker 1: [PLAYFUL] حتى لو النتيجة النهائية في المطبخ مش مضمونة.
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm frəm səˈuːdi əˈreɪbiə">I'm from Saudi Arabia.</phoneme></lang>

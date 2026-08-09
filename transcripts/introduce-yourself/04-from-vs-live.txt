@@ -1,5 +1,35 @@
 ---
-audio_profile: A warm, patient Arabic-speaking English teacher speaking directly to one adult beginner.
-director_notes: Contrast the two English patterns clearly. Put gentle emphasis on from and live in. Preserve the transcript exactly.
+speakers:
+  - speaker: Speaker 1
+    voice: Kore
+audio_profile: |
+  Speaker 1 is a warm and engaging Egyptian English teacher speaking directly to an Arabic-speaking adult beginner.
+  The teacher uses natural Egyptian Arabic for explanations and clear General American pronunciation for every English expression.
+scene: |
+  A warm, modern English-learning studio. One Egyptian teacher speaks directly to the learner through the camera, as if teaching them personally. The setting is clean, comfortable, and visually simple. The teacher is friendly, confident, lightly humorous, and encouraging. This feels like a polished online lesson, not a podcast or formal classroom lecture. No background music plays beneath the explanation.
+director_notes: |
+  The delivery should feel personal and conversational, as though the teacher is helping one learner sitting in front of them. Use natural pauses, vocal smiles, small changes in energy, and occasional light humor.
+
+  English examples should be pronounced slowly and clearly the first time, then repeated later at a relaxed natural speed. Switch cleanly from Arabic to English. Never pronounce English with an Arabic accent.
+
+  SSML language and phoneme elements are silent pronunciation instructions. Apply them to the enclosed English text, but never read the markup, attributes, or IPA symbols aloud.
+
+  Bracketed audio tags are performance directions and must not be spoken. Preserve the transcript exactly. Do not add, remove, translate, or paraphrase any words.
 ---
-انتبه إلى الفرق. I'm from Jordan تعني: أنا من الأردن، أو هذا هو أصلي. I live in Amman تعني: أنا أعيش في عمّان الآن. لذلك يمكن أن تقول: I'm from Egypt, but I live in Dubai.
+Speaker 1: بعد كده، مايا قالت هي عايشة فين دلوقتي.
+
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ lɪv ɪn əˈmɑːn">I live in Amman.</phoneme></lang>
+
+Speaker 1: وهنا عندنا فرق مهم جدًا.
+
+Speaker 1: <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm frəm">I'm from</phoneme></lang> بتقول لنا أنت أصلك منين.
+
+Speaker 1: لكن <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ lɪv ɪn">I live in</phoneme></lang> بتقول لنا أنت عايش فين دلوقتي.
+
+Speaker 1: وممكن المكانين يكونوا مختلفين.
+
+Speaker 1: مثلًا، ممكن شخص يقول:
+
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm frəm ˈiːdʒɪpt | bət aɪ lɪv ɪn duːˈbaɪ">I'm from Egypt, but I live in Dubai.</phoneme></lang>
+
+Speaker 1: يعني هو من مصر، لكنه عايش دلوقتي في دبي.

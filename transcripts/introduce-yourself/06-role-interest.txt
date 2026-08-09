@@ -1,5 +1,31 @@
 ---
-audio_profile: A warm, patient Arabic-speaking English teacher speaking directly to one adult beginner.
-director_notes: Keep the examples lively but concise. Pause slightly between each English example. Preserve the transcript exactly.
+speakers:
+  - speaker: Speaker 1
+    voice: Kore
+audio_profile: |
+  Speaker 1 is a warm and engaging Egyptian English teacher speaking directly to an Arabic-speaking adult beginner.
+  The teacher uses natural Egyptian Arabic for explanations and clear General American pronunciation for every English expression.
+scene: |
+  A warm, modern English-learning studio. One Egyptian teacher speaks directly to the learner through the camera, as if teaching them personally. The setting is clean, comfortable, and visually simple. The teacher is friendly, confident, lightly humorous, and encouraging. This feels like a polished online lesson, not a podcast or formal classroom lecture. No background music plays beneath the explanation.
+director_notes: |
+  The delivery should feel personal and conversational, as though the teacher is helping one learner sitting in front of them. Use natural pauses, vocal smiles, small changes in energy, and occasional light humor.
+
+  English examples should be pronounced slowly and clearly the first time, then repeated later at a relaxed natural speed. Switch cleanly from Arabic to English. Never pronounce English with an Arabic accent.
+
+  SSML language and phoneme elements are silent pronunciation instructions. Apply them to the enclosed English text, but never read the markup, attributes, or IPA symbols aloud.
+
+  Bracketed audio tags are performance directions and must not be spoken. Preserve the transcript exactly. Do not add, remove, translate, or paraphrase any words.
 ---
-والتفصيلة الأخيرة مرنة. يمكنك أن تذكر عملك: I'm a teacher. أو: I'm an engineer. ويمكنك أن تذكر شيئًا تحبه: I like football. أو: I like photography. اختر تفصيلة واحدة بسيطة تساعد الناس على تذكّرك.
+Speaker 1: بعد كده، تقدر تقول شغلك أو دورك.
+
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm ə dɪˈzaɪnɚ">I'm a designer.</phoneme></lang>
+
+Speaker 1: وممكن تغيّر الوظيفة حسب معلوماتك.
+
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm ə ˈtiːtʃɚ">I'm a teacher.</phoneme></lang>
+
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm ən ˌɛndʒəˈnɪr">I'm an engineer.</phoneme></lang>
+
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm ə ˈstuːdənt">I'm a student.</phoneme></lang>
+
+Speaker 1: ولو مش عايز تتكلم عن شغلك، مفيش مشكلة. الجملة دي اختيارية.

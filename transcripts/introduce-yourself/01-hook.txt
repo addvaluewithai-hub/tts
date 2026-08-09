@@ -16,24 +16,16 @@ director_notes: |
 
   Bracketed audio tags are performance directions and must not be spoken. Preserve the transcript exactly. Do not add, remove, translate, or paraphrase any words.
 ---
-Speaker 1: آخر حاجة، أضف تفصيلة صغيرة عنك.
+Speaker 1: [WARM] أهلًا بيك في أول درس.
 
-Speaker 1: مايا قالت:
+Speaker 1: تخيّل إنك قابلت شخص جديد، وبعد السلام سألك:
 
-Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ laɪk fəˈtɑɡrəfi">I like photography.</phoneme></lang>
+Speaker 1: [FRIENDLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="tɛl mi əˈbaʊt jɚˈsɛlf">Tell me about yourself.</phoneme></lang>
 
-Speaker 1: التفصيلة دي مهمة؛ لأنها بتدي الشخص اللي قدامك موضوع يقدر يسألك عنه.
+Speaker 1: وفجأة حسّيت إنك مطالب تحكي قصة حياتك من أول يوم في الحضانة لحد النهاردة.
 
-Speaker 1: ممكن تقول:
+Speaker 1: [AMUSED] اطمن. هو مش طالب فيلم وثائقي عن حياتك.
 
-Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ laɪk ˈriːdɪŋ">I like reading.</phoneme></lang>
+Speaker 1: كل اللي محتاجه أربع أو خمس جمل قصيرة تساعده يعرفك، وتفتح بينكم محادثة.
 
-Speaker 1: أو:
-
-Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ laɪk ˈfʊtˌbɔl">I like football.</phoneme></lang>
-
-Speaker 1: أو:
-
-Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ laɪk ˈkuːkɪŋ">I like cooking.</phoneme></lang>
-
-Speaker 1: [PLAYFUL] حتى لو النتيجة النهائية في المطبخ مش مضمونة.
+Speaker 1: اسمع النموذج ده أولًا.
