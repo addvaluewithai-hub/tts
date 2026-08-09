@@ -258,6 +258,14 @@ def retryable_status(exc: Exception) -> int | None:
     return None
 
 
+def is_rate_limit_error(exc: Exception) -> bool:
+    """Recognize Gemini quota errors even when the SDK omits a numeric status field."""
+    if retryable_status(exc) == 429:
+        return True
+    message = str(exc).lower()
+    return "error code: 429" in message or "too_many_requests" in message
+
+
 def synthesize_chunk(
     client: genai.Client,
     *,
@@ -488,6 +496,13 @@ def main() -> int:
                 f"  FAILED: {type(exc).__name__}: {exc}",
                 file=sys.stderr,
             )
+            if is_rate_limit_error(exc):
+                print(
+                    "Rate limit encountered; stopping this TTS batch so the "
+                    "factory can wait for the quota window before retrying.",
+                    file=sys.stderr,
+                )
+                break
 
     if failures:
         print("\nFailed transcript(s):", file=sys.stderr)
