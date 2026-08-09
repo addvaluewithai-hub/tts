@@ -1,0 +1,16 @@
+{
+  "source": "introduce-yourself/04-from-vs-live.txt",
+  "source_sha256": "4d98c1cb1a3521a47e237fad2e8c28b79807d7a65d983a4df446d96013d8ed58",
+  "effective_config_sha256": "4b995290ea54f700c5bdbd1ec1ee62bbe043ab2adf55f173dc733d3c44ceebda",
+  "model": "gemini-3.1-flash-tts-preview",
+  "speech_config": [
+    {
+      "voice": "Kore"
+    }
+  ],
+  "chunks": 1,
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "generated_at": "2026-08-09T15:49:14.103371+00:00"
+}
