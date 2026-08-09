@@ -1,0 +1,5 @@
+---
+audio_profile: A warm, patient Arabic-speaking English teacher speaking directly to one adult beginner.
+director_notes: Introduce the example naturally, then say each English sentence distinctly with a small pause after it. Keep pronunciation crisp and beginner-friendly. Preserve the transcript exactly.
+---
+استمع إلى مايا. Hi, I'm Maya. I'm from Jordan. I live in Amman. I'm a designer. I like photography.
