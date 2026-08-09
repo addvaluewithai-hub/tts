@@ -1,7 +1,7 @@
 {
   "source": "introduce-yourself/01-hook.txt",
-  "source_sha256": "42a91d5f7b99fb39668a7eb7be28a5488851597858915040468933ee867bfb7d",
-  "effective_config_sha256": "1e0ad1e828debf299eda6c647837ab7ee791211b51414ac37fa43aea4fd8d890",
+  "source_sha256": "c75dec513e6a83e5924c1c3358c58151776efd1f039720e6bb99d7823ae870fd",
+  "effective_config_sha256": "4b995290ea54f700c5bdbd1ec1ee62bbe043ab2adf55f173dc733d3c44ceebda",
   "model": "gemini-3.1-flash-tts-preview",
   "speech_config": [
     {
@@ -12,5 +12,5 @@
   "sample_rate_hz": 24000,
   "channels": 1,
   "sample_width_bytes": 2,
-  "generated_at": "2026-08-09T10:43:34.176066+00:00"
+  "generated_at": "2026-08-09T13:36:07.396429+00:00"
 }
