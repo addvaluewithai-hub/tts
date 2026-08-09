@@ -3,6 +3,8 @@ name: Generate TTS audio
 on:
   workflow_dispatch:
   push:
+    branches:
+      - main
     paths:
       - "transcripts/**/*.txt"
       - "transcripts/**/*.md"
