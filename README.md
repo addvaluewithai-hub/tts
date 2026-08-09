@@ -1,6 +1,12 @@
 # TTS Factory
 
-A GitHub-native audio production pipeline for turning lesson transcripts into retakeable TTS parts, one final lesson master, and a machine-readable word timeline for synchronized video generation.
+A GitHub-native production pipeline that turns lesson transcripts into:
+
+- short, retakeable TTS WAV parts;
+- one assembled WAV + MP3 per lesson;
+- word-level timing JSON for synchronized video generation;
+- WebVTT captions;
+- cached manifests so unchanged work does not spend model calls again.
 
 ```text
 transcripts/<lesson>/*.txt
@@ -13,20 +19,18 @@ assemble
         ↓
 final/<lesson>.wav + .mp3
         ↓
-per-part Gemini word alignment
+per-part Gemini audio alignment
         ↓
 final/<lesson>.transcript.json + .vtt
 ```
 
-The pipeline is designed to be idempotent: unchanged source/config/audio reuses existing manifests and timing caches instead of spending model calls again.
-
-For automation agents, read [`AGENTS.md`](AGENTS.md). It is the operational input/output contract.
+For autonomous/coding/video agents, **read [`AGENTS.md`](AGENTS.md)**. It is the operational input/output contract.
 
 ## Quick start
 
 ### 1. Add the API key once
 
-In this repository, create the GitHub Actions secret:
+Create this GitHub Actions repository secret:
 
 ```text
 GEMINI_API_KEY
@@ -34,7 +38,7 @@ GEMINI_API_KEY
 
 ### 2. Add a lesson
 
-Create short numbered transcript parts under one lesson folder:
+Put short numbered transcript parts under one lesson folder:
 
 ```text
 transcripts/introduce-yourself/
@@ -44,13 +48,13 @@ transcripts/introduce-yourself/
   04-closing.txt
 ```
 
-Filename order is playback order. Short semantic parts are preferred because they make retakes, voice consistency, and timestamp alignment more reliable.
+Filename order is playback order. Short semantic parts are preferred because they make retakes, voice consistency, and word alignment more reliable.
 
 ### 3. Push to `main`
 
-The **TTS Factory** GitHub Action runs automatically. You can also run it manually from the Actions tab.
+The **TTS Factory** GitHub Action runs automatically. It can also be started manually from the Actions tab.
 
-### 4. Consume the outputs
+### 4. Use the outputs
 
 A completed lesson produces:
 
@@ -73,49 +77,35 @@ final/
   introduce-yourself.transcript.vtt
 ```
 
-The individual WAVs are kept for selective retakes. `final/<lesson>.transcript.json` is the primary machine handoff for a video agent.
+`final/<lesson>.transcript.json` is the primary machine handoff for downstream video generation.
 
-## What each stage does
+## One-command factory
 
-### 1. TTS
+GitHub Actions and local agents use the same entry point:
 
-`scripts/process_tts.py`
+```bash
+python scripts/run_factory.py
+```
 
-- discovers `.txt`/`.md` files recursively under `transcripts/`;
-- applies global defaults from `tts_config.yaml` plus optional per-file YAML front matter;
-- generates 24 kHz mono PCM WAV audio;
-- retries retryable model/API failures;
-- writes a hash manifest beside every WAV;
-- moves a source transcript to `done/` only after its WAV is safely written;
-- leaves failed inputs in `transcripts/` for retry.
+It runs these stages in order:
 
-### 2. Lesson assembly
+```text
+1. TTS       transcripts/ -> audio/ + done/
+2. Assemble  audio/<lesson>/ -> final WAV/MP3
+3. Align     short WAV parts -> timing caches + final JSON/VTT
+```
 
-`scripts/assemble_lessons.py`
+For recovery/debugging, run one stage only:
 
-- treats each `audio/<lesson>/` folder as one lesson;
-- sorts WAV parts by filename;
-- validates compatible WAV formats;
-- inserts the configured gap between parts;
-- writes a lossless final WAV and delivery MP3;
-- writes an assembly manifest with exact duration and component order;
-- skips rebuilding an unchanged lesson.
-
-### 3. Video-sync alignment
-
-`scripts/transcribe_final.py` + `scripts/transcription_core.py`
-
-- aligns each short source WAV independently with an audio-capable Gemini model;
-- uses the successful source in `done/` as a spelling/order reference while treating audio as authoritative;
-- rejects obviously incomplete/grouped word timing responses;
-- caches each part as `audio/<lesson>/<part>.timing.json`;
-- offsets part-relative timings into the final lesson timeline;
-- writes schema-v2 JSON plus WebVTT;
-- reuses unchanged timing caches during retakes.
+```bash
+python scripts/run_factory.py --stage tts
+python scripts/run_factory.py --stage assemble
+python scripts/run_factory.py --stage align
+```
 
 ## Transcript controls
 
-Plain text uses global defaults:
+Plain text uses the defaults in `tts_config.yaml`:
 
 ```text
 Welcome to the lesson.
@@ -137,17 +127,15 @@ director_notes: Conversational, encouraging, and precise. Preserve the transcrip
 
 Supported per-part overrides:
 
-```text
-model
-voice
-speakers
- audio_profile
-scene
-director_notes
-max_chars_per_request
-```
+- `model`
+- `voice`
+- `speakers`
+- `audio_profile`
+- `scene`
+- `director_notes`
+- `max_chars_per_request`
 
-For two speakers:
+Two-speaker example:
 
 ```text
 ---
@@ -163,62 +151,40 @@ Maya: Reliability first.
 Leo: Then automate the repetitive parts.
 ```
 
-See `examples/` for small copyable examples.
+See `examples/` for copyable source examples.
 
-## Video handoff
+## Video synchronization output
 
-`final/<lesson>.transcript.json` is the authoritative synchronization file for downstream video generation. Current files use:
+`final/<lesson>.transcript.json` uses schema v2 and contains:
 
-```json
-{
-  "schema_version": 2,
-  "alignment_mode": "per_part",
-  "duration_ms": 123456,
-  "parts": [
-    {
-      "file": "01-intro.wav",
-      "start_ms": 0,
-      "end_ms": 18000,
-      "model": "gemini-3.1-flash-lite",
-      "word_count": 42
-    }
-  ],
-  "segments": [
-    {
-      "start_ms": 0,
-      "end_ms": 18000,
-      "speaker": "teacher",
-      "language": "ar-en",
-      "text": "..."
-    }
-  ],
-  "words": [
-    {
-      "start_ms": 640,
-      "end_ms": 920,
-      "text": "Hello",
-      "language": "en",
-      "segment_index": 0
-    }
-  ]
-}
-```
+- final lesson duration in milliseconds;
+- deterministic start/end boundaries for every source audio part;
+- one semantic segment per part;
+- model-derived word start/end timestamps across the full lesson;
+- language labels;
+- model/hash metadata for caching and reproducibility.
 
-`parts[].start_ms/end_ms` are deterministic boundaries derived from the actual WAV lengths and assembly gap. `words[]` is model-derived fine alignment for subtitles, highlights, scene cues, and synchronized graphics.
+Use `parts[].start_ms/end_ms` as hard section boundaries. Use `words[]` for subtitles, highlights, scene cues, graphics, and other fine synchronization.
+
+Word timings are model-derived alignment, not sample-accurate phoneme/lip-sync data.
 
 ## Retakes
 
-To replace only one section, put the revised transcript back at the same relative path:
+To replace only one part, put the revised transcript back at the same relative path:
 
 ```text
 transcripts/introduce-yourself/03-origin.txt
 ```
 
-The source/config hash forces that part to regenerate. Assembly rebuilds the final master. Unchanged `.timing.json` caches are reused, so only changed audio needs alignment again.
+The factory regenerates that changed part, replaces the canonical successful source in `done/`, rebuilds the lesson master, and re-aligns only audio whose hash changed. Unchanged timing caches are reused.
+
+Git history remains the archive of older successful transcript versions.
 
 ## Configuration
 
-`tts_config.yaml` is the single source of truth. The current defaults are:
+`tts_config.yaml` is the single source of truth for synthesis, assembly, and alignment.
+
+Current structure:
 
 ```yaml
 model: gemini-3.1-flash-tts-preview
@@ -248,6 +214,19 @@ transcription:
 
 Only audio-input models belong in `transcription.models`.
 
+## Reliability model
+
+The factory is intentionally idempotent and recovery-friendly:
+
+- failed TTS inputs stay in `transcripts/`;
+- a transcript moves to `done/` only after its WAV is safely written;
+- source/config hashes prevent unnecessary TTS regeneration;
+- assembly fingerprints prevent unnecessary master rebuilds;
+- per-part audio hashes preserve/reuse valid timing caches;
+- timing responses are validated and can fall back across configured audio models;
+- the workflow commits successfully produced factory state even if a later stage fails;
+- generated commits include `[skip ci]` to avoid a second no-op workflow run.
+
 ## Local use
 
 Requirements: Python 3.12+, `ffmpeg`, and `GEMINI_API_KEY` (or `GOOGLE_API_KEY`).
@@ -262,22 +241,15 @@ python -m unittest discover -s tests -v
 python scripts/run_factory.py
 ```
 
-Run only one recovery/debug stage when needed:
-
-```bash
-python scripts/run_factory.py --stage tts
-python scripts/run_factory.py --stage assemble
-python scripts/run_factory.py --stage align
-```
-
 ## Repository contract
 
 - `transcripts/` — inbox; humans/agents write new source here.
 - `audio/` — generated retakeable parts, TTS manifests, and timing caches.
-- `done/` — successfully processed source transcripts.
-- `final/` — assembled lesson masters and video-sync handoff files.
+- `done/` — latest successfully processed source transcript for each part.
+- `final/` — assembled masters and downstream video-sync handoff files.
 - `examples/` — tiny source-format examples only; not part of the live queue.
 - `scripts/` — pipeline implementation.
 - `tests/` — offline unit tests.
+- `AGENTS.md` — detailed agent operating contract.
 
-The GitHub Action commits only factory-managed state (`audio`, `done`, `transcripts`, `final`) and marks generated commits with `[skip ci]` to avoid a second no-op run caused by moving inputs out of the inbox.
+The working directories are intentionally empty in the clean repository. Generated lesson artifacts are production state, not bundled demo content.
