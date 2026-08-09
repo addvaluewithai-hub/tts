@@ -1,0 +1,5 @@
+---
+audio_profile: A warm, patient Arabic-speaking English teacher speaking directly to one adult beginner.
+director_notes: Contrast the two English patterns clearly. Put gentle emphasis on from and live in. Preserve the transcript exactly.
+---
+انتبه إلى الفرق. I'm from Jordan تعني: أنا من الأردن، أو هذا هو أصلي. I live in Amman تعني: أنا أعيش في عمّان الآن. لذلك يمكن أن تقول: I'm from Egypt, but I live in Dubai.
