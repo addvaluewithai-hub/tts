@@ -54,12 +54,30 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python scripts/run_factory.py
 
+      - name: Record factory run status
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .factory-status/tts
+          cat > .factory-status/tts/latest.json <<EOF
+          {
+            "run_id": "${GITHUB_RUN_ID}",
+            "run_attempt": "${GITHUB_RUN_ATTEMPT}",
+            "event": "${GITHUB_EVENT_NAME}",
+            "source_sha": "${GITHUB_SHA}",
+            "factory_outcome": "${{ steps.factory.outcome }}",
+            "recorded_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+
       - name: Commit factory state
+        if: always()
         shell: bash
         run: |
           set -euo pipefail
 
-          git add -A audio done transcripts final
+          git add -A audio done transcripts final .factory-status/tts/latest.json
           if git diff --cached --quiet; then
             echo "No factory state changes to commit."
             exit 0
