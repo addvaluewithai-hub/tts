@@ -11,6 +11,8 @@ on:
       - "tts_config.yaml"
       - "scripts/process_tts.py"
       - "scripts/assemble_lessons.py"
+      - "scripts/transcription_core.py"
+      - "scripts/transcribe_final.py"
       - "requirements.txt"
 
 permissions:
@@ -56,9 +58,18 @@ jobs:
       - name: Assemble final lesson audio
         id: assemble
         if: steps.tts.outcome == 'success'
+        continue-on-error: true
         run: python scripts/assemble_lessons.py
 
-      - name: Commit generated audio and archived transcripts
+      - name: Create timestamped final transcript
+        id: transcribe
+        if: steps.assemble.outcome == 'success'
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/transcribe_final.py
+
+      - name: Commit generated outputs
         id: commit
         shell: bash
         run: |
@@ -74,11 +85,14 @@ jobs:
           if [ -d final ]; then
             git add final
           fi
-          git commit -m "chore(tts): generate and assemble lesson audio"
+          git commit -m "chore(tts): generate lesson audio and timing transcript"
           git push
 
-      - name: Fail workflow if any transcript failed
-        if: steps.tts.outcome == 'failure'
+      - name: Fail workflow if a pipeline stage failed
+        if: >-
+          steps.tts.outcome == 'failure' ||
+          steps.assemble.outcome == 'failure' ||
+          steps.transcribe.outcome == 'failure'
         run: |
-          echo "One or more transcripts failed. Successful outputs were committed; failed transcripts remain in transcripts/."
+          echo "One or more TTS pipeline stages failed. Successful outputs were committed for inspection/retry."
           exit 1

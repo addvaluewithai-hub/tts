@@ -30,3 +30,16 @@ retry:
 assembly:
   gap_ms: 300
   mp3_bitrate: 192k
+
+# Final MP3s are sent back through Gemini audio understanding to create a video-sync
+# transcript. Only audio-capable models belong here. The router rotates the first model
+# across lessons and falls back to the other model on quota/service failures.
+transcription:
+  enabled: true
+  models:
+    - gemini-3.5-flash-lite
+    - gemini-3.1-flash-lite
+  attempts_per_model: 2
+  initial_delay_seconds: 3
+  max_delay_seconds: 20
+  write_vtt: true
