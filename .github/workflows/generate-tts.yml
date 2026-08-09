@@ -32,6 +32,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Sync current main
+        if: github.ref_name == 'main'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -50,9 +58,42 @@ jobs:
       - name: Run factory
         id: factory
         continue-on-error: true
+        shell: bash
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python scripts/run_factory.py
+        run: |
+          set -uo pipefail
+          max_factory_attempts=3
+
+          for attempt in $(seq 1 "$max_factory_attempts"); do
+            echo "Factory attempt ${attempt}/${max_factory_attempts}"
+            log_file="$(mktemp)"
+
+            set +e
+            python scripts/run_factory.py 2>&1 | tee "$log_file"
+            status=${PIPESTATUS[0]}
+            set -e
+
+            if [ "$status" -eq 0 ]; then
+              rm -f "$log_file"
+              exit 0
+            fi
+
+            if ! grep -q "Error code: 429" "$log_file"; then
+              echo "Factory failed for a non-rate-limit reason; not retrying automatically."
+              rm -f "$log_file"
+              exit "$status"
+            fi
+
+            rm -f "$log_file"
+            if [ "$attempt" -ge "$max_factory_attempts" ]; then
+              echo "Gemini rate limit persisted after ${max_factory_attempts} factory attempts."
+              exit "$status"
+            fi
+
+            echo "Gemini returned 429. Waiting 65 seconds for the quota window, then retrying remaining parts."
+            sleep 65
+          done
 
       - name: Record factory run status
         if: always()
@@ -60,12 +101,13 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p .factory-status/tts
+          current_sha="$(git rev-parse HEAD)"
           cat > .factory-status/tts/latest.json <<EOF
           {
             "run_id": "${GITHUB_RUN_ID}",
             "run_attempt": "${GITHUB_RUN_ATTEMPT}",
             "event": "${GITHUB_EVENT_NAME}",
-            "source_sha": "${GITHUB_SHA}",
+            "source_sha": "${current_sha}",
             "factory_outcome": "${{ steps.factory.outcome }}",
             "recorded_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           }
@@ -87,8 +129,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore(factory): publish generated outputs [skip ci]"
 
-          # A newer commit may have landed while model calls were running.
-          # Rebase generated state before pushing instead of failing a non-fast-forward push.
+          # A newer non-factory commit may have landed while model calls were running.
+          # We start from the current main, so this is normally a no-op, but keep the
+          # rebase as a final fast-forward guard before publishing generated state.
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
 
