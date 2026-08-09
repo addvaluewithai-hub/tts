@@ -1,7 +1,7 @@
 {
   "source": "introduce-yourself/08-build-yours.txt",
   "source_sha256": "f4b8efb389afcd05e560697de3077189277ca3be5df73438243768013a5e92b9",
-  "effective_config_sha256": "4b995290ea54f700c5bdbd1ec1ee62bbe043ab2adf55f173dc733d3c44ceebda",
+  "effective_config_sha256": "34bf1805398b0d64b325801a16d3c9f441976732374d54ab9e9c6ef4787c6d69",
   "model": "gemini-3.1-flash-tts-preview",
   "speech_config": [
     {
@@ -12,5 +12,5 @@
   "sample_rate_hz": 24000,
   "channels": 1,
   "sample_width_bytes": 2,
-  "generated_at": "2026-08-09T17:40:16.629460+00:00"
+  "generated_at": "2026-08-09T20:59:59.865144+00:00"
 }

@@ -3,14 +3,14 @@
   "alignment_mode": "per_part",
   "lesson": "introduce-yourself",
   "source_audio": "final/introduce-yourself.mp3",
-  "audio_sha256": "aaca9ebae98e6d839a04c17d1e7915337008bc99d83c0f6e0157df9eec329a65",
+  "audio_sha256": "2ffd1bb6cdf70ccff41ab78c66e14f7a59defe3a4ff1552c834e8f9877a17352",
   "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
   "model_router": [
     "gemini-3.5-flash-lite",
     "gemini-3.1-flash-lite"
   ],
-  "duration_ms": 244080,
-  "generated_at": "2026-08-09T17:41:48.229963+00:00",
+  "duration_ms": 247080,
+  "generated_at": "2026-08-09T21:00:12.334910+00:00",
   "parts": [
     {
       "file": "01-hook.wav",
@@ -78,16 +78,16 @@
     {
       "file": "08-build-yours.wav",
       "start_ms": 195420,
-      "end_ms": 223700,
-      "duration_ms": 28280,
+      "end_ms": 226700,
+      "duration_ms": 31280,
       "model": "gemini-3.1-flash-lite",
       "word_count": 54,
-      "audio_sha256": "e355dca825d08320c72437fcd146ec46f81a02f8e07d525bce9539b505e91847"
+      "audio_sha256": "9b4661bb3a5621d7e45dc6f3ff5c5aec075c257e82ca7ef5d2e50c3d08b38aed"
     },
     {
       "file": "09-closing.wav",
-      "start_ms": 224000,
-      "end_ms": 244080,
+      "start_ms": 227000,
+      "end_ms": 247080,
       "duration_ms": 20080,
       "model": "gemini-3.5-flash-lite",
       "word_count": 38,
@@ -146,14 +146,14 @@
     },
     {
       "start_ms": 195420,
-      "end_ms": 223700,
+      "end_ms": 226700,
       "speaker": "teacher",
-      "language": "mixed",
+      "language": "en-ar",
       "text": "Hi, I'm Omar. I'm from Egypt. I live in Giza. I'm a student. I like football. Nice to meet you. لاحظ إن عمر استخدم نفس البناء، لكن غيّر المعلومات. أنت كمان مش مطلوب منك تحفظ كلام مايا أو عمر. المطلوب إنك تتذكر أربع خانات بس: اسمك، بلدك، مكان سكنك أو شغلك، وحاجة واحدة بتحبها."
     },
     {
-      "start_ms": 224000,
-      "end_ms": 244080,
+      "start_ms": 227000,
+      "end_ms": 247080,
       "speaker": "teacher",
       "language": "ar",
       "text": "بعد الفيديو هتبدأ الأسئلة التطبيقية، وهتستخدم الخانات دي عشان تبني مقدمتك بنفسك. مش مطلوب منك كلام مثالي، ولا نطق مثالي من أول محاولة. المطلوب أربع أو خمس جمل قصيرة، واضحة، وشخصية. جاهز؟ نشوفك في التطبيق. See you there!"
@@ -2429,645 +2429,645 @@
       "segment_index": 6
     },
     {
-      "start_ms": 195450,
-      "end_ms": 195920,
+      "start_ms": 195420,
+      "end_ms": 195530,
       "text": "Hi,",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 196030,
-      "end_ms": 196570,
+      "start_ms": 196200,
+      "end_ms": 196460,
       "text": "I'm",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 196580,
-      "end_ms": 197060,
+      "start_ms": 196630,
+      "end_ms": 197010,
       "text": "Omar.",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 197460,
-      "end_ms": 197990,
+      "start_ms": 198550,
+      "end_ms": 198810,
       "text": "I'm",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 198000,
-      "end_ms": 198300,
+      "start_ms": 198950,
+      "end_ms": 199230,
       "text": "from",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 198310,
-      "end_ms": 198960,
+      "start_ms": 199510,
+      "end_ms": 199930,
       "text": "Egypt.",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 199600,
-      "end_ms": 199860,
+      "start_ms": 200780,
+      "end_ms": 201000,
       "text": "I",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 199870,
-      "end_ms": 200110,
+      "start_ms": 201120,
+      "end_ms": 201390,
       "text": "live",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 200120,
-      "end_ms": 200290,
+      "start_ms": 201530,
+      "end_ms": 201790,
       "text": "in",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 200300,
-      "end_ms": 200680,
+      "start_ms": 201870,
+      "end_ms": 202280,
       "text": "Giza.",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 201080,
-      "end_ms": 201480,
+      "start_ms": 202980,
+      "end_ms": 203230,
       "text": "I'm",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 201490,
-      "end_ms": 201640,
+      "start_ms": 203310,
+      "end_ms": 203460,
       "text": "a",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 201650,
-      "end_ms": 202190,
+      "start_ms": 203680,
+      "end_ms": 204160,
       "text": "student.",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 202620,
-      "end_ms": 202850,
+      "start_ms": 204740,
+      "end_ms": 204980,
       "text": "I",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 202860,
-      "end_ms": 203100,
+      "start_ms": 205110,
+      "end_ms": 205390,
       "text": "like",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 203110,
-      "end_ms": 203620,
+      "start_ms": 205590,
+      "end_ms": 205980,
       "text": "football.",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 204200,
-      "end_ms": 204830,
+      "start_ms": 206510,
+      "end_ms": 206750,
       "text": "Nice",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 204840,
-      "end_ms": 205000,
+      "start_ms": 206880,
+      "end_ms": 207070,
       "text": "to",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 205010,
-      "end_ms": 205240,
+      "start_ms": 207200,
+      "end_ms": 207400,
       "text": "meet",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 205250,
-      "end_ms": 205500,
+      "start_ms": 207570,
+      "end_ms": 207800,
       "text": "you.",
       "language": "en",
       "segment_index": 7
     },
     {
-      "start_ms": 205740,
-      "end_ms": 206250,
+      "start_ms": 207930,
+      "end_ms": 208310,
       "text": "لاحظ",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 206260,
-      "end_ms": 206510,
+      "start_ms": 208370,
+      "end_ms": 208590,
       "text": "إن",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 206520,
-      "end_ms": 206940,
+      "start_ms": 208770,
+      "end_ms": 209070,
       "text": "عمر",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 206950,
-      "end_ms": 207430,
+      "start_ms": 209150,
+      "end_ms": 209660,
       "text": "استخدم",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 207440,
-      "end_ms": 207800,
+      "start_ms": 209770,
+      "end_ms": 210170,
       "text": "نفس",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 207810,
-      "end_ms": 208180,
+      "start_ms": 210230,
+      "end_ms": 210480,
       "text": "البناء،",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 208500,
-      "end_ms": 208840,
+      "start_ms": 210880,
+      "end_ms": 211150,
       "text": "لكن",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 208850,
-      "end_ms": 209200,
+      "start_ms": 211270,
+      "end_ms": 211600,
       "text": "غيّر",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 209210,
-      "end_ms": 209920,
+      "start_ms": 211710,
+      "end_ms": 212170,
       "text": "المعلومات.",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 210620,
-      "end_ms": 210970,
+      "start_ms": 213010,
+      "end_ms": 213270,
       "text": "أنت",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 210980,
-      "end_ms": 211320,
+      "start_ms": 213340,
+      "end_ms": 213680,
       "text": "كمان",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 211470,
-      "end_ms": 211820,
+      "start_ms": 213870,
+      "end_ms": 214200,
       "text": "مش",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 211830,
-      "end_ms": 212170,
+      "start_ms": 214330,
+      "end_ms": 214620,
       "text": "مطلوب",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 212180,
-      "end_ms": 212470,
+      "start_ms": 214770,
+      "end_ms": 215030,
       "text": "منك",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 212480,
-      "end_ms": 212860,
+      "start_ms": 215220,
+      "end_ms": 215550,
       "text": "تحفظ",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 212870,
-      "end_ms": 213240,
+      "start_ms": 215700,
+      "end_ms": 215980,
       "text": "كلام",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 213250,
-      "end_ms": 213610,
+      "start_ms": 216150,
+      "end_ms": 216500,
       "text": "مايا",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 213620,
-      "end_ms": 213870,
+      "start_ms": 216790,
+      "end_ms": 217020,
       "text": "أو",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 213880,
-      "end_ms": 214330,
+      "start_ms": 217160,
+      "end_ms": 217540,
       "text": "عمر.",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 214900,
-      "end_ms": 215450,
+      "start_ms": 217950,
+      "end_ms": 218490,
       "text": "المطلوب",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 215460,
-      "end_ms": 215720,
+      "start_ms": 218790,
+      "end_ms": 219130,
       "text": "إنك",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 215730,
-      "end_ms": 216340,
+      "start_ms": 219320,
+      "end_ms": 219810,
       "text": "تتذكر",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 216350,
-      "end_ms": 216750,
+      "start_ms": 220010,
+      "end_ms": 220430,
       "text": "أربع",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 216760,
-      "end_ms": 217180,
+      "start_ms": 220610,
+      "end_ms": 220970,
       "text": "خانات",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 217190,
-      "end_ms": 217700,
+      "start_ms": 221190,
+      "end_ms": 221450,
       "text": "بس:",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 218240,
-      "end_ms": 218710,
+      "start_ms": 221970,
+      "end_ms": 222450,
       "text": "اسمك،",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 219100,
-      "end_ms": 219620,
+      "start_ms": 222950,
+      "end_ms": 223430,
       "text": "بلدك،",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 219940,
-      "end_ms": 220380,
+      "start_ms": 223840,
+      "end_ms": 224430,
       "text": "مكان",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 220390,
-      "end_ms": 220900,
+      "start_ms": 224610,
+      "end_ms": 225050,
       "text": "سكنك",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 220910,
-      "end_ms": 221190,
+      "start_ms": 225190,
+      "end_ms": 225460,
       "text": "أو",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 221200,
-      "end_ms": 221730,
+      "start_ms": 225620,
+      "end_ms": 226020,
       "text": "شغلك،",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 222060,
-      "end_ms": 222430,
+      "start_ms": 226470,
+      "end_ms": 226700,
       "text": "وحاجة",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 222440,
-      "end_ms": 222780,
+      "start_ms": 226700,
+      "end_ms": 226700,
       "text": "واحدة",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 222790,
-      "end_ms": 223340,
+      "start_ms": 226700,
+      "end_ms": 226700,
       "text": "بتحبها.",
       "language": "ar",
       "segment_index": 7
     },
     {
-      "start_ms": 224320,
-      "end_ms": 224530,
+      "start_ms": 227320,
+      "end_ms": 227530,
       "text": "بعد",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 224580,
-      "end_ms": 224940,
+      "start_ms": 227580,
+      "end_ms": 227940,
       "text": "الفيديو",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 225130,
-      "end_ms": 225500,
+      "start_ms": 228130,
+      "end_ms": 228500,
       "text": "هتبدأ",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 225660,
-      "end_ms": 226040,
+      "start_ms": 228660,
+      "end_ms": 229040,
       "text": "الأسئلة",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 226090,
-      "end_ms": 226860,
+      "start_ms": 229090,
+      "end_ms": 229860,
       "text": "التطبيقية،",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 227050,
-      "end_ms": 227540,
+      "start_ms": 230050,
+      "end_ms": 230540,
       "text": "وهتستخدم",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 227610,
-      "end_ms": 228020,
+      "start_ms": 230610,
+      "end_ms": 231020,
       "text": "الخانات",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 228080,
-      "end_ms": 228350,
+      "start_ms": 231080,
+      "end_ms": 231350,
       "text": "دي",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 228480,
-      "end_ms": 228720,
+      "start_ms": 231480,
+      "end_ms": 231720,
       "text": "عشان",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 228810,
-      "end_ms": 229060,
+      "start_ms": 231810,
+      "end_ms": 232060,
       "text": "تبني",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 229200,
-      "end_ms": 229610,
+      "start_ms": 232200,
+      "end_ms": 232610,
       "text": "مقدمتك",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 229740,
-      "end_ms": 230190,
+      "start_ms": 232740,
+      "end_ms": 233190,
       "text": "بنفسك.",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 231250,
-      "end_ms": 231570,
+      "start_ms": 234250,
+      "end_ms": 234570,
       "text": "مش",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 231670,
-      "end_ms": 231950,
+      "start_ms": 234670,
+      "end_ms": 234950,
       "text": "مطلوب",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 232040,
-      "end_ms": 232320,
+      "start_ms": 235040,
+      "end_ms": 235320,
       "text": "منك",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 232410,
-      "end_ms": 232700,
+      "start_ms": 235410,
+      "end_ms": 235700,
       "text": "كلام",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 232790,
-      "end_ms": 233320,
+      "start_ms": 235790,
+      "end_ms": 236320,
       "text": "مثالي،",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 233480,
-      "end_ms": 233710,
+      "start_ms": 236480,
+      "end_ms": 236710,
       "text": "ولا",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 233790,
-      "end_ms": 234070,
+      "start_ms": 236790,
+      "end_ms": 237070,
       "text": "نطق",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 234160,
-      "end_ms": 234560,
+      "start_ms": 237160,
+      "end_ms": 237560,
       "text": "مثالي",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 234700,
-      "end_ms": 234860,
+      "start_ms": 237700,
+      "end_ms": 237860,
       "text": "من",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 234980,
-      "end_ms": 235220,
+      "start_ms": 237980,
+      "end_ms": 238220,
       "text": "أول",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 235300,
-      "end_ms": 235750,
+      "start_ms": 238300,
+      "end_ms": 238750,
       "text": "محاولة.",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 236150,
-      "end_ms": 236580,
+      "start_ms": 239150,
+      "end_ms": 239580,
       "text": "المطلوب",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 236770,
-      "end_ms": 237030,
+      "start_ms": 239770,
+      "end_ms": 240030,
       "text": "أربع",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 237180,
-      "end_ms": 237390,
+      "start_ms": 240180,
+      "end_ms": 240390,
       "text": "أو",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 237480,
-      "end_ms": 237780,
+      "start_ms": 240480,
+      "end_ms": 240780,
       "text": "خمس",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 237860,
-      "end_ms": 238140,
+      "start_ms": 240860,
+      "end_ms": 241140,
       "text": "جمل",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 238220,
-      "end_ms": 238660,
+      "start_ms": 241220,
+      "end_ms": 241660,
       "text": "قصيرة،",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 238810,
-      "end_ms": 239200,
+      "start_ms": 241810,
+      "end_ms": 242200,
       "text": "واضحة،",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 239460,
-      "end_ms": 239990,
+      "start_ms": 242460,
+      "end_ms": 242990,
       "text": "وشخصية.",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 240560,
-      "end_ms": 241000,
+      "start_ms": 243560,
+      "end_ms": 244000,
       "text": "جاهز؟",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 241300,
-      "end_ms": 241720,
+      "start_ms": 244300,
+      "end_ms": 244720,
       "text": "نشوفك",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 241820,
-      "end_ms": 241950,
+      "start_ms": 244820,
+      "end_ms": 244950,
       "text": "في",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 242020,
-      "end_ms": 242450,
+      "start_ms": 245020,
+      "end_ms": 245450,
       "text": "التطبيق.",
       "language": "ar",
       "segment_index": 8
     },
     {
-      "start_ms": 243040,
-      "end_ms": 243170,
+      "start_ms": 246040,
+      "end_ms": 246170,
       "text": "See",
       "language": "en",
       "segment_index": 8
     },
     {
-      "start_ms": 243280,
-      "end_ms": 243480,
+      "start_ms": 246280,
+      "end_ms": 246480,
       "text": "you",
       "language": "en",
       "segment_index": 8
     },
     {
-      "start_ms": 243610,
-      "end_ms": 243990,
+      "start_ms": 246610,
+      "end_ms": 246990,
       "text": "there!",
       "language": "en",
       "segment_index": 8

@@ -1,6 +1,6 @@
 {
   "lesson": "introduce-yourself",
-  "assembly_sha256": "d145d5e28da9e87bc781ed179d10a705762dccece6ccc70f40e56d427d5ffa56",
+  "assembly_sha256": "5998179a6a6f19005994d97a6907032f89906ea2cc2716e2c941d00f59609c13",
   "parts": [
     "01-hook.wav",
     "02-four-slots.wav",
@@ -14,7 +14,7 @@
   ],
   "part_count": 9,
   "gap_ms": 300,
-  "duration_seconds": 244.08,
+  "duration_seconds": 247.08,
   "wav": {
     "sample_rate_hz": 24000,
     "channels": 1,
