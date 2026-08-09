@@ -22,14 +22,18 @@ audio/
   lesson-01/
     01-intro.wav
     01-intro.json
+    01-intro.timing.json
     02-explanation.wav
     02-explanation.json
+    02-explanation.timing.json
     03-examples.wav
     03-examples.json
+    03-examples.timing.json
     04-closing.wav
     04-closing.json
+    04-closing.timing.json
         |
-        | local assembly + Gemini audio understanding
+        | local assembly + per-part Gemini audio alignment
         v
 final/
   lesson-01.wav
@@ -46,7 +50,7 @@ done/
     04-closing.txt
 ```
 
-The small WAV files remain available so one bad section can be regenerated without rebuilding the whole lesson. `scripts/assemble_lessons.py` sorts them by filename and creates the final WAV/MP3. `scripts/transcribe_final.py` then sends the final MP3 to Gemini audio understanding and creates the video-sync timing files.
+The small WAV files remain available so one bad section can be regenerated without rebuilding the whole lesson. `scripts/assemble_lessons.py` sorts them by filename and creates the final WAV/MP3. `scripts/transcribe_final.py` aligns each short WAV independently, caches its word timings, then offsets and combines those timings into the final lesson timeline.
 
 ## Video-sync transcript
 
@@ -54,14 +58,16 @@ The small WAV files remain available so one bad section can be regenerated witho
 
 - final audio duration in milliseconds;
 - exact start/end boundaries for every numbered source audio part, calculated locally from the WAV files;
-- semantic transcript segments with start/end timestamps, speaker, language, and text;
-- best-effort word-level start/end timestamps with Arabic/English language labels;
-- the Gemini model that produced the timing alignment;
-- hashes so unchanged lessons are not transcribed again.
+- one semantic segment per source part with start/end timestamps, speaker, language, and text;
+- best-effort word-level start/end timestamps across the complete lesson with Arabic/English language labels;
+- the Gemini model used for each aligned part;
+- hashes so unchanged audio parts are not transcribed again.
 
-`final/<lesson>.transcript.vtt` contains the same semantic segments in standard WebVTT form for players/editors.
+`final/<lesson>.transcript.vtt` contains the semantic part segments in standard WebVTT form for players/editors.
 
-The source transcript in `done/<lesson>/` is supplied to Gemini as a spelling/alignment reference after silent YAML, SSML/IPA markup, and performance tags are removed. The final audio remains authoritative.
+The source transcript in `done/<lesson>/` is supplied to Gemini as a spelling/alignment reference after silent YAML, SSML/IPA markup, performance tags, and structural speaker labels are removed. The audio remains authoritative.
+
+Per-part timing results are cached as `audio/<lesson>/<part>.timing.json`. If a single section is later regenerated, only that changed section needs another alignment request; all unchanged timing caches are reused.
 
 ## Transcription model router
 
@@ -79,7 +85,9 @@ transcription:
   write_vtt: true
 ```
 
-Lessons rotate between the configured models to spread daily usage. If the selected model is rate-limited or has a service/model failure, the router retries/falls back to the other model. The hosted `gemma-4-26b-a4b-it` and `gemma-4-31b-it` models are intentionally not in this router because those Gemma 4 sizes do not accept audio input. Embedding models are also irrelevant to this stage.
+Audio parts rotate between the configured models to spread daily usage. If the selected model is rate-limited, unavailable, or returns an incomplete/invalid timing result, the router retries or falls back to the other model. Timing responses are rejected when they group multiple lexical words into one word entry or contain substantially fewer timed words than the archived source reference suggests.
+
+The hosted `gemma-4-26b-a4b-it` and `gemma-4-31b-it` models are intentionally not in this router because those Gemma 4 sizes do not accept audio input. Embedding models are also irrelevant to this stage.
 
 ## One-time setup
 
@@ -185,7 +193,7 @@ transcription:
 
 TTS requests run sequentially and retry `429`/`5xx` errors with exponential backoff. A source transcript moves to `done/` only after its WAV and manifest are safely written.
 
-Final lesson assembly validates WAV format consistency before joining files. Final transcription is hash-based and idempotent: unchanged MP3s with the same router configuration do not spend another API request. Uploaded Gemini Files API copies are deleted after each transcription attempt.
+Final lesson assembly validates WAV format consistency before joining files. Word alignment is hash-based and idempotent at the part level: unchanged WAV parts with the same router configuration reuse their `.timing.json` cache instead of spending another API request. Uploaded Gemini Files API copies are deleted after each alignment attempt.
 
 The workflow commits successful outputs even if a later pipeline stage fails, then ends failed so the problem remains visible and can be retried without losing completed work.
 
@@ -205,4 +213,4 @@ python -m unittest discover -s tests -v
 
 ## Notes on quota
 
-Final WAV/MP3 assembly is local and uses no Gemini requests. Final timestamping uses one audio-understanding request per lesson in the normal case. The router spreads lessons across the configured audio-capable Flash-Lite models and only consumes fallback calls when a primary attempt fails.
+Final WAV/MP3 assembly is local and uses no Gemini requests. Final word alignment normally uses one audio-understanding request per source audio part. The router spreads those parts across the configured audio-capable Flash-Lite models; retries/fallbacks consume additional calls only when a primary response fails validation or the API returns a retryable error.
