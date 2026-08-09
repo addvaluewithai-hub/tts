@@ -1,0 +1,16 @@
+{
+  "source": "introduce-yourself/08-build-yours.txt",
+  "source_sha256": "f4b8efb389afcd05e560697de3077189277ca3be5df73438243768013a5e92b9",
+  "effective_config_sha256": "4b995290ea54f700c5bdbd1ec1ee62bbe043ab2adf55f173dc733d3c44ceebda",
+  "model": "gemini-3.1-flash-tts-preview",
+  "speech_config": [
+    {
+      "voice": "Kore"
+    }
+  ],
+  "chunks": 1,
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "generated_at": "2026-08-09T17:40:16.629460+00:00"
+}

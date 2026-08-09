@@ -1,0 +1,240 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/introduce-yourself/09-closing.wav",
+  "audio_sha256": "6948923f0b74fe35b61ec5b28433e56886a4635d3cd34657ffabdcc302039615",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.5-flash-lite",
+  "duration_ms": 20080,
+  "text": "بعد الفيديو هتبدأ الأسئلة التطبيقية، وهتستخدم الخانات دي عشان تبني مقدمتك بنفسك. مش مطلوب منك كلام مثالي، ولا نطق مثالي من أول محاولة. المطلوب أربع أو خمس جمل قصيرة، واضحة، وشخصية. جاهز؟ نشوفك في التطبيق. See you there!",
+  "language": "ar",
+  "words": [
+    {
+      "start_ms": 320,
+      "end_ms": 530,
+      "text": "بعد",
+      "language": "ar"
+    },
+    {
+      "start_ms": 580,
+      "end_ms": 940,
+      "text": "الفيديو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1130,
+      "end_ms": 1500,
+      "text": "هتبدأ",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1660,
+      "end_ms": 2040,
+      "text": "الأسئلة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2090,
+      "end_ms": 2860,
+      "text": "التطبيقية،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 3050,
+      "end_ms": 3540,
+      "text": "وهتستخدم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 3610,
+      "end_ms": 4020,
+      "text": "الخانات",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4080,
+      "end_ms": 4350,
+      "text": "دي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4480,
+      "end_ms": 4720,
+      "text": "عشان",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4810,
+      "end_ms": 5060,
+      "text": "تبني",
+      "language": "ar"
+    },
+    {
+      "start_ms": 5200,
+      "end_ms": 5610,
+      "text": "مقدمتك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 5740,
+      "end_ms": 6190,
+      "text": "بنفسك.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7250,
+      "end_ms": 7570,
+      "text": "مش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7670,
+      "end_ms": 7950,
+      "text": "مطلوب",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8040,
+      "end_ms": 8320,
+      "text": "منك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8410,
+      "end_ms": 8700,
+      "text": "كلام",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8790,
+      "end_ms": 9320,
+      "text": "مثالي،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9480,
+      "end_ms": 9710,
+      "text": "ولا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9790,
+      "end_ms": 10070,
+      "text": "نطق",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10160,
+      "end_ms": 10560,
+      "text": "مثالي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10700,
+      "end_ms": 10860,
+      "text": "من",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10980,
+      "end_ms": 11220,
+      "text": "أول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11300,
+      "end_ms": 11750,
+      "text": "محاولة.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12150,
+      "end_ms": 12580,
+      "text": "المطلوب",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12770,
+      "end_ms": 13030,
+      "text": "أربع",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13180,
+      "end_ms": 13390,
+      "text": "أو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13480,
+      "end_ms": 13780,
+      "text": "خمس",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13860,
+      "end_ms": 14140,
+      "text": "جمل",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14220,
+      "end_ms": 14660,
+      "text": "قصيرة،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14810,
+      "end_ms": 15200,
+      "text": "واضحة،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15460,
+      "end_ms": 15990,
+      "text": "وشخصية.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 16560,
+      "end_ms": 17000,
+      "text": "جاهز؟",
+      "language": "ar"
+    },
+    {
+      "start_ms": 17300,
+      "end_ms": 17720,
+      "text": "نشوفك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 17820,
+      "end_ms": 17950,
+      "text": "في",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18020,
+      "end_ms": 18450,
+      "text": "التطبيق.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19040,
+      "end_ms": 19170,
+      "text": "See",
+      "language": "en"
+    },
+    {
+      "start_ms": 19280,
+      "end_ms": 19480,
+      "text": "you",
+      "language": "en"
+    },
+    {
+      "start_ms": 19610,
+      "end_ms": 19990,
+      "text": "there!",
+      "language": "en"
+    }
+  ]
+}

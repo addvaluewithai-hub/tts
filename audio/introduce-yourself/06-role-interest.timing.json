@@ -1,0 +1,222 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/introduce-yourself/06-role-interest.wav",
+  "audio_sha256": "86f124f4d9f9246ab5482c52c8cdfe28ef660d9c7ec87501656cc2632b130de3",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.1-flash-lite",
+  "duration_ms": 23680,
+  "text": "بعد كده، تقدر تقول شغلك أو دورك. I'm a designer. وممكن تغيّر الوظيفة حسب معلوماتك. I'm a teacher. I'm an engineer. I'm a student. ولو مش عايز تتكلم عن شغلك، مفيش مشكلة. الجملة دي اختيارية.",
+  "language": "ar",
+  "words": [
+    {
+      "start_ms": 0,
+      "end_ms": 230,
+      "text": "بعد",
+      "language": "ar"
+    },
+    {
+      "start_ms": 230,
+      "end_ms": 480,
+      "text": "كده،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 780,
+      "end_ms": 1130,
+      "text": "تقدر",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1130,
+      "end_ms": 1470,
+      "text": "تقول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1470,
+      "end_ms": 1850,
+      "text": "شغلك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1940,
+      "end_ms": 2180,
+      "text": "أو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2180,
+      "end_ms": 2690,
+      "text": "دورك.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4690,
+      "end_ms": 5060,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 5060,
+      "end_ms": 5230,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 5230,
+      "end_ms": 5950,
+      "text": "designer.",
+      "language": "en"
+    },
+    {
+      "start_ms": 7180,
+      "end_ms": 7590,
+      "text": "وممكن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7590,
+      "end_ms": 7960,
+      "text": "تغيّر",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7960,
+      "end_ms": 8410,
+      "text": "الوظيفة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8630,
+      "end_ms": 9070,
+      "text": "حسب",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9070,
+      "end_ms": 9780,
+      "text": "معلوماتك.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11210,
+      "end_ms": 11570,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 11570,
+      "end_ms": 11770,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 11770,
+      "end_ms": 12410,
+      "text": "teacher.",
+      "language": "en"
+    },
+    {
+      "start_ms": 14060,
+      "end_ms": 14450,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 14450,
+      "end_ms": 14640,
+      "text": "an",
+      "language": "en"
+    },
+    {
+      "start_ms": 14640,
+      "end_ms": 15410,
+      "text": "engineer.",
+      "language": "en"
+    },
+    {
+      "start_ms": 16640,
+      "end_ms": 16990,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 16990,
+      "end_ms": 17200,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 17200,
+      "end_ms": 17850,
+      "text": "student.",
+      "language": "en"
+    },
+    {
+      "start_ms": 18780,
+      "end_ms": 19040,
+      "text": "ولو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19040,
+      "end_ms": 19300,
+      "text": "مش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19300,
+      "end_ms": 19630,
+      "text": "عايز",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19630,
+      "end_ms": 19990,
+      "text": "تتكلم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20050,
+      "end_ms": 20300,
+      "text": "عن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20300,
+      "end_ms": 20640,
+      "text": "شغلك،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20850,
+      "end_ms": 21190,
+      "text": "مفيش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 21190,
+      "end_ms": 21620,
+      "text": "مشكلة.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 21910,
+      "end_ms": 22290,
+      "text": "الجملة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 22290,
+      "end_ms": 22520,
+      "text": "دي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 22520,
+      "end_ms": 23150,
+      "text": "اختيارية.",
+      "language": "ar"
+    }
+  ]
+}

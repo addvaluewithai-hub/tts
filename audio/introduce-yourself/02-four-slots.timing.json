@@ -1,0 +1,402 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/introduce-yourself/02-four-slots.wav",
+  "audio_sha256": "42e59df1560123ea942195754ced842fe731131457c185a7b16f0f53f04e114f",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.1-flash-lite",
+  "duration_ms": 42480,
+  "text": "Hi, I'm Maya. I'm from Jordan. I live in Amman. I'm a designer. I like photography. بس كده. مايا قالت اسمها، بلدها، مكان سكنها، شغلها، وحاجة بتحبها. تعال نفهم كل جزء. أول حاجة، التحية والاسم. Hi, I'm Maya. كلمة I'm هي الصورة المختصرة والطبيعية من: I am. لكن في المحادثات العادية، الأغلب إنك هتسمع وتستخدم: I'm. قولها كوحدة واحدة خفيفة. ما تفصلش الكلمتين عن بعض.",
+  "language": "en-ar",
+  "words": [
+    {
+      "start_ms": 110,
+      "end_ms": 610,
+      "text": "Hi,",
+      "language": "en"
+    },
+    {
+      "start_ms": 610,
+      "end_ms": 1150,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 1150,
+      "end_ms": 1640,
+      "text": "Maya.",
+      "language": "en"
+    },
+    {
+      "start_ms": 2320,
+      "end_ms": 2680,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 2680,
+      "end_ms": 2960,
+      "text": "from",
+      "language": "en"
+    },
+    {
+      "start_ms": 2960,
+      "end_ms": 3480,
+      "text": "Jordan.",
+      "language": "en"
+    },
+    {
+      "start_ms": 3930,
+      "end_ms": 4270,
+      "text": "I",
+      "language": "en"
+    },
+    {
+      "start_ms": 4270,
+      "end_ms": 4530,
+      "text": "live",
+      "language": "en"
+    },
+    {
+      "start_ms": 4530,
+      "end_ms": 4760,
+      "text": "in",
+      "language": "en"
+    },
+    {
+      "start_ms": 4760,
+      "end_ms": 5260,
+      "text": "Amman.",
+      "language": "en"
+    },
+    {
+      "start_ms": 5860,
+      "end_ms": 6210,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 6210,
+      "end_ms": 6450,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 6450,
+      "end_ms": 7180,
+      "text": "designer.",
+      "language": "en"
+    },
+    {
+      "start_ms": 7570,
+      "end_ms": 7820,
+      "text": "I",
+      "language": "en"
+    },
+    {
+      "start_ms": 7820,
+      "end_ms": 8090,
+      "text": "like",
+      "language": "en"
+    },
+    {
+      "start_ms": 8090,
+      "end_ms": 8830,
+      "text": "photography.",
+      "language": "en"
+    },
+    {
+      "start_ms": 9438,
+      "end_ms": 9958,
+      "text": "بس",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9958,
+      "end_ms": 10248,
+      "text": "كده.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10838,
+      "end_ms": 11208,
+      "text": "مايا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11208,
+      "end_ms": 11578,
+      "text": "قالت",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11578,
+      "end_ms": 12028,
+      "text": "اسمها،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12438,
+      "end_ms": 12898,
+      "text": "بلدها،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13358,
+      "end_ms": 13788,
+      "text": "مكان",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13788,
+      "end_ms": 14218,
+      "text": "سكنها،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14758,
+      "end_ms": 15268,
+      "text": "شغلها،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15728,
+      "end_ms": 16048,
+      "text": "وحاجة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 16048,
+      "end_ms": 16378,
+      "text": "بتحبها.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 17318,
+      "end_ms": 17748,
+      "text": "تعال",
+      "language": "ar"
+    },
+    {
+      "start_ms": 17748,
+      "end_ms": 18138,
+      "text": "نفهم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18138,
+      "end_ms": 18518,
+      "text": "كل",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18518,
+      "end_ms": 18918,
+      "text": "جزء.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19688,
+      "end_ms": 20118,
+      "text": "أول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20118,
+      "end_ms": 20508,
+      "text": "حاجة،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20858,
+      "end_ms": 21398,
+      "text": "التحية",
+      "language": "ar"
+    },
+    {
+      "start_ms": 21828,
+      "end_ms": 22248,
+      "text": "والاسم.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 23078,
+      "end_ms": 23418,
+      "text": "Hi,",
+      "language": "en"
+    },
+    {
+      "start_ms": 23788,
+      "end_ms": 24048,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 24048,
+      "end_ms": 24458,
+      "text": "Maya.",
+      "language": "en"
+    },
+    {
+      "start_ms": 25528,
+      "end_ms": 26038,
+      "text": "كلمة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 26368,
+      "end_ms": 26978,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 27438,
+      "end_ms": 27808,
+      "text": "هي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 27808,
+      "end_ms": 28228,
+      "text": "الصورة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 28228,
+      "end_ms": 28738,
+      "text": "المختصرة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 28738,
+      "end_ms": 29258,
+      "text": "والطبيعية",
+      "language": "ar"
+    },
+    {
+      "start_ms": 29258,
+      "end_ms": 29558,
+      "text": "من",
+      "language": "ar"
+    },
+    {
+      "start_ms": 30258,
+      "end_ms": 30608,
+      "text": "I",
+      "language": "en"
+    },
+    {
+      "start_ms": 30608,
+      "end_ms": 31108,
+      "text": "am.",
+      "language": "en"
+    },
+    {
+      "start_ms": 32178,
+      "end_ms": 32548,
+      "text": "لكن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 32548,
+      "end_ms": 32838,
+      "text": "في",
+      "language": "ar"
+    },
+    {
+      "start_ms": 32838,
+      "end_ms": 33268,
+      "text": "المحادثات",
+      "language": "ar"
+    },
+    {
+      "start_ms": 33268,
+      "end_ms": 33698,
+      "text": "العادية،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 34168,
+      "end_ms": 34588,
+      "text": "الأغلب",
+      "language": "ar"
+    },
+    {
+      "start_ms": 34588,
+      "end_ms": 34968,
+      "text": "إنك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 34968,
+      "end_ms": 35388,
+      "text": "هتسمع",
+      "language": "ar"
+    },
+    {
+      "start_ms": 35388,
+      "end_ms": 35748,
+      "text": "وتستخدم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 36628,
+      "end_ms": 37198,
+      "text": "I'm.",
+      "language": "en"
+    },
+    {
+      "start_ms": 38118,
+      "end_ms": 38448,
+      "text": "قولها",
+      "language": "ar"
+    },
+    {
+      "start_ms": 38448,
+      "end_ms": 38788,
+      "text": "كوحدة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 38788,
+      "end_ms": 39118,
+      "text": "واحدة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 39118,
+      "end_ms": 39518,
+      "text": "خفيفة.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 39988,
+      "end_ms": 40328,
+      "text": "ما",
+      "language": "ar"
+    },
+    {
+      "start_ms": 40328,
+      "end_ms": 40718,
+      "text": "تفصلش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 40718,
+      "end_ms": 41108,
+      "text": "الكلمتين",
+      "language": "ar"
+    },
+    {
+      "start_ms": 41108,
+      "end_ms": 41368,
+      "text": "عن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 41368,
+      "end_ms": 41708,
+      "text": "بعض.",
+      "language": "ar"
+    }
+  ]
+}

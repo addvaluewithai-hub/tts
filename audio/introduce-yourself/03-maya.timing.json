@@ -1,0 +1,210 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/introduce-yourself/03-maya.wav",
+  "audio_sha256": "018c724c557dae2583dcdb9d9139f7a06df6d636f65445633eaf5a4dd69c590d",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.5-flash-lite",
+  "duration_ms": 20960,
+  "text": "بعد الاسم، مايا قالت بلدها. I'm from Jordan. التعبير I'm from معناه \"أنا من\". استخدمه عشان تقول بلدك أو المكان اللي أنت أصلك منه. مثلًا: I'm from Egypt. أو: I'm from Saudi Arabia.",
+  "language": "ar",
+  "words": [
+    {
+      "start_ms": 300,
+      "end_ms": 500,
+      "text": "بعد",
+      "language": "ar"
+    },
+    {
+      "start_ms": 500,
+      "end_ms": 910,
+      "text": "الاسم،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1130,
+      "end_ms": 1470,
+      "text": "مايا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1590,
+      "end_ms": 1940,
+      "text": "قالت",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1940,
+      "end_ms": 2570,
+      "text": "بلدها.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4014,
+      "end_ms": 4314,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 4314,
+      "end_ms": 4544,
+      "text": "from",
+      "language": "en"
+    },
+    {
+      "start_ms": 4544,
+      "end_ms": 5264,
+      "text": "Jordan.",
+      "language": "en"
+    },
+    {
+      "start_ms": 6124,
+      "end_ms": 6654,
+      "text": "التعبير",
+      "language": "ar"
+    },
+    {
+      "start_ms": 6884,
+      "end_ms": 7174,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 7174,
+      "end_ms": 7484,
+      "text": "from",
+      "language": "en"
+    },
+    {
+      "start_ms": 7654,
+      "end_ms": 8014,
+      "text": "معناه",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8124,
+      "end_ms": 8414,
+      "text": "\"أنا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8484,
+      "end_ms": 8944,
+      "text": "من\".",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9324,
+      "end_ms": 9974,
+      "text": "استخدمه",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10034,
+      "end_ms": 10324,
+      "text": "عشان",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10324,
+      "end_ms": 10704,
+      "text": "تقول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10704,
+      "end_ms": 11054,
+      "text": "بلدك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11114,
+      "end_ms": 11254,
+      "text": "أو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11284,
+      "end_ms": 11594,
+      "text": "المكان",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11594,
+      "end_ms": 11844,
+      "text": "اللي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11844,
+      "end_ms": 12104,
+      "text": "أنت",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12104,
+      "end_ms": 12414,
+      "text": "أصلك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12514,
+      "end_ms": 12824,
+      "text": "منه.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14064,
+      "end_ms": 14664,
+      "text": "مثلًا:",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15204,
+      "end_ms": 15454,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 15454,
+      "end_ms": 15724,
+      "text": "from",
+      "language": "en"
+    },
+    {
+      "start_ms": 15724,
+      "end_ms": 16404,
+      "text": "Egypt.",
+      "language": "en"
+    },
+    {
+      "start_ms": 17934,
+      "end_ms": 18124,
+      "text": "أو:",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18774,
+      "end_ms": 19024,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 19024,
+      "end_ms": 19284,
+      "text": "from",
+      "language": "en"
+    },
+    {
+      "start_ms": 19334,
+      "end_ms": 19744,
+      "text": "Saudi",
+      "language": "en"
+    },
+    {
+      "start_ms": 19794,
+      "end_ms": 20494,
+      "text": "Arabia.",
+      "language": "en"
+    }
+  ]
+}

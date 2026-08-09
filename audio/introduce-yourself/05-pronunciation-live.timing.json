@@ -1,0 +1,204 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/introduce-yourself/05-pronunciation-live.wav",
+  "audio_sha256": "e44923f0b95a79237accd518eb9c1c3255714e727b08adbb3284c5bf69b82368",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.5-flash-lite",
+  "duration_ms": 17560,
+  "text": "وخلي بالك من نطق كلمة live هنا. لأنها فعل بمعنى \"أعيش\"، فنطقها قصير: live. مش: live. النطق الثاني بنستخدمه في تعبيرات زي البث المباشر. لكن في جملتنا نقول: I live in Amman.",
+  "language": "ar",
+  "words": [
+    {
+      "start_ms": 320,
+      "end_ms": 530,
+      "text": "وخلي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 530,
+      "end_ms": 780,
+      "text": "بالك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 910,
+      "end_ms": 1100,
+      "text": "من",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1100,
+      "end_ms": 1390,
+      "text": "نطق",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1390,
+      "end_ms": 1720,
+      "text": "كلمة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1770,
+      "end_ms": 2040,
+      "text": "live",
+      "language": "en"
+    },
+    {
+      "start_ms": 2130,
+      "end_ms": 2520,
+      "text": "هنا.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2840,
+      "end_ms": 3150,
+      "text": "لأنها",
+      "language": "ar"
+    },
+    {
+      "start_ms": 3200,
+      "end_ms": 3530,
+      "text": "فعل",
+      "language": "ar"
+    },
+    {
+      "start_ms": 3610,
+      "end_ms": 3870,
+      "text": "بمعنى",
+      "language": "ar"
+    },
+    {
+      "start_ms": 3950,
+      "end_ms": 4440,
+      "text": "\"أعيش\"،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4540,
+      "end_ms": 4900,
+      "text": "فنطقها",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4900,
+      "end_ms": 5460,
+      "text": "قصير:",
+      "language": "ar"
+    },
+    {
+      "start_ms": 5830,
+      "end_ms": 6250,
+      "text": "live.",
+      "language": "en"
+    },
+    {
+      "start_ms": 6770,
+      "end_ms": 7180,
+      "text": "مش:",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8630,
+      "end_ms": 9470,
+      "text": "live.",
+      "language": "en"
+    },
+    {
+      "start_ms": 10070,
+      "end_ms": 10320,
+      "text": "النطق",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10320,
+      "end_ms": 10690,
+      "text": "الثاني",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10760,
+      "end_ms": 11250,
+      "text": "بنستخدمه",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11330,
+      "end_ms": 11520,
+      "text": "في",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11520,
+      "end_ms": 11980,
+      "text": "تعبيرات",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12050,
+      "end_ms": 12300,
+      "text": "زي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12380,
+      "end_ms": 12620,
+      "text": "البث",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12620,
+      "end_ms": 13150,
+      "text": "المباشر.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13420,
+      "end_ms": 13730,
+      "text": "لكن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13800,
+      "end_ms": 13950,
+      "text": "في",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14000,
+      "end_ms": 14450,
+      "text": "جملتنا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14500,
+      "end_ms": 14930,
+      "text": "نقول:",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15615,
+      "end_ms": 15725,
+      "text": "I",
+      "language": "en"
+    },
+    {
+      "start_ms": 15835,
+      "end_ms": 16105,
+      "text": "live",
+      "language": "en"
+    },
+    {
+      "start_ms": 16225,
+      "end_ms": 16385,
+      "text": "in",
+      "language": "en"
+    },
+    {
+      "start_ms": 16565,
+      "end_ms": 17005,
+      "text": "Amman.",
+      "language": "en"
+    }
+  ]
+}

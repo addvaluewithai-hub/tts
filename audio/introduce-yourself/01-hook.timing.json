@@ -1,0 +1,348 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/introduce-yourself/01-hook.wav",
+  "audio_sha256": "15589f451227f45a19561a16ac3a2532d753a717132ef9098d50cdc0fd58c4bf",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.5-flash-lite",
+  "duration_ms": 27560,
+  "text": "أهلًا بيك في أول درس. تخيّل إنك قابلت شخص جديد، وبعد السلام سألك: Tell me about yourself. وفجأة حسّيت إنك مطالب تحكي قصة حياتك من أول يوم في الحضانة لحد النهاردة. اطمن. هو مش طالب فيلم وثائقي عن حياتك. كل اللي محتاجه أربع أو خمس جمل قصيرة تساعده يعرفك، وتفتح بينكم محادثة. اسمع النموذج ده أولًا.",
+  "language": "ar",
+  "words": [
+    {
+      "start_ms": 0,
+      "end_ms": 520,
+      "text": "أهلًا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 520,
+      "end_ms": 780,
+      "text": "بيك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 780,
+      "end_ms": 1050,
+      "text": "في",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1050,
+      "end_ms": 1280,
+      "text": "أول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1280,
+      "end_ms": 1900,
+      "text": "درس.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2220,
+      "end_ms": 2720,
+      "text": "تخيّل",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2720,
+      "end_ms": 3020,
+      "text": "إنك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 3020,
+      "end_ms": 3430,
+      "text": "قابلت",
+      "language": "ar"
+    },
+    {
+      "start_ms": 3430,
+      "end_ms": 3710,
+      "text": "شخص",
+      "language": "ar"
+    },
+    {
+      "start_ms": 3710,
+      "end_ms": 4320,
+      "text": "جديد،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4410,
+      "end_ms": 4660,
+      "text": "وبعد",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4660,
+      "end_ms": 5010,
+      "text": "السلام",
+      "language": "ar"
+    },
+    {
+      "start_ms": 5010,
+      "end_ms": 5610,
+      "text": "سألك:",
+      "language": "ar"
+    },
+    {
+      "start_ms": 6120,
+      "end_ms": 6430,
+      "text": "Tell",
+      "language": "en"
+    },
+    {
+      "start_ms": 6430,
+      "end_ms": 6730,
+      "text": "me",
+      "language": "en"
+    },
+    {
+      "start_ms": 6730,
+      "end_ms": 7180,
+      "text": "about",
+      "language": "en"
+    },
+    {
+      "start_ms": 7180,
+      "end_ms": 7820,
+      "text": "yourself.",
+      "language": "en"
+    },
+    {
+      "start_ms": 8630,
+      "end_ms": 9070,
+      "text": "وفجأة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9070,
+      "end_ms": 9470,
+      "text": "حسّيت",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9470,
+      "end_ms": 9780,
+      "text": "إنك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9780,
+      "end_ms": 10170,
+      "text": "مطالب",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10170,
+      "end_ms": 10500,
+      "text": "تحكي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10500,
+      "end_ms": 10830,
+      "text": "قصة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10830,
+      "end_ms": 11210,
+      "text": "حياتك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11210,
+      "end_ms": 11520,
+      "text": "من",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11520,
+      "end_ms": 11770,
+      "text": "أول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11770,
+      "end_ms": 12050,
+      "text": "يوم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12050,
+      "end_ms": 12210,
+      "text": "في",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12210,
+      "end_ms": 12690,
+      "text": "الحضانة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12690,
+      "end_ms": 13080,
+      "text": "لحد",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13080,
+      "end_ms": 13780,
+      "text": "النهاردة.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14210,
+      "end_ms": 14820,
+      "text": "اطمن.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15060,
+      "end_ms": 15300,
+      "text": "هو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15300,
+      "end_ms": 15580,
+      "text": "مش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15580,
+      "end_ms": 15900,
+      "text": "طالب",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15900,
+      "end_ms": 16250,
+      "text": "فيلم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 16250,
+      "end_ms": 16750,
+      "text": "وثائقي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 16750,
+      "end_ms": 17000,
+      "text": "عن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 17000,
+      "end_ms": 17530,
+      "text": "حياتك.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 17990,
+      "end_ms": 18270,
+      "text": "كل",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18270,
+      "end_ms": 18450,
+      "text": "اللي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18450,
+      "end_ms": 18880,
+      "text": "محتاجه",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18880,
+      "end_ms": 19270,
+      "text": "أربع",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19270,
+      "end_ms": 19440,
+      "text": "أو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19440,
+      "end_ms": 19780,
+      "text": "خمس",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19780,
+      "end_ms": 20120,
+      "text": "جمل",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20120,
+      "end_ms": 20630,
+      "text": "قصيرة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20630,
+      "end_ms": 21020,
+      "text": "تساعده",
+      "language": "ar"
+    },
+    {
+      "start_ms": 21020,
+      "end_ms": 21540,
+      "text": "يعرفك،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 21630,
+      "end_ms": 21960,
+      "text": "وتفتح",
+      "language": "ar"
+    },
+    {
+      "start_ms": 21960,
+      "end_ms": 22290,
+      "text": "بينكم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 22290,
+      "end_ms": 22910,
+      "text": "محادثة.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 23510,
+      "end_ms": 23820,
+      "text": "اسمع",
+      "language": "ar"
+    },
+    {
+      "start_ms": 23820,
+      "end_ms": 24200,
+      "text": "النموذج",
+      "language": "ar"
+    },
+    {
+      "start_ms": 24200,
+      "end_ms": 24450,
+      "text": "ده",
+      "language": "ar"
+    },
+    {
+      "start_ms": 24450,
+      "end_ms": 25050,
+      "text": "أولًا.",
+      "language": "ar"
+    }
+  ]
+}

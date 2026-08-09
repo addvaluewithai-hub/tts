@@ -1,0 +1,24 @@
+{
+  "lesson": "introduce-yourself",
+  "assembly_sha256": "d145d5e28da9e87bc781ed179d10a705762dccece6ccc70f40e56d427d5ffa56",
+  "parts": [
+    "01-hook.wav",
+    "02-four-slots.wav",
+    "03-maya.wav",
+    "04-from-vs-live.wav",
+    "05-pronunciation-live.wav",
+    "06-role-interest.wav",
+    "07-omar.wav",
+    "08-build-yours.wav",
+    "09-closing.wav"
+  ],
+  "part_count": 9,
+  "gap_ms": 300,
+  "duration_seconds": 244.08,
+  "wav": {
+    "sample_rate_hz": 24000,
+    "channels": 1,
+    "sample_width_bytes": 2
+  },
+  "mp3_bitrate": "192k"
+}

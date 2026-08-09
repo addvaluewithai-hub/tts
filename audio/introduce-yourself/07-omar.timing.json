@@ -1,0 +1,276 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/introduce-yourself/07-omar.wav",
+  "audio_sha256": "2c77bdafac3921f5d21418ca71f86e4a0b0c8fda05da33cfa461431d9e8f40d8",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.1-flash-lite",
+  "duration_ms": 27320,
+  "text": "آخر حاجة، أضف تفصيلة صغيرة عنك. مايا قالت: I like photography. التفصيلة دي مهمة؛ لأنها بتدي الشخص اللي قدامك موضوع يقدر يسألك عنه. ممكن تقول: I like reading. أو: I like football. أو: I like cooking. حتى لو النتيجة النهائية في المطبخ مش مضمونة.",
+  "language": "ar",
+  "words": [
+    {
+      "start_ms": 70,
+      "end_ms": 360,
+      "text": "آخر",
+      "language": "ar"
+    },
+    {
+      "start_ms": 360,
+      "end_ms": 780,
+      "text": "حاجة،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1150,
+      "end_ms": 1420,
+      "text": "أضف",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1420,
+      "end_ms": 1850,
+      "text": "تفصيلة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1960,
+      "end_ms": 2520,
+      "text": "صغيرة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2680,
+      "end_ms": 3130,
+      "text": "عنك.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4270,
+      "end_ms": 4510,
+      "text": "مايا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4510,
+      "end_ms": 4900,
+      "text": "قالت:",
+      "language": "ar"
+    },
+    {
+      "start_ms": 5580,
+      "end_ms": 5790,
+      "text": "I",
+      "language": "en"
+    },
+    {
+      "start_ms": 5790,
+      "end_ms": 6120,
+      "text": "like",
+      "language": "en"
+    },
+    {
+      "start_ms": 6120,
+      "end_ms": 7250,
+      "text": "photography.",
+      "language": "en"
+    },
+    {
+      "start_ms": 8200,
+      "end_ms": 8630,
+      "text": "التفصيلة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8660,
+      "end_ms": 8830,
+      "text": "دي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8830,
+      "end_ms": 9300,
+      "text": "مهمة؛",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9530,
+      "end_ms": 9970,
+      "text": "لأنها",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9970,
+      "end_ms": 10290,
+      "text": "بتدي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10290,
+      "end_ms": 10580,
+      "text": "الشخص",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10580,
+      "end_ms": 10830,
+      "text": "اللي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10830,
+      "end_ms": 11230,
+      "text": "قدامك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11590,
+      "end_ms": 12150,
+      "text": "موضوع",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12150,
+      "end_ms": 12430,
+      "text": "يقدر",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12430,
+      "end_ms": 12790,
+      "text": "يسألك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12790,
+      "end_ms": 13020,
+      "text": "عنه.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14220,
+      "end_ms": 14590,
+      "text": "ممكن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14590,
+      "end_ms": 14880,
+      "text": "تقول:",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15610,
+      "end_ms": 15810,
+      "text": "I",
+      "language": "en"
+    },
+    {
+      "start_ms": 15810,
+      "end_ms": 16220,
+      "text": "like",
+      "language": "en"
+    },
+    {
+      "start_ms": 16220,
+      "end_ms": 16930,
+      "text": "reading.",
+      "language": "en"
+    },
+    {
+      "start_ms": 18270,
+      "end_ms": 18600,
+      "text": "أو:",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19040,
+      "end_ms": 19250,
+      "text": "I",
+      "language": "en"
+    },
+    {
+      "start_ms": 19250,
+      "end_ms": 19610,
+      "text": "like",
+      "language": "en"
+    },
+    {
+      "start_ms": 19610,
+      "end_ms": 20170,
+      "text": "football.",
+      "language": "en"
+    },
+    {
+      "start_ms": 21370,
+      "end_ms": 21670,
+      "text": "أو:",
+      "language": "ar"
+    },
+    {
+      "start_ms": 22120,
+      "end_ms": 22350,
+      "text": "I",
+      "language": "en"
+    },
+    {
+      "start_ms": 22350,
+      "end_ms": 22760,
+      "text": "like",
+      "language": "en"
+    },
+    {
+      "start_ms": 22760,
+      "end_ms": 23410,
+      "text": "cooking.",
+      "language": "en"
+    },
+    {
+      "start_ms": 24260,
+      "end_ms": 24650,
+      "text": "حتى",
+      "language": "ar"
+    },
+    {
+      "start_ms": 24650,
+      "end_ms": 24810,
+      "text": "لو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 24810,
+      "end_ms": 25120,
+      "text": "النتيجة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 25120,
+      "end_ms": 25520,
+      "text": "النهائية",
+      "language": "ar"
+    },
+    {
+      "start_ms": 25520,
+      "end_ms": 25770,
+      "text": "في",
+      "language": "ar"
+    },
+    {
+      "start_ms": 25770,
+      "end_ms": 26030,
+      "text": "المطبخ",
+      "language": "ar"
+    },
+    {
+      "start_ms": 26030,
+      "end_ms": 26360,
+      "text": "مش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 26360,
+      "end_ms": 26860,
+      "text": "مضمونة.",
+      "language": "ar"
+    }
+  ]
+}
