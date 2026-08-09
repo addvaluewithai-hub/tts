@@ -1,0 +1,22 @@
+---
+voice: Sulafat
+audio_profile: >-
+  A warm and engaging Egyptian English teacher speaking directly to an Arabic-speaking adult beginner. Use natural Egyptian Arabic for explanations and clear General American pronunciation for every English expression.
+scene: >-
+  A warm, modern English-learning studio. One Egyptian teacher speaks directly to the learner through the camera, as if teaching them personally. The teacher is friendly, confident, lightly humorous, and encouraging. This feels like a polished online lesson, not a podcast or formal classroom lecture. No background music.
+director_notes: >-
+  Make the delivery personal and conversational, with natural pauses and clear teaching emphasis. Switch cleanly from Arabic to English and never pronounce English with an Arabic accent. SSML language and phoneme elements are silent pronunciation instructions: apply them but never read markup, attributes, or IPA symbols aloud. Bracketed audio tags are performance directions and must not be spoken. Do not add, remove, translate, or paraphrase spoken words.
+---
+بعد الاسم، مايا قالت بلدها.
+
+[CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm frəm ˈdʒɔɹdən">I'm from Jordan.</phoneme></lang>
+
+التعبير <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm frəm">I'm from</phoneme></lang> معناه "أنا من". استخدمه عشان تقول بلدك أو المكان اللي أنت أصلك منه.
+
+مثلًا:
+
+[CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm frəm ˈiːdʒɪpt">I'm from Egypt.</phoneme></lang>
+
+أو:
+
+[CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm frəm səˈuːdi əˈreɪbiə">I'm from Saudi Arabia.</phoneme></lang>
