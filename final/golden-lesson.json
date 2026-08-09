@@ -1,0 +1,23 @@
+{
+  "lesson": "golden-lesson",
+  "assembly_sha256": "c8643884fb34cf3407e0afb0e42fe8293e0f93154bdf5c1e2f20073c0e8fad6d",
+  "parts": [
+    "01-intro-and-model.wav",
+    "02-name.wav",
+    "03-origin.wav",
+    "04-residence-and-live-pronunciation.wav",
+    "05-job.wav",
+    "06-interests.wav",
+    "07-second-model-and-structure.wav",
+    "08-closing.wav"
+  ],
+  "part_count": 8,
+  "gap_ms": 300,
+  "duration_seconds": 244.42,
+  "wav": {
+    "sample_rate_hz": 24000,
+    "channels": 1,
+    "sample_width_bytes": 2
+  },
+  "mp3_bitrate": "192k"
+}
