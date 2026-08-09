@@ -1,4 +1,5 @@
 ---
+# factory-retry: regenerate-after-alignment-drop-2026-08-09
 voice: Kore
 audio_profile: |
   Speaker 1 is a warm and engaging Egyptian English teacher speaking directly to an Arabic-speaking adult beginner.
