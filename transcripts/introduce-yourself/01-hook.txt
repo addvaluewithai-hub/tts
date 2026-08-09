@@ -1,0 +1,5 @@
+---
+audio_profile: A warm, patient Arabic-speaking English teacher speaking directly to one adult beginner.
+director_notes: Speak the Arabic naturally and conversationally. Say English phrases clearly and slightly slower for a beginner. Use short natural pauses between ideas. Preserve the transcript exactly.
+---
+إذا سألك شخص بالإنجليزية: Tell me about yourself. لا تحتاج إلى قصة طويلة. أربع أو خمس جمل قصيرة تكفي.
