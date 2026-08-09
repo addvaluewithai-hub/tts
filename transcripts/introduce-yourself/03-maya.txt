@@ -1,7 +1,5 @@
 ---
-speakers:
-  - speaker: Speaker 1
-    voice: Kore
+voice: Kore
 audio_profile: |
   Speaker 1 is a warm and engaging Egyptian English teacher speaking directly to an Arabic-speaking adult beginner.
   The teacher uses natural Egyptian Arabic for explanations and clear General American pronunciation for every English expression.
@@ -14,6 +12,7 @@ director_notes: |
 
   SSML language and phoneme elements are silent pronunciation instructions. Apply them to the enclosed English text, but never read the markup, attributes, or IPA symbols aloud.
 
+  Speaker labels such as "Speaker 1:" are silent role markers and must not be spoken.
   Bracketed audio tags are performance directions and must not be spoken. Preserve the transcript exactly. Do not add, remove, translate, or paraphrase any words.
 ---
 Speaker 1: بعد الاسم، مايا قالت بلدها.
