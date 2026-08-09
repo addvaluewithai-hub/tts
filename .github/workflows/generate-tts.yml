@@ -1,4 +1,4 @@
-name: Generate TTS audio
+name: TTS Factory
 
 on:
   workflow_dispatch:
@@ -9,21 +9,20 @@ on:
       - "transcripts/**/*.txt"
       - "transcripts/**/*.md"
       - "tts_config.yaml"
-      - "scripts/process_tts.py"
-      - "scripts/assemble_lessons.py"
-      - "scripts/transcription_core.py"
-      - "scripts/transcribe_final.py"
+      - "scripts/**"
+      - "tests/**"
       - "requirements.txt"
+      - ".github/workflows/generate-tts.yml"
 
 permissions:
   contents: write
 
 concurrency:
-  group: gemini-tts-${{ github.ref }}
+  group: tts-factory-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  generate:
+  factory:
     runs-on: ubuntu-latest
     timeout-minutes: 120
 
@@ -48,51 +47,35 @@ jobs:
       - name: Run tests
         run: python -m unittest discover -s tests -v
 
-      - name: Generate audio
-        id: tts
+      - name: Run factory
+        id: factory
         continue-on-error: true
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python scripts/process_tts.py
+        run: python scripts/run_factory.py
 
-      - name: Assemble final lesson audio
-        id: assemble
-        if: steps.tts.outcome == 'success'
-        continue-on-error: true
-        run: python scripts/assemble_lessons.py
-
-      - name: Create timestamped final transcript
-        id: transcribe
-        if: steps.assemble.outcome == 'success'
-        continue-on-error: true
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python scripts/transcribe_final.py
-
-      - name: Commit generated outputs
-        id: commit
+      - name: Commit factory state
         shell: bash
         run: |
           set -euo pipefail
-          if git diff --quiet && git diff --cached --quiet && [ -z "$(git status --porcelain)" ]; then
-            echo "No repository changes to commit."
+
+          git add -A audio done transcripts final
+          if git diff --cached --quiet; then
+            echo "No factory state changes to commit."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add audio done transcripts
-          if [ -d final ]; then
-            git add final
-          fi
-          git commit -m "chore(tts): generate lesson audio and timing transcript"
-          git push
+          git commit -m "chore(factory): publish generated outputs [skip ci]"
 
-      - name: Fail workflow if a pipeline stage failed
-        if: >-
-          steps.tts.outcome == 'failure' ||
-          steps.assemble.outcome == 'failure' ||
-          steps.transcribe.outcome == 'failure'
+          # A newer commit may have landed while model calls were running.
+          # Rebase generated state before pushing instead of failing a non-fast-forward push.
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Fail workflow if the factory failed
+        if: steps.factory.outcome == 'failure'
         run: |
-          echo "One or more TTS pipeline stages failed. Successful outputs were committed for inspection/retry."
+          echo "The factory failed. Any successfully generated state was committed for inspection/retry."
           exit 1
