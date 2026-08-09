@@ -1,9 +1,12 @@
-model: gemini-3.1-flash-tts-preview
+# TTS Factory configuration
+#
+# This file is the source of truth for synthesis, assembly, and word alignment.
+# Individual transcript files may override the documented TTS fields in YAML front matter.
 
-# Default voice. Any transcript can override this in YAML front matter.
+# Stage 1: speech synthesis
+model: gemini-3.1-flash-tts-preview
 voice: Kore
 
-# These defaults are included in every prompt unless overridden per transcript.
 audio_profile: >-
   A natural, trustworthy narrator with a warm, confident presence.
 scene: >-
@@ -13,11 +16,11 @@ director_notes: >-
   articulation, tasteful emotional variation, and comfortable pacing. Do not read
   instructions, headings, YAML metadata, or labels aloud.
 
-# Long outputs can drift in voice/style. The processor splits text into chunks around
-# paragraph boundaries, generates each chunk independently, then joins the PCM audio.
+# Long source files are split near paragraph/sentence boundaries and stitched into
+# one part WAV. For production lessons, prefer several short numbered source files.
 max_chars_per_request: 5000
 
-# Keep requests sequential and gently spaced to respect project-level rate limits.
+# Requests are intentionally sequential.
 request_delay_seconds: 2
 
 retry:
@@ -25,15 +28,14 @@ retry:
   initial_delay_seconds: 4
   max_delay_seconds: 60
 
-# Every audio/<lesson>/ folder is assembled in filename order into final/<lesson>.wav
-# and final/<lesson>.mp3 after TTS generation succeeds.
+# Stage 2: assemble audio/<lesson>/*.wav in filename order.
 assembly:
   gap_ms: 300
   mp3_bitrate: 192k
 
-# Final MP3s are sent back through Gemini audio understanding to create a video-sync
-# transcript. Only audio-capable models belong here. The router rotates the first model
-# across lessons and falls back to the other model on quota/service failures.
+# Stage 3: align each short source WAV independently, cache its word timings, then
+# offset all part-relative timings into final/<lesson>.transcript.json.
+# Only audio-input models belong in this router.
 transcription:
   enabled: true
   models:
