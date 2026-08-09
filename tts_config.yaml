@@ -25,4 +25,8 @@ retry:
   initial_delay_seconds: 4
   max_delay_seconds: 60
 
-# Touching this config intentionally retriggers the Golden Lesson batch after secret setup.
+# Every audio/<lesson>/ folder is assembled in filename order into final/<lesson>.wav
+# and final/<lesson>.mp3 after TTS generation succeeds.
+assembly:
+  gap_ms: 300
+  mp3_bitrate: 192k
