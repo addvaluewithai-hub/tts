@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-"""Batch Gemini 3.1 Flash TTS processor.
+"""Batch Gemini TTS processor.
 
 Flow:
   transcripts/**/*.{txt,md} -> audio/**/*.wav + audio/**/*.json -> done/**/*.{txt,md}
 
-A source transcript is archived only after a valid WAV and manifest are written.
+A source transcript is moved to done/ only after a valid WAV and manifest are written.
+The canonical done/<lesson>/<part> transcript is always the latest successful version;
+Git history preserves older versions for audit/recovery.
 """
 
 from __future__ import annotations
@@ -15,7 +17,6 @@ import hashlib
 import json
 import os
 import random
-import shutil
 import sys
 import time
 import wave
@@ -95,30 +96,48 @@ def discover_jobs(inbox: Path) -> list[TranscriptJob]:
     return jobs
 
 
-def merged_setting(global_config: dict[str, Any], metadata: dict[str, Any], key: str, default: Any = None) -> Any:
-    value = metadata.get(key, global_config.get(key, default))
-    return value
+def merged_setting(
+    global_config: dict[str, Any],
+    metadata: dict[str, Any],
+    key: str,
+    default: Any = None,
+) -> Any:
+    return metadata.get(key, global_config.get(key, default))
 
 
-def normalize_speech_config(global_config: dict[str, Any], metadata: dict[str, Any]) -> list[dict[str, str]]:
+def normalize_speech_config(
+    global_config: dict[str, Any], metadata: dict[str, Any]
+) -> list[dict[str, str]]:
     speakers = metadata.get("speakers")
     if speakers is not None:
         if not isinstance(speakers, list) or not (1 <= len(speakers) <= 2):
             raise ConfigError("'speakers' must be a list with one or two speaker mappings")
         normalized: list[dict[str, str]] = []
         for item in speakers:
-            if not isinstance(item, dict) or not item.get("speaker") or not item.get("voice"):
+            if (
+                not isinstance(item, dict)
+                or not item.get("speaker")
+                or not item.get("voice")
+            ):
                 raise ConfigError("Each speaker requires both 'speaker' and 'voice'")
-            normalized.append({"speaker": str(item["speaker"]), "voice": str(item["voice"])})
+            normalized.append(
+                {"speaker": str(item["speaker"]), "voice": str(item["voice"])}
+            )
         return normalized
 
     voice = str(merged_setting(global_config, metadata, "voice", "Kore"))
     return [{"voice": voice}]
 
 
-def build_prompt(global_config: dict[str, Any], metadata: dict[str, Any], transcript_chunk: str) -> str:
-    audio_profile = str(merged_setting(global_config, metadata, "audio_profile", "Natural narrator"))
-    scene = str(merged_setting(global_config, metadata, "scene", "Quiet recording studio"))
+def build_prompt(
+    global_config: dict[str, Any], metadata: dict[str, Any], transcript_chunk: str
+) -> str:
+    audio_profile = str(
+        merged_setting(global_config, metadata, "audio_profile", "Natural narrator")
+    )
+    scene = str(
+        merged_setting(global_config, metadata, "scene", "Quiet recording studio")
+    )
     director_notes = str(
         merged_setting(
             global_config,
@@ -168,7 +187,11 @@ def split_transcript(text: str, max_chars: int) -> list[str]:
         sentence_parts: list[str] = []
         start = 0
         for idx, char in enumerate(paragraph):
-            if char in ".!?" and idx + 1 < len(paragraph) and paragraph[idx + 1].isspace():
+            if (
+                char in ".!?"
+                and idx + 1 < len(paragraph)
+                and paragraph[idx + 1].isspace()
+            ):
                 sentence_parts.append(paragraph[start : idx + 1].strip())
                 start = idx + 1
         tail = paragraph[start:].strip()
@@ -210,14 +233,19 @@ def sha256_text(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
 
 
-def manifest_matches(manifest_path: Path, source_hash: str, config_hash: str) -> bool:
+def manifest_matches(
+    manifest_path: Path, source_hash: str, config_hash: str
+) -> bool:
     if not manifest_path.exists():
         return False
     try:
         data = json.loads(manifest_path.read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError):
         return False
-    return data.get("source_sha256") == source_hash and data.get("effective_config_sha256") == config_hash
+    return (
+        data.get("source_sha256") == source_hash
+        and data.get("effective_config_sha256") == config_hash
+    )
 
 
 def retryable_status(exc: Exception) -> int | None:
@@ -249,35 +277,52 @@ def synthesize_chunk(
                 generation_config={"speech_config": speech_config},
             )
             output_audio = getattr(interaction, "output_audio", None)
-            data = getattr(output_audio, "data", None) if output_audio is not None else None
+            data = (
+                getattr(output_audio, "data", None)
+                if output_audio is not None
+                else None
+            )
             if not data:
                 raise RuntimeError("Gemini returned no audio data")
             return base64.b64decode(data)
         except errors.APIError as exc:
             status = retryable_status(exc)
-            should_retry = status == 429 or (status is not None and 500 <= status <= 599)
+            should_retry = status == 429 or (
+                status is not None and 500 <= status <= 599
+            )
             if not should_retry or attempt >= max_attempts:
                 raise
-            delay = min(max_delay, initial_delay * (2 ** (attempt - 1))) + random.uniform(0, 1.0)
-            print(f"    API error {status}; retrying attempt {attempt + 1}/{max_attempts} in {delay:.1f}s")
+            delay = min(max_delay, initial_delay * (2 ** (attempt - 1)))
+            delay += random.uniform(0, 1.0)
+            print(
+                f"    API error {status}; retrying attempt "
+                f"{attempt + 1}/{max_attempts} in {delay:.1f}s"
+            )
             time.sleep(delay)
         except RuntimeError:
             if attempt >= max_attempts:
                 raise
-            delay = min(max_delay, initial_delay * (2 ** (attempt - 1))) + random.uniform(0, 1.0)
-            print(f"    No usable audio returned; retrying attempt {attempt + 1}/{max_attempts} in {delay:.1f}s")
+            delay = min(max_delay, initial_delay * (2 ** (attempt - 1)))
+            delay += random.uniform(0, 1.0)
+            print(
+                f"    No usable audio returned; retrying attempt "
+                f"{attempt + 1}/{max_attempts} in {delay:.1f}s"
+            )
             time.sleep(delay)
 
     raise RuntimeError("Unreachable retry state")
 
 
 def archive_source(job: TranscriptJob, done_dir: Path) -> Path:
+    """Move the latest successful source to its canonical done/ path.
+
+    A retake replaces the previous canonical transcript. Repository history already
+    preserves earlier successful versions, and alignment must always reference the
+    text that corresponds to the current audio.
+    """
     destination = done_dir / job.relative_path
     destination.parent.mkdir(parents=True, exist_ok=True)
-    if destination.exists():
-        stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
-        destination = destination.with_name(f"{destination.stem}-{stamp}{destination.suffix}")
-    shutil.move(str(job.source_path), str(destination))
+    job.source_path.replace(destination)
     return destination
 
 
@@ -288,9 +333,18 @@ def process_job(
     audio_dir: Path,
     done_dir: Path,
 ) -> None:
-    model = str(merged_setting(global_config, job.metadata, "model", "gemini-3.1-flash-tts-preview"))
+    model = str(
+        merged_setting(
+            global_config,
+            job.metadata,
+            "model",
+            "gemini-3.1-flash-tts-preview",
+        )
+    )
     speech_config = normalize_speech_config(global_config, job.metadata)
-    max_chars = int(merged_setting(global_config, job.metadata, "max_chars_per_request", 5000))
+    max_chars = int(
+        merged_setting(global_config, job.metadata, "max_chars_per_request", 5000)
+    )
     request_delay = float(global_config.get("request_delay_seconds", 2))
     retry = global_config.get("retry", {}) or {}
     max_attempts = int(retry.get("max_attempts", 5))
@@ -300,25 +354,36 @@ def process_job(
     effective_config = {
         "model": model,
         "speech_config": speech_config,
-        "audio_profile": merged_setting(global_config, job.metadata, "audio_profile"),
+        "audio_profile": merged_setting(
+            global_config, job.metadata, "audio_profile"
+        ),
         "scene": merged_setting(global_config, job.metadata, "scene"),
-        "director_notes": merged_setting(global_config, job.metadata, "director_notes"),
+        "director_notes": merged_setting(
+            global_config, job.metadata, "director_notes"
+        ),
         "max_chars_per_request": max_chars,
     }
     source_hash = sha256_text(job.transcript)
-    config_hash = sha256_text(json.dumps(effective_config, sort_keys=True, ensure_ascii=False))
+    config_hash = sha256_text(
+        json.dumps(effective_config, sort_keys=True, ensure_ascii=False)
+    )
 
     relative_no_suffix = job.relative_path.with_suffix("")
     wav_path = audio_dir / relative_no_suffix.with_suffix(".wav")
     manifest_path = audio_dir / relative_no_suffix.with_suffix(".json")
 
-    if wav_path.exists() and manifest_matches(manifest_path, source_hash, config_hash):
+    if wav_path.exists() and manifest_matches(
+        manifest_path, source_hash, config_hash
+    ):
         archived = archive_source(job, done_dir)
         print(f"  Reusing matching audio; archived transcript -> {archived}")
         return
 
     chunks = split_transcript(job.transcript, max_chars=max_chars)
-    print(f"  Generating {len(chunks)} chunk(s) with {model} and {speech_config}")
+    print(
+        f"  Generating {len(chunks)} chunk(s) with {model} "
+        f"and {speech_config}"
+    )
 
     pcm_parts: list[bytes] = []
     for index, chunk in enumerate(chunks, start=1):
@@ -355,19 +420,28 @@ def process_job(
         "sample_width_bytes": DEFAULT_SAMPLE_WIDTH,
         "generated_at": datetime.now(timezone.utc).isoformat(),
     }
-    manifest_path.write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    manifest_path.write_text(
+        json.dumps(manifest, indent=2, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
 
     archived = archive_source(job, done_dir)
     print(f"  Wrote {wav_path} and archived transcript -> {archived}")
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Generate Gemini TTS audio for transcript files")
+    parser = argparse.ArgumentParser(
+        description="Generate Gemini TTS audio for transcript files"
+    )
     parser.add_argument("--config", type=Path, default=Path("tts_config.yaml"))
     parser.add_argument("--inbox", type=Path, default=Path("transcripts"))
     parser.add_argument("--audio", type=Path, default=Path("audio"))
     parser.add_argument("--done", type=Path, default=Path("done"))
-    parser.add_argument("--dry-run", action="store_true", help="Validate and show jobs without calling Gemini")
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Validate and show jobs without calling Gemini",
+    )
     return parser.parse_args()
 
 
@@ -383,12 +457,20 @@ def main() -> int:
     if args.dry_run:
         for job in jobs:
             speech_config = normalize_speech_config(config, job.metadata)
-            max_chars = int(merged_setting(config, job.metadata, "max_chars_per_request", 5000))
-            print(f"- {job.relative_path}: {len(split_transcript(job.transcript, max_chars))} chunk(s), {speech_config}")
+            max_chars = int(
+                merged_setting(
+                    config, job.metadata, "max_chars_per_request", 5000
+                )
+            )
+            chunks = len(split_transcript(job.transcript, max_chars))
+            print(f"- {job.relative_path}: {chunks} chunk(s), {speech_config}")
         return 0
 
     if not os.getenv("GEMINI_API_KEY") and not os.getenv("GOOGLE_API_KEY"):
-        print("ERROR: Set GEMINI_API_KEY (or GOOGLE_API_KEY) before running.", file=sys.stderr)
+        print(
+            "ERROR: Set GEMINI_API_KEY (or GOOGLE_API_KEY) before running.",
+            file=sys.stderr,
+        )
         return 2
 
     client = genai.Client()
@@ -399,14 +481,23 @@ def main() -> int:
         try:
             process_job(client, job, config, args.audio, args.done)
         except Exception as exc:
-            failures.append((job.relative_path, f"{type(exc).__name__}: {exc}"))
-            print(f"  FAILED: {type(exc).__name__}: {exc}", file=sys.stderr)
+            failures.append(
+                (job.relative_path, f"{type(exc).__name__}: {exc}")
+            )
+            print(
+                f"  FAILED: {type(exc).__name__}: {exc}",
+                file=sys.stderr,
+            )
 
     if failures:
         print("\nFailed transcript(s):", file=sys.stderr)
         for path, reason in failures:
             print(f"- {path}: {reason}", file=sys.stderr)
-        print("Successful transcripts were still generated/archived; failed files remain in transcripts/.", file=sys.stderr)
+        print(
+            "Successful transcripts were generated/archived; failed files remain "
+            "in transcripts/.",
+            file=sys.stderr,
+        )
         return 1
 
     print("All transcripts processed successfully.")
