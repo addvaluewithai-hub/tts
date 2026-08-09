@@ -1,0 +1,16 @@
+{
+  "source": "introduce-yourself/03-maya.txt",
+  "source_sha256": "09329e97ae3003157d367cd2a03a612e968db21b5a5327b959f0c47a5a8e68ae",
+  "effective_config_sha256": "fe4d8cc53398090c3ef1f75b6e4ccb26abe56f5e511ded9914ddaf771ac4258b",
+  "model": "gemini-3.1-flash-tts-preview",
+  "speech_config": [
+    {
+      "voice": "Kore"
+    }
+  ],
+  "chunks": 1,
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "generated_at": "2026-08-09T10:43:48.706893+00:00"
+}
