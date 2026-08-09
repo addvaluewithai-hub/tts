@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import re
 import subprocess
 import sys
 from pathlib import Path
@@ -16,7 +15,6 @@ STAGES = {
     "align": ROOT / "scripts" / "transcribe_final.py",
 }
 ORDER = ("tts", "assemble", "align")
-ARCHIVE_SUFFIX = re.compile(r"^(?P<stem>.+)-(?P<stamp>\d{8}T\d{6}Z)(?P<suffix>\.[^.]+)$")
 
 
 def run_stage(name: str, config: Path) -> int:
@@ -30,39 +28,6 @@ def run_stage(name: str, config: Path) -> int:
             file=sys.stderr,
         )
     return completed.returncode
-
-
-def canonicalize_done(done_dir: Path) -> int:
-    """Keep the latest successful transcript at its canonical path in done/.
-
-    process_tts preserves an existing done file by adding a UTC timestamp to a retake.
-    For downstream alignment, the newest successful retake must become canonical while
-    Git history remains the archive of older versions.
-    """
-    if not done_dir.exists():
-        return 0
-
-    groups: dict[Path, list[tuple[str, Path]]] = {}
-    for path in done_dir.rglob("*"):
-        if not path.is_file():
-            continue
-        match = ARCHIVE_SUFFIX.match(path.name)
-        if not match:
-            continue
-        canonical = path.with_name(f"{match.group('stem')}{match.group('suffix')}")
-        groups.setdefault(canonical, []).append((match.group("stamp"), path))
-
-    normalized = 0
-    for canonical, candidates in groups.items():
-        candidates.sort(key=lambda item: item[0])
-        _, newest = candidates[-1]
-        canonical.unlink(missing_ok=True)
-        newest.replace(canonical)
-        for _, stale in candidates[:-1]:
-            stale.unlink(missing_ok=True)
-        normalized += 1
-        print(f"Canonicalized latest transcript -> {canonical.relative_to(done_dir.parent)}")
-    return normalized
 
 
 def parse_args() -> argparse.Namespace:
@@ -90,8 +55,6 @@ def main() -> int:
         result = run_stage(stage, args.config)
         if result:
             return result
-        if stage == "tts":
-            canonicalize_done(ROOT / "done")
 
     print("\nFactory complete.")
     return 0
