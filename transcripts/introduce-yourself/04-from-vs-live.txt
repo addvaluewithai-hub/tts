@@ -1,4 +1,5 @@
 ---
+# factory-retry: 2026-08-09T18:47+03:00
 voice: Kore
 audio_profile: |
   Speaker 1 is a warm and engaging Egyptian English teacher speaking directly to an Arabic-speaking adult beginner.
