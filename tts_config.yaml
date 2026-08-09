@@ -1,0 +1,26 @@
+model: gemini-3.1-flash-tts-preview
+
+# Default voice. Any transcript can override this in YAML front matter.
+voice: Kore
+
+# These defaults are included in every prompt unless overridden per transcript.
+audio_profile: >-
+  A natural, trustworthy narrator with a warm, confident presence.
+scene: >-
+  A clean, quiet recording studio. Close microphone, no background noise.
+director_notes: >-
+  Speak naturally and conversationally. Preserve the transcript exactly. Use clear
+  articulation, tasteful emotional variation, and comfortable pacing. Do not read
+  instructions, headings, YAML metadata, or labels aloud.
+
+# Long outputs can drift in voice/style. The processor splits text into chunks around
+# paragraph boundaries, generates each chunk independently, then joins the PCM audio.
+max_chars_per_request: 5000
+
+# Keep requests sequential and gently spaced to respect project-level rate limits.
+request_delay_seconds: 2
+
+retry:
+  max_attempts: 5
+  initial_delay_seconds: 4
+  max_delay_seconds: 60
