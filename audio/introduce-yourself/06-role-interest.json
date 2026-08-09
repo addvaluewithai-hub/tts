@@ -1,0 +1,16 @@
+{
+  "source": "introduce-yourself/06-role-interest.txt",
+  "source_sha256": "7a66159bb5ad43b3da72666d484d9ca0dc6d6599cd39de50759afbd22f936852",
+  "effective_config_sha256": "4b995290ea54f700c5bdbd1ec1ee62bbe043ab2adf55f173dc733d3c44ceebda",
+  "model": "gemini-3.1-flash-tts-preview",
+  "speech_config": [
+    {
+      "voice": "Kore"
+    }
+  ],
+  "chunks": 1,
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "generated_at": "2026-08-09T16:01:01.837009+00:00"
+}
