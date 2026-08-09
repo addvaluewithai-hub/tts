@@ -1,0 +1,11 @@
+---
+voice: Sulafat
+audio_profile: A warm, thoughtful creator speaking directly to one listener.
+scene: A quiet late-night podcast studio with a close microphone.
+director_notes: Speak calmly, intimately, and with confident warmth. Slow slightly on important ideas.
+---
+[serious] Most people think better tools create better work. But tools only multiply the clarity you already have.
+
+[curious] So the useful question is not, “Which AI should I use?” It is, “What am I trying to make easier, faster, or better?”
+
+[gentle] Start there, and the technology becomes much easier to choose.

@@ -1,0 +1,70 @@
+name: Generate TTS audio
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "transcripts/**/*.txt"
+      - "transcripts/**/*.md"
+      - "tts_config.yaml"
+      - "scripts/process_tts.py"
+      - "requirements.txt"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: gemini-tts-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Generate audio
+        id: tts
+        continue-on-error: true
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python scripts/process_tts.py
+
+      - name: Commit generated audio and archived transcripts
+        id: commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet && git diff --cached --quiet && [ -z "$(git status --porcelain)" ]; then
+            echo "No repository changes to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio done transcripts
+          git commit -m "chore(tts): generate audio and archive transcripts"
+          git push
+
+      - name: Fail workflow if any transcript failed
+        if: steps.tts.outcome == 'failure'
+        run: |
+          echo "One or more transcripts failed. Successful outputs were committed; failed transcripts remain in transcripts/."
+          exit 1

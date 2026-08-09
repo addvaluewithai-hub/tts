@@ -1,0 +1,13 @@
+---
+speakers:
+  - speaker: Maya
+    voice: Kore
+  - speaker: Leo
+    voice: Puck
+audio_profile: Two friendly technology hosts with natural chemistry.
+scene: A clean modern podcast studio.
+director_notes: Maya is grounded and confident. Leo is energetic and curious. Keep transitions natural and conversational.
+---
+Maya: [serious] We should not automate a broken process.
+Leo: [curious] Right. First make the process clear, then automate the repetitive part.
+Maya: Exactly. Reliability before cleverness.
