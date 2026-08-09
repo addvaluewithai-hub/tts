@@ -1,0 +1,623 @@
+{
+  "schema_version": 1,
+  "lesson": "golden-lesson",
+  "source_audio": "final/golden-lesson.mp3",
+  "audio_sha256": "b7fb2ccaa836ea54a598e8222addaa7e18475a94066e047446fc92001e9825bd",
+  "transcription_config_sha256": "863a2764dd423cb63bddf6134eae2a9e069fae563ddeff9d6745db5b5acf5d6b",
+  "model": "gemini-3.1-flash-lite",
+  "duration_ms": 244420,
+  "generated_at": "2026-08-09T09:29:42.573045+00:00",
+  "parts": [
+    {
+      "file": "01-intro-and-model.wav",
+      "start_ms": 0,
+      "end_ms": 44440
+    },
+    {
+      "file": "02-name.wav",
+      "start_ms": 44740,
+      "end_ms": 70380
+    },
+    {
+      "file": "03-origin.wav",
+      "start_ms": 70680,
+      "end_ms": 89400
+    },
+    {
+      "file": "04-residence-and-live-pronunciation.wav",
+      "start_ms": 89700,
+      "end_ms": 142340
+    },
+    {
+      "file": "05-job.wav",
+      "start_ms": 142640,
+      "end_ms": 163040
+    },
+    {
+      "file": "06-interests.wav",
+      "start_ms": 163340,
+      "end_ms": 188700
+    },
+    {
+      "file": "07-second-model-and-structure.wav",
+      "start_ms": 189000,
+      "end_ms": 230160
+    },
+    {
+      "file": "08-closing.wav",
+      "start_ms": 230460,
+      "end_ms": 244420
+    }
+  ],
+  "segments": [
+    {
+      "start_ms": 0,
+      "end_ms": 44440,
+      "speaker": "teacher",
+      "language": "ar",
+      "text": "أهلًا بيك في أول درس. تخيّل إنك قابلت شخص جديد، وبعد السلام سألك: Tell me about yourself. وفجأة حسّيت إنك مطالب تحكي قصة حياتك من أول يوم في الحضانة لحد النهاردة. اطمن. هو مش طالب فيلم وثائقي عن حياتك. كل اللي محتاجه أربع أو خمس جمل قصيرة تساعده يعرفك، وتفتح بينكم محادثة. اسمع النموذج ده أولًا. Hi, I'm Maya. I'm from Jordan. I live in Amman. I'm a designer. I like photography. بس كده. مايا قالت اسمها، بلدها، مكان سكنها، شغلها، وحاجة بتحبها. تعال نفهم كل جزء."
+    },
+    {
+      "start_ms": 44740,
+      "end_ms": 70380,
+      "speaker": "teacher",
+      "language": "ar",
+      "text": "أول حاجة، التحية والاسم. Hi, I'm Maya. كلمة I'm هي الصورة المختصرة والطبيعية من: I am. لكن في المحادثات العادية، الأغلب إنك هتسمع وتستخدم: I'm. قولها كوحدة واحدة خفيفة. ما تفصلش الكلمتين عن بعض."
+    },
+    {
+      "start_ms": 70680,
+      "end_ms": 89400,
+      "speaker": "teacher",
+      "language": "ar",
+      "text": "بعد الاسم، مايا قالت بلدها. I'm from Jordan. التعبير I'm from معناه \"أنا من\". استخدمه عشان تقول بلدك أو المكان اللي أنت أصلك منه. مثلًا: I'm from Egypt. أو: I'm from Saudi Arabia."
+    },
+    {
+      "start_ms": 89700,
+      "end_ms": 142340,
+      "speaker": "teacher",
+      "language": "ar",
+      "text": "بعد كده، مايا قالت هي عايشة فين دلوقتي. I live in Amman. وهنا عندنا فرق مهم جدًا. I'm from بتقول لنا أنت أصلك منين. لكن I live in بتقول لنا أنت عايش فين دلوقتي. وممكن المكانين يكونوا مختلفين. مثلًا، ممكن شخص يقول: I'm from Egypt, but I live in Dubai. يعني هو من مصر، لكنه عايش دلوقتي في دبي. وخلي بالك من نطق كلمة live هنا. لأنها فعل بمعنى \"أعيش\"، فنطقها قصير: live. مش: live. النطق الثاني بنستخدمه في تعبيرات زي البث المباشر. لكن في جملتنا نقول: I live in Amman."
+    },
+    {
+      "start_ms": 142640,
+      "end_ms": 163040,
+      "speaker": "teacher",
+      "language": "ar",
+      "text": "بعد كده، تقدر تقول شغلك أو دورك. I'm a designer. وممكن تغيّر الوظيفة حسب معلوماتك. I'm a teacher. I'm an engineer. I'm a student. ولو مش عايز تتكلم عن شغلك، مفيش مشكلة. الجملة دي اختيارية."
+    },
+    {
+      "start_ms": 163340,
+      "end_ms": 188700,
+      "speaker": "teacher",
+      "language": "ar",
+      "text": "آخر حاجة، أضف تفصيلة صغيرة عنك. مايا قالت: I like photography. التفصيلة دي مهمة؛ لأنها بتدي الشخص اللي قدامك موضوع يقدر يسألك عنه. ممكن تقول: I like reading. أو: I like football. أو: I like cooking. حتى لو النتيجة النهائية في المطبخ مش مضمونة."
+    },
+    {
+      "start_ms": 189000,
+      "end_ms": 230160,
+      "speaker": "teacher",
+      "language": "ar",
+      "text": "دلوقتي اسمع نموذج تاني، بمعلومات مختلفة. Hi, I'm Omar. I'm from Egypt. I live in Giza. I'm a student. I like football. Nice to meet you. لاحظ إن عمر استخدم نفس البناء، لكن غيّر المعلومات. أنت كمان مش مطلوب منك تحفظ كلام مايا أو عمر. المطلوب إنك تتذكر أربع خانات بس: اسمك، بلدك، مكان سكنك أو شغلك، وحاجة واحدة بتحبها. بعد الفيديو هتبدأ الأسئلة التطبيقية، وهتستخدم الخانات دي عشان تبني مقدمتك بنفسك."
+    },
+    {
+      "start_ms": 230460,
+      "end_ms": 244420,
+      "speaker": "teacher",
+      "language": "ar",
+      "text": "مش مطلوب منك كلام مثالي، ولا نطق مثالي من أول محاولة. المطلوب أربع أو خمس جمل قصيرة، واضحة، وشخصية. جاهز؟ نشوفك في التطبيق. See you there!"
+    }
+  ],
+  "words": [
+    {
+      "start_ms": 0,
+      "end_ms": 1000,
+      "text": "أهلًا",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 1000,
+      "end_ms": 1300,
+      "text": "بيك",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 1300,
+      "end_ms": 1600,
+      "text": "في",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 1600,
+      "end_ms": 2100,
+      "text": "أول",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 2100,
+      "end_ms": 2500,
+      "text": "درس.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 2500,
+      "end_ms": 3200,
+      "text": "تخيّل",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 3200,
+      "end_ms": 3600,
+      "text": "إنك",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 3600,
+      "end_ms": 4000,
+      "text": "قابلت",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 4000,
+      "end_ms": 4400,
+      "text": "شخص",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 4400,
+      "end_ms": 4900,
+      "text": "جديد،",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 4900,
+      "end_ms": 5300,
+      "text": "وبعد",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 5300,
+      "end_ms": 5800,
+      "text": "السلام",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 5800,
+      "end_ms": 6300,
+      "text": "سألك:",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 6300,
+      "end_ms": 8500,
+      "text": "Tell me about yourself.",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 8500,
+      "end_ms": 9100,
+      "text": "وفجأة",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 9100,
+      "end_ms": 9600,
+      "text": "حسّيت",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 9600,
+      "end_ms": 10000,
+      "text": "إنك",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 10000,
+      "end_ms": 10500,
+      "text": "مطالب",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 10500,
+      "end_ms": 11000,
+      "text": "تحكي",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 11000,
+      "end_ms": 11500,
+      "text": "قصة",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 11500,
+      "end_ms": 12000,
+      "text": "حياتك",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 12000,
+      "end_ms": 12500,
+      "text": "من",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 12500,
+      "end_ms": 13000,
+      "text": "أول",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 13000,
+      "end_ms": 13500,
+      "text": "يوم",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 13500,
+      "end_ms": 14000,
+      "text": "في",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 14000,
+      "end_ms": 14500,
+      "text": "الحضانة",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 14500,
+      "end_ms": 15000,
+      "text": "لحد",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 15000,
+      "end_ms": 15500,
+      "text": "النهاردة.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 15500,
+      "end_ms": 16500,
+      "text": "اطمن.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 16500,
+      "end_ms": 17000,
+      "text": "هو",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 17000,
+      "end_ms": 17500,
+      "text": "مش",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 17500,
+      "end_ms": 18000,
+      "text": "طالب",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 18000,
+      "end_ms": 18500,
+      "text": "فيلم",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 18500,
+      "end_ms": 19000,
+      "text": "وثائقي",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 19000,
+      "end_ms": 19500,
+      "text": "عن",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 19500,
+      "end_ms": 20000,
+      "text": "حياتك.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 20000,
+      "end_ms": 20500,
+      "text": "كل",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 20500,
+      "end_ms": 21000,
+      "text": "اللي",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 21000,
+      "end_ms": 21500,
+      "text": "محتاجه",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 21500,
+      "end_ms": 22000,
+      "text": "أربع",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 22000,
+      "end_ms": 22500,
+      "text": "أو",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 22500,
+      "end_ms": 23000,
+      "text": "خمس",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 23000,
+      "end_ms": 23500,
+      "text": "جمل",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 23500,
+      "end_ms": 24000,
+      "text": "قصيرة",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 24000,
+      "end_ms": 24500,
+      "text": "تساعده",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 24500,
+      "end_ms": 25000,
+      "text": "يعرفك،",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 25000,
+      "end_ms": 25500,
+      "text": "وتفتح",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 25500,
+      "end_ms": 26000,
+      "text": "بينكم",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 26000,
+      "end_ms": 26500,
+      "text": "محادثة.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 26500,
+      "end_ms": 27500,
+      "text": "اسمع",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 27500,
+      "end_ms": 28000,
+      "text": "النموذج",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 28000,
+      "end_ms": 28500,
+      "text": "ده",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 28500,
+      "end_ms": 29000,
+      "text": "أولًا.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 29000,
+      "end_ms": 30000,
+      "text": "Hi, I'm Maya.",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 30000,
+      "end_ms": 31000,
+      "text": "I'm from Jordan.",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 31000,
+      "end_ms": 32000,
+      "text": "I live in Amman.",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 32000,
+      "end_ms": 33000,
+      "text": "I'm a designer.",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 33000,
+      "end_ms": 34000,
+      "text": "I like photography.",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 34000,
+      "end_ms": 35000,
+      "text": "بس",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 35000,
+      "end_ms": 36000,
+      "text": "كده.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 36000,
+      "end_ms": 37000,
+      "text": "مايا",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 37000,
+      "end_ms": 38000,
+      "text": "قالت",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 38000,
+      "end_ms": 39000,
+      "text": "اسمها،",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 39000,
+      "end_ms": 40000,
+      "text": "بلدها،",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 40000,
+      "end_ms": 41000,
+      "text": "مكان",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 41000,
+      "end_ms": 42000,
+      "text": "سكنها،",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 42000,
+      "end_ms": 43000,
+      "text": "شغلها،",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 43000,
+      "end_ms": 44000,
+      "text": "وحاجة",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 44000,
+      "end_ms": 45000,
+      "text": "بتحبها.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 45000,
+      "end_ms": 46000,
+      "text": "تعال",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 46000,
+      "end_ms": 47000,
+      "text": "نفهم",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 47000,
+      "end_ms": 48000,
+      "text": "كل",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 48000,
+      "end_ms": 49000,
+      "text": "جزء.",
+      "language": "ar",
+      "segment_index": 0
+    }
+  ]
+}
