@@ -1,7 +1,7 @@
 {
   "source": "introduce-yourself/02-four-slots.txt",
-  "source_sha256": "58a9ef2cac8f7335ed9e19a5f636982c57fb2418abbc786077f0bfbe0937e701",
-  "effective_config_sha256": "1e0ad1e828debf299eda6c647837ab7ee791211b51414ac37fa43aea4fd8d890",
+  "source_sha256": "4ed0185a08ad2b675e100fde601bfae8f360e7526cf854d0889f7c5febeb4b78",
+  "effective_config_sha256": "4b995290ea54f700c5bdbd1ec1ee62bbe043ab2adf55f173dc733d3c44ceebda",
   "model": "gemini-3.1-flash-tts-preview",
   "speech_config": [
     {
@@ -12,5 +12,5 @@
   "sample_rate_hz": 24000,
   "channels": 1,
   "sample_width_bytes": 2,
-  "generated_at": "2026-08-09T10:43:41.507399+00:00"
+  "generated_at": "2026-08-09T14:51:18.724597+00:00"
 }

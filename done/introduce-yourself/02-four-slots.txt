@@ -1,5 +1,39 @@
 ---
-audio_profile: A warm, patient Arabic-speaking English teacher speaking directly to one adult beginner.
-director_notes: Speak the Arabic naturally and conversationally. Say English phrases clearly and slightly slower for a beginner. Use short natural pauses between ideas. Preserve the transcript exactly.
+# factory-retry: canonical-gold-2026-08-09
+voice: Kore
+audio_profile: |
+  Speaker 1 is a warm and engaging Egyptian English teacher speaking directly to an Arabic-speaking adult beginner.
+  The teacher uses natural Egyptian Arabic for explanations and clear General American pronunciation for every English expression.
+scene: |
+  A warm, modern English-learning studio. One Egyptian teacher speaks directly to the learner through the camera, as if teaching them personally. The setting is clean, comfortable, and visually simple. The teacher is friendly, confident, lightly humorous, and encouraging. This feels like a polished online lesson, not a podcast or formal classroom lecture. No background music plays beneath the explanation.
+director_notes: |
+  The delivery should feel personal and conversational, as though the teacher is helping one learner sitting in front of them. Use natural pauses, vocal smiles, small changes in energy, and occasional light humor.
+
+  English examples should be pronounced slowly and clearly the first time, then repeated later at a relaxed natural speed. Switch cleanly from Arabic to English. Never pronounce English with an Arabic accent.
+
+  SSML language and phoneme elements are silent pronunciation instructions. Apply them to the enclosed English text, but never read the markup, attributes, or IPA symbols aloud.
+
+  Speaker labels such as "Speaker 1:" are silent role markers and must not be spoken.
+  Bracketed audio tags are performance directions and must not be spoken. Preserve the transcript exactly. Do not add, remove, translate, or paraphrase any words.
 ---
-رتّب إجابتك في أربع خانات بسيطة: اسمك، أنت من أين، أين تعيش الآن، ثم تفصيلة واحدة عنك؛ مثل عملك أو شيء تحبه.
+Speaker 1: [CLEAR, SLIGHTLY SLOWER] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="haɪ | aɪm ˈmaɪə | aɪm frəm ˈdʒɔɹdən | aɪ lɪv ɪn əˈmɑːn | aɪm ə dɪˈzaɪnɚ | aɪ laɪk fəˈtɑɡrəfi">Hi, I'm Maya. I'm from Jordan. I live in Amman. I'm a designer. I like photography.</phoneme></lang>
+
+Speaker 1: بس كده.
+
+Speaker 1: مايا قالت اسمها، بلدها، مكان سكنها، شغلها، وحاجة بتحبها.
+
+Speaker 1: تعال نفهم كل جزء.
+
+Speaker 1: أول حاجة، التحية والاسم.
+
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="haɪ | aɪm ˈmaɪə">Hi, I'm Maya.</phoneme></lang>
+
+Speaker 1: كلمة <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm">I'm</phoneme></lang> هي الصورة المختصرة والطبيعية من:
+
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ æm">I am.</phoneme></lang>
+
+Speaker 1: لكن في المحادثات العادية، الأغلب إنك هتسمع وتستخدم:
+
+Speaker 1: [CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm">I'm.</phoneme></lang>
+
+Speaker 1: قولها كوحدة واحدة خفيفة. ما تفصلش الكلمتين عن بعض.

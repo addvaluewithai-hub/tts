@@ -1,6 +1,6 @@
 {
-  "source": "introduce-yourself/03-maya.txt",
-  "source_sha256": "a1dba04a1d15a2da502a86b69e95c00c213df658dc6a8133e493105b472d5b02",
+  "source": "introduce-yourself/05-pronunciation-live.txt",
+  "source_sha256": "f38865ce8ec6aef64e456f81968e50bdbb90376e9eacc622e2af45d2bb629db8",
   "effective_config_sha256": "4b995290ea54f700c5bdbd1ec1ee62bbe043ab2adf55f173dc733d3c44ceebda",
   "model": "gemini-3.1-flash-tts-preview",
   "speech_config": [
@@ -12,5 +12,5 @@
   "sample_rate_hz": 24000,
   "channels": 1,
   "sample_width_bytes": 2,
-  "generated_at": "2026-08-09T14:51:30.787619+00:00"
+  "generated_at": "2026-08-09T14:51:46.254136+00:00"
 }
