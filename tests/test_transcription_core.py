@@ -48,15 +48,15 @@ class TranscriptionCoreTests(unittest.TestCase):
         self.assertEqual(core.route_order(models, 1), ["b", "a"])
         self.assertEqual(core.route_order(models, 2), ["a", "b"])
 
-    def test_clean_reference_removes_silent_markup(self):
+    def test_clean_reference_removes_silent_markup_and_speaker_label(self):
         text = """---
 voice: Sulafat
 ---
-[WARM] أهلًا <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="haɪ">Hi</phoneme></lang>
+Speaker 1: [WARM] أهلًا <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="haɪ">Hi</phoneme></lang>
 """
         self.assertEqual(core.clean_reference_text(text), "أهلًا Hi")
 
-    def test_part_timeline_uses_gap(self):
+    def test_part_timeline_uses_gap_and_duration(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)
             lesson_dir = root / "lesson"
@@ -67,50 +67,76 @@ voice: Sulafat
             self.assertEqual(
                 timeline,
                 [
-                    {"file": "01.wav", "start_ms": 0, "end_ms": 1000},
-                    {"file": "02.wav", "start_ms": 1300, "end_ms": 1800},
+                    {
+                        "file": "01.wav",
+                        "start_ms": 0,
+                        "end_ms": 1000,
+                        "duration_ms": 1000,
+                    },
+                    {
+                        "file": "02.wav",
+                        "start_ms": 1300,
+                        "end_ms": 1800,
+                        "duration_ms": 500,
+                    },
                 ],
             )
 
-    def test_normalize_payload(self):
+    def test_normalize_part_payload(self):
         payload = {
-            "segments": [
-                {
-                    "start_ms": 0,
-                    "end_ms": 1000,
-                    "speaker": "Teacher",
-                    "language": "ar",
-                    "text": "أهلًا",
-                }
-            ],
+            "text": "أهلًا Hi",
+            "language": "mixed",
             "words": [
-                {
-                    "start_ms": 100,
-                    "end_ms": 700,
-                    "text": "أهلًا",
-                    "language": "ar",
-                    "segment_index": 0,
-                }
+                {"start_ms": 0, "end_ms": 400, "text": "أهلًا", "language": "ar"},
+                {"start_ms": 500, "end_ms": 900, "text": "Hi", "language": "en"},
             ],
         }
-        result = core.normalize_payload(payload, 1000)
-        self.assertEqual(result["words"][0]["text"], "أهلًا")
+        result = core.normalize_part_payload(payload, 1000, expected_words=2)
+        self.assertEqual(len(result["words"]), 2)
+        self.assertEqual(result["words"][1]["text"], "Hi")
 
-    def test_existing_matches_requires_hashes(self):
+    def test_normalize_rejects_grouped_phrase(self):
+        payload = {
+            "text": "Tell me",
+            "language": "en",
+            "words": [
+                {"start_ms": 0, "end_ms": 900, "text": "Tell me", "language": "en"}
+            ],
+        }
+        with self.assertRaises(core.TranscriptionError):
+            core.normalize_part_payload(payload, 1000, expected_words=2)
+
+    def test_normalize_rejects_incomplete_word_list(self):
+        payload = {
+            "text": "one two three four five six seven eight nine ten",
+            "language": "en",
+            "words": [
+                {"start_ms": 0, "end_ms": 100, "text": "one", "language": "en"},
+                {"start_ms": 100, "end_ms": 200, "text": "two", "language": "en"},
+            ],
+        }
+        with self.assertRaises(core.TranscriptionError):
+            core.normalize_part_payload(payload, 1000, expected_words=10)
+
+    def test_cache_and_final_match_require_schema_v2(self):
         with tempfile.TemporaryDirectory() as tmp:
-            path = Path(tmp) / "lesson.transcript.json"
-            path.write_text(
-                json.dumps(
-                    {
-                        "audio_sha256": "audio",
-                        "transcription_config_sha256": "config",
-                        "words": [{"text": "hello"}],
-                    }
-                ),
-                encoding="utf-8",
-            )
-            self.assertTrue(core.existing_matches(path, "audio", "config"))
-            self.assertFalse(core.existing_matches(path, "changed", "config"))
+            root = Path(tmp)
+            cache = root / "part.timing.json"
+            final = root / "lesson.transcript.json"
+            data = {
+                "schema_version": 2,
+                "audio_sha256": "audio",
+                "transcription_config_sha256": "config",
+                "words": [{"text": "hello"}],
+            }
+            cache.write_text(json.dumps(data), encoding="utf-8")
+            final.write_text(json.dumps(data), encoding="utf-8")
+            self.assertIsNotNone(core.load_part_cache(cache, "audio", "config"))
+            self.assertTrue(core.existing_matches(final, "audio", "config"))
+
+            data["schema_version"] = 1
+            final.write_text(json.dumps(data), encoding="utf-8")
+            self.assertFalse(core.existing_matches(final, "audio", "config"))
 
     def test_vtt_format(self):
         text = core.render_vtt(
