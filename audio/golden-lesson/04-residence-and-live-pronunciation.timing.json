@@ -1,0 +1,558 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/golden-lesson/04-residence-and-live-pronunciation.wav",
+  "audio_sha256": "33ca43efef3508fc79568e5e2fe014a2e37d8e89fcaaf62258b07e8b84d66aa6",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.1-flash-lite",
+  "duration_ms": 52640,
+  "text": "بعد كده مايا قالت هي عايشة فين دلوقتي. I live in Amman. وهنا عندنا فرق مهم جدا. I'm from بتقول لنا أنت أصلك منين لكن I live in بتقول لنا أنت عايش فين دلوقتي. وممكن المكانين يكونوا مختلفين. مثلا ممكن شخص يقول I'm from Egypt but I live in Dubai يعني هو من مصر لكنه عايش دلوقتي في دبي. وخلي بالك من نطق كلمة live هنا لأنها فعل بمعنى أعيش فنطقها قصير. live. مش live. النطق التاني بنستخدمه في تعبيرات زي البث المباشر. لكن في جملتنا نقول I live in Amman.",
+  "language": "ar-en",
+  "words": [
+    {
+      "start_ms": 0,
+      "end_ms": 139,
+      "text": "بعد",
+      "language": "ar"
+    },
+    {
+      "start_ms": 139,
+      "end_ms": 329,
+      "text": "كده",
+      "language": "ar"
+    },
+    {
+      "start_ms": 479,
+      "end_ms": 869,
+      "text": "مايا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 869,
+      "end_ms": 1159,
+      "text": "قالت",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1329,
+      "end_ms": 1509,
+      "text": "هي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1509,
+      "end_ms": 1859,
+      "text": "عايشة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1859,
+      "end_ms": 2049,
+      "text": "فين",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2049,
+      "end_ms": 2499,
+      "text": "دلوقتي.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4659,
+      "end_ms": 4909,
+      "text": "I",
+      "language": "en"
+    },
+    {
+      "start_ms": 4909,
+      "end_ms": 5269,
+      "text": "live",
+      "language": "en"
+    },
+    {
+      "start_ms": 5269,
+      "end_ms": 5469,
+      "text": "in",
+      "language": "en"
+    },
+    {
+      "start_ms": 5469,
+      "end_ms": 6129,
+      "text": "Amman.",
+      "language": "en"
+    },
+    {
+      "start_ms": 7189,
+      "end_ms": 7459,
+      "text": "وهنا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7459,
+      "end_ms": 7809,
+      "text": "عندنا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7809,
+      "end_ms": 8079,
+      "text": "فرق",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8079,
+      "end_ms": 8449,
+      "text": "مهم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8449,
+      "end_ms": 9079,
+      "text": "جدا.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9749,
+      "end_ms": 10569,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 10569,
+      "end_ms": 11339,
+      "text": "from",
+      "language": "en"
+    },
+    {
+      "start_ms": 11339,
+      "end_ms": 11579,
+      "text": "بتقول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11579,
+      "end_ms": 11769,
+      "text": "لنا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11769,
+      "end_ms": 11989,
+      "text": "أنت",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11989,
+      "end_ms": 12309,
+      "text": "أصلك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12309,
+      "end_ms": 13359,
+      "text": "منين",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13919,
+      "end_ms": 14199,
+      "text": "لكن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14459,
+      "end_ms": 14759,
+      "text": "I",
+      "language": "en"
+    },
+    {
+      "start_ms": 14759,
+      "end_ms": 15159,
+      "text": "live",
+      "language": "en"
+    },
+    {
+      "start_ms": 15159,
+      "end_ms": 15999,
+      "text": "in",
+      "language": "en"
+    },
+    {
+      "start_ms": 16099,
+      "end_ms": 16389,
+      "text": "بتقول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 16389,
+      "end_ms": 16589,
+      "text": "لنا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 16589,
+      "end_ms": 16869,
+      "text": "أنت",
+      "language": "ar"
+    },
+    {
+      "start_ms": 16869,
+      "end_ms": 17149,
+      "text": "عايش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 17149,
+      "end_ms": 17359,
+      "text": "فين",
+      "language": "ar"
+    },
+    {
+      "start_ms": 17359,
+      "end_ms": 17959,
+      "text": "دلوقتي.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19049,
+      "end_ms": 19449,
+      "text": "وممكن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19449,
+      "end_ms": 19839,
+      "text": "المكانين",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19839,
+      "end_ms": 20129,
+      "text": "يكونوا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20129,
+      "end_ms": 20859,
+      "text": "مختلفين.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 22219,
+      "end_ms": 22759,
+      "text": "مثلا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 23099,
+      "end_ms": 23419,
+      "text": "ممكن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 23419,
+      "end_ms": 23789,
+      "text": "شخص",
+      "language": "ar"
+    },
+    {
+      "start_ms": 23789,
+      "end_ms": 24269,
+      "text": "يقول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 24909,
+      "end_ms": 25309,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 25309,
+      "end_ms": 25759,
+      "text": "from",
+      "language": "en"
+    },
+    {
+      "start_ms": 25759,
+      "end_ms": 26369,
+      "text": "Egypt",
+      "language": "en"
+    },
+    {
+      "start_ms": 26739,
+      "end_ms": 26979,
+      "text": "but",
+      "language": "en"
+    },
+    {
+      "start_ms": 26979,
+      "end_ms": 27249,
+      "text": "I",
+      "language": "en"
+    },
+    {
+      "start_ms": 27249,
+      "end_ms": 27559,
+      "text": "live",
+      "language": "en"
+    },
+    {
+      "start_ms": 27559,
+      "end_ms": 27879,
+      "text": "in",
+      "language": "en"
+    },
+    {
+      "start_ms": 27879,
+      "end_ms": 28439,
+      "text": "Dubai",
+      "language": "en"
+    },
+    {
+      "start_ms": 29019,
+      "end_ms": 29339,
+      "text": "يعني",
+      "language": "ar"
+    },
+    {
+      "start_ms": 29339,
+      "end_ms": 29539,
+      "text": "هو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 29539,
+      "end_ms": 29819,
+      "text": "من",
+      "language": "ar"
+    },
+    {
+      "start_ms": 29819,
+      "end_ms": 30209,
+      "text": "مصر",
+      "language": "ar"
+    },
+    {
+      "start_ms": 30489,
+      "end_ms": 30899,
+      "text": "لكنه",
+      "language": "ar"
+    },
+    {
+      "start_ms": 30899,
+      "end_ms": 31229,
+      "text": "عايش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 31229,
+      "end_ms": 31599,
+      "text": "دلوقتي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 31599,
+      "end_ms": 31839,
+      "text": "في",
+      "language": "ar"
+    },
+    {
+      "start_ms": 31839,
+      "end_ms": 32269,
+      "text": "دبي.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 33179,
+      "end_ms": 33509,
+      "text": "وخلي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 33509,
+      "end_ms": 33819,
+      "text": "بالك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 33819,
+      "end_ms": 34109,
+      "text": "من",
+      "language": "ar"
+    },
+    {
+      "start_ms": 34109,
+      "end_ms": 34439,
+      "text": "نطق",
+      "language": "ar"
+    },
+    {
+      "start_ms": 34439,
+      "end_ms": 34819,
+      "text": "كلمة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 34889,
+      "end_ms": 35509,
+      "text": "live",
+      "language": "en"
+    },
+    {
+      "start_ms": 35649,
+      "end_ms": 35899,
+      "text": "هنا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 36569,
+      "end_ms": 37049,
+      "text": "لأنها",
+      "language": "ar"
+    },
+    {
+      "start_ms": 37049,
+      "end_ms": 37379,
+      "text": "فعل",
+      "language": "ar"
+    },
+    {
+      "start_ms": 37379,
+      "end_ms": 37809,
+      "text": "بمعنى",
+      "language": "ar"
+    },
+    {
+      "start_ms": 37809,
+      "end_ms": 38439,
+      "text": "أعيش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 38899,
+      "end_ms": 39399,
+      "text": "فنطقها",
+      "language": "ar"
+    },
+    {
+      "start_ms": 39399,
+      "end_ms": 39869,
+      "text": "قصير.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 40999,
+      "end_ms": 41729,
+      "text": "live.",
+      "language": "en"
+    },
+    {
+      "start_ms": 42189,
+      "end_ms": 42729,
+      "text": "مش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 43239,
+      "end_ms": 44109,
+      "text": "live.",
+      "language": "en"
+    },
+    {
+      "start_ms": 44759,
+      "end_ms": 45139,
+      "text": "النطق",
+      "language": "ar"
+    },
+    {
+      "start_ms": 45139,
+      "end_ms": 45459,
+      "text": "التاني",
+      "language": "ar"
+    },
+    {
+      "start_ms": 45459,
+      "end_ms": 46019,
+      "text": "بنستخدمه",
+      "language": "ar"
+    },
+    {
+      "start_ms": 46019,
+      "end_ms": 46359,
+      "text": "في",
+      "language": "ar"
+    },
+    {
+      "start_ms": 46359,
+      "end_ms": 46799,
+      "text": "تعبيرات",
+      "language": "ar"
+    },
+    {
+      "start_ms": 46799,
+      "end_ms": 47109,
+      "text": "زي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 47109,
+      "end_ms": 47349,
+      "text": "البث",
+      "language": "ar"
+    },
+    {
+      "start_ms": 47349,
+      "end_ms": 47999,
+      "text": "المباشر.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 48439,
+      "end_ms": 48809,
+      "text": "لكن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 48809,
+      "end_ms": 49059,
+      "text": "في",
+      "language": "ar"
+    },
+    {
+      "start_ms": 49059,
+      "end_ms": 49459,
+      "text": "جملتنا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 49459,
+      "end_ms": 49839,
+      "text": "نقول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 50829,
+      "end_ms": 51169,
+      "text": "I",
+      "language": "en"
+    },
+    {
+      "start_ms": 51169,
+      "end_ms": 51589,
+      "text": "live",
+      "language": "en"
+    },
+    {
+      "start_ms": 51589,
+      "end_ms": 51839,
+      "text": "in",
+      "language": "en"
+    },
+    {
+      "start_ms": 51839,
+      "end_ms": 52629,
+      "text": "Amman.",
+      "language": "en"
+    }
+  ]
+}
