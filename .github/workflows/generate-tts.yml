@@ -58,42 +58,9 @@ jobs:
       - name: Run factory
         id: factory
         continue-on-error: true
-        shell: bash
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: |
-          set -uo pipefail
-          max_factory_attempts=3
-
-          for attempt in $(seq 1 "$max_factory_attempts"); do
-            echo "Factory attempt ${attempt}/${max_factory_attempts}"
-            log_file="$(mktemp)"
-
-            set +e
-            python scripts/run_factory.py 2>&1 | tee "$log_file"
-            status=${PIPESTATUS[0]}
-            set -e
-
-            if [ "$status" -eq 0 ]; then
-              rm -f "$log_file"
-              exit 0
-            fi
-
-            if ! grep -q "Error code: 429" "$log_file"; then
-              echo "Factory failed for a non-rate-limit reason; not retrying automatically."
-              rm -f "$log_file"
-              exit "$status"
-            fi
-
-            rm -f "$log_file"
-            if [ "$attempt" -ge "$max_factory_attempts" ]; then
-              echo "Gemini rate limit persisted after ${max_factory_attempts} factory attempts."
-              exit "$status"
-            fi
-
-            echo "Gemini returned 429. Waiting 65 seconds for the quota window, then retrying remaining parts."
-            sleep 65
-          done
+        run: python scripts/run_factory.py
 
       - name: Record factory run status
         if: always()
@@ -129,9 +96,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore(factory): publish generated outputs [skip ci]"
 
-          # A newer non-factory commit may have landed while model calls were running.
-          # We start from the current main, so this is normally a no-op, but keep the
-          # rebase as a final fast-forward guard before publishing generated state.
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
 
