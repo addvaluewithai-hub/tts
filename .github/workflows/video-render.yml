@@ -6,7 +6,6 @@ on:
     branches: [main]
     paths:
       - 'approvals/**/APPROVED'
-      - '.github/workflows/video-render.yml'
 
 permissions:
   contents: write
@@ -177,10 +176,10 @@ jobs:
           test -s "${JOB}.mp4"
           ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height,r_frame_rate -of json "${JOB}.mp4" > final-review/ffprobe.json
           python - <<PY
-          import json, subprocess, yaml
+          import json, yaml
           from pathlib import Path
 
-          job = yaml.safe_load(Path('../../../../input/${JOB}/job.yaml').read_text(encoding='utf-8')) or {}
+          job = yaml.safe_load(Path('../../../input/${JOB}/job.yaml').read_text(encoding='utf-8')) or {}
           video = job.get('video') or {}
           expected_w = int(video.get('width', 1920))
           expected_h = int(video.get('height', 1080))
@@ -210,7 +209,7 @@ jobs:
           import json, yaml
           from pathlib import Path
           meta=json.loads(Path('build-meta.json').read_text())
-          job=yaml.safe_load(Path('../../../../input/${JOB}/job.yaml').read_text(encoding='utf-8')) or {}
+          job=yaml.safe_load(Path('../../../input/${JOB}/job.yaml').read_text(encoding='utf-8')) or {}
           scenes=meta.get('scenes') or []
           holds=meta.get('finalHolds') or []
           if not scenes or len(holds) != len(scenes):
