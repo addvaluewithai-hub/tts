@@ -1,4 +1,4 @@
-name: TTS Factory
+name: Video Factory — Audio
 
 on:
   workflow_dispatch:
@@ -6,8 +6,7 @@ on:
     branches:
       - main
     paths:
-      - "transcripts/**/*.txt"
-      - "transcripts/**/*.md"
+      - "input/**"
       - "tts_config.yaml"
       - "scripts/**"
       - "tests/**"
@@ -18,11 +17,11 @@ permissions:
   contents: write
 
 concurrency:
-  group: tts-factory-${{ github.ref }}
+  group: video-factory-audio-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
-  factory:
+  audio:
     runs-on: ubuntu-latest
     timeout-minutes: 120
 
@@ -55,7 +54,10 @@ jobs:
       - name: Run tests
         run: python -m unittest discover -s tests -v
 
-      - name: Run factory
+      - name: Ingest active input package
+        run: python scripts/ingest_input.py
+
+      - name: Run audio factory
         id: factory
         continue-on-error: true
         shell: bash
@@ -96,45 +98,47 @@ jobs:
             sleep "$retry_delay_seconds"
           done
 
-      - name: Record factory run status
+      - name: Record audio run status
         if: always()
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p .factory-status/tts
+          mkdir -p .factory-status/audio
           current_sha="$(git rev-parse HEAD)"
-          cat > .factory-status/tts/latest.json <<EOF
+          active_job="$(grep -Ev '^\s*(#|$)' input/ACTIVE | head -1 || true)"
+          cat > .factory-status/audio/latest.json <<EOF
           {
             "run_id": "${GITHUB_RUN_ID}",
             "run_attempt": "${GITHUB_RUN_ATTEMPT}",
             "event": "${GITHUB_EVENT_NAME}",
+            "active_job": "${active_job}",
             "source_sha": "${current_sha}",
             "factory_outcome": "${{ steps.factory.outcome }}",
             "recorded_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           }
           EOF
 
-      - name: Commit factory state
+      - name: Commit audio factory state
         if: always()
         shell: bash
         run: |
           set -euo pipefail
 
-          git add -A audio done transcripts final .factory-status/tts/latest.json
+          git add -A audio done transcripts final .factory-status/audio/latest.json
           if git diff --cached --quiet; then
-            echo "No factory state changes to commit."
+            echo "No audio factory state changes to commit."
             exit 0
           fi
 
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "chore(factory): publish generated outputs [skip ci]"
+          git config user.name "video-factory[bot]"
+          git config user.email "video-factory[bot]@users.noreply.github.com"
+          git commit -m "chore(factory): publish audio outputs"
 
           git pull --rebase origin "${GITHUB_REF_NAME}"
           git push origin "HEAD:${GITHUB_REF_NAME}"
 
-      - name: Fail workflow if the factory failed
+      - name: Fail workflow if audio factory failed
         if: steps.factory.outcome == 'failure'
         run: |
-          echo "The factory failed. Any successfully generated state was committed for inspection/retry."
+          echo "The audio factory failed. Any successfully generated state was committed for inspection/retry."
           exit 1
