@@ -1,255 +1,189 @@
-# TTS Factory
+# Video Factory
 
-A GitHub-native production pipeline that turns lesson transcripts into:
+This repository is the production system for **audio-first, timing-driven videos**. The repository name is historical; TTS is now one stage of the factory, not the whole product.
 
-- short, retakeable TTS WAV parts;
-- one assembled WAV + MP3 per lesson;
-- word-level timing JSON for synchronized video generation;
-- WebVTT captions;
-- cached manifests so unchanged work does not spend model calls again.
+The factory is intentionally not English-course-specific. A job can describe an English lesson, another course, an explainer, or another narrated video as long as its `input/<job-id>/` package gives the agent enough direction.
+
+For autonomous agents, read [`AGENTS.md`](AGENTS.md) first and then [`docs/PRODUCTION_PLAYBOOK.md`](docs/PRODUCTION_PLAYBOOK.md).
+
+## The one-folder input contract
+
+Humans and agents add new work only under:
 
 ```text
-transcripts/<lesson>/*.txt
-        ↓
-Gemini TTS
-        ↓
-audio/<lesson>/*.wav
-        ↓
-assemble
-        ↓
-final/<lesson>.wav + .mp3
-        ↓
-per-part Gemini audio alignment
-        ↓
-final/<lesson>.transcript.json + .vtt
+input/<job-id>/
 ```
 
-For autonomous/coding/video agents, **read [`AGENTS.md`](AGENTS.md)**. It is the operational input/output contract.
+Minimum package:
 
-## Quick start
+```text
+input/my-video/
+  job.yaml
+  direction.md
+  transcript/
+    01-intro.txt
+    02-example.txt
+    03-closing.txt
+```
 
-### 1. Add the API key once
+Optional job-specific material can live beside it:
 
-Create this GitHub Actions repository secret:
+```text
+  pronunciation-map.json
+  assets/
+  references/
+  data/
+```
+
+Several input folders may exist. **`input/ACTIVE` selects the one production the factory is allowed to advance right now.** We deliberately do one video at a time until multi-job scheduling is worth the extra complexity.
+
+See [`input/README.md`](input/README.md) and copy [`input/_template/`](input/_template/).
+
+## Pipeline
+
+```text
+input/<job-id>/
+        ↓
+ingest active input
+        ↓
+Gemini TTS short parts
+        ↓
+assembled WAV + MP3
+        ↓
+word-level audio alignment
+        ↓
+final/<job-id>.transcript.json
+        ↓
+video source authored from direction + exact timing
+        ↓
+HyperFrames QA render
+        ↓
+manual full-resolution visual review
+        ↓
+hash-bound approval
+        ↓
+final 1080p/30fps render + ffprobe + final-frame review
+        ↓
+GitHub Actions final artifact
+```
+
+## Directory contract
+
+```text
+input/                     human/agent source packages + ACTIVE pointer
+transcripts/               internal TTS queue materialized from active input
+audio/                     retakeable generated TTS parts + timing caches
+done/                      successful TTS source state
+final/                     assembled audio + authoritative word timing
+productions/<job-id>/video agent-authored deterministic video source
+.factory-status/            machine-readable audio/video workflow state
+approvals/                  manual visual approval bound to source/audio hashes
+scripts/                    factory implementation
+tests/                      offline unit tests
+docs/                       durable production knowledge
+```
+
+`input/` is source. The other production directories are factory/agent-managed state.
+
+## Audio stage
+
+The proven audio core is intentionally kept stable:
+
+```bash
+python scripts/ingest_input.py
+python scripts/run_factory.py
+```
+
+`run_factory.py` performs:
+
+```text
+1. TTS       transcripts/ -> audio/ + done/
+2. Assemble  audio/<job>/ -> final/<job>.wav + .mp3
+3. Align     short WAV parts -> final transcript JSON/VTT
+```
+
+The primary video synchronization handoff is:
+
+```text
+final/<job-id>.transcript.json
+```
+
+Current alignment schema is v2 and contains duration, part boundaries, segments, and model-derived word timestamps.
+
+## Audio authoring rules
+
+- Prefer several short numbered transcript parts rather than one long TTS request.
+- Audio parts are retry/retake boundaries; **they do not define video scene count**.
+- Do not add per-part `max_chars_per_request` during normal production. The global maximum in `tts_config.yaml` is only a safety net.
+- For one speaker, use `voice:`. Use `speakers:` only for genuine multi-speaker synthesis.
+- Protect authored pronunciation/performance markup (`[WARM]`, `<lang>`, `<phoneme>`, IPA) unless intentionally revising the source.
+- `Speaker 1:`-style labels are silent role markers, not spoken copy; omit them in new single-speaker jobs.
+- On Gemini 429, preserve successful work, wait 60 seconds, and retry remaining work in the same workflow run rather than changing the lesson text.
+
+## Video source contract
+
+Each authored production lives under:
+
+```text
+productions/<job-id>/video/
+```
+
+The visual design can vary per job, but the production must build deterministically from the final audio/timing and emit:
+
+```text
+index.html
+build-meta.json
+```
+
+`build-meta.json` provides scene boundaries plus authoritative `finalHolds[]` and `riskBeats[]` for QA.
+
+The approved Lesson 01 V4 production is kept in this repository as the reference implementation. It demonstrates audio-driven word cues, Arabic/English layout, deterministic GSAP timing, contained Lottie, manual visual QA, and final-render verification.
+
+## Visual QA contract
+
+Automated checks are gates, not approval. A reviewer/agent must actually open every full-resolution scene final, every risk beat, and every full-duration progression strip before creating approval.
+
+Important hard-won rules are recorded in [`docs/PRODUCTION_PLAYBOOK.md`](docs/PRODUCTION_PLAYBOOK.md), including:
+
+- one HyperFrames root `.html` composition;
+- editable templates use `.tpl`, not a second `.html` root;
+- timed scenes use `class="clip"` and stable IDs;
+- audio elements have stable IDs;
+- `set -o pipefail` when lint/validate output is piped to `tee`;
+- `ffmpeg -nostdin` in review loops;
+- progression strips sample the whole scene;
+- Lottie registers one real AnimationItem and must be visibly reviewed;
+- approval is invalidated when source SHA or transcript hash changes.
+
+## Final definition of done
+
+A video is production-ready only when all of these are true:
+
+1. master audio and `final/<job>.transcript.json` exist from a successful audio state;
+2. authoritative video QA automation passes;
+3. required QA images were manually opened and accepted;
+4. approval matches current source SHA and transcript SHA-256;
+5. final render passes;
+6. MP4 is non-empty and matches requested resolution/fps;
+7. MP4 duration is within 0.15s of the audio master;
+8. representative frames extracted from the **final MP4** were manually opened;
+9. final artifact manifest exists.
+
+## Credentials
+
+GitHub Actions requires the repository secret:
 
 ```text
 GEMINI_API_KEY
 ```
 
-### 2. Add a lesson
-
-Put short numbered transcript parts under one lesson folder:
-
-```text
-transcripts/introduce-yourself/
-  01-intro.txt
-  02-name.txt
-  03-origin.txt
-  04-closing.txt
-```
-
-Filename order is playback order. Short semantic parts are preferred because they make retakes, voice consistency, and word alignment more reliable.
-
-### 3. Push to `main`
-
-The **TTS Factory** GitHub Action runs automatically. It can also be started manually from the Actions tab.
-
-### 4. Use the outputs
-
-A completed lesson produces:
-
-```text
-audio/introduce-yourself/
-  01-intro.wav
-  01-intro.json
-  01-intro.timing.json
-  ...
-
-done/introduce-yourself/
-  01-intro.txt
-  ...
-
-final/
-  introduce-yourself.wav
-  introduce-yourself.mp3
-  introduce-yourself.json
-  introduce-yourself.transcript.json
-  introduce-yourself.transcript.vtt
-```
-
-`final/<lesson>.transcript.json` is the primary machine handoff for downstream video generation.
-
-## One-command factory
-
-GitHub Actions and local agents use the same entry point:
-
-```bash
-python scripts/run_factory.py
-```
-
-It runs these stages in order:
-
-```text
-1. TTS       transcripts/ -> audio/ + done/
-2. Assemble  audio/<lesson>/ -> final WAV/MP3
-3. Align     short WAV parts -> timing caches + final JSON/VTT
-```
-
-For recovery/debugging, run one stage only:
-
-```bash
-python scripts/run_factory.py --stage tts
-python scripts/run_factory.py --stage assemble
-python scripts/run_factory.py --stage align
-```
-
-## Transcript controls
-
-Plain text uses the defaults in `tts_config.yaml`:
-
-```text
-Welcome to the lesson.
-```
-
-Optional YAML front matter controls one part without being spoken:
-
-```text
----
-voice: Sulafat
-audio_profile: A warm, patient teacher speaking directly to one learner.
-scene: A quiet studio with a close microphone.
-director_notes: Conversational, encouraging, and precise. Preserve the transcript exactly.
----
-[gentle] Welcome to the lesson.
-
-[clear] Today we are going to practice introducing yourself.
-```
-
-Supported per-part overrides:
-
-- `model`
-- `voice`
-- `speakers`
-- `audio_profile`
-- `scene`
-- `director_notes`
-- `max_chars_per_request`
-
-Two-speaker example:
-
-```text
----
-speakers:
-  - speaker: Maya
-    voice: Kore
-  - speaker: Leo
-    voice: Puck
-scene: A clean podcast studio.
-director_notes: Natural conversational turn-taking.
----
-Maya: Reliability first.
-Leo: Then automate the repetitive parts.
-```
-
-See `examples/` for copyable source examples.
-
-## Video synchronization output
-
-`final/<lesson>.transcript.json` uses schema v2 and contains:
-
-- final lesson duration in milliseconds;
-- deterministic start/end boundaries for every source audio part;
-- one semantic segment per part;
-- model-derived word start/end timestamps across the full lesson;
-- language labels;
-- model/hash metadata for caching and reproducibility.
-
-Use `parts[].start_ms/end_ms` as hard section boundaries. Use `words[]` for subtitles, highlights, scene cues, graphics, and other fine synchronization.
-
-Word timings are model-derived alignment, not sample-accurate phoneme/lip-sync data.
-
-## Retakes
-
-To replace only one part, put the revised transcript back at the same relative path:
-
-```text
-transcripts/introduce-yourself/03-origin.txt
-```
-
-The factory regenerates that changed part, replaces the canonical successful source in `done/`, rebuilds the lesson master, and re-aligns only audio whose hash changed. Unchanged timing caches are reused.
-
-Git history remains the archive of older successful transcript versions.
-
-## Configuration
-
-`tts_config.yaml` is the single source of truth for synthesis, assembly, and alignment.
-
-Current structure:
-
-```yaml
-model: gemini-3.1-flash-tts-preview
-voice: Kore
-max_chars_per_request: 5000
-request_delay_seconds: 2
-
-retry:
-  max_attempts: 5
-  initial_delay_seconds: 4
-  max_delay_seconds: 60
-
-assembly:
-  gap_ms: 300
-  mp3_bitrate: 192k
-
-transcription:
-  enabled: true
-  models:
-    - gemini-3.5-flash-lite
-    - gemini-3.1-flash-lite
-  attempts_per_model: 2
-  initial_delay_seconds: 3
-  max_delay_seconds: 20
-  write_vtt: true
-```
-
-Only audio-input models belong in `transcription.models`.
-
-## Reliability model
-
-The factory is intentionally idempotent and recovery-friendly:
-
-- failed TTS inputs stay in `transcripts/`;
-- a transcript moves to `done/` only after its WAV is safely written;
-- source/config hashes prevent unnecessary TTS regeneration;
-- assembly fingerprints prevent unnecessary master rebuilds;
-- per-part audio hashes preserve/reuse valid timing caches;
-- timing responses are validated and can fall back across configured audio models;
-- the workflow commits successfully produced factory state even if a later stage fails;
-- generated commits include `[skip ci]` to avoid a second no-op workflow run.
-
-## Local use
-
-Requirements: Python 3.12+, `ffmpeg`, and `GEMINI_API_KEY` (or `GOOGLE_API_KEY`).
+Local audio work requires Python 3.12+, FFmpeg, and `GEMINI_API_KEY` (or `GOOGLE_API_KEY`).
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-export GEMINI_API_KEY="..."
-
 python -m unittest discover -s tests -v
+python scripts/ingest_input.py
 python scripts/run_factory.py
 ```
-
-## Repository contract
-
-- `transcripts/` — inbox; humans/agents write new source here.
-- `audio/` — generated retakeable parts, TTS manifests, and timing caches.
-- `done/` — latest successfully processed source transcript for each part.
-- `final/` — assembled masters and downstream video-sync handoff files.
-- `examples/` — tiny source-format examples only; not part of the live queue.
-- `scripts/` — pipeline implementation.
-- `tests/` — offline unit tests.
-- `AGENTS.md` — detailed agent operating contract.
-
-The working directories are intentionally empty in the clean repository. Generated lesson artifacts are production state, not bundled demo content.
