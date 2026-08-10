@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the complete TTS factory pipeline from one stable entry point."""
+"""Run the complete audio stage (TTS → assemble → align) for Video Factory."""
 
 from __future__ import annotations
 
@@ -24,25 +24,25 @@ def run_stage(name: str, config: Path) -> int:
     completed = subprocess.run(command, cwd=ROOT, check=False)
     if completed.returncode:
         print(
-            f"Factory stopped: stage '{name}' failed with exit code {completed.returncode}.",
+            f"Audio factory stopped: stage '{name}' failed with exit code {completed.returncode}.",
             file=sys.stderr,
         )
     return completed.returncode
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run the TTS factory")
+    parser = argparse.ArgumentParser(description="Run the Video Factory audio stage")
     parser.add_argument(
         "--config",
         type=Path,
         default=Path("tts_config.yaml"),
-        help="Factory config path relative to the repository root",
+        help="Audio-stage config path relative to the repository root",
     )
     parser.add_argument(
         "--stage",
         choices=("all", *ORDER),
         default="all",
-        help="Run the full pipeline or one recovery/debug stage",
+        help="Run the full audio stage or one recovery/debug stage",
     )
     return parser.parse_args()
 
@@ -56,7 +56,7 @@ def main() -> int:
         if result:
             return result
 
-    print("\nFactory complete.")
+    print("\nAudio factory complete.")
     return 0
 
 

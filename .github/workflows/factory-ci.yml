@@ -1,0 +1,67 @@
+name: Video Factory — CI
+
+on:
+  pull_request:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'tests/**'
+      - 'input/_template/**'
+      - 'productions/**'
+      - '.github/workflows/**'
+      - 'requirements.txt'
+      - 'tts_config.yaml'
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Validate inactive input inbox
+        run: python scripts/ingest_input.py
+
+      - name: Validate configuration YAML
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+          for path in [Path('tts_config.yaml'), Path('input/_template/job.yaml')]:
+              data = yaml.safe_load(path.read_text(encoding='utf-8'))
+              assert isinstance(data, dict), path
+              print(f'OK: {path}')
+          PY
+
+      - name: Check reference production JavaScript syntax
+        run: |
+          node --check productions/introduce-yourself/video/scripts/build-from-audio.mjs
+          node --check productions/introduce-yourself/video/timeline.js
+
+      - name: Check workflow YAML is parseable
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import yaml
+          for path in sorted(Path('.github/workflows').glob('*.yml')):
+              yaml.safe_load(path.read_text(encoding='utf-8'))
+              print(f'OK: {path}')
+          PY

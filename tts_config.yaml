@@ -1,7 +1,7 @@
-# TTS Factory configuration
+# Video Factory — audio stage configuration
 #
-# This file is the source of truth for synthesis, assembly, and word alignment.
-# Individual transcript files may override the documented TTS fields in YAML front matter.
+# Source of truth for speech synthesis, assembly, and word alignment.
+# Job-specific creative direction belongs in input/<job>/ and transcript front matter.
 
 # Stage 1: speech synthesis
 model: gemini-3.1-flash-tts-preview
@@ -12,29 +12,31 @@ audio_profile: >-
 scene: >-
   A clean, quiet recording studio. Close microphone, no background noise.
 director_notes: >-
-  Speak naturally and conversationally. Preserve the transcript exactly. Use clear
-  articulation, tasteful emotional variation, and comfortable pacing. Do not read
-  instructions, headings, YAML metadata, or labels aloud.
+  Speak naturally and conversationally. Preserve the authored transcript faithfully.
+  Use clear articulation, tasteful emotional variation, and comfortable pacing. Do not
+  read instructions, headings, YAML metadata, role labels, or control markup aloud.
 
-# Long source files are split near paragraph/sentence boundaries and stitched into
-# one part WAV. For production lessons, prefer several short numbered source files.
+# Internal emergency limit only. Normal production reliability comes from several
+# short numbered transcript files, not per-file max-character tuning.
 max_chars_per_request: 5000
 
 # Requests are intentionally sequential.
 request_delay_seconds: 2
 
+# Short transient/API retries inside one request. The GitHub audio workflow also has
+# a bounded 60-second same-run recovery loop for persistent Gemini 429 quota windows.
 retry:
   max_attempts: 5
   initial_delay_seconds: 4
   max_delay_seconds: 60
 
-# Stage 2: assemble audio/<lesson>/*.wav in filename order.
+# Stage 2: assemble audio/<job>/*.wav in filename order.
 assembly:
   gap_ms: 300
   mp3_bitrate: 192k
 
 # Stage 3: align each short source WAV independently, cache its word timings, then
-# offset all part-relative timings into final/<lesson>.transcript.json.
+# offset all part-relative timings into final/<job>.transcript.json.
 # Only audio-input models belong in this router.
 transcription:
   enabled: true

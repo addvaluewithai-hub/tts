@@ -1,0 +1,16 @@
+schema: 1
+id: replace-me
+title: Replace Me
+kind: video
+
+audio:
+  enabled: true
+
+video:
+  enabled: true
+  engine: hyperframes
+  width: 1920
+  height: 1080
+  fps: 30
+  qa_fps: 6
+  manual_visual_review: true
