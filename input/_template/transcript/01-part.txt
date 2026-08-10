@@ -1,0 +1,7 @@
+---
+voice: Kore
+audio_profile: A natural, clear narrator speaking directly to one learner.
+scene: A quiet modern recording studio.
+director_notes: Preserve the authored transcript faithfully. Performance directions and pronunciation markup are silent instructions, not spoken labels.
+---
+[WARM] Replace this with the first short spoken part.
