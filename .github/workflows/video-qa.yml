@@ -1,0 +1,324 @@
+name: Video Factory — Visual QA
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'productions/**'
+      - 'final/**'
+      - 'input/ACTIVE'
+      - 'input/*/job.yaml'
+      - '.github/workflows/video-qa.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: video-factory-visual-qa
+  cancel-in-progress: true
+
+jobs:
+  visual-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve active production
+        id: active
+        shell: bash
+        run: |
+          set -euo pipefail
+          JOB="$(grep -Ev '^\s*(#|$)' input/ACTIVE | head -1 || true)"
+          if [ -z "$JOB" ]; then
+            echo 'No active job.'
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          PROJECT="productions/${JOB}/video"
+          if [ ! -d "$PROJECT" ]; then
+            echo "Video source not authored yet: $PROJECT"
+            echo "job=$JOB" >> "$GITHUB_OUTPUT"
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ ! -f "$PROJECT/scripts/build-from-audio.mjs" ]; then
+            echo "Missing deterministic build script: $PROJECT/scripts/build-from-audio.mjs"
+            exit 1
+          fi
+          if [ ! -s "final/${JOB}.wav" ] || [ ! -s "final/${JOB}.transcript.json" ]; then
+            echo "Final synchronized audio is not ready for $JOB."
+            echo "job=$JOB" >> "$GITHUB_OUTPUT"
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          SOURCE_SHA=$(git log -1 --format=%H -- "$PROJECT")
+          QA_FPS=$(python - <<PY
+          import yaml
+          data=yaml.safe_load(open('input/${JOB}/job.yaml', encoding='utf-8')) or {}
+          print((data.get('video') or {}).get('qa_fps', 6))
+          PY
+          )
+          echo "job=$JOB" >> "$GITHUB_OUTPUT"
+          echo "project=$PROJECT" >> "$GITHUB_OUTPUT"
+          echo "source_sha=$SOURCE_SHA" >> "$GITHUB_OUTPUT"
+          echo "qa_fps=$QA_FPS" >> "$GITHUB_OUTPUT"
+          echo 'ready=true' >> "$GITHUB_OUTPUT"
+
+      - name: Set up Node 24
+        if: steps.active.outputs.ready == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install review tools
+        if: steps.active.outputs.ready == 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg imagemagick jq
+
+      - name: Sync final audio into production
+        if: steps.active.outputs.ready == 'true'
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$PROJECT/assets/audio" "$PROJECT/qa/review" "$PROJECT/qa/strips"
+          cp "final/${JOB}.wav" "$PROJECT/assets/audio/${JOB}.wav"
+          cp "final/${JOB}.transcript.json" "$PROJECT/assets/audio/${JOB}.transcript.json"
+          if [ -f "final/${JOB}.transcript.vtt" ]; then
+            cp "final/${JOB}.transcript.vtt" "$PROJECT/assets/audio/${JOB}.transcript.vtt"
+          fi
+          if [ -f "$PROJECT/scripts/prepare-assets.sh" ]; then
+            (cd "$PROJECT" && bash scripts/prepare-assets.sh)
+          fi
+
+      - name: Build composition from exact audio timing
+        id: build
+        if: steps.active.outputs.ready == 'true'
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          cd "$PROJECT"
+          FACTORY_JOB_ID="$JOB" node scripts/build-from-audio.mjs
+          test -s index.html
+          test -s build-meta.json
+
+      - name: Lint composition
+        id: lint
+        if: steps.active.outputs.ready == 'true'
+        continue-on-error: true
+        shell: bash
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -o pipefail
+          cd "$PROJECT"
+          npx --yes hyperframes@latest lint . 2>&1 | tee qa/lint.txt
+
+      - name: Check composition
+        id: check
+        if: steps.active.outputs.ready == 'true'
+        continue-on-error: true
+        shell: bash
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -o pipefail
+          cd "$PROJECT"
+          npx --yes hyperframes@latest check . 2>&1 | tee qa/check.txt
+
+      - name: Inspect layout
+        id: inspect
+        if: steps.active.outputs.ready == 'true'
+        continue-on-error: true
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          cd "$PROJECT"
+          npx --yes hyperframes@latest inspect . --json > qa/inspect.json
+
+      - name: Render authoritative QA cut
+        id: draft
+        if: steps.active.outputs.ready == 'true' && steps.lint.outcome == 'success' && steps.check.outcome == 'success'
+        continue-on-error: true
+        shell: bash
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+          QA_FPS: ${{ steps.active.outputs.qa_fps }}
+        run: |
+          set -o pipefail
+          cd "$PROJECT"
+          npx --yes hyperframes@latest render . -c ./index.html \
+            --fps "$QA_FPS" \
+            --quality draft \
+            --workers 1 \
+            --output qa/review-qa.mp4 2>&1 | tee qa/draft-render.txt
+
+      - name: Extract full-resolution review frames
+        if: steps.draft.outcome == 'success'
+        shell: bash
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+
+          mapfile -t HOLDS < <(node -e 'const m=require("./build-meta.json"); (m.finalHolds||[]).forEach(x=>console.log(x))')
+          if [ "${#HOLDS[@]}" -eq 0 ]; then echo 'build-meta.json has no finalHolds'; exit 1; fi
+          i=1
+          for t in "${HOLDS[@]}"; do
+            printf -v n '%02d' "$i"
+            ffmpeg -nostdin -loglevel error -y -ss "$t" -i qa/review-qa.mp4 -frames:v 1 "qa/review/scene-${n}-final.png"
+            i=$((i+1))
+          done
+
+          mapfile -t RISK < <(node -e 'const m=require("./build-meta.json"); (m.riskBeats||[]).forEach(x=>console.log(x))')
+          i=1
+          for t in "${RISK[@]}"; do
+            printf -v n '%02d' "$i"
+            ffmpeg -nostdin -loglevel error -y -ss "$t" -i qa/review-qa.mp4 -frames:v 1 "qa/review/risk-${n}-at-${t}s.png"
+            i=$((i+1))
+          done
+
+      - name: Build full-duration scene progression strips
+        if: steps.draft.outcome == 'success'
+        shell: bash
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          jq -r '.scenes[] | [(.index|tostring), (.start|tostring), (.duration|tostring)] | @tsv' build-meta.json > /tmp/video-factory-scenes.tsv
+          while IFS=$'\t' read -r index start duration; do
+            printf -v n '%02d' "$index"
+            sample_rate=$(awk -v d="$duration" 'BEGIN { printf "%.8f", 15.0 / d }')
+            ffmpeg -nostdin -loglevel error -y -ss "$start" -t "$duration" -i qa/review-qa.mp4 \
+              -vf "fps=${sample_rate},scale=360:-1,tile=5x3:padding=6:margin=6:color=white" \
+              -frames:v 1 "qa/strips/scene-${n}.png"
+          done < /tmp/video-factory-scenes.tsv
+
+      - name: Verify review artifact completeness
+        if: steps.draft.outcome == 'success'
+        shell: bash
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          expected_scenes=$(jq '.scenes | length' build-meta.json)
+          expected_risks=$(jq '.riskBeats | length' build-meta.json)
+          finals=$(find qa/review -maxdepth 1 -name 'scene-*-final.png' | wc -l)
+          risks=$(find qa/review -maxdepth 1 -name 'risk-*.png' | wc -l)
+          strips=$(find qa/strips -maxdepth 1 -name 'scene-*.png' | wc -l)
+          test "$finals" -eq "$expected_scenes"
+          test "$strips" -eq "$expected_scenes"
+          test "$risks" -eq "$expected_risks"
+
+      - name: Build proof contact sheet
+        if: steps.draft.outcome == 'success'
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          cd "$PROJECT"
+          montage qa/review/scene-*-final.png -thumbnail 480x270 -tile 3x -geometry +10+10 -background '#171717' qa/contact-sheet.jpg
+
+      - name: Write QA result metadata
+        if: steps.active.outputs.ready == 'true' && always()
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+          SOURCE_SHA: ${{ steps.active.outputs.source_sha }}
+          LINT_OUTCOME: ${{ steps.lint.outcome }}
+          CHECK_OUTCOME: ${{ steps.check.outcome }}
+          INSPECT_OUTCOME: ${{ steps.inspect.outcome }}
+          DRAFT_OUTCOME: ${{ steps.draft.outcome }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          TRANSCRIPT_SHA=$(node -e 'console.log(require("./build-meta.json").transcript_sha256)')
+          cat > qa/result.json <<EOF
+          {
+            "job": "${JOB}",
+            "source_sha": "${SOURCE_SHA}",
+            "transcript_sha256": "${TRANSCRIPT_SHA}",
+            "run_id": "${GITHUB_RUN_ID}",
+            "lint_outcome": "${LINT_OUTCOME}",
+            "check_outcome": "${CHECK_OUTCOME}",
+            "inspect_outcome": "${INSPECT_OUTCOME}",
+            "draft_outcome": "${DRAFT_OUTCOME}",
+            "manual_review_required": true
+          }
+          EOF
+
+      - name: Upload visual QA artifact
+        id: upload
+        if: steps.active.outputs.ready == 'true' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.active.outputs.job }}-visual-qa
+          path: |
+            ${{ steps.active.outputs.project }}/qa/
+            ${{ steps.active.outputs.project }}/build-meta.json
+            ${{ steps.active.outputs.project }}/index.html
+            ${{ steps.active.outputs.project }}/timing-data.js
+          if-no-files-found: warn
+          retention-days: 14
+
+      - name: Publish current QA manifest
+        if: steps.active.outputs.ready == 'true' && always()
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+          SOURCE_SHA: ${{ steps.active.outputs.source_sha }}
+          ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+          LINT_OUTCOME: ${{ steps.lint.outcome }}
+          CHECK_OUTCOME: ${{ steps.check.outcome }}
+          INSPECT_OUTCOME: ${{ steps.inspect.outcome }}
+          DRAFT_OUTCOME: ${{ steps.draft.outcome }}
+        run: |
+          set -euo pipefail
+          TRANSCRIPT_SHA=$(node -e "console.log(require('./${PROJECT}/build-meta.json').transcript_sha256)")
+          git fetch origin main
+          CURRENT_SOURCE=$(git log origin/main -1 --format=%H -- "$PROJECT")
+          mkdir -p ".factory-status/video/${JOB}/runs"
+          RUN_FILE=".factory-status/video/${JOB}/runs/${GITHUB_RUN_ID}.json"
+          cat > "$RUN_FILE" <<EOF
+          {
+            "job": "${JOB}",
+            "source_sha": "${SOURCE_SHA}",
+            "transcript_sha256": "${TRANSCRIPT_SHA}",
+            "run_id": "${GITHUB_RUN_ID}",
+            "artifact_id": "${ARTIFACT_ID}",
+            "artifact_url": "${ARTIFACT_URL}",
+            "lint_outcome": "${LINT_OUTCOME}",
+            "check_outcome": "${CHECK_OUTCOME}",
+            "inspect_outcome": "${INSPECT_OUTCOME}",
+            "draft_outcome": "${DRAFT_OUTCOME}",
+            "manual_review_required": true,
+            "created_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          if [ "${SOURCE_SHA}" = "${CURRENT_SOURCE}" ]; then
+            cp "$RUN_FILE" ".factory-status/video/${JOB}/qa-latest.json"
+          fi
+          git config user.name 'video-factory-qa[bot]'
+          git config user.email 'video-factory-qa[bot]@users.noreply.github.com'
+          git add ".factory-status/video/${JOB}"
+          git commit -m "qa: publish ${JOB} visual QA run ${GITHUB_RUN_ID}" || exit 0
+          git pull --rebase origin main
+          git push origin HEAD:main
