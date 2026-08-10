@@ -1,0 +1,285 @@
+name: Video Factory — Final Render
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'approvals/**/APPROVED'
+      - '.github/workflows/video-render.yml'
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: video-factory-final-render
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve active approved production
+        id: active
+        shell: bash
+        run: |
+          set -euo pipefail
+          JOB="$(grep -Ev '^\s*(#|$)' input/ACTIVE | head -1 || true)"
+          test -n "$JOB"
+          PROJECT="productions/${JOB}/video"
+          APPROVAL="approvals/${JOB}/APPROVED"
+          test -d "$PROJECT"
+          test -f "$APPROVAL"
+          test -s "final/${JOB}.wav"
+          test -s "final/${JOB}.transcript.json"
+          SOURCE_SHA=$(git log -1 --format=%H -- "$PROJECT")
+          echo "job=$JOB" >> "$GITHUB_OUTPUT"
+          echo "project=$PROJECT" >> "$GITHUB_OUTPUT"
+          echo "approval=$APPROVAL" >> "$GITHUB_OUTPUT"
+          echo "source_sha=$SOURCE_SHA" >> "$GITHUB_OUTPUT"
+
+      - name: Publish run-start heartbeat
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          SOURCE_SHA: ${{ steps.active.outputs.source_sha }}
+        run: |
+          set -euo pipefail
+          mkdir -p ".factory-status/video/${JOB}"
+          cat > ".factory-status/video/${JOB}/final-status.json" <<EOF
+          {
+            "status": "started",
+            "job": "${JOB}",
+            "source_sha": "${SOURCE_SHA}",
+            "run_id": "${GITHUB_RUN_ID}",
+            "run_attempt": "${GITHUB_RUN_ATTEMPT}",
+            "started_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          git config user.name 'video-factory-render[bot]'
+          git config user.email 'video-factory-render[bot]@users.noreply.github.com'
+          git add ".factory-status/video/${JOB}/final-status.json"
+          git commit -m "render: mark ${JOB} run started" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Set up Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install FFmpeg and jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg jq
+
+      - name: Sync approved audio into production
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$PROJECT/assets/audio" "$PROJECT/final-review"
+          cp "final/${JOB}.wav" "$PROJECT/assets/audio/${JOB}.wav"
+          cp "final/${JOB}.transcript.json" "$PROJECT/assets/audio/${JOB}.transcript.json"
+          if [ -f "final/${JOB}.transcript.vtt" ]; then
+            cp "final/${JOB}.transcript.vtt" "$PROJECT/assets/audio/${JOB}.transcript.vtt"
+          fi
+          if [ -f "$PROJECT/scripts/prepare-assets.sh" ]; then
+            (cd "$PROJECT" && bash scripts/prepare-assets.sh)
+          fi
+
+      - name: Build exact-timing composition
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          cd "$PROJECT"
+          FACTORY_JOB_ID="$JOB" node scripts/build-from-audio.mjs
+          test -s index.html
+          test -s build-meta.json
+
+      - name: Verify manual approval matches source and audio
+        shell: bash
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+          APPROVAL: ${{ steps.active.outputs.approval }}
+          SOURCE_SHA: ${{ steps.active.outputs.source_sha }}
+        run: |
+          set -euo pipefail
+          TRANSCRIPT_SHA=$(node -e "console.log(require('./${PROJECT}/build-meta.json').transcript_sha256)")
+          grep -Fx "source_sha=${SOURCE_SHA}" "$APPROVAL"
+          grep -Fx "transcript_sha256=${TRANSCRIPT_SHA}" "$APPROVAL"
+          grep -Fx 'visual_review=all_full_resolution_scene_holds_opened' "$APPROVAL"
+
+      - name: Lint and check
+        shell: bash
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          npx --yes hyperframes@latest lint .
+          npx --yes hyperframes@latest check .
+
+      - name: Publish render-start heartbeat
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+          SOURCE_SHA: ${{ steps.active.outputs.source_sha }}
+        run: |
+          set -euo pipefail
+          TRANSCRIPT_SHA=$(node -e "console.log(require('./${PROJECT}/build-meta.json').transcript_sha256)")
+          cat > ".factory-status/video/${JOB}/final-status.json" <<EOF
+          {
+            "status": "rendering",
+            "job": "${JOB}",
+            "source_sha": "${SOURCE_SHA}",
+            "transcript_sha256": "${TRANSCRIPT_SHA}",
+            "run_id": "${GITHUB_RUN_ID}",
+            "run_attempt": "${GITHUB_RUN_ATTEMPT}",
+            "started_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          git add ".factory-status/video/${JOB}/final-status.json"
+          git commit -m "render: mark ${JOB} final render started" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Render final synchronized video
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          npx --yes hyperframes@latest render . -c ./index.html --workers 2 --output "${JOB}.mp4"
+
+      - name: Verify final media
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          test -s "${JOB}.mp4"
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height,r_frame_rate -of json "${JOB}.mp4" > final-review/ffprobe.json
+          python - <<PY
+          import json, subprocess, yaml
+          from pathlib import Path
+
+          job = yaml.safe_load(Path('../../../../input/${JOB}/job.yaml').read_text(encoding='utf-8')) or {}
+          video = job.get('video') or {}
+          expected_w = int(video.get('width', 1920))
+          expected_h = int(video.get('height', 1080))
+          expected_fps = float(video.get('fps', 30))
+          expected_duration = float(json.loads(Path('build-meta.json').read_text())['duration'])
+          probe = json.loads(Path('final-review/ffprobe.json').read_text())
+          streams = probe.get('streams') or []
+          v = next((s for s in streams if s.get('width')), None)
+          assert v, 'No video stream found'
+          assert int(v['width']) == expected_w and int(v['height']) == expected_h, (v['width'], v['height'])
+          num, den = str(v['r_frame_rate']).split('/')
+          fps = float(num) / float(den)
+          assert abs(fps - expected_fps) < 0.01, f'fps mismatch: expected={expected_fps}, actual={fps}'
+          actual_duration = float((probe.get('format') or {})['duration'])
+          assert abs(expected_duration - actual_duration) < 0.15, f'duration drift: expected={expected_duration}, actual={actual_duration}'
+          PY
+
+      - name: Extract representative final-render frames
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          python - <<PY > /tmp/final-review-times.tsv
+          import json, yaml
+          from pathlib import Path
+          meta=json.loads(Path('build-meta.json').read_text())
+          job=yaml.safe_load(Path('../../../../input/${JOB}/job.yaml').read_text(encoding='utf-8')) or {}
+          scenes=meta.get('scenes') or []
+          holds=meta.get('finalHolds') or []
+          if not scenes or len(holds) != len(scenes):
+              raise SystemExit('build-meta finalHolds must match scenes')
+          requested=(job.get('video') or {}).get('final_review_scenes')
+          if requested:
+              indexes=[int(x) for x in requested]
+          else:
+              n=len(scenes)
+              indexes=sorted(set([1, (n+1)//2, n]))
+          for scene in indexes:
+              if scene < 1 or scene > len(holds):
+                  raise SystemExit(f'Invalid final_review_scenes entry: {scene}')
+              print(f'{scene:02d}\t{holds[scene-1]}')
+          PY
+          while IFS=$'\t' read -r n t; do
+            test -n "$t"
+            ffmpeg -nostdin -loglevel error -y -ss "$t" -i "${JOB}.mp4" -frames:v 1 "final-review/scene-${n}-final.png"
+          done < /tmp/final-review-times.tsv
+
+      - name: Upload final video artifact
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.active.outputs.job }}-final
+          path: |
+            ${{ steps.active.outputs.project }}/${{ steps.active.outputs.job }}.mp4
+            ${{ steps.active.outputs.project }}/final-review/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Publish final artifact manifest
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+          SOURCE_SHA: ${{ steps.active.outputs.source_sha }}
+          ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+        run: |
+          set -euo pipefail
+          TRANSCRIPT_SHA=$(node -e "console.log(require('./${PROJECT}/build-meta.json').transcript_sha256)")
+          mkdir -p ".factory-status/video/${JOB}"
+          cat > ".factory-status/video/${JOB}/final-latest.json" <<EOF
+          {
+            "job": "${JOB}",
+            "source_sha": "${SOURCE_SHA}",
+            "source_commit": "${GITHUB_SHA}",
+            "transcript_sha256": "${TRANSCRIPT_SHA}",
+            "run_id": "${GITHUB_RUN_ID}",
+            "artifact_id": "${ARTIFACT_ID}",
+            "artifact_url": "${ARTIFACT_URL}",
+            "created_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          cat > ".factory-status/video/${JOB}/final-status.json" <<EOF
+          {
+            "status": "complete",
+            "job": "${JOB}",
+            "source_sha": "${SOURCE_SHA}",
+            "transcript_sha256": "${TRANSCRIPT_SHA}",
+            "run_id": "${GITHUB_RUN_ID}",
+            "run_attempt": "${GITHUB_RUN_ATTEMPT}",
+            "completed_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          git config user.name 'video-factory-render[bot]'
+          git config user.email 'video-factory-render[bot]@users.noreply.github.com'
+          git add ".factory-status/video/${JOB}/final-latest.json" ".factory-status/video/${JOB}/final-status.json"
+          git commit -m "render: publish ${JOB} final artifact" || exit 0
+          git pull --rebase origin main
+          git push origin HEAD:main
