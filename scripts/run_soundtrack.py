@@ -15,7 +15,11 @@ from typing import Any
 
 import yaml
 
-import prepare_soundtrack as core
+SCRIPT_DIR = Path(__file__).resolve().parent
+if str(SCRIPT_DIR) not in sys.path:
+    sys.path.insert(0, str(SCRIPT_DIR))
+
+import prepare_soundtrack as core  # noqa: E402
 
 
 class SfxLicenseError(RuntimeError):
