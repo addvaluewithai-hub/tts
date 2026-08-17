@@ -30,7 +30,7 @@ class RunFactoryTests(unittest.TestCase):
         self.assertEqual(run_factory.main(), 0)
         self.assertEqual(
             [call.args[0] for call in mocked_stage.call_args_list],
-            ["tts", "assemble", "align"],
+            ["tts", "assemble", "align", "soundtrack"],
         )
 
     @patch.object(run_factory, "run_stage")
