@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the complete audio stage (TTS → assemble → align) for Video Factory."""
+"""Run the complete audio stage (TTS → assemble → align → soundtrack) for Video Factory."""
 
 from __future__ import annotations
 
@@ -13,13 +13,17 @@ STAGES = {
     "tts": ROOT / "scripts" / "process_tts.py",
     "assemble": ROOT / "scripts" / "assemble_lessons.py",
     "align": ROOT / "scripts" / "transcribe_final.py",
+    "soundtrack": ROOT / "scripts" / "prepare_soundtrack.py",
 }
-ORDER = ("tts", "assemble", "align")
+ORDER = ("tts", "assemble", "align", "soundtrack")
 
 
 def run_stage(name: str, config: Path) -> int:
     script = STAGES[name]
-    command = [sys.executable, str(script), "--config", str(config)]
+    command = [sys.executable, str(script)]
+    if name != "soundtrack":
+        command += ["--config", str(config)]
+
     print(f"\n=== {name.upper()} ===", flush=True)
     completed = subprocess.run(command, cwd=ROOT, check=False)
     if completed.returncode:
