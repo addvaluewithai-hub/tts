@@ -13,7 +13,7 @@ STAGES = {
     "tts": ROOT / "scripts" / "process_tts.py",
     "assemble": ROOT / "scripts" / "assemble_lessons.py",
     "align": ROOT / "scripts" / "transcribe_final.py",
-    "soundtrack": ROOT / "scripts" / "prepare_soundtrack.py",
+    "soundtrack": ROOT / "scripts" / "run_soundtrack.py",
 }
 ORDER = ("tts", "assemble", "align", "soundtrack")
 
