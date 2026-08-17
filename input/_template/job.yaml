@@ -6,6 +6,34 @@ kind: video
 audio:
   enabled: true
 
+# Optional program-audio layer. Disabled by default so no paid music call happens
+# unless a job explicitly opts in.
+soundtrack:
+  enabled: false
+
+  music:
+    enabled: false
+    # lyria = generate and cache with Gemini API; file = use a local job asset.
+    source: lyria
+    model: lyria-3-clip-preview
+    instrumental: true
+    prompt: >-
+      A subtle, warm, modern educational background loop with light percussion,
+      soft keys, and plenty of space for spoken narration.
+    gain_db: -28
+    fade_in_seconds: 0.6
+    fade_out_seconds: 1.2
+    duck_threshold: 0.025
+    duck_ratio: 8
+    duck_attack_ms: 20
+    duck_release_ms: 300
+
+  sfx:
+    enabled: false
+    gain_db: -8
+    # Each event can use at_ms, at_seconds, anchor_text, or part + offset_ms.
+    events: []
+
 video:
   enabled: true
   engine: hyperframes
