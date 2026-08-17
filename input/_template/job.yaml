@@ -6,20 +6,16 @@ kind: video
 audio:
   enabled: true
 
-# Optional program-audio layer. Disabled by default so no paid music call happens
-# unless a job explicitly opts in.
+# Optional program-audio layer. The repository-wide policy keeps incremental
+# media spend at $0, so paid generation (including Lyria) is blocked.
 soundtrack:
   enabled: false
 
   music:
     enabled: false
-    # lyria = generate and cache with Gemini API; file = use a local job asset.
-    source: lyria
-    model: lyria-3-clip-preview
-    instrumental: true
-    prompt: >-
-      A subtle, warm, modern educational background loop with light percussion,
-      soft keys, and plenty of space for spoken narration.
+    # Zero-cost policy: use a local owned/CC0 file, or leave music disabled.
+    source: file
+    file: music/bed.mp3
     gain_db: -28
     fade_in_seconds: 0.6
     fade_out_seconds: 1.2
@@ -32,6 +28,7 @@ soundtrack:
     enabled: false
     gain_db: -8
     # Each event can use at_ms, at_seconds, anchor_text, or part + offset_ms.
+    # Raw SFX committed here must be redistribution-safe (prefer CC0).
     events: []
 
 video:
