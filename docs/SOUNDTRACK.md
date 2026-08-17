@@ -66,7 +66,7 @@ soundtrack:
 
 Use Clip for short loopable beds and Pro when the production truly needs a longer composed piece. The mixer can loop a short bed to the exact narration duration.
 
-To avoid a generation call entirely, use a job-local music file:
+To avoid a generation call entirely, use a job-local music file **only when its license permits storing the raw asset in this public repository**:
 
 ```yaml
 music:
@@ -78,15 +78,17 @@ music:
 
 ## SFX sourcing policy
 
-Do not hot-link or scrape an SFX library at render time. Curate the sound, store a local copy under the job, and preserve its license trail.
+This factory repository is public. A license that permits using a stock sound **inside a finished video** does not automatically permit redistributing the raw sound file in a public Git repository.
 
-Preferred sources for commercial-friendly production:
+For raw SFX committed under `input/<job>/sfx/`, prefer licenses that clearly permit redistribution:
 
-1. **Mixkit** — primary choice for simple production SFX. Its free SFX library allows commercial/personal use and does not require attribution. Prefer WAV when available.
-2. **Pixabay** — useful secondary source; content can generally be used free without attribution, subject to the Pixabay Content License and prohibited uses.
-3. **Freesound** — use only sounds whose individual license is acceptable. Prefer CC0. CC BY is allowed only when the production can preserve required attribution. Do not use CC BY-NC for commercial work.
+1. **Kenney audio packs** — preferred starter source. Kenney game assets are CC0; Interface Sounds, UI Audio, Impact Sounds and related audio packs are suitable for common clicks, confirmations, transitions and impacts.
+2. **Freesound CC0** — strong secondary source. Verify the exact file is CC0 before committing it. CC BY can be used only when redistribution is allowed and the required attribution is preserved.
+3. **Other CC0/public-domain libraries** — acceptable when the exact asset page/license is recorded.
 
-Always verify the license on the exact source item at download time. Site policies can change.
+**Mixkit and Pixabay remain useful end-product stock libraries**, but do not commit their raw stock files to this public repository unless the exact applicable license explicitly permits that redistribution. Their normal stock licenses are intended for use in projects and include restrictions around standalone/raw redistribution.
+
+Do not hot-link, scrape, or mass-download SFX libraries at render time. Curate each sound intentionally and preserve its license trail.
 
 Job layout:
 
@@ -104,11 +106,14 @@ Every used file must have a manifest entry:
 files:
   soft-whoosh.wav:
     source_url: https://original-source-page.example/sound
-    license: Exact license name shown on the source page
+    license: Creative Commons CC0
+    redistribution: true
     attribution: ""
 ```
 
-The factory refuses an SFX event whose file is missing from the manifest or lacks `source_url` / `license`.
+`redistribution: true` is an explicit production assertion that the exact license allows the raw asset to be stored/distributed from this public repo. The soundtrack stage refuses used SFX without it. Do not set it to true merely to pass validation.
+
+The lower-level mixer also requires `source_url` and `license`. If a redistributable license requires attribution, populate `attribution` and preserve it in downstream credits.
 
 ## SFX timing
 
