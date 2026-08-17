@@ -171,10 +171,12 @@ Use `parts[]` for deterministic audio boundaries and `words[]` for word-driven v
 3. Default educational/explainer beds to instrumental/no-vocals unless creative direction explicitly requires vocals.
 4. Keep music subordinate to narration and use ducking.
 5. Prefer word-timed SFX anchors over hard-coded seconds when the cue is tied to speech.
-6. Store selected SFX locally in `input/<job>/sfx/`; do not hot-link or scrape a library during render.
-7. Every used SFX must have `source_url` and exact `license` in `sfx/manifest.yaml`. Preserve attribution where required.
-8. For commercial-friendly free SFX, prefer Mixkit; Pixabay is acceptable subject to its license; Freesound requires checking each file license (prefer CC0, allow CC BY only with attribution, reject CC BY-NC for commercial work).
-9. `final/<job>.soundtrack.json` is the traceability manifest for the program-audio mix.
+6. This repository is public. Commit raw SFX under `input/<job>/sfx/` only when the exact asset license permits raw redistribution; the manifest must assert `redistribution: true`.
+7. Prefer Kenney CC0 audio packs for common UI/transition/impact sounds. Freesound CC0 is a strong secondary source. CC BY is allowed only when redistribution is permitted and required attribution is preserved. Reject CC BY-NC for commercial work.
+8. Mixkit and Pixabay can be useful inside finished projects, but their normal stock terms restrict standalone/raw redistribution; do not place those raw stock files in this public repo unless the exact license explicitly permits it.
+9. Do not hot-link, scrape, or mass-download SFX libraries during render. Curate sounds intentionally and preserve source/license evidence.
+10. Every used SFX must have `source_url`, exact `license`, and `redistribution: true` in `sfx/manifest.yaml`; preserve attribution where required.
+11. `final/<job>.soundtrack.json` is the traceability manifest for the program-audio mix.
 
 ## Video authoring contract
 
