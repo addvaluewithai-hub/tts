@@ -1,7 +1,9 @@
 # Keep one traceable license record per SFX file used by the job.
-# Put the corresponding audio files beside this manifest.
+# This repository is public: only commit raw SFX when the exact license allows
+# redistribution of the raw asset (CC0 is the easiest/safest option).
 files:
   soft-whoosh.wav:
     source_url: https://example.com/original-sfx-page
-    license: Replace with exact license name
+    license: Creative Commons CC0
+    redistribution: true
     attribution: ""
