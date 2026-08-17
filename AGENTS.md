@@ -4,7 +4,7 @@ This repository is an operational **video production factory**. TTS is one inter
 
 An agent should be able to enter a fresh conversation, read this file, inspect `input/ACTIVE`, and continue the current production without relying on chat memory.
 
-Also read [`docs/PRODUCTION_PLAYBOOK.md`](docs/PRODUCTION_PLAYBOOK.md) before authoring or approving video.
+Also read [`docs/PRODUCTION_PLAYBOOK.md`](docs/PRODUCTION_PLAYBOOK.md) before authoring or approving video. Read [`docs/SOUNDTRACK.md`](docs/SOUNDTRACK.md) whenever music or SFX are enabled.
 
 ## Golden rule
 
@@ -17,19 +17,20 @@ Do not invent a second source-of-truth folder. Do not ask the user to manually p
 ## When the user says “the next video/lesson is ready, make it”
 
 1. Read `input/ACTIVE` and the active job folder.
-2. Read `job.yaml`, `direction.md`, transcript parts, and any optional assets/references/data.
+2. Read `job.yaml`, `direction.md`, transcript parts, and any optional assets/references/data/music/SFX.
 3. Validate the input package before changing production state.
 4. Run/trigger the audio stage and resolve real failures from logs. Do not mutate content to solve infrastructure/rate-limit errors.
-5. Wait for a successful master audio + `final/<job>.transcript.json` from the same state.
-6. Author/update deterministic video source under `productions/<job>/video/` using the job direction and exact word timing.
-7. Run authoritative HyperFrames QA.
-8. Download the QA artifact and **actually open every required full-resolution image**. Automated checks/contact sheets are insufficient.
-9. Patch visual/source issues, rerun QA, and repeat manual review until clean.
-10. Create/update approval bound to the current video source SHA and transcript SHA-256.
-11. Run final render.
-12. Verify final MP4 media properties and duration.
-13. Open representative frames extracted from the final MP4.
-14. Notify the user that the video is ready only after the final artifact manifest exists and the manual final-frame gate passes.
+5. Wait for a successful dry master audio + `final/<job>.transcript.json` from the same state.
+6. If soundtrack is enabled, verify the intended music/SFX mix and its soundtrack manifest before video QA.
+7. Author/update deterministic video source under `productions/<job>/video/` using the job direction and exact word timing.
+8. Run authoritative HyperFrames QA using the intended program audio.
+9. Download the QA artifact and **actually open every required full-resolution image**. Automated checks/contact sheets are insufficient.
+10. Patch visual/source issues, rerun QA, and repeat manual review until clean.
+11. Create/update approval bound to the current video source SHA and transcript SHA-256.
+12. Run final render.
+13. Verify final MP4 media properties and duration.
+14. Open representative frames extracted from the final MP4.
+15. Notify the user that the video is ready only after the final artifact manifest exists and the manual final-frame gate passes.
 
 ## Input contract
 
@@ -50,6 +51,9 @@ Optional:
 ```text
   pronunciation-map.json
   assets/
+  music/
+  sfx/
+    manifest.yaml
   references/
   data/
 ```
@@ -68,6 +72,9 @@ kind: video
 
 audio:
   enabled: true
+
+soundtrack:
+  enabled: false
 
 video:
   enabled: true
@@ -130,9 +137,10 @@ Internal stage order:
 1. TTS
 2. Assemble
 3. Align
+4. Soundtrack (optional; no-op unless enabled)
 ```
 
-A completed audio job produces:
+A completed dry audio job produces:
 
 ```text
 final/<job-id>.wav
@@ -142,9 +150,31 @@ final/<job-id>.transcript.json
 final/<job-id>.transcript.vtt
 ```
 
-The authoritative video handoff is `final/<job-id>.transcript.json` (schema v2, per-part alignment).
+A soundtrack-enabled job may additionally produce:
+
+```text
+final/<job-id>.music.mp3
+final/<job-id>.music.json
+final/<job-id>.mix.wav
+final/<job-id>.mix.mp3
+final/<job-id>.soundtrack.json
+```
+
+The authoritative timing handoff is always `final/<job-id>.transcript.json` (schema v2, per-part alignment). Dry narration is the timing master. Video QA/final render use `final/<job-id>.mix.wav` when present, otherwise the dry `final/<job-id>.wav`.
 
 Use `parts[]` for deterministic audio boundaries and `words[]` for word-driven visual cues. Do not assume one audio part equals one visual scene.
+
+## Soundtrack rules
+
+1. Soundtrack and Lyria are opt-in. Never enable paid generation merely because a job can support it.
+2. Lyria music must be cached/reused by request fingerprint; unrelated retries must not create duplicate paid requests.
+3. Default educational/explainer beds to instrumental/no-vocals unless creative direction explicitly requires vocals.
+4. Keep music subordinate to narration and use ducking.
+5. Prefer word-timed SFX anchors over hard-coded seconds when the cue is tied to speech.
+6. Store selected SFX locally in `input/<job>/sfx/`; do not hot-link or scrape a library during render.
+7. Every used SFX must have `source_url` and exact `license` in `sfx/manifest.yaml`. Preserve attribution where required.
+8. For commercial-friendly free SFX, prefer Mixkit; Pixabay is acceptable subject to its license; Freesound requires checking each file license (prefer CC0, allow CC BY only with attribution, reject CC BY-NC for commercial work).
+9. `final/<job>.soundtrack.json` is the traceability manifest for the program-audio mix.
 
 ## Video authoring contract
 
@@ -216,7 +246,7 @@ transcript_sha256=<exact final audio transcript hash>
 visual_review=all_full_resolution_scene_holds_opened
 ```
 
-If source or transcript changes, old approval is invalid.
+If source or transcript changes, old approval is invalid. When soundtrack changes after QA, rerun QA so final render uses the same intended program-audio state that was reviewed.
 
 ## Final render contract
 
@@ -239,8 +269,9 @@ Do not use fragile tab-escape shell parsing for review timestamps.
 
 A job is **not done** until:
 
-- audio master and timing handoff are successful and consistent;
-- video QA automation passes;
+- dry audio master and timing handoff are successful and consistent;
+- optional soundtrack mix is current when enabled;
+- video QA automation passes with the intended program audio;
 - all required QA frames/strips were manually opened and accepted;
 - hash-bound approval is current;
 - final render and media verification pass;

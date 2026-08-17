@@ -94,7 +94,14 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p "$PROJECT/assets/audio" "$PROJECT/qa/review" "$PROJECT/qa/strips"
-          cp "final/${JOB}.wav" "$PROJECT/assets/audio/${JOB}.wav"
+          AUDIO_SOURCE="final/${JOB}.wav"
+          if [ -s "final/${JOB}.mix.wav" ]; then
+            AUDIO_SOURCE="final/${JOB}.mix.wav"
+            echo "Using mixed program audio: ${AUDIO_SOURCE}"
+          else
+            echo "Using dry voice master: ${AUDIO_SOURCE}"
+          fi
+          cp "$AUDIO_SOURCE" "$PROJECT/assets/audio/${JOB}.wav"
           cp "final/${JOB}.transcript.json" "$PROJECT/assets/audio/${JOB}.transcript.json"
           if [ -f "final/${JOB}.transcript.vtt" ]; then
             cp "final/${JOB}.transcript.vtt" "$PROJECT/assets/audio/${JOB}.transcript.vtt"

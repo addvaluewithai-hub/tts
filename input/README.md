@@ -27,11 +27,49 @@ Optional:
 ```text
   pronunciation-map.json
   assets/
+  music/
+  sfx/
+    manifest.yaml
   references/
   data/
 ```
 
 Put anything job-specific in this folder. Do not put lesson-specific rules in the repository-wide `AGENTS.md`.
+
+## Optional soundtrack
+
+`job.yaml` can opt into a post-alignment soundtrack stage. It never runs paid music generation unless `soundtrack.enabled: true` and `soundtrack.music.enabled: true`.
+
+The dry narration stays authoritative for timing:
+
+```text
+final/<job>.wav
+final/<job>.transcript.json
+```
+
+When soundtrack is enabled, the factory can additionally create:
+
+```text
+final/<job>.music.mp3
+final/<job>.mix.wav
+final/<job>.mix.mp3
+final/<job>.soundtrack.json
+```
+
+For generated music, use `source: lyria` with `lyria-3-clip-preview` or `lyria-3-pro-preview`. Generated music is cached by prompt/model fingerprint so unrelated retries do not create another paid music request.
+
+For a local music bed, use `source: file` and point `file:` to a path inside the job folder.
+
+SFX files live under `input/<job>/sfx/`. Every used file must be recorded in `sfx/manifest.yaml` with its original source URL and exact license name. The factory refuses untraceable SFX.
+
+SFX events can be placed by:
+
+- `at_ms`
+- `at_seconds`
+- `anchor_text` (+ optional `occurrence` and `offset_ms`)
+- `part` (+ optional `offset_ms`)
+
+Prefer word anchors for cues tied to narration, because they survive timing changes better than hard-coded seconds.
 
 ## Activate a job
 

@@ -4,7 +4,7 @@ This repository is the production system for **audio-first, timing-driven videos
 
 The factory is intentionally not English-course-specific. A job can describe an English lesson, another course, an explainer, or another narrated video as long as its `input/<job-id>/` package gives the agent enough direction.
 
-For autonomous agents, read [`AGENTS.md`](AGENTS.md) first and then [`docs/PRODUCTION_PLAYBOOK.md`](docs/PRODUCTION_PLAYBOOK.md).
+For autonomous agents, read [`AGENTS.md`](AGENTS.md) first, then [`docs/PRODUCTION_PLAYBOOK.md`](docs/PRODUCTION_PLAYBOOK.md), and [`docs/SOUNDTRACK.md`](docs/SOUNDTRACK.md) when music/SFX are enabled.
 
 ## The one-folder input contract
 
@@ -31,6 +31,8 @@ Optional job-specific material can live beside it:
 ```text
   pronunciation-map.json
   assets/
+  music/
+  sfx/
   references/
   data/
 ```
@@ -48,11 +50,13 @@ ingest active input
         ↓
 Gemini TTS short parts
         ↓
-assembled WAV + MP3
+assembled dry WAV + MP3
         ↓
 word-level audio alignment
         ↓
-final/<job-id>.transcript.json
+optional Lyria music + licensed SFX soundtrack mix
+        ↓
+final/<job-id>.transcript.json + dry/mixed program audio
         ↓
 video source authored from direction + exact timing
         ↓
@@ -74,7 +78,7 @@ input/                     human/agent source packages + ACTIVE pointer
 transcripts/               internal TTS queue materialized from active input
 audio/                     retakeable generated TTS parts + timing caches
 done/                      successful TTS source state
-final/                     assembled audio + authoritative word timing
+final/                     dry audio, timing, optional music/mix + manifests
 productions/<job-id>/video agent-authored deterministic video source
 .factory-status/            machine-readable audio/video workflow state
 approvals/                  manual visual approval bound to source/audio hashes
@@ -87,8 +91,6 @@ docs/                       durable production knowledge
 
 ## Audio stage
 
-The proven audio core is intentionally kept stable:
-
 ```bash
 python scripts/ingest_input.py
 python scripts/run_factory.py
@@ -97,18 +99,27 @@ python scripts/run_factory.py
 `run_factory.py` performs:
 
 ```text
-1. TTS       transcripts/ -> audio/ + done/
-2. Assemble  audio/<job>/ -> final/<job>.wav + .mp3
-3. Align     short WAV parts -> final transcript JSON/VTT
+1. TTS         transcripts/ -> audio/ + done/
+2. Assemble    audio/<job>/ -> final/<job>.wav + .mp3
+3. Align       short WAV parts -> final transcript JSON/VTT
+4. Soundtrack  optional Lyria/local music + licensed SFX -> final/<job>.mix.wav/.mp3
 ```
 
-The primary video synchronization handoff is:
+The primary synchronization handoff remains:
 
 ```text
 final/<job-id>.transcript.json
 ```
 
-Current alignment schema is v2 and contains duration, part boundaries, segments, and model-derived word timestamps.
+Current alignment schema is v2 and contains duration, part boundaries, segments, and model-derived word timestamps. The dry narration stays authoritative for timing; adding/changing soundtrack content does not rewrite word timing or require a TTS retake.
+
+When soundtrack is enabled, video QA and final render prefer:
+
+```text
+final/<job-id>.mix.wav
+```
+
+Otherwise they use `final/<job-id>.wav`.
 
 ## Audio authoring rules
 
@@ -119,6 +130,10 @@ Current alignment schema is v2 and contains duration, part boundaries, segments,
 - Protect authored pronunciation/performance markup (`[WARM]`, `<lang>`, `<phoneme>`, IPA) unless intentionally revising the source.
 - `Speaker 1:`-style labels are silent role markers, not spoken copy; omit them in new single-speaker jobs.
 - On Gemini 429, preserve successful work, wait 60 seconds, and retry remaining work in the same workflow run rather than changing the lesson text.
+- Soundtrack is opt-in and Lyria generation is cached; do not make repeated paid music calls for unrelated retries.
+- Every production SFX file must have a traceable source URL and license in the job's `sfx/manifest.yaml`.
+
+See [`docs/SOUNDTRACK.md`](docs/SOUNDTRACK.md) for the Lyria/SFX contract and sourcing policy.
 
 ## Video source contract
 
@@ -159,15 +174,16 @@ Important hard-won rules are recorded in [`docs/PRODUCTION_PLAYBOOK.md`](docs/PR
 
 A video is production-ready only when all of these are true:
 
-1. master audio and `final/<job>.transcript.json` exist from a successful audio state;
-2. authoritative video QA automation passes;
-3. required QA images were manually opened and accepted;
-4. approval matches current source SHA and transcript SHA-256;
-5. final render passes;
-6. MP4 is non-empty and matches requested resolution/fps;
-7. MP4 duration is within 0.15s of the audio master;
-8. representative frames extracted from the **final MP4** were manually opened;
-9. final artifact manifest exists.
+1. dry master audio and `final/<job>.transcript.json` exist from a successful audio state;
+2. optional soundtrack, when enabled, has a current `final/<job>.soundtrack.json` and mix;
+3. authoritative video QA automation passes using the intended program audio;
+4. required QA images were manually opened and accepted;
+5. approval matches current source SHA and transcript SHA-256;
+6. final render passes;
+7. MP4 is non-empty and matches requested resolution/fps;
+8. MP4 duration is within 0.15s of the audio master;
+9. representative frames extracted from the **final MP4** were manually opened;
+10. final artifact manifest exists.
 
 ## Credentials
 
@@ -177,7 +193,9 @@ GitHub Actions requires the repository secret:
 GEMINI_API_KEY
 ```
 
-Local audio work requires Python 3.12+, FFmpeg, and `GEMINI_API_KEY` (or `GOOGLE_API_KEY`).
+Lyria is a paid Gemini API feature and is disabled by default. Check current Google pricing before opting a job into generated music.
+
+Local audio work requires Python 3.12+, FFmpeg, and `GEMINI_API_KEY` (or `GOOGLE_API_KEY` for non-workflow local use where supported).
 
 ```bash
 python -m venv .venv
