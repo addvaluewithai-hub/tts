@@ -58,9 +58,16 @@ final/<job>.soundtrack.json
 
 For generated music, use `source: lyria` with `lyria-3-clip-preview` or `lyria-3-pro-preview`. Generated music is cached by prompt/model fingerprint so unrelated retries do not create another paid music request.
 
-For a local music bed, use `source: file` and point `file:` to a path inside the job folder.
+For a local music bed, use `source: file` only when the asset license permits storing the raw file in this public repository.
 
-SFX files live under `input/<job>/sfx/`. Every used file must be recorded in `sfx/manifest.yaml` with its original source URL and exact license name. The factory refuses untraceable SFX.
+SFX files can live under `input/<job>/sfx/` **only when their exact license permits raw redistribution**. Every used file must be recorded in `sfx/manifest.yaml` with:
+
+- original `source_url`;
+- exact `license`;
+- `redistribution: true` as an explicit production assertion;
+- `attribution` when required.
+
+The factory refuses used SFX that are not explicitly approved for raw redistribution. Prefer CC0/public-domain assets for this public repo; see `docs/SOUNDTRACK.md` for the current sourcing policy.
 
 SFX events can be placed by:
 
