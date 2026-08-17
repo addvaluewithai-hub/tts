@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""License guard for the soundtrack stage.
+"""Policy guards for the optional soundtrack stage.
 
-The factory repository is public. Before mixing any job-local raw SFX file, require
-an explicit manifest assertion that its license permits redistribution of the raw
-asset. This prevents stock-library files that are licensed for end products but
-not standalone redistribution from being committed and reused as source assets.
+The factory repository is public and currently operates under a zero-cost media
+policy. Before mixing program audio we enforce two things:
+
+1. paid media generation (including Lyria) is blocked by factory_policy.yaml;
+2. raw SFX committed to the public repo must explicitly permit redistribution.
 """
 
 from __future__ import annotations
@@ -15,6 +16,7 @@ from typing import Any
 
 import yaml
 
+ROOT = Path(__file__).resolve().parents[1]
 SCRIPT_DIR = Path(__file__).resolve().parent
 if str(SCRIPT_DIR) not in sys.path:
     sys.path.insert(0, str(SCRIPT_DIR))
@@ -26,13 +28,48 @@ class SfxLicenseError(RuntimeError):
     pass
 
 
+class PaidMediaPolicyError(RuntimeError):
+    pass
+
+
 def load_mapping(path: Path) -> dict[str, Any]:
     if not path.exists():
-        raise SfxLicenseError(f"Missing YAML file: {path}")
+        raise RuntimeError(f"Missing YAML file: {path}")
     data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
     if not isinstance(data, dict):
-        raise SfxLicenseError(f"Expected YAML mapping in {path}")
+        raise RuntimeError(f"Expected YAML mapping in {path}")
     return data
+
+
+def validate_zero_cost_policy(
+    input_root: Path = Path("input"),
+    policy_path: Path = ROOT / "factory_policy.yaml",
+) -> None:
+    active = core.read_active(input_root / "ACTIVE")
+    if not active:
+        return
+
+    job_dir = input_root / active
+    job = load_mapping(job_dir / "job.yaml")
+    soundtrack = job.get("soundtrack") or {}
+    if not isinstance(soundtrack, dict) or not bool(soundtrack.get("enabled", False)):
+        return
+
+    music = soundtrack.get("music") or {}
+    if not isinstance(music, dict) or not bool(music.get("enabled", False)):
+        return
+
+    policy = load_mapping(policy_path)
+    cost = policy.get("cost") or {}
+    paid_media_allowed = bool(cost.get("paid_media_generation", False))
+    source = str(music.get("source", "file")).strip().lower()
+
+    if source == "lyria" and not paid_media_allowed:
+        raise PaidMediaPolicyError(
+            "Lyria is blocked by factory_policy.yaml: paid_media_generation=false. "
+            "This factory is configured for $0 incremental media spend. Use a local "
+            "owned/CC0 music file or disable background music."
+        )
 
 
 def validate_public_repo_sfx(input_root: Path = Path("input")) -> None:
@@ -85,9 +122,10 @@ def validate_public_repo_sfx(input_root: Path = Path("input")) -> None:
 
 def main() -> int:
     try:
+        validate_zero_cost_policy()
         validate_public_repo_sfx()
     except Exception as exc:
-        print(f"SFX LICENSE ERROR: {type(exc).__name__}: {exc}", file=sys.stderr)
+        print(f"SOUNDTRACK POLICY ERROR: {type(exc).__name__}: {exc}", file=sys.stderr)
         return 1
     return core.main()
 
