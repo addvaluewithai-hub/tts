@@ -1,0 +1,7 @@
+# Keep one traceable license record per SFX file used by the job.
+# Put the corresponding audio files beside this manifest.
+files:
+  soft-whoosh.wav:
+    source_url: https://example.com/original-sfx-page
+    license: Replace with exact license name
+    attribution: ""
