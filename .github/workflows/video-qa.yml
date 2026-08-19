@@ -73,6 +73,32 @@ jobs:
           echo "qa_fps=$QA_FPS" >> "$GITHUB_OUTPUT"
           echo 'ready=true' >> "$GITHUB_OUTPUT"
 
+      - name: Publish QA start heartbeat
+        if: steps.active.outputs.ready == 'true'
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          SOURCE_SHA: ${{ steps.active.outputs.source_sha }}
+        run: |
+          set -euo pipefail
+          mkdir -p ".factory-status/video/${JOB}"
+          cat > ".factory-status/video/${JOB}/qa-status.json" <<EOF
+          {
+            "status": "started",
+            "job": "${JOB}",
+            "source_sha": "${SOURCE_SHA}",
+            "run_id": "${GITHUB_RUN_ID}",
+            "run_attempt": "${GITHUB_RUN_ATTEMPT}",
+            "started_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          git config user.name 'video-factory-qa[bot]'
+          git config user.email 'video-factory-qa[bot]@users.noreply.github.com'
+          git add ".factory-status/video/${JOB}/qa-status.json"
+          git commit -m "qa: mark ${JOB} visual QA started" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
       - name: Set up Node 24
         if: steps.active.outputs.ready == 'true'
         uses: actions/setup-node@v4
@@ -117,6 +143,7 @@ jobs:
           JOB: ${{ steps.active.outputs.job }}
           PROJECT: ${{ steps.active.outputs.project }}
         run: |
+          set -euo pipefail
           cd "$PROJECT"
           FACTORY_JOB_ID="$JOB" node scripts/build-from-audio.mjs
           test -s index.html
@@ -156,6 +183,29 @@ jobs:
           cd "$PROJECT"
           npx --yes hyperframes@latest inspect . --json > qa/inspect.json
 
+      - name: Publish QA render heartbeat
+        if: steps.active.outputs.ready == 'true' && steps.lint.outcome == 'success' && steps.check.outcome == 'success'
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          SOURCE_SHA: ${{ steps.active.outputs.source_sha }}
+        run: |
+          set -euo pipefail
+          cat > ".factory-status/video/${JOB}/qa-status.json" <<EOF
+          {
+            "status": "rendering",
+            "job": "${JOB}",
+            "source_sha": "${SOURCE_SHA}",
+            "run_id": "${GITHUB_RUN_ID}",
+            "run_attempt": "${GITHUB_RUN_ATTEMPT}",
+            "rendering_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          git add ".factory-status/video/${JOB}/qa-status.json"
+          git commit -m "qa: mark ${JOB} visual QA rendering" || true
+          git pull --rebase origin main
+          git push origin HEAD:main
+
       - name: Render authoritative QA cut
         id: draft
         if: steps.active.outputs.ready == 'true' && steps.lint.outcome == 'success' && steps.check.outcome == 'success'
@@ -170,7 +220,7 @@ jobs:
           npx --yes hyperframes@latest render . -c ./index.html \
             --fps "$QA_FPS" \
             --quality draft \
-            --workers 1 \
+            --workers 2 \
             --output qa/review-qa.mp4 2>&1 | tee qa/draft-render.txt
 
       - name: Extract full-resolution review frames
@@ -323,6 +373,20 @@ jobs:
           if [ "${SOURCE_SHA}" = "${CURRENT_SOURCE}" ]; then
             cp "$RUN_FILE" ".factory-status/video/${JOB}/qa-latest.json"
           fi
+          cat > ".factory-status/video/${JOB}/qa-status.json" <<EOF
+          {
+            "status": "complete",
+            "job": "${JOB}",
+            "source_sha": "${SOURCE_SHA}",
+            "transcript_sha256": "${TRANSCRIPT_SHA}",
+            "run_id": "${GITHUB_RUN_ID}",
+            "lint_outcome": "${LINT_OUTCOME}",
+            "check_outcome": "${CHECK_OUTCOME}",
+            "inspect_outcome": "${INSPECT_OUTCOME}",
+            "draft_outcome": "${DRAFT_OUTCOME}",
+            "completed_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
           git config user.name 'video-factory-qa[bot]'
           git config user.email 'video-factory-qa[bot]@users.noreply.github.com'
           git add ".factory-status/video/${JOB}"
