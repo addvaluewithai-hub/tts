@@ -1,0 +1,14 @@
+{
+  "job": "u1-l02-understand-an-introduction",
+  "source_sha": "5e34f6302b68e2c7d188f84b7a85234c6d9f6887",
+  "transcript_sha256": "52268879ee712a5cc464803c4838284904ed65b4c45d03d7ca7d9b68f6716474",
+  "run_id": "32243651512",
+  "artifact_id": "9361781077",
+  "artifact_url": "https://github.com/addvaluewithai-hub/tts/actions/runs/32243651512/artifacts/9361781077",
+  "lint_outcome": "failure",
+  "check_outcome": "failure",
+  "inspect_outcome": "success",
+  "draft_outcome": "skipped",
+  "manual_review_required": true,
+  "created_at": "2026-08-19T10:39:31Z"
+}
