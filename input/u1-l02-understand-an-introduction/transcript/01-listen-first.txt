@@ -1,0 +1,15 @@
+---
+voice: Kore
+audio_profile: Warm Egyptian English teacher; natural Egyptian Arabic; clean General American English.
+scene: A quiet modern English-learning studio. One teacher speaking directly to one adult beginner.
+director_notes: Preserve the authored transcript at synthesis time. Bracketed tags and XML/IPA pronunciation markup are silent instructions and must never be spoken. Keep the opening reassuring; read the English model clearly and slightly slower.
+---
+[WARM] أهلًا بيك. النهاردة مش هنتعلم نقول معلومات جديدة عن نفسنا. النهاردة هنتعلم نلقط معلومات شخص تاني وهو بيتكلم.
+
+تخيّل إن عضو جديد بعت رسالة صوتية لمجموعة الدراسة. اسمعها مرة واحدة.
+
+[CLEAR, SLIGHTLY SLOWER] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="haɪ | aɪm ˈælɪks | aɪm frəm ˈkænədə | aɪ lɪv ɪn ˈkaɪroʊ | aɪm ən ˌɛndʒəˈnɪr">Hi, I'm Alex. I'm from Canada. I live in Cairo. I'm an engineer.</phoneme></lang>
+
+لو حاولت تترجم كل كلمة، ممكن تضيع منك المعلومة الأهم. المطلوب هنا أبسط من كده.
+
+في أول مرة، اسأل نفسك: مين الشخص؟
