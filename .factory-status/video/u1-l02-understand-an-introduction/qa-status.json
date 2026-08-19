@@ -1,8 +1,12 @@
 {
-  "status": "rendering",
+  "status": "complete",
   "job": "u1-l02-understand-an-introduction",
   "source_sha": "3701501b80e1e052c195193eb144d539bce21baf",
+  "transcript_sha256": "52268879ee712a5cc464803c4838284904ed65b4c45d03d7ca7d9b68f6716474",
   "run_id": "32245232092",
-  "run_attempt": "1",
-  "rendering_at": "2026-08-19T10:59:38Z"
+  "lint_outcome": "success",
+  "check_outcome": "success",
+  "inspect_outcome": "success",
+  "draft_outcome": "success",
+  "completed_at": "2026-08-19T11:01:00Z"
 }
