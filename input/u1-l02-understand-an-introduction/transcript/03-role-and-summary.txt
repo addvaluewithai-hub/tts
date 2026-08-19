@@ -1,0 +1,21 @@
+---
+voice: Kore
+audio_profile: Warm Egyptian English teacher; natural Egyptian Arabic; clean General American English.
+scene: A quiet modern English-learning studio. One teacher speaking directly to one adult beginner.
+director_notes: Preserve the authored transcript at synthesis time. Bracketed tags and XML/IPA pronunciation markup are silent instructions and must never be spoken. Keep the fact-summary rhythm confident and clear.
+---
+[CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm ən ˌɛndʒəˈnɪr">I'm an engineer.</phoneme></lang>
+
+ودي بتقول شغله.
+
+يبقى <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="ˈælɪks">Alex</phoneme></lang> من <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="ˈkænədə">Canada</phoneme></lang>، عايش في <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="ˈkaɪroʊ">Cairo</phoneme></lang>، وشغله <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="ˌɛndʒəˈnɪr">engineer</phoneme></lang>. أربع معلومات واضحة من غير ما نترجم الرسالة كلمة كلمة.
+
+دلوقتي خد بالك من فرق مهم. أحيانًا الشخص بيتكلم عن نفسه، وأحيانًا بيقدم شخص تاني.
+
+لما يقول:
+
+[CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm frəm ˈkænədə">I'm from Canada.</phoneme></lang>
+
+المعلومة عن المتكلم نفسه.
+
+لكن اسمع النموذج ده.
