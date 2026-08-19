@@ -1,0 +1,1957 @@
+{
+  "schema_version": 2,
+  "alignment_mode": "per_part",
+  "lesson": "u1-l02-understand-an-introduction",
+  "source_audio": "final/u1-l02-understand-an-introduction.mp3",
+  "audio_sha256": "a9e1d0d8ed181fea0b041ee560502e0d5ef040b7127e146230d92b6875d89aa7",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model_router": [
+    "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite"
+  ],
+  "duration_ms": 149940,
+  "generated_at": "2026-08-19T10:35:12.156514+00:00",
+  "parts": [
+    {
+      "file": "01-listen-first.wav",
+      "start_ms": 0,
+      "end_ms": 33960,
+      "duration_ms": 33960,
+      "model": "gemini-3.1-flash-lite",
+      "word_count": 65,
+      "audio_sha256": "c9e3a7242095b6839b7ee8ffa20032f9249af5eaecbe1044d4f8f29ebb9bb718"
+    },
+    {
+      "file": "02-find-name-and-place.wav",
+      "start_ms": 34260,
+      "end_ms": 53740,
+      "duration_ms": 19480,
+      "model": "gemini-3.5-flash-lite",
+      "word_count": 30,
+      "audio_sha256": "96ae551d46357b21b4620760f3d04d1cacf841ad4c2bcaf68b0bd2794d2f1b0a"
+    },
+    {
+      "file": "03-role-and-summary.wav",
+      "start_ms": 54040,
+      "end_ms": 87640,
+      "duration_ms": 33600,
+      "model": "gemini-3.1-flash-lite",
+      "word_count": 53,
+      "audio_sha256": "aefc48b8ac1bfcfd6821cd68dffe6d0e14990870e2bef28b9609b58c8b920e67"
+    },
+    {
+      "file": "04-omar-third-person.wav",
+      "start_ms": 87940,
+      "end_ms": 111580,
+      "duration_ms": 23640,
+      "model": "gemini-3.5-flash-lite",
+      "word_count": 45,
+      "audio_sha256": "3abf2805656fe72815cfd7dd3adfff40d8fe4f5b6b18084549fbefbb7e468f42"
+    },
+    {
+      "file": "05-layla-and-strategy.wav",
+      "start_ms": 111880,
+      "end_ms": 133720,
+      "duration_ms": 21840,
+      "model": "gemini-3.1-flash-lite",
+      "word_count": 38,
+      "audio_sha256": "a51adf754ddd47729d0538399ce6947a42753c948a955df5a129852e1b98e403"
+    },
+    {
+      "file": "06-closing.wav",
+      "start_ms": 134020,
+      "end_ms": 149940,
+      "duration_ms": 15920,
+      "model": "gemini-3.5-flash-lite",
+      "word_count": 32,
+      "audio_sha256": "2cb25ccaacb9347081931697d4ef1b35840bd7ee4c4e5713b95325608893010e"
+    }
+  ],
+  "segments": [
+    {
+      "start_ms": 0,
+      "end_ms": 33960,
+      "speaker": "teacher",
+      "language": "ar",
+      "text": "أهلًا بيك. النهاردة مش هنتعلم نقول معلومات جديدة عن نفسنا. النهاردة هنتعلم نلقط معلومات شخص تاني وهو بيتكلم. تخيّل إن عضو جديد بعت رسالة صوتية لمجموعة الدراسة. اسمعها مرة واحدة. Hi, I'm Alex. I'm from Canada. I live in Cairo. I'm an engineer. لو حاولت تترجم كل كلمة، ممكن تضيع منك المعلومة الأهم. المطلوب هنا أبسط من كده. في أول مرة، اسأل نفسك: مين الشخص؟"
+    },
+    {
+      "start_ms": 34260,
+      "end_ms": 53740,
+      "speaker": "teacher",
+      "language": "ar",
+      "text": "I'm Alex. إذن الاسم هو Alex. بعد الاسم، دوّر على إشارات صغيرة تعرفها. I'm from Canada. دي بتقول الأصل أو البلد. I live in Cairo. ودي بتقول مكان السكن دلوقتي."
+    },
+    {
+      "start_ms": 54040,
+      "end_ms": 87640,
+      "speaker": "teacher",
+      "language": "en",
+      "text": "I'm an engineer. ودي بتقول شغله. يبقى Alex من Canada، عايش في Cairo، وشغله engineer. أربع معلومات واضحة من غير ما نترجم الرسالة كلمة كلمة. دلوقتي خد بالك من فرق مهم. أحيانا الشخص بيتكلم عن نفسه وأحيانا بيقدم شخص تاني. لما يقول I'm from Canada المعلومة عن المتكلم نفسه لكن اسمع النموذج ده."
+    },
+    {
+      "start_ms": 87940,
+      "end_ms": 111580,
+      "speaker": "teacher",
+      "language": "ar",
+      "text": "This is Omar. He's from Egypt. He lives in Giza. He's a student. هنا المتكلم بيقدم Omar. لما تسمع: This is Omar. اعرف إن المعلومات اللي بعدها غالبًا عن Omar. He's from Egypt. He lives in Giza. ما ننسبش المعلومات دي للمتكلم. كلها عن Omar."
+    },
+    {
+      "start_ms": 111880,
+      "end_ms": 133720,
+      "speaker": "teacher",
+      "language": "ar",
+      "text": "ونفس الفكرة لو سمعت: This is Layla. She's a teacher. المعلومة عن Layla، مش عن الشخص اللي بيقدمها. الخلاصة بسيطة: أول مرة اعرف مين الشخص. ثاني مرة التقط معلومتين أو ثلاثة. وخلي الضمير يساعدك تعرف المعلومة عن مين."
+    },
+    {
+      "start_ms": 134020,
+      "end_ms": 149940,
+      "speaker": "teacher",
+      "language": "ar",
+      "text": "بعد الفيديو هتسمع أصوات جديدة فعلًا. مش مطلوب تفهم كل كلمة. المطلوب تعرف الشخص وتلتقط المعلومات الأساسية من غير نص مكتوب. ركّز على المعنى، مش على مطاردة كل كلمة. نشوفك في التطبيق."
+    }
+  ],
+  "words": [
+    {
+      "start_ms": 320,
+      "end_ms": 610,
+      "text": "أهلًا",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 610,
+      "end_ms": 940,
+      "text": "بيك.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 1340,
+      "end_ms": 1780,
+      "text": "النهاردة",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 1780,
+      "end_ms": 2040,
+      "text": "مش",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 2040,
+      "end_ms": 2420,
+      "text": "هنتعلم",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 2420,
+      "end_ms": 2840,
+      "text": "نقول",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 2840,
+      "end_ms": 3290,
+      "text": "معلومات",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 3290,
+      "end_ms": 3760,
+      "text": "جديدة",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 3760,
+      "end_ms": 4030,
+      "text": "عن",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 4030,
+      "end_ms": 4440,
+      "text": "نفسنا.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 5090,
+      "end_ms": 5550,
+      "text": "النهاردة",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 5550,
+      "end_ms": 6050,
+      "text": "هنتعلم",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 6050,
+      "end_ms": 6480,
+      "text": "نلقط",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 6480,
+      "end_ms": 6920,
+      "text": "معلومات",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 6920,
+      "end_ms": 7430,
+      "text": "شخص",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 7430,
+      "end_ms": 7860,
+      "text": "تاني",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 7860,
+      "end_ms": 8160,
+      "text": "وهو",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 8160,
+      "end_ms": 8730,
+      "text": "بيتكلم.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 10070,
+      "end_ms": 10560,
+      "text": "تخيّل",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 10560,
+      "end_ms": 10830,
+      "text": "إن",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 10830,
+      "end_ms": 11130,
+      "text": "عضو",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 11130,
+      "end_ms": 11520,
+      "text": "جديد",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 11520,
+      "end_ms": 11950,
+      "text": "بعت",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 11950,
+      "end_ms": 12300,
+      "text": "رسالة",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 12300,
+      "end_ms": 12850,
+      "text": "صوتية",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 12850,
+      "end_ms": 13240,
+      "text": "لمجموعة",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 13240,
+      "end_ms": 13690,
+      "text": "الدراسة.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 14190,
+      "end_ms": 14610,
+      "text": "اسمعها",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 14610,
+      "end_ms": 14850,
+      "text": "مرة",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 14850,
+      "end_ms": 15200,
+      "text": "واحدة.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 15995,
+      "end_ms": 16185,
+      "text": "Hi,",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 16585,
+      "end_ms": 17295,
+      "text": "I'm",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 17295,
+      "end_ms": 17795,
+      "text": "Alex.",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 18195,
+      "end_ms": 18455,
+      "text": "I'm",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 18455,
+      "end_ms": 18765,
+      "text": "from",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 18765,
+      "end_ms": 19445,
+      "text": "Canada.",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 19995,
+      "end_ms": 20175,
+      "text": "I",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 20175,
+      "end_ms": 20495,
+      "text": "live",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 20495,
+      "end_ms": 20735,
+      "text": "in",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 20735,
+      "end_ms": 21325,
+      "text": "Cairo.",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 21825,
+      "end_ms": 22165,
+      "text": "I'm",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 22165,
+      "end_ms": 22445,
+      "text": "an",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 22445,
+      "end_ms": 23075,
+      "text": "engineer.",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 24200,
+      "end_ms": 24450,
+      "text": "لو",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 24450,
+      "end_ms": 24860,
+      "text": "حاولت",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 24860,
+      "end_ms": 25170,
+      "text": "تترجم",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 25170,
+      "end_ms": 25480,
+      "text": "كل",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 25480,
+      "end_ms": 25950,
+      "text": "كلمة،",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 26030,
+      "end_ms": 26360,
+      "text": "ممكن",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 26360,
+      "end_ms": 26730,
+      "text": "تضيع",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 26730,
+      "end_ms": 27070,
+      "text": "منك",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 27070,
+      "end_ms": 27420,
+      "text": "المعلومة",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 27420,
+      "end_ms": 27800,
+      "text": "الأهم.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 28350,
+      "end_ms": 28730,
+      "text": "المطلوب",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 28730,
+      "end_ms": 29010,
+      "text": "هنا",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 29010,
+      "end_ms": 29330,
+      "text": "أبسط",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 29330,
+      "end_ms": 29630,
+      "text": "من",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 29630,
+      "end_ms": 30000,
+      "text": "كده.",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 30730,
+      "end_ms": 31030,
+      "text": "في",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 31030,
+      "end_ms": 31230,
+      "text": "أول",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 31230,
+      "end_ms": 31630,
+      "text": "مرة،",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 31750,
+      "end_ms": 32090,
+      "text": "اسأل",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 32090,
+      "end_ms": 32440,
+      "text": "نفسك:",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 32910,
+      "end_ms": 33260,
+      "text": "مين",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 33260,
+      "end_ms": 33590,
+      "text": "الشخص؟",
+      "language": "ar",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 34260,
+      "end_ms": 34741,
+      "text": "I'm",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 34741,
+      "end_ms": 35401,
+      "text": "Alex.",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 36489,
+      "end_ms": 36779,
+      "text": "إذن",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 36779,
+      "end_ms": 37129,
+      "text": "الاسم",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 37129,
+      "end_ms": 37399,
+      "text": "هو",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 37549,
+      "end_ms": 38709,
+      "text": "Alex.",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 39619,
+      "end_ms": 39959,
+      "text": "بعد",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 39959,
+      "end_ms": 40389,
+      "text": "الاسم،",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 40449,
+      "end_ms": 40999,
+      "text": "دوّر",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 40999,
+      "end_ms": 41299,
+      "text": "على",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 41299,
+      "end_ms": 41839,
+      "text": "إشارات",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 41839,
+      "end_ms": 42229,
+      "text": "صغيرة",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 42489,
+      "end_ms": 43019,
+      "text": "تعرفها.",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 44239,
+      "end_ms": 44589,
+      "text": "I'm",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 44589,
+      "end_ms": 44959,
+      "text": "from",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 44959,
+      "end_ms": 45599,
+      "text": "Canada.",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 46319,
+      "end_ms": 46649,
+      "text": "دي",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 46649,
+      "end_ms": 46959,
+      "text": "بتقول",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 46959,
+      "end_ms": 47339,
+      "text": "الأصل",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 47399,
+      "end_ms": 47609,
+      "text": "أو",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 47609,
+      "end_ms": 48079,
+      "text": "البلد.",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 49269,
+      "end_ms": 49499,
+      "text": "I",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 49499,
+      "end_ms": 49879,
+      "text": "live",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 49879,
+      "end_ms": 50089,
+      "text": "in",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 50089,
+      "end_ms": 50719,
+      "text": "Cairo.",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 51529,
+      "end_ms": 51829,
+      "text": "ودي",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 51829,
+      "end_ms": 52089,
+      "text": "بتقول",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 52089,
+      "end_ms": 52459,
+      "text": "مكان",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 52459,
+      "end_ms": 52829,
+      "text": "السكن",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 52829,
+      "end_ms": 53339,
+      "text": "دلوقتي.",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 54070,
+      "end_ms": 55170,
+      "text": "I'm",
+      "language": "en",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 55170,
+      "end_ms": 55380,
+      "text": "an",
+      "language": "en",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 55380,
+      "end_ms": 55780,
+      "text": "engineer.",
+      "language": "en",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 56380,
+      "end_ms": 56650,
+      "text": "ودي",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 56650,
+      "end_ms": 57020,
+      "text": "بتقول",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 57020,
+      "end_ms": 57450,
+      "text": "شغله.",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 58760,
+      "end_ms": 59100,
+      "text": "يبقى",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 59100,
+      "end_ms": 59650,
+      "text": "Alex",
+      "language": "en",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 59750,
+      "end_ms": 60160,
+      "text": "من",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 60160,
+      "end_ms": 60810,
+      "text": "Canada،",
+      "language": "en",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 61610,
+      "end_ms": 62050,
+      "text": "عايش",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 62050,
+      "end_ms": 62260,
+      "text": "في",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 62260,
+      "end_ms": 62840,
+      "text": "Cairo،",
+      "language": "en",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 63340,
+      "end_ms": 63780,
+      "text": "وشغله",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 64010,
+      "end_ms": 64800,
+      "text": "engineer.",
+      "language": "en",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 65880,
+      "end_ms": 66220,
+      "text": "أربع",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 66220,
+      "end_ms": 66790,
+      "text": "معلومات",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 66790,
+      "end_ms": 67360,
+      "text": "واضحة",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 67360,
+      "end_ms": 67650,
+      "text": "من",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 67650,
+      "end_ms": 67950,
+      "text": "غير",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 67950,
+      "end_ms": 68280,
+      "text": "ما",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 68280,
+      "end_ms": 68610,
+      "text": "نترجم",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 68610,
+      "end_ms": 68980,
+      "text": "الرسالة",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 68980,
+      "end_ms": 69340,
+      "text": "كلمة",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 69340,
+      "end_ms": 69760,
+      "text": "كلمة.",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 71020,
+      "end_ms": 71500,
+      "text": "دلوقتي",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 71500,
+      "end_ms": 71890,
+      "text": "خد",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 71890,
+      "end_ms": 72170,
+      "text": "بالك",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 72170,
+      "end_ms": 72400,
+      "text": "من",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 72400,
+      "end_ms": 72670,
+      "text": "فرق",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 72670,
+      "end_ms": 73030,
+      "text": "مهم.",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 73720,
+      "end_ms": 74160,
+      "text": "أحيانا",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 74160,
+      "end_ms": 74490,
+      "text": "الشخص",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 74490,
+      "end_ms": 74910,
+      "text": "بيتكلم",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 74910,
+      "end_ms": 75190,
+      "text": "عن",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 75190,
+      "end_ms": 75710,
+      "text": "نفسه",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 76210,
+      "end_ms": 76660,
+      "text": "وأحيانا",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 76660,
+      "end_ms": 77100,
+      "text": "بيقدم",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 77100,
+      "end_ms": 77450,
+      "text": "شخص",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 77450,
+      "end_ms": 77850,
+      "text": "تاني.",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 78930,
+      "end_ms": 79250,
+      "text": "لما",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 79250,
+      "end_ms": 79560,
+      "text": "يقول",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 80720,
+      "end_ms": 81110,
+      "text": "I'm",
+      "language": "en",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 81110,
+      "end_ms": 81400,
+      "text": "from",
+      "language": "en",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 81400,
+      "end_ms": 81900,
+      "text": "Canada.",
+      "language": "en",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 82980,
+      "end_ms": 83460,
+      "text": "المعلومة",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 83460,
+      "end_ms": 83810,
+      "text": "عن",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 83810,
+      "end_ms": 84240,
+      "text": "المتكلم",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 84240,
+      "end_ms": 84620,
+      "text": "نفسه.",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 85790,
+      "end_ms": 86140,
+      "text": "لكن",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 86140,
+      "end_ms": 86480,
+      "text": "اسمع",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 86480,
+      "end_ms": 86840,
+      "text": "النموذج",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 86840,
+      "end_ms": 87210,
+      "text": "ده.",
+      "language": "ar",
+      "segment_index": 2
+    },
+    {
+      "start_ms": 88268,
+      "end_ms": 88558,
+      "text": "This",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 88728,
+      "end_ms": 88888,
+      "text": "is",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 89098,
+      "end_ms": 89768,
+      "text": "Omar.",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 89988,
+      "end_ms": 90258,
+      "text": "He's",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 90348,
+      "end_ms": 90638,
+      "text": "from",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 90668,
+      "end_ms": 91258,
+      "text": "Egypt.",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 91518,
+      "end_ms": 91758,
+      "text": "He",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 91808,
+      "end_ms": 92148,
+      "text": "lives",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 92218,
+      "end_ms": 92378,
+      "text": "in",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 92448,
+      "end_ms": 93028,
+      "text": "Giza.",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 93208,
+      "end_ms": 93528,
+      "text": "He's",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 93658,
+      "end_ms": 93778,
+      "text": "a",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 93818,
+      "end_ms": 94408,
+      "text": "student.",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 94675,
+      "end_ms": 94935,
+      "text": "هنا",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 94965,
+      "end_ms": 95355,
+      "text": "المتكلم",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 95405,
+      "end_ms": 95765,
+      "text": "بيقدم",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 95955,
+      "end_ms": 96575,
+      "text": "Omar.",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 96975,
+      "end_ms": 97245,
+      "text": "لما",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 97295,
+      "end_ms": 97795,
+      "text": "تسمع:",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 98033,
+      "end_ms": 98243,
+      "text": "This",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 98413,
+      "end_ms": 98573,
+      "text": "is",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 98773,
+      "end_ms": 99463,
+      "text": "Omar.",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 100045,
+      "end_ms": 100375,
+      "text": "اعرف",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 100435,
+      "end_ms": 100595,
+      "text": "إن",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 100665,
+      "end_ms": 101185,
+      "text": "المعلومات",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 101265,
+      "end_ms": 101515,
+      "text": "اللي",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 101565,
+      "end_ms": 101955,
+      "text": "بعدها",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 102165,
+      "end_ms": 102695,
+      "text": "غالبًا",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 102795,
+      "end_ms": 103005,
+      "text": "عن",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 103095,
+      "end_ms": 103675,
+      "text": "Omar.",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 103933,
+      "end_ms": 104153,
+      "text": "He's",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 104263,
+      "end_ms": 104523,
+      "text": "from",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 104583,
+      "end_ms": 105203,
+      "text": "Egypt.",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 105423,
+      "end_ms": 105623,
+      "text": "He",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 105733,
+      "end_ms": 106033,
+      "text": "lives",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 106123,
+      "end_ms": 106263,
+      "text": "in",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 106393,
+      "end_ms": 106923,
+      "text": "Giza.",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 107355,
+      "end_ms": 107545,
+      "text": "ما",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 107635,
+      "end_ms": 108065,
+      "text": "نانسبش",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 108155,
+      "end_ms": 108625,
+      "text": "المعلومات",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 108695,
+      "end_ms": 108895,
+      "text": "دي",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 108955,
+      "end_ms": 109195,
+      "text": "للمتكلم.",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 109685,
+      "end_ms": 110295,
+      "text": "كلها",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 110385,
+      "end_ms": 110635,
+      "text": "عن",
+      "language": "ar",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 110695,
+      "end_ms": 111095,
+      "text": "Omar.",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 111999,
+      "end_ms": 112209,
+      "text": "ونفس",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 112209,
+      "end_ms": 112419,
+      "text": "الفكرة",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 112419,
+      "end_ms": 112659,
+      "text": "لو",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 112659,
+      "end_ms": 113169,
+      "text": "سمعت:",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 114779,
+      "end_ms": 115019,
+      "text": "This",
+      "language": "en",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 115019,
+      "end_ms": 115209,
+      "text": "is",
+      "language": "en",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 115209,
+      "end_ms": 115699,
+      "text": "Layla.",
+      "language": "en",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 116069,
+      "end_ms": 116329,
+      "text": "She's",
+      "language": "en",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 116329,
+      "end_ms": 116499,
+      "text": "a",
+      "language": "en",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 116499,
+      "end_ms": 116969,
+      "text": "teacher.",
+      "language": "en",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 118009,
+      "end_ms": 118349,
+      "text": "المعلومة",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 118349,
+      "end_ms": 118659,
+      "text": "عن",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 118659,
+      "end_ms": 119209,
+      "text": "Layla،",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 119459,
+      "end_ms": 119739,
+      "text": "مش",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 119739,
+      "end_ms": 119989,
+      "text": "عن",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 119989,
+      "end_ms": 120299,
+      "text": "الشخص",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 120299,
+      "end_ms": 120519,
+      "text": "اللي",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 120519,
+      "end_ms": 120959,
+      "text": "بيقدمها.",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 122469,
+      "end_ms": 122889,
+      "text": "الخلاصة",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 122889,
+      "end_ms": 123409,
+      "text": "بسيطة:",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 124109,
+      "end_ms": 124419,
+      "text": "أول",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 124419,
+      "end_ms": 124719,
+      "text": "مرة",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 124719,
+      "end_ms": 125079,
+      "text": "اعرف",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 125079,
+      "end_ms": 125399,
+      "text": "مين",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 125399,
+      "end_ms": 125889,
+      "text": "الشخص.",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 126699,
+      "end_ms": 127039,
+      "text": "ثاني",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 127039,
+      "end_ms": 127369,
+      "text": "مرة",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 127369,
+      "end_ms": 127889,
+      "text": "التقط",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 127889,
+      "end_ms": 128559,
+      "text": "معلومتين",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 128559,
+      "end_ms": 128859,
+      "text": "أو",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 128859,
+      "end_ms": 129449,
+      "text": "ثلاثة.",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 130159,
+      "end_ms": 130469,
+      "text": "وخلي",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 130469,
+      "end_ms": 130799,
+      "text": "الضمير",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 130799,
+      "end_ms": 131219,
+      "text": "يساعدك",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 131219,
+      "end_ms": 131629,
+      "text": "تعرف",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 131629,
+      "end_ms": 132019,
+      "text": "المعلومة",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 132019,
+      "end_ms": 132339,
+      "text": "عن",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 132339,
+      "end_ms": 132769,
+      "text": "مين.",
+      "language": "ar",
+      "segment_index": 4
+    },
+    {
+      "start_ms": 134340,
+      "end_ms": 134590,
+      "text": "بعد",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 134630,
+      "end_ms": 135050,
+      "text": "الفيديو",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 135120,
+      "end_ms": 135510,
+      "text": "هتسمع",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 135600,
+      "end_ms": 135980,
+      "text": "أصوات",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 136060,
+      "end_ms": 136440,
+      "text": "جديدة",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 136480,
+      "end_ms": 137000,
+      "text": "فعلًا.",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 137410,
+      "end_ms": 137730,
+      "text": "مش",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 137780,
+      "end_ms": 138120,
+      "text": "مطلوب",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 138200,
+      "end_ms": 138560,
+      "text": "تفهم",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 138640,
+      "end_ms": 138840,
+      "text": "كل",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 138890,
+      "end_ms": 139370,
+      "text": "كلمة.",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 139600,
+      "end_ms": 140070,
+      "text": "المطلوب",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 140140,
+      "end_ms": 140480,
+      "text": "تعرف",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 140530,
+      "end_ms": 140880,
+      "text": "الشخص",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 141120,
+      "end_ms": 141670,
+      "text": "وتلتقط",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 141710,
+      "end_ms": 142220,
+      "text": "المعلومات",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 142270,
+      "end_ms": 142800,
+      "text": "الأساسية",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 142960,
+      "end_ms": 143200,
+      "text": "من",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 143250,
+      "end_ms": 143500,
+      "text": "غير",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 143540,
+      "end_ms": 143830,
+      "text": "نص",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 143890,
+      "end_ms": 144350,
+      "text": "مكتوب.",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 144990,
+      "end_ms": 145350,
+      "text": "ركّز",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 145460,
+      "end_ms": 145700,
+      "text": "على",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 145750,
+      "end_ms": 146130,
+      "text": "المعنى،",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 146290,
+      "end_ms": 146580,
+      "text": "مش",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 146640,
+      "end_ms": 146860,
+      "text": "على",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 146920,
+      "end_ms": 147360,
+      "text": "مطاردة",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 147440,
+      "end_ms": 147640,
+      "text": "كل",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 147690,
+      "end_ms": 148160,
+      "text": "كلمة.",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 148400,
+      "end_ms": 148830,
+      "text": "نشوفك",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 148900,
+      "end_ms": 149110,
+      "text": "في",
+      "language": "ar",
+      "segment_index": 5
+    },
+    {
+      "start_ms": 149160,
+      "end_ms": 149650,
+      "text": "التطبيق.",
+      "language": "ar",
+      "segment_index": 5
+    }
+  ]
+}

@@ -1,0 +1,282 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/u1-l02-understand-an-introduction/04-omar-third-person.wav",
+  "audio_sha256": "3abf2805656fe72815cfd7dd3adfff40d8fe4f5b6b18084549fbefbb7e468f42",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.5-flash-lite",
+  "duration_ms": 23640,
+  "text": "This is Omar. He's from Egypt. He lives in Giza. He's a student. هنا المتكلم بيقدم Omar. لما تسمع: This is Omar. اعرف إن المعلومات اللي بعدها غالبًا عن Omar. He's from Egypt. He lives in Giza. ما ننسبش المعلومات دي للمتكلم. كلها عن Omar.",
+  "language": "ar",
+  "words": [
+    {
+      "start_ms": 328,
+      "end_ms": 618,
+      "text": "This",
+      "language": "en"
+    },
+    {
+      "start_ms": 788,
+      "end_ms": 948,
+      "text": "is",
+      "language": "en"
+    },
+    {
+      "start_ms": 1158,
+      "end_ms": 1828,
+      "text": "Omar.",
+      "language": "en"
+    },
+    {
+      "start_ms": 2048,
+      "end_ms": 2318,
+      "text": "He's",
+      "language": "en"
+    },
+    {
+      "start_ms": 2408,
+      "end_ms": 2698,
+      "text": "from",
+      "language": "en"
+    },
+    {
+      "start_ms": 2728,
+      "end_ms": 3318,
+      "text": "Egypt.",
+      "language": "en"
+    },
+    {
+      "start_ms": 3578,
+      "end_ms": 3818,
+      "text": "He",
+      "language": "en"
+    },
+    {
+      "start_ms": 3868,
+      "end_ms": 4208,
+      "text": "lives",
+      "language": "en"
+    },
+    {
+      "start_ms": 4278,
+      "end_ms": 4438,
+      "text": "in",
+      "language": "en"
+    },
+    {
+      "start_ms": 4508,
+      "end_ms": 5088,
+      "text": "Giza.",
+      "language": "en"
+    },
+    {
+      "start_ms": 5268,
+      "end_ms": 5588,
+      "text": "He's",
+      "language": "en"
+    },
+    {
+      "start_ms": 5718,
+      "end_ms": 5838,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 5878,
+      "end_ms": 6468,
+      "text": "student.",
+      "language": "en"
+    },
+    {
+      "start_ms": 6735,
+      "end_ms": 6995,
+      "text": "هنا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7025,
+      "end_ms": 7415,
+      "text": "المتكلم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7465,
+      "end_ms": 7825,
+      "text": "بيقدم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8015,
+      "end_ms": 8635,
+      "text": "Omar.",
+      "language": "en"
+    },
+    {
+      "start_ms": 9035,
+      "end_ms": 9305,
+      "text": "لما",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9355,
+      "end_ms": 9855,
+      "text": "تسمع:",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10093,
+      "end_ms": 10303,
+      "text": "This",
+      "language": "en"
+    },
+    {
+      "start_ms": 10473,
+      "end_ms": 10633,
+      "text": "is",
+      "language": "en"
+    },
+    {
+      "start_ms": 10833,
+      "end_ms": 11523,
+      "text": "Omar.",
+      "language": "en"
+    },
+    {
+      "start_ms": 12105,
+      "end_ms": 12435,
+      "text": "اعرف",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12495,
+      "end_ms": 12655,
+      "text": "إن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12725,
+      "end_ms": 13245,
+      "text": "المعلومات",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13325,
+      "end_ms": 13575,
+      "text": "اللي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13625,
+      "end_ms": 14015,
+      "text": "بعدها",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14225,
+      "end_ms": 14755,
+      "text": "غالبًا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14855,
+      "end_ms": 15065,
+      "text": "عن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15155,
+      "end_ms": 15735,
+      "text": "Omar.",
+      "language": "en"
+    },
+    {
+      "start_ms": 15993,
+      "end_ms": 16213,
+      "text": "He's",
+      "language": "en"
+    },
+    {
+      "start_ms": 16323,
+      "end_ms": 16583,
+      "text": "from",
+      "language": "en"
+    },
+    {
+      "start_ms": 16643,
+      "end_ms": 17263,
+      "text": "Egypt.",
+      "language": "en"
+    },
+    {
+      "start_ms": 17483,
+      "end_ms": 17683,
+      "text": "He",
+      "language": "en"
+    },
+    {
+      "start_ms": 17793,
+      "end_ms": 18093,
+      "text": "lives",
+      "language": "en"
+    },
+    {
+      "start_ms": 18183,
+      "end_ms": 18323,
+      "text": "in",
+      "language": "en"
+    },
+    {
+      "start_ms": 18453,
+      "end_ms": 18983,
+      "text": "Giza.",
+      "language": "en"
+    },
+    {
+      "start_ms": 19415,
+      "end_ms": 19605,
+      "text": "ما",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19695,
+      "end_ms": 20125,
+      "text": "نانسبش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20215,
+      "end_ms": 20685,
+      "text": "المعلومات",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20755,
+      "end_ms": 20955,
+      "text": "دي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 21015,
+      "end_ms": 21255,
+      "text": "للمتكلم.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 21745,
+      "end_ms": 22355,
+      "text": "كلها",
+      "language": "ar"
+    },
+    {
+      "start_ms": 22445,
+      "end_ms": 22695,
+      "text": "عن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 22755,
+      "end_ms": 23155,
+      "text": "Omar.",
+      "language": "en"
+    }
+  ]
+}

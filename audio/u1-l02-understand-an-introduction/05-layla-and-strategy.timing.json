@@ -1,0 +1,240 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/u1-l02-understand-an-introduction/05-layla-and-strategy.wav",
+  "audio_sha256": "a51adf754ddd47729d0538399ce6947a42753c948a955df5a129852e1b98e403",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.1-flash-lite",
+  "duration_ms": 21840,
+  "text": "ونفس الفكرة لو سمعت: This is Layla. She's a teacher. المعلومة عن Layla، مش عن الشخص اللي بيقدمها. الخلاصة بسيطة: أول مرة اعرف مين الشخص. ثاني مرة التقط معلومتين أو ثلاثة. وخلي الضمير يساعدك تعرف المعلومة عن مين.",
+  "language": "ar",
+  "words": [
+    {
+      "start_ms": 119,
+      "end_ms": 329,
+      "text": "ونفس",
+      "language": "ar"
+    },
+    {
+      "start_ms": 329,
+      "end_ms": 539,
+      "text": "الفكرة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 539,
+      "end_ms": 779,
+      "text": "لو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 779,
+      "end_ms": 1289,
+      "text": "سمعت:",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2899,
+      "end_ms": 3139,
+      "text": "This",
+      "language": "en"
+    },
+    {
+      "start_ms": 3139,
+      "end_ms": 3329,
+      "text": "is",
+      "language": "en"
+    },
+    {
+      "start_ms": 3329,
+      "end_ms": 3819,
+      "text": "Layla.",
+      "language": "en"
+    },
+    {
+      "start_ms": 4189,
+      "end_ms": 4449,
+      "text": "She's",
+      "language": "en"
+    },
+    {
+      "start_ms": 4449,
+      "end_ms": 4619,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 4619,
+      "end_ms": 5089,
+      "text": "teacher.",
+      "language": "en"
+    },
+    {
+      "start_ms": 6129,
+      "end_ms": 6469,
+      "text": "المعلومة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 6469,
+      "end_ms": 6779,
+      "text": "عن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 6779,
+      "end_ms": 7329,
+      "text": "Layla،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7579,
+      "end_ms": 7859,
+      "text": "مش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7859,
+      "end_ms": 8109,
+      "text": "عن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8109,
+      "end_ms": 8419,
+      "text": "الشخص",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8419,
+      "end_ms": 8639,
+      "text": "اللي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8639,
+      "end_ms": 9079,
+      "text": "بيقدمها.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10589,
+      "end_ms": 11009,
+      "text": "الخلاصة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11009,
+      "end_ms": 11529,
+      "text": "بسيطة:",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12229,
+      "end_ms": 12539,
+      "text": "أول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12539,
+      "end_ms": 12839,
+      "text": "مرة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12839,
+      "end_ms": 13199,
+      "text": "اعرف",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13199,
+      "end_ms": 13519,
+      "text": "مين",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13519,
+      "end_ms": 14009,
+      "text": "الشخص.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14819,
+      "end_ms": 15159,
+      "text": "ثاني",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15159,
+      "end_ms": 15489,
+      "text": "مرة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15489,
+      "end_ms": 16009,
+      "text": "التقط",
+      "language": "ar"
+    },
+    {
+      "start_ms": 16009,
+      "end_ms": 16679,
+      "text": "معلومتين",
+      "language": "ar"
+    },
+    {
+      "start_ms": 16679,
+      "end_ms": 16979,
+      "text": "أو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 16979,
+      "end_ms": 17569,
+      "text": "ثلاثة.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18279,
+      "end_ms": 18589,
+      "text": "وخلي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18589,
+      "end_ms": 18919,
+      "text": "الضمير",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18919,
+      "end_ms": 19339,
+      "text": "يساعدك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19339,
+      "end_ms": 19749,
+      "text": "تعرف",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19749,
+      "end_ms": 20139,
+      "text": "المعلومة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20139,
+      "end_ms": 20459,
+      "text": "عن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20459,
+      "end_ms": 20889,
+      "text": "مين.",
+      "language": "ar"
+    }
+  ]
+}

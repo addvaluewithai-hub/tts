@@ -1,9 +1,9 @@
 {
-  "run_id": "32015497316",
+  "run_id": "32243123346",
   "run_attempt": "1",
   "event": "push",
-  "active_job": "",
-  "source_sha": "94bc650226ae0c38ebde90aa5419e0693d43d032",
+  "active_job": "u1-l02-understand-an-introduction",
+  "source_sha": "b73e8f9c7198be8eda16466ee832a65902da1bfc",
   "factory_outcome": "success",
-  "recorded_at": "2026-08-17T09:30:23Z"
+  "recorded_at": "2026-08-19T10:35:12Z"
 }

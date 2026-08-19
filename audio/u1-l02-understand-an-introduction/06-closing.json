@@ -1,0 +1,16 @@
+{
+  "source": "u1-l02-understand-an-introduction/06-closing.txt",
+  "source_sha256": "823d48a02eb8976857a71de67529efaaaee2d8a78858c79a3096d271ebbe9641",
+  "effective_config_sha256": "4e97cde1546656a273d2871bb957d556f74a773054ff35b6178475ab0e977506",
+  "model": "gemini-3.1-flash-tts-preview",
+  "speech_config": [
+    {
+      "voice": "Kore"
+    }
+  ],
+  "chunks": 1,
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "generated_at": "2026-08-19T10:34:00.800287+00:00"
+}

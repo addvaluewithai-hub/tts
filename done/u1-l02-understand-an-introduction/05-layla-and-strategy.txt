@@ -1,0 +1,13 @@
+---
+voice: Kore
+audio_profile: Warm Egyptian English teacher; natural Egyptian Arabic; clean General American English.
+scene: A quiet modern English-learning studio. One teacher speaking directly to one adult beginner.
+director_notes: Preserve the authored transcript at synthesis time. Bracketed tags and XML/IPA pronunciation markup are silent instructions and must never be spoken. Keep the Layla example light and the strategy summary memorable.
+---
+ونفس الفكرة لو سمعت:
+
+[CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="ðɪs ɪz ˈleɪlə | ʃiːz ə ˈtiːtʃɚ">This is Layla. She's a teacher.</phoneme></lang>
+
+المعلومة عن <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="ˈleɪlə">Layla</phoneme></lang>، مش عن الشخص اللي بيقدمها.
+
+الخلاصة بسيطة: أول مرة اعرف مين الشخص. ثاني مرة التقط معلومتين أو ثلاثة. وخلي الضمير يساعدك تعرف المعلومة عن مين.

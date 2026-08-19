@@ -1,0 +1,16 @@
+{
+  "source": "u1-l02-understand-an-introduction/02-find-name-and-place.txt",
+  "source_sha256": "e87e6603dfbad99a765c185307c81e880d84bc4b9e376b0c59aca3d3e27b957d",
+  "effective_config_sha256": "0057f86f5419282cb39149f669480dde8ab29f0e5e32d8c43c6e77c88018205c",
+  "model": "gemini-3.1-flash-tts-preview",
+  "speech_config": [
+    {
+      "voice": "Kore"
+    }
+  ],
+  "chunks": 1,
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "generated_at": "2026-08-19T10:32:56.660358+00:00"
+}

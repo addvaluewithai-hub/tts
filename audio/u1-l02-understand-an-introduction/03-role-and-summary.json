@@ -1,0 +1,16 @@
+{
+  "source": "u1-l02-understand-an-introduction/03-role-and-summary.txt",
+  "source_sha256": "1f79559910078eea5920fc8a33c9f396e3ff70c0a9f3d182b9e13b5f865fcdf6",
+  "effective_config_sha256": "a86b85829abb21b961aa5da9b1da5b5c29504c67f131183c654f216d2310d3c8",
+  "model": "gemini-3.1-flash-tts-preview",
+  "speech_config": [
+    {
+      "voice": "Kore"
+    }
+  ],
+  "chunks": 1,
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "generated_at": "2026-08-19T10:33:17.929680+00:00"
+}

@@ -1,0 +1,192 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/u1-l02-understand-an-introduction/02-find-name-and-place.wav",
+  "audio_sha256": "96ae551d46357b21b4620760f3d04d1cacf841ad4c2bcaf68b0bd2794d2f1b0a",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.5-flash-lite",
+  "duration_ms": 19480,
+  "text": "I'm Alex. إذن الاسم هو Alex. بعد الاسم، دوّر على إشارات صغيرة تعرفها. I'm from Canada. دي بتقول الأصل أو البلد. I live in Cairo. ودي بتقول مكان السكن دلوقتي.",
+  "language": "ar",
+  "words": [
+    {
+      "start_ms": 0,
+      "end_ms": 481,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 481,
+      "end_ms": 1141,
+      "text": "Alex.",
+      "language": "en"
+    },
+    {
+      "start_ms": 2229,
+      "end_ms": 2519,
+      "text": "إذن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2519,
+      "end_ms": 2869,
+      "text": "الاسم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2869,
+      "end_ms": 3139,
+      "text": "هو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 3289,
+      "end_ms": 4449,
+      "text": "Alex.",
+      "language": "en"
+    },
+    {
+      "start_ms": 5359,
+      "end_ms": 5699,
+      "text": "بعد",
+      "language": "ar"
+    },
+    {
+      "start_ms": 5699,
+      "end_ms": 6129,
+      "text": "الاسم،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 6189,
+      "end_ms": 6739,
+      "text": "دوّر",
+      "language": "ar"
+    },
+    {
+      "start_ms": 6739,
+      "end_ms": 7039,
+      "text": "على",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7039,
+      "end_ms": 7579,
+      "text": "إشارات",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7579,
+      "end_ms": 7969,
+      "text": "صغيرة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8229,
+      "end_ms": 8759,
+      "text": "تعرفها.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9979,
+      "end_ms": 10329,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 10329,
+      "end_ms": 10699,
+      "text": "from",
+      "language": "en"
+    },
+    {
+      "start_ms": 10699,
+      "end_ms": 11339,
+      "text": "Canada.",
+      "language": "en"
+    },
+    {
+      "start_ms": 12059,
+      "end_ms": 12389,
+      "text": "دي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12389,
+      "end_ms": 12699,
+      "text": "بتقول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12699,
+      "end_ms": 13079,
+      "text": "الأصل",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13139,
+      "end_ms": 13349,
+      "text": "أو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13349,
+      "end_ms": 13819,
+      "text": "البلد.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15009,
+      "end_ms": 15239,
+      "text": "I",
+      "language": "en"
+    },
+    {
+      "start_ms": 15239,
+      "end_ms": 15619,
+      "text": "live",
+      "language": "en"
+    },
+    {
+      "start_ms": 15619,
+      "end_ms": 15829,
+      "text": "in",
+      "language": "en"
+    },
+    {
+      "start_ms": 15829,
+      "end_ms": 16459,
+      "text": "Cairo.",
+      "language": "en"
+    },
+    {
+      "start_ms": 17269,
+      "end_ms": 17569,
+      "text": "ودي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 17569,
+      "end_ms": 17829,
+      "text": "بتقول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 17829,
+      "end_ms": 18199,
+      "text": "مكان",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18199,
+      "end_ms": 18569,
+      "text": "السكن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18569,
+      "end_ms": 19079,
+      "text": "دلوقتي.",
+      "language": "ar"
+    }
+  ]
+}

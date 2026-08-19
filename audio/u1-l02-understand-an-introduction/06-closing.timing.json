@@ -1,0 +1,204 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/u1-l02-understand-an-introduction/06-closing.wav",
+  "audio_sha256": "2cb25ccaacb9347081931697d4ef1b35840bd7ee4c4e5713b95325608893010e",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.5-flash-lite",
+  "duration_ms": 15920,
+  "text": "بعد الفيديو هتسمع أصوات جديدة فعلًا. مش مطلوب تفهم كل كلمة. المطلوب تعرف الشخص وتلتقط المعلومات الأساسية من غير نص مكتوب. ركّز على المعنى، مش على مطاردة كل كلمة. نشوفك في التطبيق.",
+  "language": "ar",
+  "words": [
+    {
+      "start_ms": 320,
+      "end_ms": 570,
+      "text": "بعد",
+      "language": "ar"
+    },
+    {
+      "start_ms": 610,
+      "end_ms": 1030,
+      "text": "الفيديو",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1100,
+      "end_ms": 1490,
+      "text": "هتسمع",
+      "language": "ar"
+    },
+    {
+      "start_ms": 1580,
+      "end_ms": 1960,
+      "text": "أصوات",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2040,
+      "end_ms": 2420,
+      "text": "جديدة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2460,
+      "end_ms": 2980,
+      "text": "فعلًا.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 3390,
+      "end_ms": 3710,
+      "text": "مش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 3760,
+      "end_ms": 4100,
+      "text": "مطلوب",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4180,
+      "end_ms": 4540,
+      "text": "تفهم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4620,
+      "end_ms": 4820,
+      "text": "كل",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4870,
+      "end_ms": 5350,
+      "text": "كلمة.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 5580,
+      "end_ms": 6050,
+      "text": "المطلوب",
+      "language": "ar"
+    },
+    {
+      "start_ms": 6120,
+      "end_ms": 6460,
+      "text": "تعرف",
+      "language": "ar"
+    },
+    {
+      "start_ms": 6510,
+      "end_ms": 6860,
+      "text": "الشخص",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7100,
+      "end_ms": 7650,
+      "text": "وتلتقط",
+      "language": "ar"
+    },
+    {
+      "start_ms": 7690,
+      "end_ms": 8200,
+      "text": "المعلومات",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8250,
+      "end_ms": 8780,
+      "text": "الأساسية",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8940,
+      "end_ms": 9180,
+      "text": "من",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9230,
+      "end_ms": 9480,
+      "text": "غير",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9520,
+      "end_ms": 9810,
+      "text": "نص",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9870,
+      "end_ms": 10330,
+      "text": "مكتوب.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 10970,
+      "end_ms": 11330,
+      "text": "ركّز",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11440,
+      "end_ms": 11680,
+      "text": "على",
+      "language": "ar"
+    },
+    {
+      "start_ms": 11730,
+      "end_ms": 12110,
+      "text": "المعنى،",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12270,
+      "end_ms": 12560,
+      "text": "مش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12620,
+      "end_ms": 12840,
+      "text": "على",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12900,
+      "end_ms": 13340,
+      "text": "مطاردة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13420,
+      "end_ms": 13620,
+      "text": "كل",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13670,
+      "end_ms": 14140,
+      "text": "كلمة.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14380,
+      "end_ms": 14810,
+      "text": "نشوفك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14880,
+      "end_ms": 15090,
+      "text": "في",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15140,
+      "end_ms": 15630,
+      "text": "التطبيق.",
+      "language": "ar"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+---
+voice: Kore
+audio_profile: Warm Egyptian English teacher; natural Egyptian Arabic; clean General American English.
+scene: A quiet modern English-learning studio. One teacher speaking directly to one adult beginner.
+director_notes: Preserve the authored transcript at synthesis time. Bracketed tags and XML/IPA pronunciation markup are silent instructions and must never be spoken. Make first-person and third-person forms audibly distinct without exaggeration.
+---
+[CLEAR, SLIGHTLY SLOWER] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="ðɪs ɪz ˈoʊmɑɹ | hiːz frəm ˈiːdʒɪpt | hiː lɪvz ɪn ˈɡiːzə | hiːz ə ˈstuːdənt">This is Omar. He's from Egypt. He lives in Giza. He's a student.</phoneme></lang>
+
+هنا المتكلم بيقدم <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="ˈoʊmɑɹ">Omar</phoneme></lang>. لما تسمع:
+
+[CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="ðɪs ɪz ˈoʊmɑɹ">This is Omar.</phoneme></lang>
+
+اعرف إن المعلومات اللي بعدها غالبًا عن <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="ˈoʊmɑɹ">Omar</phoneme></lang>.
+
+[CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="hiːz frəm ˈiːdʒɪpt">He's from Egypt.</phoneme></lang>
+
+[CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="hiː lɪvz ɪn ˈɡiːzə">He lives in Giza.</phoneme></lang>
+
+ما ننسبش المعلومات دي للمتكلم. كلها عن <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="ˈoʊmɑɹ">Omar</phoneme></lang>.

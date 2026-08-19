@@ -1,0 +1,21 @@
+{
+  "lesson": "u1-l02-understand-an-introduction",
+  "assembly_sha256": "7d154cd16d91635d40c97713b7073fb7a464b748c2e932d2fbd2847f36ff60e6",
+  "parts": [
+    "01-listen-first.wav",
+    "02-find-name-and-place.wav",
+    "03-role-and-summary.wav",
+    "04-omar-third-person.wav",
+    "05-layla-and-strategy.wav",
+    "06-closing.wav"
+  ],
+  "part_count": 6,
+  "gap_ms": 300,
+  "duration_seconds": 149.94,
+  "wav": {
+    "sample_rate_hz": 24000,
+    "channels": 1,
+    "sample_width_bytes": 2
+  },
+  "mp3_bitrate": "192k"
+}

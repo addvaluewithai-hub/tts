@@ -1,0 +1,330 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/u1-l02-understand-an-introduction/03-role-and-summary.wav",
+  "audio_sha256": "aefc48b8ac1bfcfd6821cd68dffe6d0e14990870e2bef28b9609b58c8b920e67",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.1-flash-lite",
+  "duration_ms": 33600,
+  "text": "I'm an engineer. ودي بتقول شغله. يبقى Alex من Canada، عايش في Cairo، وشغله engineer. أربع معلومات واضحة من غير ما نترجم الرسالة كلمة كلمة. دلوقتي خد بالك من فرق مهم. أحيانا الشخص بيتكلم عن نفسه وأحيانا بيقدم شخص تاني. لما يقول I'm from Canada المعلومة عن المتكلم نفسه لكن اسمع النموذج ده.",
+  "language": "en",
+  "words": [
+    {
+      "start_ms": 30,
+      "end_ms": 1130,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 1130,
+      "end_ms": 1340,
+      "text": "an",
+      "language": "en"
+    },
+    {
+      "start_ms": 1340,
+      "end_ms": 1740,
+      "text": "engineer.",
+      "language": "en"
+    },
+    {
+      "start_ms": 2340,
+      "end_ms": 2610,
+      "text": "ودي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2610,
+      "end_ms": 2980,
+      "text": "بتقول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 2980,
+      "end_ms": 3410,
+      "text": "شغله.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 4720,
+      "end_ms": 5060,
+      "text": "يبقى",
+      "language": "ar"
+    },
+    {
+      "start_ms": 5060,
+      "end_ms": 5610,
+      "text": "Alex",
+      "language": "en"
+    },
+    {
+      "start_ms": 5710,
+      "end_ms": 6120,
+      "text": "من",
+      "language": "ar"
+    },
+    {
+      "start_ms": 6120,
+      "end_ms": 6770,
+      "text": "Canada،",
+      "language": "en"
+    },
+    {
+      "start_ms": 7570,
+      "end_ms": 8010,
+      "text": "عايش",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8010,
+      "end_ms": 8220,
+      "text": "في",
+      "language": "ar"
+    },
+    {
+      "start_ms": 8220,
+      "end_ms": 8800,
+      "text": "Cairo،",
+      "language": "en"
+    },
+    {
+      "start_ms": 9300,
+      "end_ms": 9740,
+      "text": "وشغله",
+      "language": "ar"
+    },
+    {
+      "start_ms": 9970,
+      "end_ms": 10760,
+      "text": "engineer.",
+      "language": "en"
+    },
+    {
+      "start_ms": 11840,
+      "end_ms": 12180,
+      "text": "أربع",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12180,
+      "end_ms": 12750,
+      "text": "معلومات",
+      "language": "ar"
+    },
+    {
+      "start_ms": 12750,
+      "end_ms": 13320,
+      "text": "واضحة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13320,
+      "end_ms": 13610,
+      "text": "من",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13610,
+      "end_ms": 13910,
+      "text": "غير",
+      "language": "ar"
+    },
+    {
+      "start_ms": 13910,
+      "end_ms": 14240,
+      "text": "ما",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14240,
+      "end_ms": 14570,
+      "text": "نترجم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14570,
+      "end_ms": 14940,
+      "text": "الرسالة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 14940,
+      "end_ms": 15300,
+      "text": "كلمة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 15300,
+      "end_ms": 15720,
+      "text": "كلمة.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 16980,
+      "end_ms": 17460,
+      "text": "دلوقتي",
+      "language": "ar"
+    },
+    {
+      "start_ms": 17460,
+      "end_ms": 17850,
+      "text": "خد",
+      "language": "ar"
+    },
+    {
+      "start_ms": 17850,
+      "end_ms": 18130,
+      "text": "بالك",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18130,
+      "end_ms": 18360,
+      "text": "من",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18360,
+      "end_ms": 18630,
+      "text": "فرق",
+      "language": "ar"
+    },
+    {
+      "start_ms": 18630,
+      "end_ms": 18990,
+      "text": "مهم.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 19680,
+      "end_ms": 20120,
+      "text": "أحيانا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20120,
+      "end_ms": 20450,
+      "text": "الشخص",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20450,
+      "end_ms": 20870,
+      "text": "بيتكلم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 20870,
+      "end_ms": 21150,
+      "text": "عن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 21150,
+      "end_ms": 21670,
+      "text": "نفسه",
+      "language": "ar"
+    },
+    {
+      "start_ms": 22170,
+      "end_ms": 22620,
+      "text": "وأحيانا",
+      "language": "ar"
+    },
+    {
+      "start_ms": 22620,
+      "end_ms": 23060,
+      "text": "بيقدم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 23060,
+      "end_ms": 23410,
+      "text": "شخص",
+      "language": "ar"
+    },
+    {
+      "start_ms": 23410,
+      "end_ms": 23810,
+      "text": "تاني.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 24890,
+      "end_ms": 25210,
+      "text": "لما",
+      "language": "ar"
+    },
+    {
+      "start_ms": 25210,
+      "end_ms": 25520,
+      "text": "يقول",
+      "language": "ar"
+    },
+    {
+      "start_ms": 26680,
+      "end_ms": 27070,
+      "text": "I'm",
+      "language": "en"
+    },
+    {
+      "start_ms": 27070,
+      "end_ms": 27360,
+      "text": "from",
+      "language": "en"
+    },
+    {
+      "start_ms": 27360,
+      "end_ms": 27860,
+      "text": "Canada.",
+      "language": "en"
+    },
+    {
+      "start_ms": 28940,
+      "end_ms": 29420,
+      "text": "المعلومة",
+      "language": "ar"
+    },
+    {
+      "start_ms": 29420,
+      "end_ms": 29770,
+      "text": "عن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 29770,
+      "end_ms": 30200,
+      "text": "المتكلم",
+      "language": "ar"
+    },
+    {
+      "start_ms": 30200,
+      "end_ms": 30580,
+      "text": "نفسه.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 31750,
+      "end_ms": 32100,
+      "text": "لكن",
+      "language": "ar"
+    },
+    {
+      "start_ms": 32100,
+      "end_ms": 32440,
+      "text": "اسمع",
+      "language": "ar"
+    },
+    {
+      "start_ms": 32440,
+      "end_ms": 32800,
+      "text": "النموذج",
+      "language": "ar"
+    },
+    {
+      "start_ms": 32800,
+      "end_ms": 33170,
+      "text": "ده.",
+      "language": "ar"
+    }
+  ]
+}
