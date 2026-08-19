@@ -1,0 +1,9 @@
+---
+voice: Kore
+audio_profile: Warm Egyptian English teacher; natural Egyptian Arabic; clean General American English.
+scene: A quiet modern English-learning studio. One teacher speaking directly to one adult beginner.
+director_notes: Preserve the authored transcript at synthesis time. Bracketed tags are silent performance directions. Finish encouragingly without asking the learner to pause or answer.
+---
+بعد الفيديو هتسمع أصوات جديدة فعلًا. مش مطلوب تفهم كل كلمة. المطلوب تعرف الشخص وتلتقط المعلومات الأساسية من غير نص مكتوب.
+
+[ENCOURAGING] ركّز على المعنى، مش على مطاردة كل كلمة. نشوفك في التطبيق.
