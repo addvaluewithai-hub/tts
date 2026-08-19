@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "accent": "General American",
+  "entries": [
+    {"text": "Alex", "ipa": "/ˈælɪks/", "hint": "AL-iks"},
+    {"text": "Canada", "ipa": "/ˈkænədə/", "hint": "CAN-uh-duh"},
+    {"text": "Cairo", "ipa": "/ˈkaɪroʊ/", "hint": "KY-roh"},
+    {"text": "engineer", "ipa": "/ˌɛndʒəˈnɪr/", "hint": "en-juh-NEER"},
+    {"text": "This is", "ipa": "/ðɪs ɪz/", "hint": "smooth phrase"},
+    {"text": "He's", "ipa": "/hiːz/", "hint": "one smooth beat"},
+    {"text": "She’s", "ipa": "/ʃiːz/", "hint": "one smooth beat"},
+    {"text": "lives", "ipa": "/lɪvz/", "hint": "short i; final z sound"}
+  ]
+}
