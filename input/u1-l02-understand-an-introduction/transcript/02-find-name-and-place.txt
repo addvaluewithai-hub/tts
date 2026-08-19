@@ -1,0 +1,19 @@
+---
+voice: Kore
+audio_profile: Warm Egyptian English teacher; natural Egyptian Arabic; clean General American English.
+scene: A quiet modern English-learning studio. One teacher speaking directly to one adult beginner.
+director_notes: Preserve the authored transcript at synthesis time. Bracketed tags and XML/IPA pronunciation markup are silent instructions and must never be spoken. Make the English cue phrases crisp and easy to distinguish.
+---
+[CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm ˈælɪks">I'm Alex.</phoneme></lang>
+
+إذن الاسم هو <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="ˈælɪks">Alex</phoneme></lang>.
+
+بعد الاسم، دوّر على إشارات صغيرة تعرفها.
+
+[CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪm frəm ˈkænədə">I'm from Canada.</phoneme></lang>
+
+دي بتقول الأصل أو البلد.
+
+[CLEARLY] <lang xml:lang="en-US"><phoneme alphabet="ipa" ph="aɪ lɪv ɪn ˈkaɪroʊ">I live in Cairo.</phoneme></lang>
+
+ودي بتقول مكان السكن دلوقتي.
