@@ -1,9 +1,10 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>U1-L02 · Understand an Introduction</title>
+  <link rel="stylesheet" href="fonts.css" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
