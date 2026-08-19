@@ -1,0 +1,25 @@
+schema: 1
+id: u1-l02-understand-an-introduction
+title: Understand an Introduction
+kind: video
+
+course:
+  source_repo: addvaluewithai-hub/english-course
+  source_lesson: U1-L02
+  source_path: units/unit-01-first-connections/lessons/u1-l02
+
+audio:
+  enabled: true
+
+soundtrack:
+  enabled: false
+
+video:
+  enabled: true
+  engine: hyperframes
+  width: 1920
+  height: 1080
+  fps: 30
+  qa_fps: 6
+  manual_visual_review: true
+  final_review_scenes: [2, 4, 6]
