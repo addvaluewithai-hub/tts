@@ -1,0 +1,19 @@
+schema: 1
+id: alamaar-orchid-elegance
+title: Al Amaar — Orchid Elegance
+kind: brand-product-video
+
+audio:
+  enabled: true
+
+soundtrack:
+  enabled: false
+
+video:
+  enabled: true
+  engine: hyperframes
+  width: 1920
+  height: 1080
+  fps: 30
+  qa_fps: 6
+  manual_visual_review: true
