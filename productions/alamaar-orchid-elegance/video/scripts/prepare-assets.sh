@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+# Product photography is sourced from the official Al Amaar product page.
 mkdir -p assets/product
 curl -L --fail --retry 3 --silent --show-error 'https://alamaarhpl.com/wp-content/uploads/2026/07/alamaar-product-1783876221037-exec-87c76e4e-1a79-49cb-8002-c2ef5c523b3e-wpak.webp?wpakv=1785065993' -o assets/product/orchid-hero.webp
 curl -L --fail --retry 3 --silent --show-error 'https://alamaarhpl.com/wp-content/uploads/2026/07/alamaar-product-1783876205680-exec-05eba82f-98cd-4ba1-abe6-56cdbeb5321c-wpak.webp?wpakv=1785065994' -o assets/product/orchid-interior.webp
