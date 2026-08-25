@@ -1,0 +1,9 @@
+---
+voice: Kore
+audio_profile: Refined English brand narrator; warm, calm, premium, measured, precise.
+scene: A cinematic architectural materials film. Dark studio light, tactile surfaces, restrained luxury.
+director_notes: Read naturally with generous pauses. Bracketed performance tags are silent instructions and must never be spoken. Avoid an overexcited advertising tone.
+---
+[WARM, REFINED] Some surfaces fill a space. Others define it.
+
+Orchid Elegance by Al Amaar brings woven, tactile character into premium interiors — subtle in tone, rich in detail, and designed to be experienced up close.
