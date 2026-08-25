@@ -1,8 +1,8 @@
 {
-  "status": "rendering",
+  "status": "started",
   "job": "u1-l02-understand-an-introduction",
   "source_sha": "3701501b80e1e052c195193eb144d539bce21baf",
-  "run_id": "32888267613",
+  "run_id": "32888432284",
   "run_attempt": "1",
-  "rendering_at": "2026-08-25T19:13:52Z"
+  "started_at": "2026-08-25T19:14:54Z"
 }
