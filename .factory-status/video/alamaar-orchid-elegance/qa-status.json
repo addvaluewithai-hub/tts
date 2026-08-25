@@ -1,8 +1,8 @@
 {
-  "status": "started",
+  "status": "rendering",
   "job": "alamaar-orchid-elegance",
   "source_sha": "b297971c0a8762ca29cb47f536306a3746854a61",
   "run_id": "32889313852",
   "run_attempt": "1",
-  "started_at": "2026-08-25T19:23:52Z"
+  "rendering_at": "2026-08-25T19:26:05Z"
 }
