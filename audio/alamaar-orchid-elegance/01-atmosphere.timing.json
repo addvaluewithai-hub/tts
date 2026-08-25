@@ -1,0 +1,210 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/alamaar-orchid-elegance/01-atmosphere.wav",
+  "audio_sha256": "96805bbefc765d3dca30d17a3a6fb5679615c0ff6ebef9c5f257b6375cfe93ec",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.5-flash-lite",
+  "duration_ms": 21560,
+  "text": "Some surfaces fill a space. Others define it. Orchid Elegance by Al Amaar brings woven, tactile character into premium interiors — subtle in tone, rich in detail, and designed to be experienced up close.",
+  "language": "en",
+  "words": [
+    {
+      "start_ms": 320,
+      "end_ms": 860,
+      "text": "Some",
+      "language": "en"
+    },
+    {
+      "start_ms": 1050,
+      "end_ms": 1780,
+      "text": "surfaces",
+      "language": "en"
+    },
+    {
+      "start_ms": 1970,
+      "end_ms": 2340,
+      "text": "fill",
+      "language": "en"
+    },
+    {
+      "start_ms": 2420,
+      "end_ms": 2560,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 2640,
+      "end_ms": 3220,
+      "text": "space.",
+      "language": "en"
+    },
+    {
+      "start_ms": 3970,
+      "end_ms": 4610,
+      "text": "Others",
+      "language": "en"
+    },
+    {
+      "start_ms": 4820,
+      "end_ms": 5300,
+      "text": "define",
+      "language": "en"
+    },
+    {
+      "start_ms": 5510,
+      "end_ms": 5790,
+      "text": "it.",
+      "language": "en"
+    },
+    {
+      "start_ms": 6920,
+      "end_ms": 7430,
+      "text": "Orchid",
+      "language": "en"
+    },
+    {
+      "start_ms": 7570,
+      "end_ms": 8130,
+      "text": "Elegance",
+      "language": "en"
+    },
+    {
+      "start_ms": 8310,
+      "end_ms": 8570,
+      "text": "by",
+      "language": "en"
+    },
+    {
+      "start_ms": 8670,
+      "end_ms": 8980,
+      "text": "Al",
+      "language": "en"
+    },
+    {
+      "start_ms": 9040,
+      "end_ms": 9510,
+      "text": "Amaar",
+      "language": "en"
+    },
+    {
+      "start_ms": 9680,
+      "end_ms": 10100,
+      "text": "brings",
+      "language": "en"
+    },
+    {
+      "start_ms": 10170,
+      "end_ms": 10640,
+      "text": "woven,",
+      "language": "en"
+    },
+    {
+      "start_ms": 10830,
+      "end_ms": 11390,
+      "text": "tactile",
+      "language": "en"
+    },
+    {
+      "start_ms": 11520,
+      "end_ms": 12050,
+      "text": "character",
+      "language": "en"
+    },
+    {
+      "start_ms": 12170,
+      "end_ms": 12430,
+      "text": "into",
+      "language": "en"
+    },
+    {
+      "start_ms": 12560,
+      "end_ms": 13030,
+      "text": "premium",
+      "language": "en"
+    },
+    {
+      "start_ms": 13130,
+      "end_ms": 13860,
+      "text": "interiors",
+      "language": "en"
+    },
+    {
+      "start_ms": 14350,
+      "end_ms": 14930,
+      "text": "subtle",
+      "language": "en"
+    },
+    {
+      "start_ms": 15070,
+      "end_ms": 15260,
+      "text": "in",
+      "language": "en"
+    },
+    {
+      "start_ms": 15370,
+      "end_ms": 15810,
+      "text": "tone,",
+      "language": "en"
+    },
+    {
+      "start_ms": 16290,
+      "end_ms": 16750,
+      "text": "rich",
+      "language": "en"
+    },
+    {
+      "start_ms": 16890,
+      "end_ms": 17090,
+      "text": "in",
+      "language": "en"
+    },
+    {
+      "start_ms": 17180,
+      "end_ms": 17610,
+      "text": "detail,",
+      "language": "en"
+    },
+    {
+      "start_ms": 18020,
+      "end_ms": 18260,
+      "text": "and",
+      "language": "en"
+    },
+    {
+      "start_ms": 18360,
+      "end_ms": 18880,
+      "text": "designed",
+      "language": "en"
+    },
+    {
+      "start_ms": 18980,
+      "end_ms": 19160,
+      "text": "to",
+      "language": "en"
+    },
+    {
+      "start_ms": 19250,
+      "end_ms": 19470,
+      "text": "be",
+      "language": "en"
+    },
+    {
+      "start_ms": 19570,
+      "end_ms": 20260,
+      "text": "experienced",
+      "language": "en"
+    },
+    {
+      "start_ms": 20430,
+      "end_ms": 20680,
+      "text": "up",
+      "language": "en"
+    },
+    {
+      "start_ms": 20850,
+      "end_ms": 21250,
+      "text": "close.",
+      "language": "en"
+    }
+  ]
+}

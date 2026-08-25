@@ -1,0 +1,17 @@
+{
+  "lesson": "alamaar-orchid-elegance",
+  "assembly_sha256": "50aa8bee46584ce67529243c8228a0a731cd872bdfe71075b168346de12488f7",
+  "parts": [
+    "01-atmosphere.wav",
+    "02-performance.wav"
+  ],
+  "part_count": 2,
+  "gap_ms": 300,
+  "duration_seconds": 57.26,
+  "wav": {
+    "sample_rate_hz": 24000,
+    "channels": 1,
+    "sample_width_bytes": 2
+  },
+  "mp3_bitrate": "192k"
+}

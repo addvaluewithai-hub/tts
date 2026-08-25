@@ -1,0 +1,354 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/alamaar-orchid-elegance/02-performance.wav",
+  "audio_sha256": "c9658ac5c23dd810ca1fe91389d63ee752366049329ca15a866b71c933edae76",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.1-flash-lite",
+  "duration_ms": 35400,
+  "text": "Built as premium HPL, it is scratch resistant, easy to clean, durable, fade resistant, and made for everyday interior use. Available in eight-by-four and ten-by-four sheet formats, with thickness options from zero-point-eight to one-point-two millimeters. For cabinetry, wall cladding, furniture, offices, retail, and hospitality, Orchid Elegance turns material into atmosphere. Al Amaar. Surfaces that shape the space.",
+  "language": "en",
+  "words": [
+    {
+      "start_ms": 20,
+      "end_ms": 470,
+      "text": "Built",
+      "language": "en"
+    },
+    {
+      "start_ms": 470,
+      "end_ms": 680,
+      "text": "as",
+      "language": "en"
+    },
+    {
+      "start_ms": 680,
+      "end_ms": 1150,
+      "text": "premium",
+      "language": "en"
+    },
+    {
+      "start_ms": 1150,
+      "end_ms": 2220,
+      "text": "HPL,",
+      "language": "en"
+    },
+    {
+      "start_ms": 2220,
+      "end_ms": 2420,
+      "text": "it",
+      "language": "en"
+    },
+    {
+      "start_ms": 2420,
+      "end_ms": 2570,
+      "text": "is",
+      "language": "en"
+    },
+    {
+      "start_ms": 2570,
+      "end_ms": 3050,
+      "text": "scratch",
+      "language": "en"
+    },
+    {
+      "start_ms": 3050,
+      "end_ms": 3710,
+      "text": "resistant,",
+      "language": "en"
+    },
+    {
+      "start_ms": 3710,
+      "end_ms": 4180,
+      "text": "easy",
+      "language": "en"
+    },
+    {
+      "start_ms": 4180,
+      "end_ms": 4350,
+      "text": "to",
+      "language": "en"
+    },
+    {
+      "start_ms": 4350,
+      "end_ms": 5260,
+      "text": "clean,",
+      "language": "en"
+    },
+    {
+      "start_ms": 5260,
+      "end_ms": 6120,
+      "text": "durable,",
+      "language": "en"
+    },
+    {
+      "start_ms": 6120,
+      "end_ms": 7180,
+      "text": "fade",
+      "language": "en"
+    },
+    {
+      "start_ms": 7180,
+      "end_ms": 7760,
+      "text": "resistant,",
+      "language": "en"
+    },
+    {
+      "start_ms": 7760,
+      "end_ms": 8090,
+      "text": "and",
+      "language": "en"
+    },
+    {
+      "start_ms": 8090,
+      "end_ms": 8460,
+      "text": "made",
+      "language": "en"
+    },
+    {
+      "start_ms": 8460,
+      "end_ms": 8780,
+      "text": "for",
+      "language": "en"
+    },
+    {
+      "start_ms": 8780,
+      "end_ms": 9300,
+      "text": "everyday",
+      "language": "en"
+    },
+    {
+      "start_ms": 9300,
+      "end_ms": 9860,
+      "text": "interior",
+      "language": "en"
+    },
+    {
+      "start_ms": 9860,
+      "end_ms": 10420,
+      "text": "use.",
+      "language": "en"
+    },
+    {
+      "start_ms": 11840,
+      "end_ms": 12510,
+      "text": "Available",
+      "language": "en"
+    },
+    {
+      "start_ms": 12510,
+      "end_ms": 12760,
+      "text": "in",
+      "language": "en"
+    },
+    {
+      "start_ms": 12760,
+      "end_ms": 13420,
+      "text": "eight-by-four",
+      "language": "en"
+    },
+    {
+      "start_ms": 13420,
+      "end_ms": 13730,
+      "text": "and",
+      "language": "en"
+    },
+    {
+      "start_ms": 13730,
+      "end_ms": 14350,
+      "text": "ten-by-four",
+      "language": "en"
+    },
+    {
+      "start_ms": 14350,
+      "end_ms": 14690,
+      "text": "sheet",
+      "language": "en"
+    },
+    {
+      "start_ms": 14690,
+      "end_ms": 15060,
+      "text": "formats,",
+      "language": "en"
+    },
+    {
+      "start_ms": 15060,
+      "end_ms": 15400,
+      "text": "with",
+      "language": "en"
+    },
+    {
+      "start_ms": 15400,
+      "end_ms": 15850,
+      "text": "thickness",
+      "language": "en"
+    },
+    {
+      "start_ms": 15850,
+      "end_ms": 16360,
+      "text": "options",
+      "language": "en"
+    },
+    {
+      "start_ms": 16360,
+      "end_ms": 16730,
+      "text": "from",
+      "language": "en"
+    },
+    {
+      "start_ms": 16730,
+      "end_ms": 17870,
+      "text": "zero-point-eight",
+      "language": "en"
+    },
+    {
+      "start_ms": 17870,
+      "end_ms": 18190,
+      "text": "to",
+      "language": "en"
+    },
+    {
+      "start_ms": 18190,
+      "end_ms": 18880,
+      "text": "one-point-two",
+      "language": "en"
+    },
+    {
+      "start_ms": 18880,
+      "end_ms": 19680,
+      "text": "millimeters.",
+      "language": "en"
+    },
+    {
+      "start_ms": 20730,
+      "end_ms": 21100,
+      "text": "For",
+      "language": "en"
+    },
+    {
+      "start_ms": 21100,
+      "end_ms": 21820,
+      "text": "cabinetry,",
+      "language": "en"
+    },
+    {
+      "start_ms": 21820,
+      "end_ms": 22350,
+      "text": "wall",
+      "language": "en"
+    },
+    {
+      "start_ms": 22350,
+      "end_ms": 22770,
+      "text": "cladding,",
+      "language": "en"
+    },
+    {
+      "start_ms": 22770,
+      "end_ms": 23510,
+      "text": "furniture,",
+      "language": "en"
+    },
+    {
+      "start_ms": 23510,
+      "end_ms": 24200,
+      "text": "offices,",
+      "language": "en"
+    },
+    {
+      "start_ms": 24200,
+      "end_ms": 24870,
+      "text": "retail,",
+      "language": "en"
+    },
+    {
+      "start_ms": 24870,
+      "end_ms": 25300,
+      "text": "and",
+      "language": "en"
+    },
+    {
+      "start_ms": 25300,
+      "end_ms": 26180,
+      "text": "hospitality,",
+      "language": "en"
+    },
+    {
+      "start_ms": 26180,
+      "end_ms": 26610,
+      "text": "Orchid",
+      "language": "en"
+    },
+    {
+      "start_ms": 26610,
+      "end_ms": 27150,
+      "text": "Elegance",
+      "language": "en"
+    },
+    {
+      "start_ms": 27150,
+      "end_ms": 27580,
+      "text": "turns",
+      "language": "en"
+    },
+    {
+      "start_ms": 27580,
+      "end_ms": 28140,
+      "text": "material",
+      "language": "en"
+    },
+    {
+      "start_ms": 28140,
+      "end_ms": 28660,
+      "text": "into",
+      "language": "en"
+    },
+    {
+      "start_ms": 28660,
+      "end_ms": 29330,
+      "text": "atmosphere.",
+      "language": "en"
+    },
+    {
+      "start_ms": 30120,
+      "end_ms": 30450,
+      "text": "Al",
+      "language": "ar"
+    },
+    {
+      "start_ms": 30450,
+      "end_ms": 30750,
+      "text": "Amaar.",
+      "language": "ar"
+    },
+    {
+      "start_ms": 30750,
+      "end_ms": 31440,
+      "text": "Surfaces",
+      "language": "en"
+    },
+    {
+      "start_ms": 31440,
+      "end_ms": 31750,
+      "text": "that",
+      "language": "en"
+    },
+    {
+      "start_ms": 31750,
+      "end_ms": 32170,
+      "text": "shape",
+      "language": "en"
+    },
+    {
+      "start_ms": 32170,
+      "end_ms": 32360,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 32360,
+      "end_ms": 32800,
+      "text": "space.",
+      "language": "en"
+    }
+  ]
+}

@@ -1,0 +1,682 @@
+{
+  "schema_version": 2,
+  "alignment_mode": "per_part",
+  "lesson": "alamaar-orchid-elegance",
+  "source_audio": "final/alamaar-orchid-elegance.mp3",
+  "audio_sha256": "012268112604f709af1e733199e8ecacea8244445db2f718e84aa4f920b84507",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model_router": [
+    "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite"
+  ],
+  "duration_ms": 57260,
+  "generated_at": "2026-08-25T19:20:13.685142+00:00",
+  "parts": [
+    {
+      "file": "01-atmosphere.wav",
+      "start_ms": 0,
+      "end_ms": 21560,
+      "duration_ms": 21560,
+      "model": "gemini-3.5-flash-lite",
+      "word_count": 33,
+      "audio_sha256": "96805bbefc765d3dca30d17a3a6fb5679615c0ff6ebef9c5f257b6375cfe93ec"
+    },
+    {
+      "file": "02-performance.wav",
+      "start_ms": 21860,
+      "end_ms": 57260,
+      "duration_ms": 35400,
+      "model": "gemini-3.1-flash-lite",
+      "word_count": 57,
+      "audio_sha256": "c9658ac5c23dd810ca1fe91389d63ee752366049329ca15a866b71c933edae76"
+    }
+  ],
+  "segments": [
+    {
+      "start_ms": 0,
+      "end_ms": 21560,
+      "speaker": "teacher",
+      "language": "en",
+      "text": "Some surfaces fill a space. Others define it. Orchid Elegance by Al Amaar brings woven, tactile character into premium interiors — subtle in tone, rich in detail, and designed to be experienced up close."
+    },
+    {
+      "start_ms": 21860,
+      "end_ms": 57260,
+      "speaker": "teacher",
+      "language": "en",
+      "text": "Built as premium HPL, it is scratch resistant, easy to clean, durable, fade resistant, and made for everyday interior use. Available in eight-by-four and ten-by-four sheet formats, with thickness options from zero-point-eight to one-point-two millimeters. For cabinetry, wall cladding, furniture, offices, retail, and hospitality, Orchid Elegance turns material into atmosphere. Al Amaar. Surfaces that shape the space."
+    }
+  ],
+  "words": [
+    {
+      "start_ms": 320,
+      "end_ms": 860,
+      "text": "Some",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 1050,
+      "end_ms": 1780,
+      "text": "surfaces",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 1970,
+      "end_ms": 2340,
+      "text": "fill",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 2420,
+      "end_ms": 2560,
+      "text": "a",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 2640,
+      "end_ms": 3220,
+      "text": "space.",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 3970,
+      "end_ms": 4610,
+      "text": "Others",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 4820,
+      "end_ms": 5300,
+      "text": "define",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 5510,
+      "end_ms": 5790,
+      "text": "it.",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 6920,
+      "end_ms": 7430,
+      "text": "Orchid",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 7570,
+      "end_ms": 8130,
+      "text": "Elegance",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 8310,
+      "end_ms": 8570,
+      "text": "by",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 8670,
+      "end_ms": 8980,
+      "text": "Al",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 9040,
+      "end_ms": 9510,
+      "text": "Amaar",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 9680,
+      "end_ms": 10100,
+      "text": "brings",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 10170,
+      "end_ms": 10640,
+      "text": "woven,",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 10830,
+      "end_ms": 11390,
+      "text": "tactile",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 11520,
+      "end_ms": 12050,
+      "text": "character",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 12170,
+      "end_ms": 12430,
+      "text": "into",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 12560,
+      "end_ms": 13030,
+      "text": "premium",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 13130,
+      "end_ms": 13860,
+      "text": "interiors",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 14350,
+      "end_ms": 14930,
+      "text": "subtle",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 15070,
+      "end_ms": 15260,
+      "text": "in",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 15370,
+      "end_ms": 15810,
+      "text": "tone,",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 16290,
+      "end_ms": 16750,
+      "text": "rich",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 16890,
+      "end_ms": 17090,
+      "text": "in",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 17180,
+      "end_ms": 17610,
+      "text": "detail,",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 18020,
+      "end_ms": 18260,
+      "text": "and",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 18360,
+      "end_ms": 18880,
+      "text": "designed",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 18980,
+      "end_ms": 19160,
+      "text": "to",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 19250,
+      "end_ms": 19470,
+      "text": "be",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 19570,
+      "end_ms": 20260,
+      "text": "experienced",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 20430,
+      "end_ms": 20680,
+      "text": "up",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 20850,
+      "end_ms": 21250,
+      "text": "close.",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 21880,
+      "end_ms": 22330,
+      "text": "Built",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 22330,
+      "end_ms": 22540,
+      "text": "as",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 22540,
+      "end_ms": 23010,
+      "text": "premium",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 23010,
+      "end_ms": 24080,
+      "text": "HPL,",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 24080,
+      "end_ms": 24280,
+      "text": "it",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 24280,
+      "end_ms": 24430,
+      "text": "is",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 24430,
+      "end_ms": 24910,
+      "text": "scratch",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 24910,
+      "end_ms": 25570,
+      "text": "resistant,",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 25570,
+      "end_ms": 26040,
+      "text": "easy",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 26040,
+      "end_ms": 26210,
+      "text": "to",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 26210,
+      "end_ms": 27120,
+      "text": "clean,",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 27120,
+      "end_ms": 27980,
+      "text": "durable,",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 27980,
+      "end_ms": 29040,
+      "text": "fade",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 29040,
+      "end_ms": 29620,
+      "text": "resistant,",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 29620,
+      "end_ms": 29950,
+      "text": "and",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 29950,
+      "end_ms": 30320,
+      "text": "made",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 30320,
+      "end_ms": 30640,
+      "text": "for",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 30640,
+      "end_ms": 31160,
+      "text": "everyday",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 31160,
+      "end_ms": 31720,
+      "text": "interior",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 31720,
+      "end_ms": 32280,
+      "text": "use.",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 33700,
+      "end_ms": 34370,
+      "text": "Available",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 34370,
+      "end_ms": 34620,
+      "text": "in",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 34620,
+      "end_ms": 35280,
+      "text": "eight-by-four",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 35280,
+      "end_ms": 35590,
+      "text": "and",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 35590,
+      "end_ms": 36210,
+      "text": "ten-by-four",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 36210,
+      "end_ms": 36550,
+      "text": "sheet",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 36550,
+      "end_ms": 36920,
+      "text": "formats,",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 36920,
+      "end_ms": 37260,
+      "text": "with",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 37260,
+      "end_ms": 37710,
+      "text": "thickness",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 37710,
+      "end_ms": 38220,
+      "text": "options",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 38220,
+      "end_ms": 38590,
+      "text": "from",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 38590,
+      "end_ms": 39730,
+      "text": "zero-point-eight",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 39730,
+      "end_ms": 40050,
+      "text": "to",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 40050,
+      "end_ms": 40740,
+      "text": "one-point-two",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 40740,
+      "end_ms": 41540,
+      "text": "millimeters.",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 42590,
+      "end_ms": 42960,
+      "text": "For",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 42960,
+      "end_ms": 43680,
+      "text": "cabinetry,",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 43680,
+      "end_ms": 44210,
+      "text": "wall",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 44210,
+      "end_ms": 44630,
+      "text": "cladding,",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 44630,
+      "end_ms": 45370,
+      "text": "furniture,",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 45370,
+      "end_ms": 46060,
+      "text": "offices,",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 46060,
+      "end_ms": 46730,
+      "text": "retail,",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 46730,
+      "end_ms": 47160,
+      "text": "and",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 47160,
+      "end_ms": 48040,
+      "text": "hospitality,",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 48040,
+      "end_ms": 48470,
+      "text": "Orchid",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 48470,
+      "end_ms": 49010,
+      "text": "Elegance",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 49010,
+      "end_ms": 49440,
+      "text": "turns",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 49440,
+      "end_ms": 50000,
+      "text": "material",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 50000,
+      "end_ms": 50520,
+      "text": "into",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 50520,
+      "end_ms": 51190,
+      "text": "atmosphere.",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 51980,
+      "end_ms": 52310,
+      "text": "Al",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 52310,
+      "end_ms": 52610,
+      "text": "Amaar.",
+      "language": "ar",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 52610,
+      "end_ms": 53300,
+      "text": "Surfaces",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 53300,
+      "end_ms": 53610,
+      "text": "that",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 53610,
+      "end_ms": 54030,
+      "text": "shape",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 54030,
+      "end_ms": 54220,
+      "text": "the",
+      "language": "en",
+      "segment_index": 1
+    },
+    {
+      "start_ms": 54220,
+      "end_ms": 54660,
+      "text": "space.",
+      "language": "en",
+      "segment_index": 1
+    }
+  ]
+}

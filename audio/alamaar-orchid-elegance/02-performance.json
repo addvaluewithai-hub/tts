@@ -1,0 +1,16 @@
+{
+  "source": "alamaar-orchid-elegance/02-performance.txt",
+  "source_sha256": "be2702bbebd8c8b5d530066971b4ca535337d637c5d0c12bd958e2ef40d3fffb",
+  "effective_config_sha256": "ed1e7e2aecb9221b62af30a8b4137e2945efd113f506092d498a1635b8a9f133",
+  "model": "gemini-3.1-flash-tts-preview",
+  "speech_config": [
+    {
+      "voice": "Kore"
+    }
+  ],
+  "chunks": 1,
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "generated_at": "2026-08-25T19:19:53.444942+00:00"
+}
