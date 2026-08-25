@@ -1,12 +1,14 @@
 {
-  "status": "complete",
   "job": "alamaar-orchid-elegance",
   "source_sha": "b297971c0a8762ca29cb47f536306a3746854a61",
   "transcript_sha256": "5e6ea415d423ba5495e09ab7ed4f7d32997f42263308d3194eb50de96592baf6",
   "run_id": "32889313852",
+  "artifact_id": "9578912903",
+  "artifact_url": "https://github.com/addvaluewithai-hub/tts/actions/runs/32889313852/artifacts/9578912903",
   "lint_outcome": "success",
   "check_outcome": "success",
   "inspect_outcome": "success",
   "draft_outcome": "success",
-  "completed_at": "2026-08-25T19:27:03Z"
+  "manual_review_required": true,
+  "created_at": "2026-08-25T19:27:03Z"
 }
