@@ -1,0 +1,13 @@
+---
+voice: Kore
+audio_profile: Refined English brand narrator; warm, calm, premium, measured, precise.
+scene: A cinematic architectural materials film. Product photography, elegant typography, quiet confidence.
+director_notes: Keep the specification section assured and effortless. Bracketed performance tags are silent instructions and must never be spoken.
+---
+[CONFIDENT, MEASURED] Built as premium HPL, it is scratch resistant, easy to clean, durable, fade resistant, and made for everyday interior use.
+
+Available in eight-by-four and ten-by-four sheet formats, with thickness options from zero-point-eight to one-point-two millimeters.
+
+For cabinetry, wall cladding, furniture, offices, retail, and hospitality, Orchid Elegance turns material into atmosphere.
+
+[WARM CLOSE] Al Amaar. Surfaces that shape the space.
