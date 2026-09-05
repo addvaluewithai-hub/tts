@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "style": "Premium modern editorial airport photography with subtle stylized CGI polish; cinematic but believable; dark navy, warm ivory and restrained red accents; clean compositions with negative space for typography; no logos, no readable brand names, no embedded text.",
+  "requests": [
+    {
+      "id": "01-cabin-hook",
+      "prompt": "Wide symmetrical commercial aircraft cabin seen from the center aisle, many rows of dark navy seats, premium modern editorial photography with subtle stylized CGI polish, warm ivory overhead lighting, cinematic depth, clean geometry, no passengers, no logos, no text, generous negative space in the upper center for motion graphics.",
+      "aspect_ratio": "16:9",
+      "output_format": "png",
+      "references": []
+    },
+    {
+      "id": "02-empty-seat",
+      "prompt": "Single empty airplane window seat at an airport gate just before departure, soft runway lights outside the window, quiet cinematic mood, premium editorial photography, dark navy upholstery and warm ivory light, shallow depth of field, no logos, no text, composition leaves clean space on the left for a countdown and dollar overlay.",
+      "aspect_ratio": "16:9",
+      "output_format": "png",
+      "references": []
+    },
+    {
+      "id": "03-forecast-system",
+      "prompt": "Sophisticated airport operations scene with a modern boarding gate in the background and subtle translucent passenger silhouettes and probability-like glowing dots floating through the composition, premium editorial conceptual photography, believable not sci-fi, dark navy and warm ivory palette, restrained red accent, no readable screens, no text, no logos.",
+      "aspect_ratio": "16:9",
+      "output_format": "png",
+      "references": []
+    },
+    {
+      "id": "04-cabin-occupied",
+      "prompt": "Wide commercial airplane cabin mostly full of diverse adult travelers seated calmly, viewed from the center aisle, premium editorial photography with clean symmetrical framing, subtle stylized CGI polish, dark navy seats, warm overhead lighting, faces not emphasized, no logos, no text, room for numerical overlays.",
+      "aspect_ratio": "16:9",
+      "output_format": "png",
+      "references": []
+    },
+    {
+      "id": "05-gate-full",
+      "prompt": "Busy airport boarding gate packed with adult travelers and carry-on luggage, everyone appears to have shown up, calm corporate airport environment with a hint of human chaos, premium cinematic editorial photography, clean wide composition, no airline logos, no readable signs, no text, negative space for humorous overlay.",
+      "aspect_ratio": "16:9",
+      "output_format": "png",
+      "references": []
+    },
+    {
+      "id": "06-gate-agent",
+      "prompt": "Airport gate agent at a podium addressing a waiting crowd of travelers, professional calm atmosphere with subtle tension, premium editorial photography, wide cinematic composition, dark navy and warm ivory palette, no logos, no readable screens, no embedded text, clear space near the podium for a compensation counter overlay.",
+      "aspect_ratio": "16:9",
+      "output_format": "png",
+      "references": []
+    },
+    {
+      "id": "07-volunteer",
+      "prompt": "Humorous but realistic airport gate moment: one adult traveler slowly raising a hand to volunteer while their small rolling suitcase is already angled toward the exit, other travelers seated behind them, understated dry comedy, premium cinematic editorial photography, no logos, no readable text, clean composition.",
+      "aspect_ratio": "16:9",
+      "output_format": "png",
+      "references": []
+    },
+    {
+      "id": "08-empty-seat-cost",
+      "prompt": "Conceptual premium editorial image of one empty airplane seat inside a departing aircraft, dramatic but clean, runway motion visible through window, the seat visually isolated to emphasize wasted inventory, dark navy upholstery, warm ivory light, restrained red accent, no logos, no text, negative space for a large zero-dollar overlay.",
+      "aspect_ratio": "16:9",
+      "output_format": "png",
+      "references": []
+    },
+    {
+      "id": "09-compensation-cost",
+      "prompt": "Conceptual airport editorial still life: boarding pass-shaped cards, a simple payment envelope and luggage near a gate chair suggesting passenger compensation, sophisticated clean composition, premium photography, dark navy warm ivory restrained red palette, no logos, no currency text, no readable text, room for labels added later.",
+      "aspect_ratio": "16:9",
+      "output_format": "png",
+      "references": []
+    },
+    {
+      "id": "10-route-behavior",
+      "prompt": "Elegant split-scene airport editorial composition contrasting early-morning business travelers on one side with cheerful holiday leisure travelers on the other, same airport visual language, premium cinematic photography, realistic adults, no logos, no readable signage, clean central separation for overlay graphics.",
+      "aspect_ratio": "16:9",
+      "output_format": "png",
+      "references": []
+    },
+    {
+      "id": "11-seat-network",
+      "prompt": "Close cinematic view of a single airplane seat and surrounding cabin gradually framed by subtle abstract network lines and soft probability dots, sophisticated editorial conceptual photography, believable and restrained, dark navy and warm ivory palette, no text, no logos, clean center focus.",
+      "aspect_ratio": "16:9",
+      "output_format": "png",
+      "references": []
+    },
+    {
+      "id": "12-plane-final",
+      "prompt": "Minimal cinematic side view of a modern unbranded passenger aircraft in flight above soft clouds at dusk, premium editorial photography, elegant dark navy sky and warm ivory highlights, restrained red accent only in atmospheric light, lots of negative space for a final probability graphic, no logos, no text.",
+      "aspect_ratio": "16:9",
+      "output_format": "png",
+      "references": []
+    }
+  ]
+}
