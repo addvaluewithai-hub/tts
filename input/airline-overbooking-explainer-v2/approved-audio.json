@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "provider": "qwen-modal",
+  "voice": "Aiden",
+  "source_repo": "addvaluewithai-hub/free-image-editing",
+  "source_run_id": 33990949932,
+  "source_artifact": "airline-overbooking-explainer-v2-qwen-audio",
+  "release_tag": "video-factory-audio-airline-overbooking-explainer-v2-v1",
+  "bundle_url": "https://github.com/addvaluewithai-hub/free-image-editing/releases/download/video-factory-audio-airline-overbooking-explainer-v2-v1/audio-bundle.zip",
+  "bundle_sha256": "dcce088dc24b3c5ef2904a58db5d86866c44486b4ac628944f3aa7f927d77ecc",
+  "approved_for_reuse": true
+}
