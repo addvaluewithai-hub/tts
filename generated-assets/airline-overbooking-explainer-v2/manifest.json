@@ -3,103 +3,295 @@
   "job": "airline-overbooking-explainer-v2",
   "provider": "private-image-api",
   "base_url": "https://agent.wpaikits.site/v1/workflow/jobs-images",
-  "generated_at": "2026-09-05T21:01:02.578222+00:00",
+  "generated_at": "2026-09-05T23:05:10.169430+00:00",
   "items": [
     {
       "index": 1,
-      "id": "01-cabin-hook",
+      "id": "img01",
       "file": "01.png",
-      "prompt": "Wide symmetrical commercial aircraft cabin seen from the center aisle, many rows of dark navy seats, premium modern editorial photography with subtle stylized CGI polish, warm ivory overhead lighting, cinematic depth, clean geometry, no passengers, no logos, no text, generous negative space in the upper center for motion graphics.",
+      "prompt": "Wide cutaway airplane cabin with a few stickman travelers boarding, rows of seats clearly visible, one traveler looking for their seat, dynamic diagonal composition.",
       "aspect_ratio": "16:9",
-      "sha256": "2618b697402829ea31913990e19f1b2256606cd62b66446d5bbb5a21940e79b9"
+      "sha256": "53d8e94ed062b84f63cd9e6406a82db4780bb2b38ded1e2e7766ffcb6286b6eb"
     },
     {
       "index": 2,
-      "id": "02-empty-seat",
+      "id": "img02",
       "file": "02.png",
-      "prompt": "Single empty airplane window seat at an airport gate just before departure, soft runway lights outside the window, quiet cinematic mood, premium editorial photography, dark navy upholstery and warm ivory light, shallow depth of field, no logos, no text, composition leaves clean space on the left for a countdown and dollar overlay.",
+      "prompt": "Stickman airline analyst at a simple control desk calmly pressing a deliberate decision button while a plane icon and ticket icons sit nearby; mildly amused expression.",
       "aspect_ratio": "16:9",
-      "sha256": "95d4f4d4a5ef2d85921e780a9ed123ed848c1602fd78c1c1663334585092f5b9"
+      "sha256": "4057cf3a22fcae8210d76d0f534d2fa4c39f35d70d77fc914248b66635865d9c"
     },
     {
       "index": 3,
-      "id": "03-forecast-system",
+      "id": "img03",
       "file": "03.png",
-      "prompt": "Sophisticated airport operations scene with a modern boarding gate in the background and subtle translucent passenger silhouettes and probability-like glowing dots floating through the composition, premium editorial conceptual photography, believable not sci-fi, dark navy and warm ivory palette, restrained red accent, no readable screens, no text, no logos.",
+      "prompt": "Stickman traveler at home canceling a flight on a phone while a packed suitcase sits half-open, clean domestic vignette.",
       "aspect_ratio": "16:9",
-      "sha256": "1dcb1cd3e726fc2181d1c90fef5deaea641a2d81955ba7008b44bf927dbef6f2"
+      "sha256": "42940105e01ccbda28af3b0067ca9c1f9db5d5f13a05af598cfe54c7e1c9249a"
     },
     {
       "index": 4,
-      "id": "04-cabin-occupied",
+      "id": "img04",
       "file": "04.png",
-      "prompt": "Wide commercial airplane cabin mostly full of diverse adult travelers seated calmly, viewed from the center aisle, premium editorial photography with clean symmetrical framing, subtle stylized CGI polish, dark navy seats, warm overhead lighting, faces not emphasized, no logos, no text, room for numerical overlays.",
+      "prompt": "Stickman traveler sleeping peacefully through an alarm while a tiny airplane departs outside the window; dry visual humor.",
       "aspect_ratio": "16:9",
-      "sha256": "3391c4db6a3b45abe2078f0bd10d34c61e2189e2d45257945c0d19daa72938a0"
+      "sha256": "7994402df60e85f4e4600615b5ed2d2526b30dbaa0768ac733234d8cff6c70ca"
     },
     {
       "index": 5,
-      "id": "05-gate-full",
+      "id": "img05",
       "file": "05.png",
-      "prompt": "Busy airport boarding gate packed with adult travelers and carry-on luggage, everyone appears to have shown up, calm corporate airport environment with a hint of human chaos, premium cinematic editorial photography, clean wide composition, no airline logos, no readable signs, no text, negative space for humorous overlay.",
+      "prompt": "Single empty airplane seat by a window after boarding, surrounding stickman passengers seated, the empty seat isolated as the hero.",
       "aspect_ratio": "16:9",
-      "sha256": "30fe9a4c025e96fd9dfe524b19c32d49d46308ac3bd67c17209fbd03fa902992"
+      "sha256": "b78fdddddb8ee26f3e4f35b666a33ff28953529a23bf798bc7322d28499128c3"
     },
     {
       "index": 6,
-      "id": "06-gate-agent",
+      "id": "img06",
       "file": "06.png",
-      "prompt": "Airport gate agent at a podium addressing a waiting crowd of travelers, professional calm atmosphere with subtle tension, premium editorial photography, wide cinematic composition, dark navy and warm ivory palette, no logos, no readable screens, no embedded text, clear space near the podium for a compensation counter overlay.",
+      "prompt": "Stickman airline analyst observing many simplified past-flight cards and passenger silhouettes arranged like historical records, no readable labels.",
       "aspect_ratio": "16:9",
-      "sha256": "bd972ac729a4ce7e517238181f9e79affb44e5d6d74a7741f1b988f2eb73f1e0"
+      "sha256": "c3f5dd855b212757377c0bba182dee73eb4813a43fea2ae41c4b59736c3f7070"
     },
     {
       "index": 7,
-      "id": "07-volunteer",
+      "id": "img07",
       "file": "07.png",
-      "prompt": "Humorous but realistic airport gate moment: one adult traveler slowly raising a hand to volunteer while their small rolling suitcase is already angled toward the exit, other travelers seated behind them, understated dry comedy, premium cinematic editorial photography, no logos, no readable text, clean composition.",
+      "prompt": "Editorial scene of stickman analysts comparing repeated passenger-arrival patterns across several abstract flight timelines made of dots and simple plane icons.",
       "aspect_ratio": "16:9",
-      "sha256": "5419642c4d641e1a1750a0336154ef7877c78ec043fa38e3767b6a29f6ef5fec"
+      "sha256": "77863dcca72eceab56e25ce99b49ea08b79c66eebb0d677018dfd33eb08921fc"
     },
     {
       "index": 8,
-      "id": "08-empty-seat-cost",
+      "id": "img08",
       "file": "08.png",
-      "prompt": "Conceptual premium editorial image of one empty airplane seat inside a departing aircraft, dramatic but clean, runway motion visible through window, the seat visually isolated to emphasize wasted inventory, dark navy upholstery, warm ivory light, restrained red accent, no logos, no text, negative space for a large zero-dollar overlay.",
+      "prompt": "Airport gate scene where five stickman passenger silhouettes peel away from a larger group before boarding, clear countable grouping without written numbers.",
       "aspect_ratio": "16:9",
-      "sha256": "b504dabf0f7b39b60bf6ac055dcff0856cd40925f17af91c5faec01901099877"
+      "sha256": "fa109c887713bebea223ceded02e4438ca258863a35af43782e4835daf41d4c2"
     },
     {
       "index": 9,
-      "id": "09-compensation-cost",
+      "id": "img09",
       "file": "09.png",
-      "prompt": "Conceptual airport editorial still life: boarding pass-shaped cards, a simple payment envelope and luggage near a gate chair suggesting passenger compensation, sophisticated clean composition, premium photography, dark navy warm ivory restrained red palette, no logos, no currency text, no readable text, room for labels added later.",
+      "prompt": "Full airplane cabin packed neatly with stickman passengers, every seat occupied, orderly satisfying composition.",
       "aspect_ratio": "16:9",
-      "sha256": "393d29b52781d80dae28ec82a5ef7887542af8947b428bfa19f86c89593021cb"
+      "sha256": "2974579d379d27bb3e263080e908b1893f11cf3e862dd86f352c2295fbdb38f9"
     },
     {
       "index": 10,
-      "id": "10-route-behavior",
+      "id": "img10",
       "file": "10.png",
-      "prompt": "Elegant split-scene airport editorial composition contrasting early-morning business travelers on one side with cheerful holiday leisure travelers on the other, same airport visual language, premium cinematic photography, realistic adults, no logos, no readable signage, clean central separation for overlay graphics.",
+      "prompt": "Comedic stickman spreadsheet character wearing a tiny office tie receiving a miniature trophy from an analyst, sophisticated dry humor, not childish.",
       "aspect_ratio": "16:9",
-      "sha256": "87e4c803549fd8aa6dcf2aae057a5ea0daca2ae8ed38d6a2e4b4f2af6e38604c"
+      "sha256": "7d4cdc19f0c3d5a8d409667a306518dc1a34811bd0b95996bae2afa7c93312cf"
     },
     {
       "index": 11,
-      "id": "11-seat-network",
+      "id": "img11",
       "file": "11.png",
-      "prompt": "Close cinematic view of a single airplane seat and surrounding cabin gradually framed by subtle abstract network lines and soft probability dots, sophisticated editorial conceptual photography, believable and restrained, dark navy and warm ivory palette, no text, no logos, clean center focus.",
+      "prompt": "Stickman analyst holding a forecast chart made only from abstract dots while reality behind them diverges in two directions, uncertain shrug.",
       "aspect_ratio": "16:9",
-      "sha256": "0d94e9c84b62e799a8e5055a6371169188e259f20ab47325fdafe14e3bc825f3"
+      "sha256": "19c33f147fd02a4764d5c533439226014f61d05894283ca64e16f0e04f0c94e4"
     },
     {
       "index": 12,
-      "id": "12-plane-final",
+      "id": "img12",
       "file": "12.png",
-      "prompt": "Minimal cinematic side view of a modern unbranded passenger aircraft in flight above soft clouds at dusk, premium editorial photography, elegant dark navy sky and warm ivory highlights, restrained red accent only in atmospheric light, lots of negative space for a final probability graphic, no logos, no text.",
+      "prompt": "Cabin with two visibly empty seats separated among occupied stickman passengers, emphasizing the missed capacity.",
       "aspect_ratio": "16:9",
-      "sha256": "53a1ef8b402b40a2546675c532f2eda9de92bebdc9c1cedf5539cd9852a6d4ce"
+      "sha256": "df74e7b4ab2f41011bda4694a4242c992261d0664dcb7cedbd04de568d5883a1"
+    },
+    {
+      "index": 13,
+      "id": "img13",
+      "file": "13.png",
+      "prompt": "Perfectly full cabin again, stickman analyst outside frame giving a restrained thumbs-up, clean symmetry.",
+      "aspect_ratio": "16:9",
+      "sha256": "163b74d034595138218c364a1773aa20c67df12f43c08c530b155fe0aaa823fb"
+    },
+    {
+      "index": 14,
+      "id": "img14",
+      "file": "14.png",
+      "prompt": "Overcrowded airport gate packed with stickman travelers and luggage, five extra figures visibly stranded outside an implied boarding flow.",
+      "aspect_ratio": "16:9",
+      "sha256": "a3f5d3e09096af879c6eb363318d2f688f9085cbe32ecd2ca3aa580844657e1f"
+    },
+    {
+      "index": 15,
+      "id": "img15",
+      "file": "15.png",
+      "prompt": "Stickman gate agent theatrically gesturing like an auctioneer at a podium while a crowd reacts, airport gate context, adult editorial humor.",
+      "aspect_ratio": "16:9",
+      "sha256": "a0720148a5b99b41e9d5aa9e4dcc7db65876731b77f31d9e3322779fce592de3"
+    },
+    {
+      "index": 16,
+      "id": "img16",
+      "file": "16.png",
+      "prompt": "Several stickman travelers at a gate glance at one another while one tentative hand begins to rise.",
+      "aspect_ratio": "16:9",
+      "sha256": "1846dd750d3fbe779eb9138396500e2d4683b7059aa08131002a07bc336b471b"
+    },
+    {
+      "index": 17,
+      "id": "img17",
+      "file": "17.png",
+      "prompt": "Neutral editorial stickman scene of an airport gate beside an official-looking generic rule document and courthouse-like icon, no flags, logos, seals, or readable text.",
+      "aspect_ratio": "16:9",
+      "sha256": "17aeb0b5271fb290de29b122727e725bba874233d1a58740c107febfc1d8c3f3"
+    },
+    {
+      "index": 18,
+      "id": "img18",
+      "file": "18.png",
+      "prompt": "Gate agent calmly speaking with a volunteer while another worried passenger waits nearby, respectful neutral scene.",
+      "aspect_ratio": "16:9",
+      "sha256": "f130460f2a3fb8263523f6211997a34f51c653af6f5f0770be3fd0374dffa8c5"
+    },
+    {
+      "index": 19,
+      "id": "img19",
+      "file": "19.png",
+      "prompt": "Stickman crowd watching a gate display represented only by rising abstract bars while interest visibly increases.",
+      "aspect_ratio": "16:9",
+      "sha256": "c5a25686eb87681206c3f2b1cb27c724caae25c4113b09577ec48c2815d387fb"
+    },
+    {
+      "index": 20,
+      "id": "img20",
+      "file": "20.png",
+      "prompt": "One delighted stickman traveler raises a hand enthusiastically as their rolling suitcase is already moving toward the exit; surrounding travelers look surprised.",
+      "aspect_ratio": "16:9",
+      "sha256": "2d10ea6a496fa3449bc76bf996810ddc7f924eb0b01f6a92fc526ae7f93b3687"
+    },
+    {
+      "index": 21,
+      "id": "img21",
+      "file": "21.png",
+      "prompt": "Same volunteer cheerfully walking away from the gate with suitcase while the destination crowd looks baffled, dry understated gag.",
+      "aspect_ratio": "16:9",
+      "sha256": "f789d24ccc0c8efb8f5069bd6e6271afde86bfb7ad42c1a6b448066eccde700a"
+    },
+    {
+      "index": 22,
+      "id": "img22",
+      "file": "22.png",
+      "prompt": "Stickman passenger holding a compensation voucher icon while an airline analyst looks at the cost with a questioning expression.",
+      "aspect_ratio": "16:9",
+      "sha256": "413ae7502d24254cce329f954cfb5785c1b7fbee1b04d923e75a827bb7a72e14"
+    },
+    {
+      "index": 23,
+      "id": "img23",
+      "file": "23.png",
+      "prompt": "Large physical balance scale metaphor with an empty airplane seat on one side and a cluster of inconvenienced stickman passengers on the other, no labels.",
+      "aspect_ratio": "16:9",
+      "sha256": "50ff49c81dc9fca8121e503b86b6a7a3713d79fe9f84726158ef52fcb7cb2ecf"
+    },
+    {
+      "index": 24,
+      "id": "img24",
+      "file": "24.png",
+      "prompt": "Airplane departing with one empty seat visible through a cutaway window, the empty seat isolated as lost inventory.",
+      "aspect_ratio": "16:9",
+      "sha256": "744780139ddb94bacaa0f5e612c00dc3e64ca2c0987dcfaa4cf1279be1f03b2a"
+    },
+    {
+      "index": 25,
+      "id": "img25",
+      "file": "25.png",
+      "prompt": "Crowded service desk with several stickman passengers, one airline worker arranging alternate-flight icons and vouchers, controlled not chaotic.",
+      "aspect_ratio": "16:9",
+      "sha256": "ac87ca45a60a6e7c696ba8bf49e42fe57bf7f9a3c556faadb80101bc94113abe"
+    },
+    {
+      "index": 26,
+      "id": "img26",
+      "file": "26.png",
+      "prompt": "Stickman analyst delicately adding one extra ticket card to a balanced stack beside a plane, precise careful gesture, optimization metaphor.",
+      "aspect_ratio": "16:9",
+      "sha256": "2cc468729528376d9389ec1df9cc61658c546379d01133b249206b72e959483b"
+    },
+    {
+      "index": 27,
+      "id": "img27",
+      "file": "27.png",
+      "prompt": "Two different airplane scenes side by side in one illustration: one orderly commuter-heavy, one leisure-heavy, visibly different passenger behavior without text.",
+      "aspect_ratio": "16:9",
+      "sha256": "9e8eae3885b643aee486674a0492e7985e2d0273c677c169007ba40c192e28ab"
+    },
+    {
+      "index": 28,
+      "id": "img28",
+      "file": "28.png",
+      "prompt": "Morning airport scene with stickman business travelers carrying briefcases, coffee cups, purposeful fast walking, cool orderly mood.",
+      "aspect_ratio": "16:9",
+      "sha256": "98b3467e785bf7bed432d67e7cc4a633c62cca0e81cb1f5850ffc37042594a30"
+    },
+    {
+      "index": 29,
+      "id": "img29",
+      "file": "29.png",
+      "prompt": "Holiday leisure airport scene with stickman families, backpacks, sun hats and relaxed body language, warmer playful mood.",
+      "aspect_ratio": "16:9",
+      "sha256": "7fbb6f4e1b4aa22045e5a0c58aa067f573fd6d2c1eaa58db542eb60bf22655c6"
+    },
+    {
+      "index": 30,
+      "id": "img30",
+      "file": "30.png",
+      "prompt": "Stickman analyst studying abstract demand waves, booking dots, calendar shapes and passenger icons floating around a plane silhouette, no readable labels.",
+      "aspect_ratio": "16:9",
+      "sha256": "53ac08cd0029e11fcb0fcf517d273f5b4574a4b8322ecef93b6b7bbfd1283c55"
+    },
+    {
+      "index": 31,
+      "id": "img31",
+      "file": "31.png",
+      "prompt": "Editorial archive wall of repeated stickman passenger outcomes: some arrive, some cancel, some fade away, analyst comparing the history.",
+      "aspect_ratio": "16:9",
+      "sha256": "fb1470b77a47301a8556637d3c0eb8a319cc438d2d6225ffab653257137310dc"
+    },
+    {
+      "index": 32,
+      "id": "img32",
+      "file": "32.png",
+      "prompt": "Calm airline scene where the number of stickman travelers exactly matches the available seats, no extra people waiting, deliberate simplicity.",
+      "aspect_ratio": "16:9",
+      "sha256": "e3c78e3629eb483338af7ac310e30330f3be6662e65bc114a08ee91aff57767c"
+    },
+    {
+      "index": 33,
+      "id": "img33",
+      "file": "33.png",
+      "prompt": "Surreal editorial scene of several airplane seats floating like objects in a probability field while stickman travelers orbit around them.",
+      "aspect_ratio": "16:9",
+      "sha256": "3294451a36241a9d0a27e261a84e2326a70345f6478a2bfccc1b04616f912847"
+    },
+    {
+      "index": 34,
+      "id": "img34",
+      "file": "34.png",
+      "prompt": "Stickman passengers represented as solid and fading figures around airplane seats connected by clean abstract probability dots and lines, no text.",
+      "aspect_ratio": "16:9",
+      "sha256": "08d60eb146ea72ca7e015f90b8e6a3feeb6c13ad4234027556bf05489b429bef"
+    },
+    {
+      "index": 35,
+      "id": "img35",
+      "file": "35.png",
+      "prompt": "Wide airport gate scene showing booked stickman passengers along multiple paths: some reach the gate, some turn away, some fade before arrival.",
+      "aspect_ratio": "16:9",
+      "sha256": "8dda82ca6e368d566965cadee93a624d9375983e138a1a3bfc0d95db3e1bbb4a"
+    },
+    {
+      "index": 36,
+      "id": "img36",
+      "file": "36.png",
+      "prompt": "Final minimalist aircraft silhouette formed from many stickman passenger dots, with a few dots fading away before reaching it; elegant concluding composition.",
+      "aspect_ratio": "16:9",
+      "sha256": "05c26bd90b0209075d10bac4eacdf1445b5835eaaf9e613d9256e3a7a3277e1c"
     }
   ]
 }
