@@ -11,6 +11,11 @@ when they need durable local/project storage.
 The service accepts at most 20 requests per batch. This client deliberately
 accepts larger visual plans and splits them into multiple API batches while
 keeping output numbering stable across the whole plan.
+
+Visual-plan JSON may also define one top-level ``style_prefix``. The client
+prepends it to every request prompt before sending the batch. This keeps a
+channel-wide art direction consistent without duplicating a long style contract
+inside every storyboard item.
 """
 
 from __future__ import annotations
@@ -156,9 +161,21 @@ def generate_one(args: argparse.Namespace) -> None:
     print(f"Saved {out}")
 
 
+def join_style_prompt(style_prefix: str, prompt: str) -> str:
+    style = style_prefix.strip()
+    body = prompt.strip()
+    if not style:
+        return body
+    if not body:
+        return style
+    separator = " " if style.endswith((".", "!", "?", ";")) else ". "
+    return f"{style}{separator}{body}"
+
+
 def load_batch_requests(path: Path) -> list[dict[str, Any]]:
     raw = json.loads(path.read_text(encoding="utf-8"))
     requests_data = raw.get("requests") if isinstance(raw, dict) else raw
+    style_prefix = str(raw.get("style_prefix", "")) if isinstance(raw, dict) else ""
     if not isinstance(requests_data, list) or not requests_data:
         raise SystemExit("Batch JSON must contain at least one request")
 
@@ -176,7 +193,7 @@ def load_batch_requests(path: Path) -> list[dict[str, Any]]:
                 raise SystemExit(f"Batch request #{index} has an invalid reference")
         normalized.append(
             {
-                "prompt": str(item["prompt"]),
+                "prompt": join_style_prompt(style_prefix, str(item["prompt"])),
                 "aspect_ratio": str(item.get("aspect_ratio", "16:9")),
                 "output_format": str(item.get("output_format", "png")),
                 "references": refs,
