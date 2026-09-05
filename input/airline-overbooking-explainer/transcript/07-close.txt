@@ -1,0 +1,11 @@
+---
+voice: Kore
+audio_profile: Fast, conversational English explainer narrator; warm, confident, curious, lightly dry humor.
+scene: A modern visual documentary about the hidden systems behind everyday life.
+director_notes: Keep the pace brisk and natural. Bracketed performance tags are silent. Land dry jokes with a tiny pause, never with a cartoon voice.
+---
+[LANDING THE IDEA] So the weird truth is this: airlines are not really selling chairs. They're managing probabilities around chairs.
+
+Your 22A is sitting inside a model that asks one question: how many of these booked humans will actually appear at the gate?
+
+Airlines don't overbook because they forgot to count. They overbook because they counted everyone — including the people they expect not to show up.
