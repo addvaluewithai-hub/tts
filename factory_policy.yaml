@@ -1,4 +1,4 @@
-schema: 2
+schema: 3
 
 cost:
   # Keep paid stock/media-library spend disabled by default. The approved private
@@ -11,8 +11,20 @@ visuals:
   channel_art_direction: editorial_stickman
   generated_image_share_target: 0.80
   allow_text_pattern_breaks: true
-  allow_explanatory_overlays: true
+  allow_explanatory_overlays: false
   prefer_generated_images_over_html_scenes: true
+
+  # Generated illustration and precise HTML information design are separate
+  # visual modes. Readable HTML never sits over generated imagery.
+  separate_html_information_scenes: true
+  forbid_readable_html_over_generated_images: true
+  html_scene_backgrounds:
+    - solid_color
+    - gradient
+    - animated_pattern
+    - paper_texture
+    - grid
+    - probability_dots
 
   # Narrated explainers should feel edited, not like long AI-image holds.
   minimum_primary_images_for_three_minute_explainer: 30
