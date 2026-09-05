@@ -20,7 +20,7 @@ spec.loader.exec_module(process_tts_qwen)
 class ProcessTtsQwenTests(unittest.TestCase):
     def test_sanitize_removes_performance_cues_and_tags(self):
         source = "[CURIOUS, DRY] Hello <lang xml:lang='en'>world</lang>.\n\n[PAUSE] Again."
-        self.assertEqual(process_tts_qwen.sanitize_transcript(source), "Hello world.\n\nAgain.")
+        self.assertEqual(process_tts_qwen.sanitize_transcript(source), "Hello world.\nAgain.")
 
     def test_split_respects_qwen_limit(self):
         text = ("First sentence. Second sentence. Third sentence. " * 100).strip()
