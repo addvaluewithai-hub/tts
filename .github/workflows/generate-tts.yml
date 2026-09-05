@@ -62,6 +62,12 @@ jobs:
         continue-on-error: true
         shell: bash
         env:
+          # Narration synthesis: Qwen3-TTS 0.6B on private Modal deployment.
+          QWEN_TTS_API_URL: ${{ vars.QWEN_TTS_API_URL }}
+          MODAL_PROXY_TOKEN_ID: ${{ secrets.MODAL_PROXY_TOKEN_ID }}
+          MODAL_PROXY_TOKEN_SECRET: ${{ secrets.MODAL_PROXY_TOKEN_SECRET }}
+
+          # Word alignment only. Gemini is no longer the narration renderer.
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           set -uo pipefail
@@ -82,7 +88,10 @@ jobs:
               exit 0
             fi
 
-            if ! grep -q "Error code: 429" "$log_file"; then
+            # Both Modal/Qwen synthesis and the alignment provider may transiently
+            # rate-limit. Provider clients already retry individual requests; this
+            # outer loop is a bounded whole-factory recovery guard.
+            if ! grep -Eq "(HTTP |Error code: )[45]29|429" "$log_file"; then
               echo "Factory failed for a non-rate-limit reason; not retrying automatically."
               rm -f "$log_file"
               exit "$status"
@@ -90,11 +99,11 @@ jobs:
 
             rm -f "$log_file"
             if [ "$attempt" -ge "$max_factory_attempts" ]; then
-              echo "Gemini rate limit persisted after ${max_factory_attempts} attempts."
+              echo "Rate limit persisted after ${max_factory_attempts} attempts."
               exit "$status"
             fi
 
-            echo "Gemini returned 429. Waiting ${retry_delay_seconds}s, then retrying remaining work in this same run."
+            echo "Provider returned 429. Waiting ${retry_delay_seconds}s before retrying remaining work."
             sleep "$retry_delay_seconds"
           done
 
@@ -113,6 +122,7 @@ jobs:
             "event": "${GITHUB_EVENT_NAME}",
             "active_job": "${active_job}",
             "source_sha": "${current_sha}",
+            "tts_provider": "qwen_modal",
             "factory_outcome": "${{ steps.factory.outcome }}",
             "recorded_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           }

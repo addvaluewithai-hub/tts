@@ -1,10 +1,38 @@
 # Video Factory
 
-This repository is the production system for **audio-first, timing-driven videos**. The repository name is historical; TTS is now one stage of the factory, not the whole product.
+This repository is the production system for **audio-first, timing-driven, image-first videos**. The repository name is historical; TTS is one stage of the factory, not the whole product.
 
-The factory is intentionally not English-course-specific. A job can describe an English lesson, another course, an explainer, or another narrated video as long as its `input/<job-id>/` package gives the agent enough direction.
+The factory is intentionally not course-specific. A job can describe an explainer, lesson, documentary-style piece, or another narrated video as long as its `input/<job-id>/` package gives the agent enough direction.
 
-For autonomous agents, read [`AGENTS.md`](AGENTS.md) first, then [`docs/PRODUCTION_PLAYBOOK.md`](docs/PRODUCTION_PLAYBOOK.md), and [`docs/SOUNDTRACK.md`](docs/SOUNDTRACK.md) when music/SFX are enabled.
+For autonomous agents, read [`AGENTS.md`](AGENTS.md) first, then [`docs/PRODUCTION_PLAYBOOK.md`](docs/PRODUCTION_PLAYBOOK.md) and [`docs/visual-production.md`](docs/visual-production.md). Read [`docs/SOUNDTRACK.md`](docs/SOUNDTRACK.md) whenever music/SFX are enabled.
+
+## Production providers
+
+### Narration
+
+Production narration is rendered by **Qwen3-TTS 0.6B on Modal**. The deployed service lives in the separately maintained repository:
+
+`addvaluewithai-hub/free-image-editing`
+
+That repository name is legacy. For Video Factory it is a **TTS provider only**.
+
+Default English channel voice: **Aiden**.
+
+The factory calls the private Modal endpoint through `scripts/process_tts_qwen.py`. The helper client and provider notes live in [`tools/qwen-tts/`](tools/qwen-tts/).
+
+Gemini is no longer the narration renderer. It may still be used by the separate word-alignment stage until that stage is replaced.
+
+### Images
+
+Production image generation uses the private Image Generation API:
+
+```text
+https://agent.wpaikits.site/v1/workflow/jobs-images
+```
+
+It supports prompt generation, optional reference images, arbitrary supported aspect ratios, asynchronous queued jobs, and batches of up to 20 requests. Generated VPS files expire after 24 hours, so production assets should be downloaded when needed.
+
+The helper client and full contract live in [`tools/image-gen/`](tools/image-gen/).
 
 ## The one-folder input contract
 
@@ -48,17 +76,19 @@ input/<job-id>/
         ↓
 ingest active input
         ↓
-Gemini TTS short parts
+Qwen3-TTS 0.6B narration on Modal
         ↓
 assembled dry WAV + MP3
         ↓
 word-level audio alignment
         ↓
-optional Lyria music + licensed SFX soundtrack mix
+optional music + licensed SFX soundtrack mix
         ↓
 final/<job-id>.transcript.json + dry/mixed program audio
         ↓
-video source authored from direction + exact timing
+image-first storyboard + generated visual assets
+        ↓
+video source authored from images + direction + exact timing
         ↓
 HyperFrames QA render
         ↓
@@ -66,7 +96,7 @@ manual full-resolution visual review
         ↓
 hash-bound approval
         ↓
-final 1080p/30fps render + ffprobe + final-frame review
+final render + ffprobe + final-frame review
         ↓
 GitHub Actions final artifact
 ```
@@ -80,6 +110,7 @@ audio/                     retakeable generated TTS parts + timing caches
 done/                      successful TTS source state
 final/                     dry audio, timing, optional music/mix + manifests
 productions/<job-id>/video agent-authored deterministic video source
+tools/                     provider clients and durable integration docs
 .factory-status/            machine-readable audio/video workflow state
 approvals/                  manual visual approval bound to source/audio hashes
 scripts/                    factory implementation
@@ -99,10 +130,10 @@ python scripts/run_factory.py
 `run_factory.py` performs:
 
 ```text
-1. TTS         transcripts/ -> audio/ + done/
+1. TTS         transcripts/ -> audio/ + done/ via Qwen Modal
 2. Assemble    audio/<job>/ -> final/<job>.wav + .mp3
 3. Align       short WAV parts -> final transcript JSON/VTT
-4. Soundtrack  optional Lyria/local music + licensed SFX -> final/<job>.mix.wav/.mp3
+4. Soundtrack  optional music + licensed SFX -> final/<job>.mix.wav/.mp3
 ```
 
 The primary synchronization handoff remains:
@@ -125,15 +156,34 @@ Otherwise they use `final/<job-id>.wav`.
 
 - Prefer several short numbered transcript parts rather than one long TTS request.
 - Audio parts are retry/retake boundaries; **they do not define video scene count**.
-- Do not add per-part `max_chars_per_request` during normal production. The global maximum in `tts_config.yaml` is only a safety net.
-- For one speaker, use `voice:`. Use `speakers:` only for genuine multi-speaker synthesis.
-- Protect authored pronunciation/performance markup (`[WARM]`, `<lang>`, `<phoneme>`, IPA) unless intentionally revising the source.
+- Qwen's service request cap is 2400 characters; the factory targets 2200 for headroom.
+- The production preset voice is **Aiden / English** unless a job intentionally overrides it.
+- Qwen3-TTS 0.6B CustomVoice does not provide reliable free-form style instruction. Put personality into the writing, punctuation, pauses, sentence length, and chunking.
+- Renderer-only bracket cues and XML-like tags are stripped before Qwen synthesis so they are not spoken aloud.
 - `Speaker 1:`-style labels are silent role markers, not spoken copy; omit them in new single-speaker jobs.
-- On Gemini 429, preserve successful work, wait 60 seconds, and retry remaining work in the same workflow run rather than changing the lesson text.
-- Soundtrack is opt-in and Lyria generation is cached; do not make repeated paid music calls for unrelated retries.
-- Every production SFX file must have a traceable source URL and license in the job's `sfx/manifest.yaml`.
+- On provider rate limits, preserve successful work and retry infrastructure; do not rewrite narration to solve quota/transport failures.
+- Voice cloning is available through the same Modal stack, but references must be owned/authorized and high-fidelity cloning should include the exact reference transcript.
+- Soundtrack remains opt-in and independent of the narration provider.
 
-See [`docs/SOUNDTRACK.md`](docs/SOUNDTRACK.md) for the Lyria/SFX contract and sourcing policy.
+See [`tools/qwen-tts/README.md`](tools/qwen-tts/README.md) for the TTS provider contract.
+
+## Image-first visual authoring
+
+The default visual strategy is **generated-image-led storytelling**, not building every narrative scene from HTML/CSS/vector UI.
+
+As a practical editorial target:
+
+- ~70–80% generated-image-led shots;
+- ~10–20% text-led rhythm breaks with animated background patterns;
+- ~10% diagrams, labels, counters, arrows, charts, and explanatory overlays.
+
+These are defaults, not quotas. Use diagrams more heavily when the subject needs precision.
+
+Generated images should become moving shots through pan, zoom, reframing, parallax, compositing, masks, and transitions. Text-only scenes are useful for punchlines, numbers, section pivots, and short questions. Avoid turning the whole video into a slide deck.
+
+Do not ask the image model to render critical small text or exact dense diagrams. Generate the environmental/emotional frame, then add precise typography and data overlays in post.
+
+See [`docs/visual-production.md`](docs/visual-production.md) and [`tools/image-gen/README.md`](tools/image-gen/README.md).
 
 ## Video source contract
 
@@ -152,8 +202,6 @@ build-meta.json
 
 `build-meta.json` provides scene boundaries plus authoritative `finalHolds[]` and `riskBeats[]` for QA.
 
-The approved Lesson 01 V4 production is kept in this repository as the reference implementation. It demonstrates audio-driven word cues, Arabic/English layout, deterministic GSAP timing, contained Lottie, manual visual QA, and final-render verification.
-
 ## Visual QA contract
 
 Automated checks are gates, not approval. A reviewer/agent must actually open every full-resolution scene final, every risk beat, and every full-duration progression strip before creating approval.
@@ -167,7 +215,6 @@ Important hard-won rules are recorded in [`docs/PRODUCTION_PLAYBOOK.md`](docs/PR
 - `set -o pipefail` when lint/validate output is piped to `tee`;
 - `ffmpeg -nostdin` in review loops;
 - progression strips sample the whole scene;
-- Lottie registers one real AnimationItem and must be visibly reviewed;
 - approval is invalidated when source SHA or transcript hash changes.
 
 ## Final definition of done
@@ -175,27 +222,47 @@ Important hard-won rules are recorded in [`docs/PRODUCTION_PLAYBOOK.md`](docs/PR
 A video is production-ready only when all of these are true:
 
 1. dry master audio and `final/<job>.transcript.json` exist from a successful audio state;
-2. optional soundtrack, when enabled, has a current `final/<job>.soundtrack.json` and mix;
-3. authoritative video QA automation passes using the intended program audio;
-4. required QA images were manually opened and accepted;
-5. approval matches current source SHA and transcript SHA-256;
-6. final render passes;
-7. MP4 is non-empty and matches requested resolution/fps;
-8. MP4 duration is within 0.15s of the audio master;
-9. representative frames extracted from the **final MP4** were manually opened;
-10. final artifact manifest exists.
+2. optional soundtrack, when enabled, has a current soundtrack manifest and mix;
+3. intended generated image assets are downloaded into production storage and visually reviewed;
+4. authoritative video QA automation passes using the intended program audio;
+5. required QA images were manually opened and accepted;
+6. approval matches current source SHA and transcript SHA-256;
+7. final render passes;
+8. MP4 is non-empty and matches requested resolution/fps;
+9. MP4 duration matches the audio master within the production tolerance;
+10. representative frames extracted from the **final MP4** were manually opened;
+11. final artifact manifest exists.
 
-## Credentials
+## Credentials and configuration
 
-GitHub Actions requires the repository secret:
+GitHub Actions narration requires:
+
+```text
+Repository variable:
+QWEN_TTS_API_URL
+
+Repository secrets:
+MODAL_PROXY_TOKEN_ID
+MODAL_PROXY_TOKEN_SECRET
+```
+
+The current alignment stage also requires:
 
 ```text
 GEMINI_API_KEY
 ```
 
-Lyria is a paid Gemini API feature and is disabled by default. Check current Google pricing before opting a job into generated music.
+Image generation requires:
 
-Local audio work requires Python 3.12+, FFmpeg, and `GEMINI_API_KEY` (or `GOOGLE_API_KEY` for non-workflow local use where supported).
+```text
+IMAGE_API_TOKEN
+```
+
+The image client defaults to the production base URL. `IMAGE_API_BASE_URL` is an optional override for testing another deployment.
+
+Never commit credential values.
+
+Local work requires Python 3.12+ and FFmpeg:
 
 ```bash
 python -m venv .venv
