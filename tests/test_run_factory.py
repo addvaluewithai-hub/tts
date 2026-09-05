@@ -23,6 +23,15 @@ class RunFactoryTests(unittest.TestCase):
         self.assertEqual(command[-2:], ["--config", "tts_config.yaml"])
         self.assertEqual(mocked_run.call_args.kwargs["cwd"], run_factory.ROOT)
 
+    @patch.object(run_factory.subprocess, "run")
+    def test_align_stage_uses_hyperframes_aligner(self, mocked_run):
+        mocked_run.return_value.returncode = 0
+        result = run_factory.run_stage("align", Path("tts_config.yaml"))
+        self.assertEqual(result, 0)
+        command = mocked_run.call_args.args[0]
+        self.assertTrue(command[1].endswith("scripts/transcribe_final_hyperframes.py"))
+        self.assertEqual(command[-2:], ["--config", "tts_config.yaml"])
+
     @patch.object(run_factory, "run_stage")
     @patch.object(sys, "argv", ["run_factory.py"])
     def test_main_runs_stages_in_order(self, mocked_stage):

@@ -79,6 +79,22 @@ class ImageGenClientTests(unittest.TestCase):
             self.assertEqual(requests_data[0]["prompt"], "Airport gate")
             self.assertEqual(requests_data[0]["references"][0]["name"], "ref.jpg")
 
+    def test_large_visual_plan_is_accepted_and_chunked(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            request_file = Path(tmp) / "batch.json"
+            request_file.write_text(
+                json.dumps({"requests": [{"prompt": f"shot {i}"} for i in range(32)]}),
+                encoding="utf-8",
+            )
+            requests_data = image_gen_client.load_batch_requests(request_file)
+            chunks = image_gen_client.chunked(requests_data)
+            self.assertEqual(len(requests_data), 32)
+            self.assertEqual([len(chunk) for chunk in chunks], [20, 12])
+
+    def test_chunk_size_cannot_exceed_service_limit(self):
+        with self.assertRaises(ValueError):
+            image_gen_client.chunked([{"prompt": "x"}], 21)
+
     def test_collect_child_downloads(self):
         data = {
             "jobs": [

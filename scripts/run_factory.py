@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the complete audio stage (Qwen TTS → assemble → align → soundtrack)."""
+"""Run the complete audio stage (Qwen TTS → assemble → HyperFrames align → soundtrack)."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[1]
 STAGES = {
     "tts": ROOT / "scripts" / "process_tts_qwen.py",
     "assemble": ROOT / "scripts" / "assemble_lessons.py",
-    "align": ROOT / "scripts" / "transcribe_final.py",
+    "align": ROOT / "scripts" / "transcribe_final_hyperframes.py",
     "soundtrack": ROOT / "scripts" / "run_soundtrack.py",
 }
 ORDER = ("tts", "assemble", "align", "soundtrack")

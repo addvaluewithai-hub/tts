@@ -45,11 +45,17 @@ jobs:
           python-version: "3.12"
           cache: pip
 
+      - name: Set up Node for HyperFrames
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
           sudo apt-get update
           sudo apt-get install -y ffmpeg
+          npx --yes hyperframes@latest --help >/dev/null
 
       - name: Run tests
         run: python -m unittest discover -s tests -v
@@ -66,9 +72,6 @@ jobs:
           QWEN_TTS_API_URL: ${{ vars.QWEN_TTS_API_URL }}
           MODAL_PROXY_TOKEN_ID: ${{ secrets.MODAL_PROXY_TOKEN_ID }}
           MODAL_PROXY_TOKEN_SECRET: ${{ secrets.MODAL_PROXY_TOKEN_SECRET }}
-
-          # Word alignment only. Gemini is no longer the narration renderer.
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           set -uo pipefail
           max_factory_attempts=5
@@ -88,9 +91,8 @@ jobs:
               exit 0
             fi
 
-            # Both Modal/Qwen synthesis and the alignment provider may transiently
-            # rate-limit. Provider clients already retry individual requests; this
-            # outer loop is a bounded whole-factory recovery guard.
+            # Modal/Qwen may transiently rate-limit. HyperFrames alignment is local
+            # and should fail loudly instead of being treated as a provider retry.
             if ! grep -Eq "(HTTP |Error code: )[45]29|429" "$log_file"; then
               echo "Factory failed for a non-rate-limit reason; not retrying automatically."
               rm -f "$log_file"
@@ -123,6 +125,7 @@ jobs:
             "active_job": "${active_job}",
             "source_sha": "${current_sha}",
             "tts_provider": "qwen_modal",
+            "alignment_provider": "hyperframes_whisper",
             "factory_outcome": "${{ steps.factory.outcome }}",
             "recorded_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           }

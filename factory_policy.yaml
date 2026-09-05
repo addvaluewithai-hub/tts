@@ -1,4 +1,4 @@
-schema: 1
+schema: 3
 
 cost:
   # Keep paid stock/media-library spend disabled by default. The approved private
@@ -8,15 +8,47 @@ cost:
 
 visuals:
   strategy: image_first
-  generated_image_share_target: 0.75
+  channel_art_direction: editorial_stickman
+  generated_image_share_target: 0.80
   allow_text_pattern_breaks: true
-  allow_explanatory_overlays: true
+  allow_explanatory_overlays: false
   prefer_generated_images_over_html_scenes: true
+
+  # Generated illustration and precise HTML information design are separate
+  # visual modes. Readable HTML never sits over generated imagery.
+  separate_html_information_scenes: true
+  forbid_readable_html_over_generated_images: true
+  html_scene_backgrounds:
+    - solid_color
+    - gradient
+    - animated_pattern
+    - paper_texture
+    - grid
+    - probability_dots
+
+  # Narrated explainers should feel edited, not like long AI-image holds.
+  minimum_primary_images_for_three_minute_explainer: 30
+  target_primary_shots_per_minute: 11
+  target_still_hold_seconds: [2.5, 6.0]
+  maximum_uninterrupted_primary_still_seconds: 7.0
+
+  # Audio is the timing source of truth. Visual events tied to narration must use
+  # exact word/phrase anchors from final/<job>.transcript.json.
+  require_word_level_sync: true
+  fail_video_build_without_word_timing: true
+
   image_provider: private_image_api
   image_api_base_url: https://agent.wpaikits.site/v1/workflow/jobs-images
   image_api_token_env: IMAGE_API_TOKEN
-  batch_max_requests: 20
+  api_batch_max_requests: 20
+  client_auto_chunks_large_plans: true
   temporary_hosting_hours: 24
+
+hyperframes:
+  read_upstream_skills_before_authoring: true
+  preferred_workflow_for_channel: faceless-explainer
+  vendored_skills_path: vendor/hyperframes/skills
+  sync_workflow: .github/workflows/sync-hyperframes-skills.yml
 
 soundtrack:
   # Paid music generation (including Lyria) remains blocked while
