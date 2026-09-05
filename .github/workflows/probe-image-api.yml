@@ -1,0 +1,46 @@
+name: Probe Image API Route
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/probe-image-api.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Probe candidate POST routes without generating images
+        shell: bash
+        env:
+          IMAGE_API_TOKEN: ${{ secrets.IMAGE_API_TOKEN || vars.IMAGE_API_TOKEN }}
+        run: |
+          set -euo pipefail
+          test -n "${IMAGE_API_TOKEN:-}" || (echo 'IMAGE_API_TOKEN missing' && exit 2)
+          candidates=(
+            'https://agent.wpaikits.site/v1/workflow/jobs-images/jobs'
+            'https://agent.wpaikits.site/v1/workflow/jobs-images/batches'
+            'https://agent.wpaikits.site/v1/images/jobs'
+            'https://agent.wpaikits.site/v1/images/batches'
+            'https://agent.wpaikits.site/v1/workflow/jobs-images'
+            'https://agent.wpaikits.site/v1/workflow/images/jobs'
+            'https://agent.wpaikits.site/v1/workflow/images/batches'
+            'https://agent.wpaikits.site/v1/workflow/jobs/image'
+            'https://agent.wpaikits.site/v1/workflow/jobs/images'
+            'https://agent.wpaikits.site/v1/workflow/jobs-images/batch'
+          )
+          for url in "${candidates[@]}"; do
+            body=$(mktemp)
+            code=$(curl -sS --max-time 20 -o "$body" -w '%{http_code}' \
+              -X POST "$url" \
+              -H "Authorization: Bearer ${IMAGE_API_TOKEN}" \
+              -H 'Content-Type: application/json' \
+              --data '{}') || code="curl-error"
+            preview=$(tr '\n' ' ' < "$body" | head -c 180 || true)
+            rm -f "$body"
+            echo "PROBE ${code} ${url} :: ${preview}"
+          done
