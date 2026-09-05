@@ -10,9 +10,11 @@ on:
       - "input/*/job.yaml"
       - "input/*/transcript/**"
       - "input/*/pronunciation-map.json"
-      - "tts_config.yaml"
-      - "scripts/**"
-      - "tests/**"
+      - "scripts/ingest_input.py"
+      - "scripts/process_tts_qwen.py"
+      - "scripts/assemble_lessons.py"
+      - "scripts/run_soundtrack.py"
+      - "scripts/prepare_soundtrack.py"
       - "requirements.txt"
 
 permissions:
@@ -93,8 +95,6 @@ jobs:
               exit 0
             fi
 
-            # Modal/Qwen may transiently rate-limit. HyperFrames alignment is local
-            # and should fail loudly instead of being treated as a provider retry.
             if ! grep -Eq "(HTTP |Error code: )[45]29|429" "$log_file"; then
               echo "Factory failed for a non-rate-limit reason; not retrying automatically."
               rm -f "$log_file"
@@ -127,7 +127,7 @@ jobs:
             "active_job": "${active_job}",
             "source_sha": "${current_sha}",
             "tts_provider": "qwen_modal",
-            "alignment_provider": "hyperframes_whisper",
+            "alignment_provider": "external_alignment_stage",
             "factory_outcome": "${{ steps.factory.outcome }}",
             "recorded_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           }
