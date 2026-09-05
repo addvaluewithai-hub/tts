@@ -1,0 +1,11 @@
+---
+voice: Kore
+audio_profile: Fast, conversational English explainer narrator; warm, confident, curious, lightly dry humor.
+scene: A modern visual documentary about the hidden systems behind everyday life.
+director_notes: Keep the pace brisk and natural. Bracketed performance tags are silent. Land dry jokes with a tiny pause, never with a cartoon voice.
+---
+[EXPLAINING, PLAYFUL] Airlines know this. So their revenue systems study historical patterns and forecast how many booked passengers probably won't board.
+
+Imagine a 180-seat flight where the airline expects about five no-shows. Selling 185 tickets can still produce... 180 actual humans.
+
+Perfect. Every seat occupied. Everybody happy. The spreadsheet gets a tiny promotion.

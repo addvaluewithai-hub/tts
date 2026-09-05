@@ -1,0 +1,312 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/airline-overbooking-explainer/03-simulation.wav",
+  "audio_sha256": "aa0a6c5994689af552eef13aa3299e1154cfbc7cc697638bdcf339eb53493044",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.5-flash-lite",
+  "duration_ms": 24040,
+  "text": "But predictions are not promises. If seven people vanish, two seats still fly empty. If exactly five disappear, the math looks genius. And if nobody disappears... congratulations. We now have 185 passengers and 180 seats. This is the moment a calm gate announcement suddenly starts sounding like an auction.",
+  "language": "en",
+  "words": [
+    {
+      "start_ms": 0,
+      "end_ms": 410,
+      "text": "But",
+      "language": "en"
+    },
+    {
+      "start_ms": 410,
+      "end_ms": 1100,
+      "text": "predictions",
+      "language": "en"
+    },
+    {
+      "start_ms": 1100,
+      "end_ms": 1330,
+      "text": "are",
+      "language": "en"
+    },
+    {
+      "start_ms": 1330,
+      "end_ms": 1580,
+      "text": "not",
+      "language": "en"
+    },
+    {
+      "start_ms": 1580,
+      "end_ms": 2340,
+      "text": "promises.",
+      "language": "en"
+    },
+    {
+      "start_ms": 2860,
+      "end_ms": 3140,
+      "text": "If",
+      "language": "en"
+    },
+    {
+      "start_ms": 3140,
+      "end_ms": 3530,
+      "text": "seven",
+      "language": "en"
+    },
+    {
+      "start_ms": 3530,
+      "end_ms": 3890,
+      "text": "people",
+      "language": "en"
+    },
+    {
+      "start_ms": 3890,
+      "end_ms": 4540,
+      "text": "vanish,",
+      "language": "en"
+    },
+    {
+      "start_ms": 4790,
+      "end_ms": 5060,
+      "text": "two",
+      "language": "en"
+    },
+    {
+      "start_ms": 5060,
+      "end_ms": 5420,
+      "text": "seats",
+      "language": "en"
+    },
+    {
+      "start_ms": 5420,
+      "end_ms": 5660,
+      "text": "still",
+      "language": "en"
+    },
+    {
+      "start_ms": 5660,
+      "end_ms": 5910,
+      "text": "fly",
+      "language": "en"
+    },
+    {
+      "start_ms": 5910,
+      "end_ms": 6430,
+      "text": "empty.",
+      "language": "en"
+    },
+    {
+      "start_ms": 6770,
+      "end_ms": 6970,
+      "text": "If",
+      "language": "en"
+    },
+    {
+      "start_ms": 6970,
+      "end_ms": 7440,
+      "text": "exactly",
+      "language": "en"
+    },
+    {
+      "start_ms": 7440,
+      "end_ms": 7780,
+      "text": "five",
+      "language": "en"
+    },
+    {
+      "start_ms": 7780,
+      "end_ms": 8360,
+      "text": "disappear,",
+      "language": "en"
+    },
+    {
+      "start_ms": 8630,
+      "end_ms": 8800,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 8800,
+      "end_ms": 9130,
+      "text": "math",
+      "language": "en"
+    },
+    {
+      "start_ms": 9130,
+      "end_ms": 9410,
+      "text": "looks",
+      "language": "en"
+    },
+    {
+      "start_ms": 9410,
+      "end_ms": 9970,
+      "text": "genius.",
+      "language": "en"
+    },
+    {
+      "start_ms": 10420,
+      "end_ms": 10610,
+      "text": "And",
+      "language": "en"
+    },
+    {
+      "start_ms": 10610,
+      "end_ms": 10810,
+      "text": "if",
+      "language": "en"
+    },
+    {
+      "start_ms": 10810,
+      "end_ms": 11210,
+      "text": "nobody",
+      "language": "en"
+    },
+    {
+      "start_ms": 11210,
+      "end_ms": 11950,
+      "text": "disappears...",
+      "language": "en"
+    },
+    {
+      "start_ms": 12150,
+      "end_ms": 13020,
+      "text": "congratulations.",
+      "language": "en"
+    },
+    {
+      "start_ms": 13540,
+      "end_ms": 13740,
+      "text": "We",
+      "language": "en"
+    },
+    {
+      "start_ms": 13740,
+      "end_ms": 14030,
+      "text": "now",
+      "language": "en"
+    },
+    {
+      "start_ms": 14030,
+      "end_ms": 14260,
+      "text": "have",
+      "language": "en"
+    },
+    {
+      "start_ms": 14260,
+      "end_ms": 14500,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 14500,
+      "end_ms": 15000,
+      "text": "185",
+      "language": "en"
+    },
+    {
+      "start_ms": 15480,
+      "end_ms": 16290,
+      "text": "passengers",
+      "language": "en"
+    },
+    {
+      "start_ms": 16560,
+      "end_ms": 16900,
+      "text": "and",
+      "language": "en"
+    },
+    {
+      "start_ms": 16900,
+      "end_ms": 17350,
+      "text": "180",
+      "language": "en"
+    },
+    {
+      "start_ms": 17740,
+      "end_ms": 18270,
+      "text": "seats.",
+      "language": "en"
+    },
+    {
+      "start_ms": 18940,
+      "end_ms": 19230,
+      "text": "This",
+      "language": "en"
+    },
+    {
+      "start_ms": 19230,
+      "end_ms": 19430,
+      "text": "is",
+      "language": "en"
+    },
+    {
+      "start_ms": 19430,
+      "end_ms": 19600,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 19600,
+      "end_ms": 19990,
+      "text": "moment",
+      "language": "en"
+    },
+    {
+      "start_ms": 19990,
+      "end_ms": 20110,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 20110,
+      "end_ms": 20490,
+      "text": "calm",
+      "language": "en"
+    },
+    {
+      "start_ms": 20490,
+      "end_ms": 20880,
+      "text": "gate",
+      "language": "en"
+    },
+    {
+      "start_ms": 20880,
+      "end_ms": 21540,
+      "text": "announcement",
+      "language": "en"
+    },
+    {
+      "start_ms": 21740,
+      "end_ms": 22210,
+      "text": "suddenly",
+      "language": "en"
+    },
+    {
+      "start_ms": 22210,
+      "end_ms": 22560,
+      "text": "starts",
+      "language": "en"
+    },
+    {
+      "start_ms": 22560,
+      "end_ms": 23070,
+      "text": "sounding",
+      "language": "en"
+    },
+    {
+      "start_ms": 23070,
+      "end_ms": 23330,
+      "text": "like",
+      "language": "en"
+    },
+    {
+      "start_ms": 23330,
+      "end_ms": 23480,
+      "text": "an",
+      "language": "en"
+    },
+    {
+      "start_ms": 23480,
+      "end_ms": 24040,
+      "text": "auction.",
+      "language": "en"
+    }
+  ]
+}

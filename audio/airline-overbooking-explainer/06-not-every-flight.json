@@ -1,0 +1,16 @@
+{
+  "source": "airline-overbooking-explainer/06-not-every-flight.txt",
+  "source_sha256": "3ed466a7d8f91174c445363d2b54be270c4a3cff8a50c4442a4ce3e3ce35982c",
+  "effective_config_sha256": "d5372624abd962a409cec42aea2a8850552778c52036c2ebdc4c98c44e273f97",
+  "model": "gemini-3.1-flash-tts-preview",
+  "speech_config": [
+    {
+      "voice": "Kore"
+    }
+  ],
+  "chunks": 1,
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "generated_at": "2026-09-05T15:30:48.571941+00:00"
+}

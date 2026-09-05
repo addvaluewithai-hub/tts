@@ -1,0 +1,16 @@
+{
+  "source": "airline-overbooking-explainer/01-hook.txt",
+  "source_sha256": "23ecc6bfb14222f240360e82a296e5b4b391c0172c74db0446d400c237c19606",
+  "effective_config_sha256": "d5372624abd962a409cec42aea2a8850552778c52036c2ebdc4c98c44e273f97",
+  "model": "gemini-3.1-flash-tts-preview",
+  "speech_config": [
+    {
+      "voice": "Kore"
+    }
+  ],
+  "chunks": 1,
+  "sample_rate_hz": 24000,
+  "channels": 1,
+  "sample_width_bytes": 2,
+  "generated_at": "2026-09-05T15:28:33.481293+00:00"
+}

@@ -1,0 +1,324 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/airline-overbooking-explainer/01-hook.wav",
+  "audio_sha256": "13644e3cbfe3ffca8d4c43a21c3e708b457dab5cdd4e9ea397a03fdde6f942fa",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.5-flash-lite",
+  "duration_ms": 24880,
+  "text": "Your plane has 180 seats. The airline sells 185 tickets. No, nobody failed kindergarten. They did it on purpose. Because on almost every route, some passengers cancel late or simply don't show up. And an empty seat has a brutal business model: the second the plane leaves, it becomes worth exactly zero.",
+  "language": "en",
+  "words": [
+    {
+      "start_ms": 322,
+      "end_ms": 612,
+      "text": "Your",
+      "language": "en"
+    },
+    {
+      "start_ms": 612,
+      "end_ms": 1052,
+      "text": "plane",
+      "language": "en"
+    },
+    {
+      "start_ms": 1052,
+      "end_ms": 1282,
+      "text": "has",
+      "language": "en"
+    },
+    {
+      "start_ms": 1332,
+      "end_ms": 1782,
+      "text": "180",
+      "language": "en"
+    },
+    {
+      "start_ms": 1842,
+      "end_ms": 2522,
+      "text": "seats.",
+      "language": "en"
+    },
+    {
+      "start_ms": 2932,
+      "end_ms": 3222,
+      "text": "The",
+      "language": "en"
+    },
+    {
+      "start_ms": 3222,
+      "end_ms": 3612,
+      "text": "airline",
+      "language": "en"
+    },
+    {
+      "start_ms": 3702,
+      "end_ms": 4122,
+      "text": "sells",
+      "language": "en"
+    },
+    {
+      "start_ms": 4182,
+      "end_ms": 4692,
+      "text": "185",
+      "language": "en"
+    },
+    {
+      "start_ms": 4762,
+      "end_ms": 5352,
+      "text": "tickets.",
+      "language": "en"
+    },
+    {
+      "start_ms": 6122,
+      "end_ms": 6552,
+      "text": "No,",
+      "language": "en"
+    },
+    {
+      "start_ms": 6652,
+      "end_ms": 7112,
+      "text": "nobody",
+      "language": "en"
+    },
+    {
+      "start_ms": 7152,
+      "end_ms": 7572,
+      "text": "failed",
+      "language": "en"
+    },
+    {
+      "start_ms": 7602,
+      "end_ms": 8362,
+      "text": "kindergarten.",
+      "language": "en"
+    },
+    {
+      "start_ms": 8572,
+      "end_ms": 8872,
+      "text": "They",
+      "language": "en"
+    },
+    {
+      "start_ms": 8872,
+      "end_ms": 9132,
+      "text": "did",
+      "language": "en"
+    },
+    {
+      "start_ms": 9192,
+      "end_ms": 9322,
+      "text": "it",
+      "language": "en"
+    },
+    {
+      "start_ms": 9352,
+      "end_ms": 9662,
+      "text": "on",
+      "language": "en"
+    },
+    {
+      "start_ms": 9662,
+      "end_ms": 10302,
+      "text": "purpose.",
+      "language": "en"
+    },
+    {
+      "start_ms": 10922,
+      "end_ms": 11332,
+      "text": "Because",
+      "language": "en"
+    },
+    {
+      "start_ms": 11332,
+      "end_ms": 11472,
+      "text": "on",
+      "language": "en"
+    },
+    {
+      "start_ms": 11522,
+      "end_ms": 11952,
+      "text": "almost",
+      "language": "en"
+    },
+    {
+      "start_ms": 11982,
+      "end_ms": 12382,
+      "text": "every",
+      "language": "en"
+    },
+    {
+      "start_ms": 12382,
+      "end_ms": 12792,
+      "text": "route,",
+      "language": "en"
+    },
+    {
+      "start_ms": 12922,
+      "end_ms": 13322,
+      "text": "some",
+      "language": "en"
+    },
+    {
+      "start_ms": 13352,
+      "end_ms": 13952,
+      "text": "passengers",
+      "language": "en"
+    },
+    {
+      "start_ms": 13982,
+      "end_ms": 14452,
+      "text": "cancel",
+      "language": "en"
+    },
+    {
+      "start_ms": 14482,
+      "end_ms": 14852,
+      "text": "late",
+      "language": "en"
+    },
+    {
+      "start_ms": 14922,
+      "end_ms": 15152,
+      "text": "or",
+      "language": "en"
+    },
+    {
+      "start_ms": 15212,
+      "end_ms": 15612,
+      "text": "simply",
+      "language": "en"
+    },
+    {
+      "start_ms": 15642,
+      "end_ms": 15952,
+      "text": "don't",
+      "language": "en"
+    },
+    {
+      "start_ms": 16002,
+      "end_ms": 16292,
+      "text": "show",
+      "language": "en"
+    },
+    {
+      "start_ms": 16322,
+      "end_ms": 16672,
+      "text": "up.",
+      "language": "en"
+    },
+    {
+      "start_ms": 16962,
+      "end_ms": 17292,
+      "text": "And",
+      "language": "en"
+    },
+    {
+      "start_ms": 17352,
+      "end_ms": 17512,
+      "text": "an",
+      "language": "en"
+    },
+    {
+      "start_ms": 17572,
+      "end_ms": 17952,
+      "text": "empty",
+      "language": "en"
+    },
+    {
+      "start_ms": 17982,
+      "end_ms": 18272,
+      "text": "seat",
+      "language": "en"
+    },
+    {
+      "start_ms": 18332,
+      "end_ms": 18632,
+      "text": "has",
+      "language": "en"
+    },
+    {
+      "start_ms": 18672,
+      "end_ms": 18772,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 18832,
+      "end_ms": 19282,
+      "text": "brutal",
+      "language": "en"
+    },
+    {
+      "start_ms": 19322,
+      "end_ms": 19782,
+      "text": "business",
+      "language": "en"
+    },
+    {
+      "start_ms": 19822,
+      "end_ms": 20382,
+      "text": "model:",
+      "language": "en"
+    },
+    {
+      "start_ms": 20492,
+      "end_ms": 20732,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 20792,
+      "end_ms": 21102,
+      "text": "second",
+      "language": "en"
+    },
+    {
+      "start_ms": 21162,
+      "end_ms": 21322,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 21352,
+      "end_ms": 21742,
+      "text": "plane",
+      "language": "en"
+    },
+    {
+      "start_ms": 21772,
+      "end_ms": 22232,
+      "text": "leaves,",
+      "language": "en"
+    },
+    {
+      "start_ms": 22352,
+      "end_ms": 22532,
+      "text": "it",
+      "language": "en"
+    },
+    {
+      "start_ms": 22562,
+      "end_ms": 22962,
+      "text": "becomes",
+      "language": "en"
+    },
+    {
+      "start_ms": 23012,
+      "end_ms": 23372,
+      "text": "worth",
+      "language": "en"
+    },
+    {
+      "start_ms": 23442,
+      "end_ms": 23902,
+      "text": "exactly",
+      "language": "en"
+    },
+    {
+      "start_ms": 23972,
+      "end_ms": 24512,
+      "text": "zero.",
+      "language": "en"
+    }
+  ]
+}

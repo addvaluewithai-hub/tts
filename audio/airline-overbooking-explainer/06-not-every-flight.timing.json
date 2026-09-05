@@ -1,0 +1,372 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/airline-overbooking-explainer/06-not-every-flight.wav",
+  "audio_sha256": "a81426e3ab391acfa5f664d1e2a34670be217514be85e90ab3213d22a6f654c0",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.1-flash-lite",
+  "duration_ms": 24120,
+  "text": "And the number is not the same for every flight. A Monday morning business route may behave differently from a holiday flight. Airlines use demand forecasts, booking behavior, cancellations, and historical no-show patterns to decide how much overbooking — if any — a flight can tolerate. Some airlines don't oversell at all. The system is a forecast, not a rule.",
+  "language": "en",
+  "words": [
+    {
+      "start_ms": 30,
+      "end_ms": 150,
+      "text": "And",
+      "language": "en"
+    },
+    {
+      "start_ms": 150,
+      "end_ms": 320,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 320,
+      "end_ms": 670,
+      "text": "number",
+      "language": "en"
+    },
+    {
+      "start_ms": 780,
+      "end_ms": 1130,
+      "text": "is",
+      "language": "en"
+    },
+    {
+      "start_ms": 1130,
+      "end_ms": 1390,
+      "text": "not",
+      "language": "en"
+    },
+    {
+      "start_ms": 1390,
+      "end_ms": 1660,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 1660,
+      "end_ms": 1940,
+      "text": "same",
+      "language": "en"
+    },
+    {
+      "start_ms": 1940,
+      "end_ms": 2300,
+      "text": "for",
+      "language": "en"
+    },
+    {
+      "start_ms": 2300,
+      "end_ms": 2580,
+      "text": "every",
+      "language": "en"
+    },
+    {
+      "start_ms": 2580,
+      "end_ms": 3080,
+      "text": "flight.",
+      "language": "en"
+    },
+    {
+      "start_ms": 3570,
+      "end_ms": 3810,
+      "text": "A",
+      "language": "en"
+    },
+    {
+      "start_ms": 3810,
+      "end_ms": 4180,
+      "text": "Monday",
+      "language": "en"
+    },
+    {
+      "start_ms": 4180,
+      "end_ms": 4480,
+      "text": "morning",
+      "language": "en"
+    },
+    {
+      "start_ms": 4480,
+      "end_ms": 4820,
+      "text": "business",
+      "language": "en"
+    },
+    {
+      "start_ms": 4820,
+      "end_ms": 5260,
+      "text": "route",
+      "language": "en"
+    },
+    {
+      "start_ms": 5260,
+      "end_ms": 5600,
+      "text": "may",
+      "language": "en"
+    },
+    {
+      "start_ms": 5600,
+      "end_ms": 5990,
+      "text": "behave",
+      "language": "en"
+    },
+    {
+      "start_ms": 5990,
+      "end_ms": 6430,
+      "text": "differently",
+      "language": "en"
+    },
+    {
+      "start_ms": 6430,
+      "end_ms": 6770,
+      "text": "from",
+      "language": "en"
+    },
+    {
+      "start_ms": 6770,
+      "end_ms": 6930,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 6930,
+      "end_ms": 7250,
+      "text": "holiday",
+      "language": "en"
+    },
+    {
+      "start_ms": 7250,
+      "end_ms": 7690,
+      "text": "flight.",
+      "language": "en"
+    },
+    {
+      "start_ms": 7920,
+      "end_ms": 8450,
+      "text": "Airlines",
+      "language": "en"
+    },
+    {
+      "start_ms": 8450,
+      "end_ms": 8750,
+      "text": "use",
+      "language": "en"
+    },
+    {
+      "start_ms": 8750,
+      "end_ms": 9170,
+      "text": "demand",
+      "language": "en"
+    },
+    {
+      "start_ms": 9170,
+      "end_ms": 9810,
+      "text": "forecasts,",
+      "language": "en"
+    },
+    {
+      "start_ms": 9810,
+      "end_ms": 10240,
+      "text": "booking",
+      "language": "en"
+    },
+    {
+      "start_ms": 10240,
+      "end_ms": 10720,
+      "text": "behavior,",
+      "language": "en"
+    },
+    {
+      "start_ms": 10720,
+      "end_ms": 11620,
+      "text": "cancellations,",
+      "language": "en"
+    },
+    {
+      "start_ms": 11620,
+      "end_ms": 12150,
+      "text": "and",
+      "language": "en"
+    },
+    {
+      "start_ms": 12150,
+      "end_ms": 12690,
+      "text": "historical",
+      "language": "en"
+    },
+    {
+      "start_ms": 12690,
+      "end_ms": 13350,
+      "text": "no-show",
+      "language": "en"
+    },
+    {
+      "start_ms": 13350,
+      "end_ms": 13810,
+      "text": "patterns",
+      "language": "en"
+    },
+    {
+      "start_ms": 13810,
+      "end_ms": 14170,
+      "text": "to",
+      "language": "en"
+    },
+    {
+      "start_ms": 14170,
+      "end_ms": 14450,
+      "text": "decide",
+      "language": "en"
+    },
+    {
+      "start_ms": 14450,
+      "end_ms": 14810,
+      "text": "how",
+      "language": "en"
+    },
+    {
+      "start_ms": 14810,
+      "end_ms": 15150,
+      "text": "much",
+      "language": "en"
+    },
+    {
+      "start_ms": 15150,
+      "end_ms": 15730,
+      "text": "overbooking",
+      "language": "en"
+    },
+    {
+      "start_ms": 16000,
+      "end_ms": 16300,
+      "text": "—",
+      "language": "en"
+    },
+    {
+      "start_ms": 16300,
+      "end_ms": 16460,
+      "text": "if",
+      "language": "en"
+    },
+    {
+      "start_ms": 16460,
+      "end_ms": 16810,
+      "text": "any",
+      "language": "en"
+    },
+    {
+      "start_ms": 16810,
+      "end_ms": 17090,
+      "text": "—",
+      "language": "en"
+    },
+    {
+      "start_ms": 17090,
+      "end_ms": 17350,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 17350,
+      "end_ms": 17610,
+      "text": "flight",
+      "language": "en"
+    },
+    {
+      "start_ms": 17610,
+      "end_ms": 17930,
+      "text": "can",
+      "language": "en"
+    },
+    {
+      "start_ms": 17930,
+      "end_ms": 18450,
+      "text": "tolerate.",
+      "language": "en"
+    },
+    {
+      "start_ms": 18880,
+      "end_ms": 19280,
+      "text": "Some",
+      "language": "en"
+    },
+    {
+      "start_ms": 19280,
+      "end_ms": 19570,
+      "text": "airlines",
+      "language": "en"
+    },
+    {
+      "start_ms": 19570,
+      "end_ms": 19930,
+      "text": "don't",
+      "language": "en"
+    },
+    {
+      "start_ms": 19930,
+      "end_ms": 20210,
+      "text": "oversell",
+      "language": "en"
+    },
+    {
+      "start_ms": 20210,
+      "end_ms": 20450,
+      "text": "at",
+      "language": "en"
+    },
+    {
+      "start_ms": 20450,
+      "end_ms": 20730,
+      "text": "all.",
+      "language": "en"
+    },
+    {
+      "start_ms": 21100,
+      "end_ms": 21390,
+      "text": "The",
+      "language": "en"
+    },
+    {
+      "start_ms": 21390,
+      "end_ms": 21820,
+      "text": "system",
+      "language": "en"
+    },
+    {
+      "start_ms": 21820,
+      "end_ms": 22160,
+      "text": "is",
+      "language": "en"
+    },
+    {
+      "start_ms": 22160,
+      "end_ms": 22350,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 22350,
+      "end_ms": 22970,
+      "text": "forecast,",
+      "language": "en"
+    },
+    {
+      "start_ms": 23070,
+      "end_ms": 23370,
+      "text": "not",
+      "language": "en"
+    },
+    {
+      "start_ms": 23370,
+      "end_ms": 23600,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 23600,
+      "end_ms": 24040,
+      "text": "rule.",
+      "language": "en"
+    }
+  ]
+}

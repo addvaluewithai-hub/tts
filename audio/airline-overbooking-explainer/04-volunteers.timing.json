@@ -1,0 +1,402 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/airline-overbooking-explainer/04-volunteers.wav",
+  "audio_sha256": "e55b81d2571cbfc5fa2db3709d9d3ffe4fe0019bec707354ced9c471574d1fe7",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.1-flash-lite",
+  "duration_ms": 27280,
+  "text": "First, airlines may ask for volunteers to take a later flight in exchange for compensation. In the United States, the Department of Transportation requires airlines to seek volunteers before involuntarily denying boarding because of an oversale. Exact rules vary by country. This is why you sometimes hear the offer climb: two hundred dollars... four hundred... and suddenly somebody remembers they never liked this destination anyway.",
+  "language": "en",
+  "words": [
+    {
+      "start_ms": 0,
+      "end_ms": 506,
+      "text": "First,",
+      "language": "en"
+    },
+    {
+      "start_ms": 506,
+      "end_ms": 946,
+      "text": "airlines",
+      "language": "en"
+    },
+    {
+      "start_ms": 946,
+      "end_ms": 1156,
+      "text": "may",
+      "language": "en"
+    },
+    {
+      "start_ms": 1156,
+      "end_ms": 1396,
+      "text": "ask",
+      "language": "en"
+    },
+    {
+      "start_ms": 1396,
+      "end_ms": 1626,
+      "text": "for",
+      "language": "en"
+    },
+    {
+      "start_ms": 1626,
+      "end_ms": 2236,
+      "text": "volunteers",
+      "language": "en"
+    },
+    {
+      "start_ms": 2236,
+      "end_ms": 2426,
+      "text": "to",
+      "language": "en"
+    },
+    {
+      "start_ms": 2426,
+      "end_ms": 2696,
+      "text": "take",
+      "language": "en"
+    },
+    {
+      "start_ms": 2696,
+      "end_ms": 2846,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 2846,
+      "end_ms": 3136,
+      "text": "later",
+      "language": "en"
+    },
+    {
+      "start_ms": 3136,
+      "end_ms": 3496,
+      "text": "flight",
+      "language": "en"
+    },
+    {
+      "start_ms": 3616,
+      "end_ms": 3936,
+      "text": "in",
+      "language": "en"
+    },
+    {
+      "start_ms": 3936,
+      "end_ms": 4356,
+      "text": "exchange",
+      "language": "en"
+    },
+    {
+      "start_ms": 4356,
+      "end_ms": 4656,
+      "text": "for",
+      "language": "en"
+    },
+    {
+      "start_ms": 4656,
+      "end_ms": 5306,
+      "text": "compensation.",
+      "language": "en"
+    },
+    {
+      "start_ms": 5866,
+      "end_ms": 6126,
+      "text": "In",
+      "language": "en"
+    },
+    {
+      "start_ms": 6126,
+      "end_ms": 6256,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 6256,
+      "end_ms": 6546,
+      "text": "United",
+      "language": "en"
+    },
+    {
+      "start_ms": 6546,
+      "end_ms": 6936,
+      "text": "States,",
+      "language": "en"
+    },
+    {
+      "start_ms": 6936,
+      "end_ms": 7136,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 7136,
+      "end_ms": 7456,
+      "text": "Department",
+      "language": "en"
+    },
+    {
+      "start_ms": 7456,
+      "end_ms": 7616,
+      "text": "of",
+      "language": "en"
+    },
+    {
+      "start_ms": 7616,
+      "end_ms": 8226,
+      "text": "Transportation",
+      "language": "en"
+    },
+    {
+      "start_ms": 8296,
+      "end_ms": 8946,
+      "text": "requires",
+      "language": "en"
+    },
+    {
+      "start_ms": 8946,
+      "end_ms": 9306,
+      "text": "airlines",
+      "language": "en"
+    },
+    {
+      "start_ms": 9306,
+      "end_ms": 9516,
+      "text": "to",
+      "language": "en"
+    },
+    {
+      "start_ms": 9516,
+      "end_ms": 9846,
+      "text": "seek",
+      "language": "en"
+    },
+    {
+      "start_ms": 9846,
+      "end_ms": 10566,
+      "text": "volunteers",
+      "language": "en"
+    },
+    {
+      "start_ms": 10736,
+      "end_ms": 11346,
+      "text": "before",
+      "language": "en"
+    },
+    {
+      "start_ms": 11466,
+      "end_ms": 12196,
+      "text": "involuntarily",
+      "language": "en"
+    },
+    {
+      "start_ms": 12196,
+      "end_ms": 12696,
+      "text": "denying",
+      "language": "en"
+    },
+    {
+      "start_ms": 12696,
+      "end_ms": 13086,
+      "text": "boarding",
+      "language": "en"
+    },
+    {
+      "start_ms": 13086,
+      "end_ms": 13356,
+      "text": "because",
+      "language": "en"
+    },
+    {
+      "start_ms": 13356,
+      "end_ms": 13496,
+      "text": "of",
+      "language": "en"
+    },
+    {
+      "start_ms": 13496,
+      "end_ms": 13646,
+      "text": "an",
+      "language": "en"
+    },
+    {
+      "start_ms": 13646,
+      "end_ms": 14176,
+      "text": "oversale.",
+      "language": "en"
+    },
+    {
+      "start_ms": 14456,
+      "end_ms": 14816,
+      "text": "Exact",
+      "language": "en"
+    },
+    {
+      "start_ms": 14816,
+      "end_ms": 15096,
+      "text": "rules",
+      "language": "en"
+    },
+    {
+      "start_ms": 15096,
+      "end_ms": 15376,
+      "text": "vary",
+      "language": "en"
+    },
+    {
+      "start_ms": 15376,
+      "end_ms": 15516,
+      "text": "by",
+      "language": "en"
+    },
+    {
+      "start_ms": 15516,
+      "end_ms": 15946,
+      "text": "country.",
+      "language": "en"
+    },
+    {
+      "start_ms": 16456,
+      "end_ms": 16736,
+      "text": "This",
+      "language": "en"
+    },
+    {
+      "start_ms": 16736,
+      "end_ms": 16896,
+      "text": "is",
+      "language": "en"
+    },
+    {
+      "start_ms": 16896,
+      "end_ms": 17096,
+      "text": "why",
+      "language": "en"
+    },
+    {
+      "start_ms": 17096,
+      "end_ms": 17306,
+      "text": "you",
+      "language": "en"
+    },
+    {
+      "start_ms": 17306,
+      "end_ms": 17746,
+      "text": "sometimes",
+      "language": "en"
+    },
+    {
+      "start_ms": 17746,
+      "end_ms": 18056,
+      "text": "hear",
+      "language": "en"
+    },
+    {
+      "start_ms": 18056,
+      "end_ms": 18276,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 18276,
+      "end_ms": 18556,
+      "text": "offer",
+      "language": "en"
+    },
+    {
+      "start_ms": 18636,
+      "end_ms": 19286,
+      "text": "climb:",
+      "language": "en"
+    },
+    {
+      "start_ms": 19686,
+      "end_ms": 20456,
+      "text": "two",
+      "language": "en"
+    },
+    {
+      "start_ms": 20456,
+      "end_ms": 20956,
+      "text": "hundred",
+      "language": "en"
+    },
+    {
+      "start_ms": 20956,
+      "end_ms": 21546,
+      "text": "dollars...",
+      "language": "en"
+    },
+    {
+      "start_ms": 21576,
+      "end_ms": 22236,
+      "text": "four",
+      "language": "en"
+    },
+    {
+      "start_ms": 22236,
+      "end_ms": 22676,
+      "text": "hundred...",
+      "language": "en"
+    },
+    {
+      "start_ms": 22896,
+      "end_ms": 23296,
+      "text": "and",
+      "language": "en"
+    },
+    {
+      "start_ms": 23296,
+      "end_ms": 23746,
+      "text": "suddenly",
+      "language": "en"
+    },
+    {
+      "start_ms": 23836,
+      "end_ms": 24266,
+      "text": "somebody",
+      "language": "en"
+    },
+    {
+      "start_ms": 24266,
+      "end_ms": 24706,
+      "text": "remembers",
+      "language": "en"
+    },
+    {
+      "start_ms": 24706,
+      "end_ms": 24966,
+      "text": "they",
+      "language": "en"
+    },
+    {
+      "start_ms": 24966,
+      "end_ms": 25426,
+      "text": "never",
+      "language": "en"
+    },
+    {
+      "start_ms": 25426,
+      "end_ms": 25776,
+      "text": "liked",
+      "language": "en"
+    },
+    {
+      "start_ms": 25776,
+      "end_ms": 26036,
+      "text": "this",
+      "language": "en"
+    },
+    {
+      "start_ms": 26036,
+      "end_ms": 26466,
+      "text": "destination",
+      "language": "en"
+    },
+    {
+      "start_ms": 26466,
+      "end_ms": 26866,
+      "text": "anyway.",
+      "language": "en"
+    }
+  ]
+}

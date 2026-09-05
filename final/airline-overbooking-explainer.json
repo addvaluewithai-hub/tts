@@ -1,0 +1,22 @@
+{
+  "lesson": "airline-overbooking-explainer",
+  "assembly_sha256": "04cc18dc62a736622dcbf484c4698a5fc4bfe3132fdb541f9457fd84125702f5",
+  "parts": [
+    "01-hook.wav",
+    "02-forecast.wav",
+    "03-simulation.wav",
+    "04-volunteers.wav",
+    "05-tradeoff.wav",
+    "06-not-every-flight.wav",
+    "07-close.wav"
+  ],
+  "part_count": 7,
+  "gap_ms": 300,
+  "duration_seconds": 183.92,
+  "wav": {
+    "sample_rate_hz": 24000,
+    "channels": 1,
+    "sample_width_bytes": 2
+  },
+  "mp3_bitrate": "192k"
+}

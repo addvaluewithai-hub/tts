@@ -1,0 +1,318 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/airline-overbooking-explainer/02-forecast.wav",
+  "audio_sha256": "0e3c4f91ec1cb5ec0a0895d23c517de0642801b8445efef3818b59f8a7f1f642",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.1-flash-lite",
+  "duration_ms": 26720,
+  "text": "Airlines know this. So their revenue systems study historical patterns and forecast how many booked passengers probably won't board. Imagine a 180-seat flight where the airline expects about five no-shows. Selling 185 tickets can still produce 180 actual humans. Perfect. Every seat occupied. Everybody happy. The spreadsheet gets a tiny promotion.",
+  "language": "en",
+  "words": [
+    {
+      "start_ms": 110,
+      "end_ms": 610,
+      "text": "Airlines",
+      "language": "en"
+    },
+    {
+      "start_ms": 610,
+      "end_ms": 1050,
+      "text": "know",
+      "language": "en"
+    },
+    {
+      "start_ms": 1050,
+      "end_ms": 1280,
+      "text": "this.",
+      "language": "en"
+    },
+    {
+      "start_ms": 1780,
+      "end_ms": 2080,
+      "text": "So",
+      "language": "en"
+    },
+    {
+      "start_ms": 2080,
+      "end_ms": 2360,
+      "text": "their",
+      "language": "en"
+    },
+    {
+      "start_ms": 2360,
+      "end_ms": 2770,
+      "text": "revenue",
+      "language": "en"
+    },
+    {
+      "start_ms": 2770,
+      "end_ms": 3330,
+      "text": "systems",
+      "language": "en"
+    },
+    {
+      "start_ms": 3330,
+      "end_ms": 3650,
+      "text": "study",
+      "language": "en"
+    },
+    {
+      "start_ms": 3650,
+      "end_ms": 4270,
+      "text": "historical",
+      "language": "en"
+    },
+    {
+      "start_ms": 4270,
+      "end_ms": 4760,
+      "text": "patterns",
+      "language": "en"
+    },
+    {
+      "start_ms": 4810,
+      "end_ms": 5080,
+      "text": "and",
+      "language": "en"
+    },
+    {
+      "start_ms": 5080,
+      "end_ms": 5690,
+      "text": "forecast",
+      "language": "en"
+    },
+    {
+      "start_ms": 5780,
+      "end_ms": 6050,
+      "text": "how",
+      "language": "en"
+    },
+    {
+      "start_ms": 6050,
+      "end_ms": 6270,
+      "text": "many",
+      "language": "en"
+    },
+    {
+      "start_ms": 6270,
+      "end_ms": 6730,
+      "text": "booked",
+      "language": "en"
+    },
+    {
+      "start_ms": 6730,
+      "end_ms": 7430,
+      "text": "passengers",
+      "language": "en"
+    },
+    {
+      "start_ms": 7760,
+      "end_ms": 8390,
+      "text": "probably",
+      "language": "en"
+    },
+    {
+      "start_ms": 8390,
+      "end_ms": 8760,
+      "text": "won't",
+      "language": "en"
+    },
+    {
+      "start_ms": 8760,
+      "end_ms": 9050,
+      "text": "board.",
+      "language": "en"
+    },
+    {
+      "start_ms": 9780,
+      "end_ms": 10320,
+      "text": "Imagine",
+      "language": "en"
+    },
+    {
+      "start_ms": 10320,
+      "end_ms": 10450,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 10450,
+      "end_ms": 11130,
+      "text": "180-seat",
+      "language": "en"
+    },
+    {
+      "start_ms": 11130,
+      "end_ms": 11460,
+      "text": "flight",
+      "language": "en"
+    },
+    {
+      "start_ms": 11680,
+      "end_ms": 11990,
+      "text": "where",
+      "language": "en"
+    },
+    {
+      "start_ms": 11990,
+      "end_ms": 12220,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 12220,
+      "end_ms": 12620,
+      "text": "airline",
+      "language": "en"
+    },
+    {
+      "start_ms": 12620,
+      "end_ms": 13030,
+      "text": "expects",
+      "language": "en"
+    },
+    {
+      "start_ms": 13030,
+      "end_ms": 13440,
+      "text": "about",
+      "language": "en"
+    },
+    {
+      "start_ms": 13740,
+      "end_ms": 14060,
+      "text": "five",
+      "language": "en"
+    },
+    {
+      "start_ms": 14060,
+      "end_ms": 14590,
+      "text": "no-shows.",
+      "language": "en"
+    },
+    {
+      "start_ms": 15000,
+      "end_ms": 15480,
+      "text": "Selling",
+      "language": "en"
+    },
+    {
+      "start_ms": 15480,
+      "end_ms": 16180,
+      "text": "185",
+      "language": "en"
+    },
+    {
+      "start_ms": 16180,
+      "end_ms": 16730,
+      "text": "tickets",
+      "language": "en"
+    },
+    {
+      "start_ms": 16730,
+      "end_ms": 16990,
+      "text": "can",
+      "language": "en"
+    },
+    {
+      "start_ms": 16990,
+      "end_ms": 17290,
+      "text": "still",
+      "language": "en"
+    },
+    {
+      "start_ms": 17290,
+      "end_ms": 17740,
+      "text": "produce",
+      "language": "en"
+    },
+    {
+      "start_ms": 18270,
+      "end_ms": 18690,
+      "text": "180",
+      "language": "en"
+    },
+    {
+      "start_ms": 18690,
+      "end_ms": 19160,
+      "text": "actual",
+      "language": "en"
+    },
+    {
+      "start_ms": 19160,
+      "end_ms": 19680,
+      "text": "humans.",
+      "language": "en"
+    },
+    {
+      "start_ms": 20430,
+      "end_ms": 21010,
+      "text": "Perfect.",
+      "language": "en"
+    },
+    {
+      "start_ms": 21320,
+      "end_ms": 21760,
+      "text": "Every",
+      "language": "en"
+    },
+    {
+      "start_ms": 21760,
+      "end_ms": 22120,
+      "text": "seat",
+      "language": "en"
+    },
+    {
+      "start_ms": 22120,
+      "end_ms": 22710,
+      "text": "occupied,",
+      "language": "en"
+    },
+    {
+      "start_ms": 22960,
+      "end_ms": 23550,
+      "text": "everybody",
+      "language": "en"
+    },
+    {
+      "start_ms": 23550,
+      "end_ms": 23970,
+      "text": "happy.",
+      "language": "en"
+    },
+    {
+      "start_ms": 24260,
+      "end_ms": 24570,
+      "text": "The",
+      "language": "en"
+    },
+    {
+      "start_ms": 24570,
+      "end_ms": 25150,
+      "text": "spreadsheet",
+      "language": "en"
+    },
+    {
+      "start_ms": 25150,
+      "end_ms": 25420,
+      "text": "gets",
+      "language": "en"
+    },
+    {
+      "start_ms": 25420,
+      "end_ms": 25570,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 25570,
+      "end_ms": 25960,
+      "text": "tiny",
+      "language": "en"
+    },
+    {
+      "start_ms": 25960,
+      "end_ms": 26590,
+      "text": "promotion.",
+      "language": "en"
+    }
+  ]
+}

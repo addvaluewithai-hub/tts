@@ -1,0 +1,396 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/airline-overbooking-explainer/07-close.wav",
+  "audio_sha256": "fb36e52d9d3055ba9dad7458825145b2d98985147e6b9c26732d9f1aa61987c5",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.5-flash-lite",
+  "duration_ms": 27840,
+  "text": "So the weird truth is this: airlines are not really selling chairs. They're managing probabilities around chairs. Your 22A is sitting inside a model that asks one question: how many of these booked humans will actually appear at the gate? Airlines don't overbook because they forgot to count. They overbook because they counted everyone — including the people they expect not to show up.",
+  "language": "en",
+  "words": [
+    {
+      "start_ms": 300,
+      "end_ms": 520,
+      "text": "So",
+      "language": "en"
+    },
+    {
+      "start_ms": 520,
+      "end_ms": 690,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 690,
+      "end_ms": 1050,
+      "text": "weird",
+      "language": "en"
+    },
+    {
+      "start_ms": 1050,
+      "end_ms": 1410,
+      "text": "truth",
+      "language": "en"
+    },
+    {
+      "start_ms": 1500,
+      "end_ms": 1720,
+      "text": "is",
+      "language": "en"
+    },
+    {
+      "start_ms": 1720,
+      "end_ms": 2220,
+      "text": "this:",
+      "language": "en"
+    },
+    {
+      "start_ms": 2220,
+      "end_ms": 2830,
+      "text": "airlines",
+      "language": "en"
+    },
+    {
+      "start_ms": 2960,
+      "end_ms": 3130,
+      "text": "are",
+      "language": "en"
+    },
+    {
+      "start_ms": 3130,
+      "end_ms": 3440,
+      "text": "not",
+      "language": "en"
+    },
+    {
+      "start_ms": 3440,
+      "end_ms": 3810,
+      "text": "really",
+      "language": "en"
+    },
+    {
+      "start_ms": 3810,
+      "end_ms": 4270,
+      "text": "selling",
+      "language": "en"
+    },
+    {
+      "start_ms": 4270,
+      "end_ms": 4720,
+      "text": "chairs.",
+      "language": "en"
+    },
+    {
+      "start_ms": 5050,
+      "end_ms": 5350,
+      "text": "They're",
+      "language": "en"
+    },
+    {
+      "start_ms": 5350,
+      "end_ms": 5870,
+      "text": "managing",
+      "language": "en"
+    },
+    {
+      "start_ms": 5870,
+      "end_ms": 6600,
+      "text": "probabilities",
+      "language": "en"
+    },
+    {
+      "start_ms": 6600,
+      "end_ms": 6960,
+      "text": "around",
+      "language": "en"
+    },
+    {
+      "start_ms": 6960,
+      "end_ms": 7430,
+      "text": "chairs.",
+      "language": "en"
+    },
+    {
+      "start_ms": 8110,
+      "end_ms": 8450,
+      "text": "Your",
+      "language": "en"
+    },
+    {
+      "start_ms": 8450,
+      "end_ms": 9070,
+      "text": "22A",
+      "language": "en"
+    },
+    {
+      "start_ms": 9220,
+      "end_ms": 9390,
+      "text": "is",
+      "language": "en"
+    },
+    {
+      "start_ms": 9390,
+      "end_ms": 9810,
+      "text": "sitting",
+      "language": "en"
+    },
+    {
+      "start_ms": 9810,
+      "end_ms": 10100,
+      "text": "inside",
+      "language": "en"
+    },
+    {
+      "start_ms": 10100,
+      "end_ms": 10240,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 10240,
+      "end_ms": 10630,
+      "text": "model",
+      "language": "en"
+    },
+    {
+      "start_ms": 10630,
+      "end_ms": 10920,
+      "text": "that",
+      "language": "en"
+    },
+    {
+      "start_ms": 10920,
+      "end_ms": 11330,
+      "text": "asks",
+      "language": "en"
+    },
+    {
+      "start_ms": 11440,
+      "end_ms": 11690,
+      "text": "one",
+      "language": "en"
+    },
+    {
+      "start_ms": 11690,
+      "end_ms": 12220,
+      "text": "question:",
+      "language": "en"
+    },
+    {
+      "start_ms": 12380,
+      "end_ms": 12690,
+      "text": "how",
+      "language": "en"
+    },
+    {
+      "start_ms": 12690,
+      "end_ms": 12970,
+      "text": "many",
+      "language": "en"
+    },
+    {
+      "start_ms": 12970,
+      "end_ms": 13170,
+      "text": "of",
+      "language": "en"
+    },
+    {
+      "start_ms": 13170,
+      "end_ms": 13390,
+      "text": "these",
+      "language": "en"
+    },
+    {
+      "start_ms": 13390,
+      "end_ms": 13730,
+      "text": "booked",
+      "language": "en"
+    },
+    {
+      "start_ms": 13730,
+      "end_ms": 14170,
+      "text": "humans",
+      "language": "en"
+    },
+    {
+      "start_ms": 14210,
+      "end_ms": 14510,
+      "text": "will",
+      "language": "en"
+    },
+    {
+      "start_ms": 14510,
+      "end_ms": 15000,
+      "text": "actually",
+      "language": "en"
+    },
+    {
+      "start_ms": 15000,
+      "end_ms": 15460,
+      "text": "appear",
+      "language": "en"
+    },
+    {
+      "start_ms": 15460,
+      "end_ms": 15580,
+      "text": "at",
+      "language": "en"
+    },
+    {
+      "start_ms": 15580,
+      "end_ms": 15720,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 15720,
+      "end_ms": 16080,
+      "text": "gate?",
+      "language": "en"
+    },
+    {
+      "start_ms": 16670,
+      "end_ms": 17200,
+      "text": "Airlines",
+      "language": "en"
+    },
+    {
+      "start_ms": 17200,
+      "end_ms": 17560,
+      "text": "don't",
+      "language": "en"
+    },
+    {
+      "start_ms": 17560,
+      "end_ms": 17970,
+      "text": "overbook",
+      "language": "en"
+    },
+    {
+      "start_ms": 17970,
+      "end_ms": 18270,
+      "text": "because",
+      "language": "en"
+    },
+    {
+      "start_ms": 18270,
+      "end_ms": 18450,
+      "text": "they",
+      "language": "en"
+    },
+    {
+      "start_ms": 18450,
+      "end_ms": 18810,
+      "text": "forgot",
+      "language": "en"
+    },
+    {
+      "start_ms": 18810,
+      "end_ms": 19020,
+      "text": "to",
+      "language": "en"
+    },
+    {
+      "start_ms": 19020,
+      "end_ms": 19370,
+      "text": "count.",
+      "language": "en"
+    },
+    {
+      "start_ms": 19630,
+      "end_ms": 19990,
+      "text": "They",
+      "language": "en"
+    },
+    {
+      "start_ms": 19990,
+      "end_ms": 20430,
+      "text": "overbook",
+      "language": "en"
+    },
+    {
+      "start_ms": 20430,
+      "end_ms": 20750,
+      "text": "because",
+      "language": "en"
+    },
+    {
+      "start_ms": 20750,
+      "end_ms": 20950,
+      "text": "they",
+      "language": "en"
+    },
+    {
+      "start_ms": 20950,
+      "end_ms": 21440,
+      "text": "counted",
+      "language": "en"
+    },
+    {
+      "start_ms": 21440,
+      "end_ms": 22000,
+      "text": "everyone",
+      "language": "en"
+    },
+    {
+      "start_ms": 22000,
+      "end_ms": 22120,
+      "text": "—",
+      "language": "en"
+    },
+    {
+      "start_ms": 22120,
+      "end_ms": 22620,
+      "text": "including",
+      "language": "en"
+    },
+    {
+      "start_ms": 22620,
+      "end_ms": 22820,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 22820,
+      "end_ms": 23090,
+      "text": "people",
+      "language": "en"
+    },
+    {
+      "start_ms": 23090,
+      "end_ms": 23330,
+      "text": "they",
+      "language": "en"
+    },
+    {
+      "start_ms": 23330,
+      "end_ms": 23720,
+      "text": "expect",
+      "language": "en"
+    },
+    {
+      "start_ms": 23820,
+      "end_ms": 24150,
+      "text": "not",
+      "language": "en"
+    },
+    {
+      "start_ms": 24150,
+      "end_ms": 24340,
+      "text": "to",
+      "language": "en"
+    },
+    {
+      "start_ms": 24340,
+      "end_ms": 24620,
+      "text": "show",
+      "language": "en"
+    },
+    {
+      "start_ms": 24620,
+      "end_ms": 24860,
+      "text": "up.",
+      "language": "en"
+    }
+  ]
+}

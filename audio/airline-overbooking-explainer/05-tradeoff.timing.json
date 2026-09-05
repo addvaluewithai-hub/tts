@@ -1,0 +1,420 @@
+{
+  "schema_version": 2,
+  "source_audio": "audio/airline-overbooking-explainer/05-tradeoff.wav",
+  "audio_sha256": "c52da9fd628e52fd0e497f641fb52e4ff10f839822f903f6082fe592d5c419ae",
+  "transcription_config_sha256": "bf97b3960fecd38cd48339a76cf0595441120c5b59368d2f78de9be7bb0dd398",
+  "model": "gemini-3.5-flash-lite",
+  "duration_ms": 27240,
+  "text": "So why risk paying people at all? Because airlines are balancing two costs. Cost one: a seat leaves empty and can never be sold again. Cost two: too many people show up and the airline pays to fix the problem. The goal is not, \"sell as many tickets as possible.\" It's: sell just enough extra tickets that the expected empty-seat loss is smaller than the expected overbooking cost.",
+  "language": "en",
+  "words": [
+    {
+      "start_ms": 0,
+      "end_ms": 320,
+      "text": "So",
+      "language": "en"
+    },
+    {
+      "start_ms": 320,
+      "end_ms": 530,
+      "text": "why",
+      "language": "en"
+    },
+    {
+      "start_ms": 530,
+      "end_ms": 830,
+      "text": "risk",
+      "language": "en"
+    },
+    {
+      "start_ms": 830,
+      "end_ms": 1130,
+      "text": "paying",
+      "language": "en"
+    },
+    {
+      "start_ms": 1130,
+      "end_ms": 1430,
+      "text": "people",
+      "language": "en"
+    },
+    {
+      "start_ms": 1430,
+      "end_ms": 1610,
+      "text": "at",
+      "language": "en"
+    },
+    {
+      "start_ms": 1610,
+      "end_ms": 1940,
+      "text": "all?",
+      "language": "en"
+    },
+    {
+      "start_ms": 2880,
+      "end_ms": 3310,
+      "text": "Because",
+      "language": "en"
+    },
+    {
+      "start_ms": 3310,
+      "end_ms": 3690,
+      "text": "airlines",
+      "language": "en"
+    },
+    {
+      "start_ms": 3690,
+      "end_ms": 3930,
+      "text": "are",
+      "language": "en"
+    },
+    {
+      "start_ms": 3930,
+      "end_ms": 4440,
+      "text": "balancing",
+      "language": "en"
+    },
+    {
+      "start_ms": 4570,
+      "end_ms": 4820,
+      "text": "two",
+      "language": "en"
+    },
+    {
+      "start_ms": 4820,
+      "end_ms": 5360,
+      "text": "costs.",
+      "language": "en"
+    },
+    {
+      "start_ms": 5950,
+      "end_ms": 6320,
+      "text": "Cost",
+      "language": "en"
+    },
+    {
+      "start_ms": 6320,
+      "end_ms": 6680,
+      "text": "one:",
+      "language": "en"
+    },
+    {
+      "start_ms": 6810,
+      "end_ms": 6930,
+      "text": "a",
+      "language": "en"
+    },
+    {
+      "start_ms": 6930,
+      "end_ms": 7240,
+      "text": "seat",
+      "language": "en"
+    },
+    {
+      "start_ms": 7240,
+      "end_ms": 7610,
+      "text": "leaves",
+      "language": "en"
+    },
+    {
+      "start_ms": 7610,
+      "end_ms": 8010,
+      "text": "empty",
+      "language": "en"
+    },
+    {
+      "start_ms": 8010,
+      "end_ms": 8260,
+      "text": "and",
+      "language": "en"
+    },
+    {
+      "start_ms": 8260,
+      "end_ms": 8470,
+      "text": "can",
+      "language": "en"
+    },
+    {
+      "start_ms": 8470,
+      "end_ms": 8730,
+      "text": "never",
+      "language": "en"
+    },
+    {
+      "start_ms": 8730,
+      "end_ms": 8980,
+      "text": "be",
+      "language": "en"
+    },
+    {
+      "start_ms": 8980,
+      "end_ms": 9300,
+      "text": "sold",
+      "language": "en"
+    },
+    {
+      "start_ms": 9300,
+      "end_ms": 9710,
+      "text": "again.",
+      "language": "en"
+    },
+    {
+      "start_ms": 10250,
+      "end_ms": 10580,
+      "text": "Cost",
+      "language": "en"
+    },
+    {
+      "start_ms": 10580,
+      "end_ms": 10940,
+      "text": "two:",
+      "language": "en"
+    },
+    {
+      "start_ms": 11090,
+      "end_ms": 11330,
+      "text": "too",
+      "language": "en"
+    },
+    {
+      "start_ms": 11330,
+      "end_ms": 11620,
+      "text": "many",
+      "language": "en"
+    },
+    {
+      "start_ms": 11620,
+      "end_ms": 11950,
+      "text": "people",
+      "language": "en"
+    },
+    {
+      "start_ms": 11950,
+      "end_ms": 12280,
+      "text": "show",
+      "language": "en"
+    },
+    {
+      "start_ms": 12280,
+      "end_ms": 12550,
+      "text": "up",
+      "language": "en"
+    },
+    {
+      "start_ms": 12550,
+      "end_ms": 12790,
+      "text": "and",
+      "language": "en"
+    },
+    {
+      "start_ms": 12790,
+      "end_ms": 12940,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 12940,
+      "end_ms": 13320,
+      "text": "airline",
+      "language": "en"
+    },
+    {
+      "start_ms": 13320,
+      "end_ms": 13670,
+      "text": "pays",
+      "language": "en"
+    },
+    {
+      "start_ms": 13670,
+      "end_ms": 13870,
+      "text": "to",
+      "language": "en"
+    },
+    {
+      "start_ms": 13870,
+      "end_ms": 14100,
+      "text": "fix",
+      "language": "en"
+    },
+    {
+      "start_ms": 14100,
+      "end_ms": 14210,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 14210,
+      "end_ms": 14640,
+      "text": "problem.",
+      "language": "en"
+    },
+    {
+      "start_ms": 15150,
+      "end_ms": 15330,
+      "text": "The",
+      "language": "en"
+    },
+    {
+      "start_ms": 15330,
+      "end_ms": 15680,
+      "text": "goal",
+      "language": "en"
+    },
+    {
+      "start_ms": 15680,
+      "end_ms": 15870,
+      "text": "is",
+      "language": "en"
+    },
+    {
+      "start_ms": 15870,
+      "end_ms": 16210,
+      "text": "not,",
+      "language": "en"
+    },
+    {
+      "start_ms": 16320,
+      "end_ms": 16680,
+      "text": "\"sell",
+      "language": "en"
+    },
+    {
+      "start_ms": 16680,
+      "end_ms": 16840,
+      "text": "as",
+      "language": "en"
+    },
+    {
+      "start_ms": 16840,
+      "end_ms": 17140,
+      "text": "many",
+      "language": "en"
+    },
+    {
+      "start_ms": 17140,
+      "end_ms": 17540,
+      "text": "tickets",
+      "language": "en"
+    },
+    {
+      "start_ms": 17540,
+      "end_ms": 17740,
+      "text": "as",
+      "language": "en"
+    },
+    {
+      "start_ms": 17740,
+      "end_ms": 18270,
+      "text": "possible.\"",
+      "language": "en"
+    },
+    {
+      "start_ms": 18370,
+      "end_ms": 18670,
+      "text": "It's:",
+      "language": "en"
+    },
+    {
+      "start_ms": 18760,
+      "end_ms": 19060,
+      "text": "sell",
+      "language": "en"
+    },
+    {
+      "start_ms": 19060,
+      "end_ms": 19370,
+      "text": "just",
+      "language": "en"
+    },
+    {
+      "start_ms": 19370,
+      "end_ms": 19740,
+      "text": "enough",
+      "language": "en"
+    },
+    {
+      "start_ms": 19740,
+      "end_ms": 20080,
+      "text": "extra",
+      "language": "en"
+    },
+    {
+      "start_ms": 20080,
+      "end_ms": 20490,
+      "text": "tickets",
+      "language": "en"
+    },
+    {
+      "start_ms": 20490,
+      "end_ms": 20730,
+      "text": "that",
+      "language": "en"
+    },
+    {
+      "start_ms": 20730,
+      "end_ms": 20870,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 20870,
+      "end_ms": 21330,
+      "text": "expected",
+      "language": "en"
+    },
+    {
+      "start_ms": 21460,
+      "end_ms": 21890,
+      "text": "empty-seat",
+      "language": "en"
+    },
+    {
+      "start_ms": 21970,
+      "end_ms": 22310,
+      "text": "loss",
+      "language": "en"
+    },
+    {
+      "start_ms": 22420,
+      "end_ms": 22610,
+      "text": "is",
+      "language": "en"
+    },
+    {
+      "start_ms": 22610,
+      "end_ms": 23070,
+      "text": "smaller",
+      "language": "en"
+    },
+    {
+      "start_ms": 23070,
+      "end_ms": 23410,
+      "text": "than",
+      "language": "en"
+    },
+    {
+      "start_ms": 23410,
+      "end_ms": 23550,
+      "text": "the",
+      "language": "en"
+    },
+    {
+      "start_ms": 23550,
+      "end_ms": 24040,
+      "text": "expected",
+      "language": "en"
+    },
+    {
+      "start_ms": 24040,
+      "end_ms": 24900,
+      "text": "overbooking",
+      "language": "en"
+    },
+    {
+      "start_ms": 24900,
+      "end_ms": 25330,
+      "text": "cost.",
+      "language": "en"
+    }
+  ]
+}
