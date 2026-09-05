@@ -1,0 +1,5 @@
+source_sha=c08ac7ea02b86a2b44637357c0e0aa9bec2bebb0
+transcript_sha256=c83b1243afbebe755c6bd0d2aa6d929585180d5df689dc9390589bba4dc35bbb
+manual_visual_review=user_waived
+requested_by=user
+note=Explicit user request to skip manual visual QA and render the synchronized video now.
