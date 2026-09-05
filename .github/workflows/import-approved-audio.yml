@@ -1,0 +1,197 @@
+name: Video Factory — Approved Audio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "input/*/approved-audio.json"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: video-factory-approved-audio-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Sync current main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Resolve approved audio
+        id: audio
+        shell: bash
+        run: |
+          set -euo pipefail
+          JOB="$(grep -Ev '^\s*(#|$)' input/ACTIVE | head -1)"
+          META="input/${JOB}/approved-audio.json"
+          test -f "$META" || { echo "Missing approved audio metadata: $META" >&2; exit 2; }
+          URL=$(python -c 'import json,sys; print(json.load(open(sys.argv[1]))["bundle_url"])' "$META")
+          SHA=$(python -c 'import json,sys; print(json.load(open(sys.argv[1]))["bundle_sha256"])' "$META")
+          VOICE=$(python -c 'import json,sys; print(json.load(open(sys.argv[1])).get("voice", "Aiden"))' "$META")
+          echo "job=$JOB" >> "$GITHUB_OUTPUT"
+          echo "meta=$META" >> "$GITHUB_OUTPUT"
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          echo "sha=$SHA" >> "$GITHUB_OUTPUT"
+          echo "voice=$VOICE" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Set up Node for HyperFrames
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install alignment dependencies
+        run: |
+          set -euo pipefail
+          pip install -r requirements.txt
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg unzip
+          npx --yes hyperframes@latest --help >/dev/null
+
+      - name: Download and verify approved Qwen bundle
+        env:
+          JOB: ${{ steps.audio.outputs.job }}
+          BUNDLE_URL: ${{ steps.audio.outputs.url }}
+          BUNDLE_SHA: ${{ steps.audio.outputs.sha }}
+          VOICE: ${{ steps.audio.outputs.voice }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE=".factory-cache/approved-audio-import/${JOB}"
+          rm -rf "$STAGE"
+          mkdir -p "$STAGE/source" "$STAGE/audio/${JOB}" "$STAGE/done/${JOB}" "$STAGE/final" "$STAGE/cache"
+          curl --fail --location --retry 3 --output "$STAGE/audio-bundle.zip" "$BUNDLE_URL"
+          printf '%s  %s\n' "$BUNDLE_SHA" "$STAGE/audio-bundle.zip" | sha256sum --check --strict
+          unzip -q "$STAGE/audio-bundle.zip" -d "$STAGE/source"
+          test -s "$STAGE/source/master.wav"
+          test -s "$STAGE/source/approved-audio-manifest.json"
+
+          python - "$STAGE/source/approved-audio-manifest.json" "$JOB" "$VOICE" <<'PY'
+          import json, sys
+          path, job, voice = sys.argv[1:]
+          data = json.load(open(path, encoding='utf-8'))
+          assert data.get('job') == job, (data.get('job'), job)
+          assert data.get('provider') == 'qwen-modal', data.get('provider')
+          assert data.get('voice') == voice, (data.get('voice'), voice)
+          print(f"Approved source: {data['provider']} / {data['voice']} / run {data['source_run_id']}")
+          PY
+
+          while IFS= read -r part; do cp "$part" "$STAGE/audio/${JOB}/"; done < <(
+            find "$STAGE/source" -maxdepth 1 -type f -name '*.wav' ! -name 'master.wav' | sort
+          )
+          count=$(find "$STAGE/audio/${JOB}" -maxdepth 1 -type f -name '*.wav' | wc -l)
+          test "$count" -eq 7 || { echo "Expected exactly 7 approved WAV parts, got $count" >&2; exit 3; }
+
+          cp input/${JOB}/transcript/* "$STAGE/done/${JOB}/"
+          cp "$STAGE/source/master.wav" "$STAGE/final/${JOB}.wav"
+          ffmpeg -nostdin -loglevel error -y -i "$STAGE/final/${JOB}.wav" -codec:a libmp3lame -b:a 192k "$STAGE/final/${JOB}.mp3"
+
+      - name: Derive exact word timings from approved audio
+        env:
+          JOB: ${{ steps.audio.outputs.job }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE=".factory-cache/approved-audio-import/${JOB}"
+          python scripts/transcribe_final_hyperframes.py \
+            --config tts_config.yaml \
+            --final "$STAGE/final" \
+            --audio "$STAGE/audio" \
+            --done "$STAGE/done" \
+            --cache "$STAGE/cache"
+          test -s "$STAGE/final/${JOB}.transcript.json"
+          test -s "$STAGE/final/${JOB}.transcript.vtt"
+
+      - name: Publish approved audio and alignment to final
+        env:
+          JOB: ${{ steps.audio.outputs.job }}
+          META: ${{ steps.audio.outputs.meta }}
+          VOICE: ${{ steps.audio.outputs.voice }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          STAGE=".factory-cache/approved-audio-import/${JOB}"
+          mkdir -p final .factory-status/audio
+          cp "$STAGE/final/${JOB}.wav" "final/${JOB}.wav"
+          cp "$STAGE/final/${JOB}.mp3" "final/${JOB}.mp3"
+          cp "$STAGE/final/${JOB}.transcript.json" "final/${JOB}.transcript.json"
+          cp "$STAGE/final/${JOB}.transcript.vtt" "final/${JOB}.transcript.vtt"
+
+          python - "$JOB" "$META" <<'PY'
+          import json, sys
+          from pathlib import Path
+          job, meta_path = sys.argv[1:]
+          transcript_path = Path('final') / f'{job}.transcript.json'
+          data = json.loads(transcript_path.read_text(encoding='utf-8'))
+          data['source_audio'] = f'final/{job}.mp3'
+          data['narration_source'] = json.loads(Path(meta_path).read_text(encoding='utf-8'))
+          transcript_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          PY
+
+          python - "$JOB" "$VOICE" <<'PY'
+          import json, sys, wave
+          from pathlib import Path
+          job, voice = sys.argv[1:]
+          wav = Path('final') / f'{job}.wav'
+          with wave.open(str(wav), 'rb') as f:
+              duration = f.getnframes() / f.getframerate()
+          (Path('final') / f'{job}.json').write_text(json.dumps({
+              'schema': 1,
+              'job': job,
+              'provider': 'qwen-modal-approved-release',
+              'voice': voice,
+              'duration_seconds': duration,
+          }, indent=2) + '\n', encoding='utf-8')
+          PY
+
+          cat > .factory-status/audio/latest.json <<EOF
+          {
+            "run_id": "${GITHUB_RUN_ID}",
+            "run_attempt": "${GITHUB_RUN_ATTEMPT}",
+            "event": "${GITHUB_EVENT_NAME}",
+            "active_job": "${JOB}",
+            "tts_provider": "qwen_modal_approved_release",
+            "voice": "${VOICE}",
+            "alignment_provider": "hyperframes_whisper",
+            "factory_outcome": "success",
+            "recorded_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+
+      - name: Commit approved audio outputs
+        env:
+          JOB: ${{ steps.audio.outputs.job }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add \
+            "input/${JOB}/approved-audio.json" \
+            "final/${JOB}.wav" \
+            "final/${JOB}.mp3" \
+            "final/${JOB}.json" \
+            "final/${JOB}.transcript.json" \
+            "final/${JOB}.transcript.vtt" \
+            .factory-status/audio/latest.json
+          git config user.name "video-factory-audio[bot]"
+          git config user.email "video-factory-audio[bot]@users.noreply.github.com"
+          git commit -m "chore(factory): publish approved Qwen audio and exact timing" || exit 0
+          git pull --rebase origin main
+          git push origin HEAD:main
