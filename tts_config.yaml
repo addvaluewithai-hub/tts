@@ -4,9 +4,7 @@
 # Job-specific creative direction belongs in input/<job>/ and transcript front matter.
 
 # Stage 1: speech synthesis
-# Production speech is rendered by Qwen3-TTS 0.6B on Modal. Gemini is no longer
-# used to synthesize narration. The aligner below still uses audio-input Gemini
-# models for word timing; that is a separate stage and can be replaced later.
+# Production speech is rendered by Qwen3-TTS 0.6B on Modal.
 provider: qwen_modal
 
 qwen:
@@ -31,15 +29,15 @@ assembly:
   gap_ms: 300
   mp3_bitrate: 192k
 
-# Stage 3: align each short source WAV independently, cache its word timings, then
-# offset all part-relative timings into final/<job>.transcript.json.
-# This is alignment/transcription only, not narration generation.
+# Stage 3: listen back to each short Qwen WAV part with HyperFrames' local
+# transcription stack and derive word-level timing from the actual rendered
+# voice. This timing is mandatory for visual synchronization.
 transcription:
   enabled: true
-  models:
-    - gemini-3.5-flash-lite
-    - gemini-3.1-flash-lite
-  attempts_per_model: 2
-  initial_delay_seconds: 3
-  max_delay_seconds: 20
+  provider: hyperframes_whisper
+  engine: whisper
+  model: small.en
+  language: en
+  timeout_seconds: 1200
+  min_reference_coverage: 0.72
   write_vtt: true
