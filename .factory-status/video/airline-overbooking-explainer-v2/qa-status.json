@@ -1,12 +1,8 @@
 {
-  "status": "complete",
+  "status": "started",
   "job": "airline-overbooking-explainer-v2",
-  "source_sha": "ecb7e0596168b56efbfbaaafefcf2cb5a93876d6",
-  "transcript_sha256": "c83b1243afbebe755c6bd0d2aa6d929585180d5df689dc9390589bba4dc35bbb",
-  "run_id": "33997737165",
-  "lint_outcome": "failure",
-  "check_outcome": "failure",
-  "inspect_outcome": "success",
-  "draft_outcome": "skipped",
-  "completed_at": "2026-09-05T23:07:03Z"
+  "source_sha": "c08ac7ea02b86a2b44637357c0e0aa9bec2bebb0",
+  "run_id": "33997845957",
+  "run_attempt": "1",
+  "started_at": "2026-09-05T23:08:32Z"
 }
