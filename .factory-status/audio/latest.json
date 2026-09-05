@@ -1,10 +1,10 @@
 {
-  "run_id": "33990064432",
+  "run_id": "33990706410",
   "run_attempt": "1",
   "event": "push",
-  "active_job": "airline-overbooking-explainer",
-  "source_sha": "38ddba5dd1080af19148f5833f3caa1573fda365",
+  "active_job": "airline-overbooking-explainer-v2",
+  "source_sha": "08895ac17c0de751e3e1807441cb1db18f1f3080",
   "tts_provider": "qwen_modal",
-  "factory_outcome": "success",
-  "recorded_at": "2026-09-05T20:26:07Z"
+  "factory_outcome": "failure",
+  "recorded_at": "2026-09-05T20:38:57Z"
 }

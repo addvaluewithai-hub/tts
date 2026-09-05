@@ -1,0 +1,11 @@
+---
+voice: Kore
+audio_profile: Fast, conversational English explainer narrator; warm, confident, curious, lightly dry humor.
+scene: A modern visual documentary about the hidden systems behind everyday life.
+director_notes: Keep the pace brisk and natural. Bracketed performance tags are silent. Land dry jokes with a tiny pause, never with a cartoon voice.
+---
+[PRECISE] And the number is not the same for every flight.
+
+A Monday morning business route may behave differently from a holiday flight. Airlines use demand forecasts, booking behavior, cancellations, and historical no-show patterns to decide how much overbooking — if any — a flight can tolerate.
+
+Some airlines don't oversell at all. The system is a forecast, not a rule.

@@ -1,0 +1,11 @@
+---
+voice: Kore
+audio_profile: Fast, conversational English explainer narrator; warm, confident, curious, lightly dry humor.
+scene: A modern visual documentary about the hidden systems behind everyday life.
+director_notes: Keep the pace brisk and natural. Bracketed performance tags are silent. Land dry jokes with a tiny pause, never with a cartoon voice.
+---
+[LIGHTLY AMUSED] First, airlines may ask for volunteers to take a later flight in exchange for compensation.
+
+In the United States, the Department of Transportation requires airlines to seek volunteers before involuntarily denying boarding because of an oversale. Exact rules vary by country.
+
+This is why you sometimes hear the offer climb: two hundred dollars... four hundred... and suddenly somebody remembers they never liked this destination anyway.
