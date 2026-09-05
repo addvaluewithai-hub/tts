@@ -1,92 +1,92 @@
 {
   "schema_version": 2,
-  "alignment_mode": "per_part_hyperframes",
-  "alignment_provider": "hyperframes",
-  "alignment_engine": "whisper",
-  "alignment_model": "small.en",
+  "alignment_mode": "whole_audio_gemini_transcribe",
+  "alignment_provider": "gemini",
+  "alignment_model": "gemini-3.5-transcribe",
   "lesson": "airline-overbooking-explainer-v2",
   "source_audio": "final/airline-overbooking-explainer-v2.mp3",
   "audio_sha256": "af75c9659a8e47c2a790ac19d34a82c36dcad18a940ca2f47a67fec2c197f621",
-  "transcription_config_sha256": "bb96f498f66552e2ace31c370e4d081fc1e8468c8d7a55bc8f683509f926092f",
+  "transcription_config_sha256": "d3511e4ea8a514a332f04a7e6d2dc8cda1e40e44b80e36f987d7fcf122581cd5",
   "duration_ms": 181000,
-  "generated_at": "2026-09-05T22:42:50.033467+00:00",
+  "generated_at": "2026-09-05T22:51:17.280115+00:00",
+  "raw_word_count": 408,
   "parts": [
     {
       "file": "01-hook.wav",
       "start_ms": 0,
       "end_ms": 22240,
       "duration_ms": 22240,
-      "provider": "hyperframes",
-      "engine": "whisper",
-      "model": "small.en",
-      "word_count": 53,
-      "audio_sha256": "f338ecd260ce6ab390259e050781bc716a6ec06d747c1896f2c0349a916b2aab"
+      "provider": "gemini",
+      "model": "gemini-3.5-transcribe",
+      "word_count": 52,
+      "raw_word_count": 52,
+      "exact_reference_coverage": 1.0
     },
     {
       "file": "02-forecast.wav",
       "start_ms": 22540,
       "end_ms": 49340,
       "duration_ms": 26800,
-      "provider": "hyperframes",
-      "engine": "whisper",
-      "model": "small.en",
+      "provider": "gemini",
+      "model": "gemini-3.5-transcribe",
       "word_count": 51,
-      "audio_sha256": "31029bb96d18e3468050f0c471999b80d6131c3d5fb6244aff6cd7de1c5a4941"
+      "raw_word_count": 53,
+      "exact_reference_coverage": 0.9607843137254902
     },
     {
       "file": "03-simulation.wav",
       "start_ms": 49640,
       "end_ms": 72360,
       "duration_ms": 22720,
-      "provider": "hyperframes",
-      "engine": "whisper",
-      "model": "small.en",
+      "provider": "gemini",
+      "model": "gemini-3.5-transcribe",
       "word_count": 49,
-      "audio_sha256": "9319e8c3cdb4285b153e84cfd564024ad7cfa61cebcf9e06cbc9fbf89ccd7456"
+      "raw_word_count": 49,
+      "exact_reference_coverage": 1.0
     },
     {
       "file": "04-volunteers.wav",
       "start_ms": 72660,
       "end_ms": 100020,
       "duration_ms": 27360,
-      "provider": "hyperframes",
-      "engine": "whisper",
-      "model": "small.en",
-      "word_count": 62,
-      "audio_sha256": "a0458c57049fb472a1e7e08248119bd1659214d6a1ab87c5982641305c76defa"
+      "provider": "gemini",
+      "model": "gemini-3.5-transcribe",
+      "word_count": 65,
+      "raw_word_count": 62,
+      "exact_reference_coverage": 0.9230769230769231
     },
     {
       "file": "05-tradeoff.wav",
       "start_ms": 100320,
       "end_ms": 126960,
       "duration_ms": 26640,
-      "provider": "hyperframes",
-      "engine": "whisper",
-      "model": "small.en",
-      "word_count": 69,
-      "audio_sha256": "f5641164b44cc4d5ab0d5302e36e1a21eaeea866c8b4871b891bb98b589dfa2c"
+      "provider": "gemini",
+      "model": "gemini-3.5-transcribe",
+      "word_count": 68,
+      "raw_word_count": 69,
+      "exact_reference_coverage": 0.9705882352941176
     },
     {
       "file": "06-not-every-flight.wav",
       "start_ms": 127260,
       "end_ms": 150620,
       "duration_ms": 23360,
-      "provider": "hyperframes",
-      "engine": "whisper",
-      "model": "small.en",
+      "provider": "gemini",
+      "model": "gemini-3.5-transcribe",
       "word_count": 58,
-      "audio_sha256": "d08fcd3db46d2c8d8d9c3301ad9ee4409e250e676338066dcef4a855e3268508"
+      "raw_word_count": 59,
+      "exact_reference_coverage": 0.9827586206896551
     },
     {
       "file": "07-close.wav",
       "start_ms": 150920,
       "end_ms": 181000,
       "duration_ms": 30080,
-      "provider": "hyperframes",
-      "engine": "whisper",
-      "model": "small.en",
-      "word_count": 65,
-      "audio_sha256": "32fe8808c0d5230ee6a79350eeb4637622fb6ca9b93c452f838a4e566e6d042e"
+      "provider": "gemini",
+      "model": "gemini-3.5-transcribe",
+      "word_count": 63,
+      "raw_word_count": 64,
+      "exact_reference_coverage": 0.9841269841269841
     }
   ],
   "segments": [
@@ -95,236 +95,229 @@
       "end_ms": 22240,
       "speaker": "teacher",
       "language": "en",
-      "text": "Your plane has 100 eddy seats. The airline sells 185 tickets. No, nobody failed kindergarten. They did it on purpose because, on almost every route, some passengers cancel late or simply don't show up. And an empty seat has a brutal business model. The second the plane leaves, it becomes worth exactly zero."
+      "text": "Your plane has 180 seats. The airline sells 185 tickets.\nNo, nobody failed kindergarten. They did it on purpose.\nBecause on almost every route, some passengers cancel late or simply don't show up. And an empty seat has a brutal business model: the second the plane leaves, it becomes worth exactly zero."
     },
     {
       "start_ms": 22540,
       "end_ms": 49340,
       "speaker": "teacher",
       "language": "en",
-      "text": "Airlines know this, so their revenue systems study historical patterns and forecast how many booked passengers probably won't board. Imagine a 180-seat flight where the airline expects about five no-shows. Selling 185 tickets can still produce 180 actual humans. Perfect. Every seat occupied. Everybody happy. The spreadsheet gets a tiny promotion."
+      "text": "Airlines know this. So their revenue systems study historical patterns and forecast how many booked passengers probably won't board.\nImagine a 180-seat flight where the airline expects about five no-shows. Selling 185 tickets can still produce... 180 actual humans.\nPerfect. Every seat occupied. Everybody happy. The spreadsheet gets a tiny promotion."
     },
     {
       "start_ms": 49640,
       "end_ms": 72360,
       "speaker": "teacher",
       "language": "en",
-      "text": "But predictions are not promises. If seven people vanish, two seats still fly empty. If exactly five disappear, the math looks genius. And if nobody disappears, congratulations. We now have 185 passengers and 180 seats. This is the moment a calm gate announcement suddenly starts sounding like an auction."
+      "text": "But predictions are not promises.\nIf seven people vanish, two seats still fly empty. If exactly five disappear, the math looks genius.\nAnd if nobody disappears... congratulations. We now have 185 passengers and 180 seats.\nThis is the moment a calm gate announcement suddenly starts sounding like an auction."
     },
     {
       "start_ms": 72660,
       "end_ms": 100020,
       "speaker": "teacher",
       "language": "en",
-      "text": "First, airlines may ask for volunteers to take a later flight in exchange for compensation. In the United States, the Department of Transportation requires airlines to seek volunteers before involuntarily denying boarding because of an oversale. Exact rules vary by country. This is why you sometimes hear the offer climb, $200, $400, and suddenly, somebody remembers they never liked this destination anyway."
+      "text": "First, airlines may ask for volunteers to take a later flight in exchange for compensation.\nIn the United States, the Department of Transportation requires airlines to seek volunteers before involuntarily denying boarding because of an oversale. Exact rules vary by country.\nThis is why you sometimes hear the offer climb: two hundred dollars... four hundred... and suddenly somebody remembers they never liked this destination anyway."
     },
     {
       "start_ms": 100320,
       "end_ms": 126960,
       "speaker": "teacher",
       "language": "en",
-      "text": "So, why risk paying people at all? Because airlines are balancing two costs. Cost one, a seat leaves empty and can never be sold again. Cost two, too many people show up and the airline pays to fix the problem. The goal is not, sell as many tickets as possible. It's, sell just enough extra tickets that the expected empty seat loss is smaller than the expected overbooking cost."
+      "text": "So why risk paying people at all?\nBecause airlines are balancing two costs.\nCost one: a seat leaves empty and can never be sold again.\nCost two: too many people show up and the airline pays to fix the problem.\nThe goal is not, \"sell as many tickets as possible.\" It's: sell just enough extra tickets that the expected empty-seat loss is smaller than the expected overbooking cost."
     },
     {
       "start_ms": 127260,
       "end_ms": 150620,
       "speaker": "teacher",
       "language": "en",
-      "text": "And the number is not the same for every flight. A Monday morning business route may behave differently from a holiday flight. Airlines use demand forecasts, booking behavior, cancellations, and historical no-show patterns to decide how much overbooking, if any, a flight can tolerate. Some airlines don't oversell at all. The system is a forecast, not a rule."
+      "text": "And the number is not the same for every flight.\nA Monday morning business route may behave differently from a holiday flight. Airlines use demand forecasts, booking behavior, cancellations, and historical no-show patterns to decide how much overbooking — if any — a flight can tolerate.\nSome airlines don't oversell at all. The system is a forecast, not a rule."
     },
     {
       "start_ms": 150920,
       "end_ms": 181000,
       "speaker": "teacher",
       "language": "en",
-      "text": "So, the weird truth is this, airlines are not really selling chairs, they are managing probabilities around chairs. Your 22 Ayas is sitting inside a model that asks one question. How many of these booked humans will actually appear at the gate? Airlines don't overbook because they forgot to count, they overbook because they counted everyone, including the people they expect not to show up."
+      "text": "So the weird truth is this: airlines are not really selling chairs. They're managing probabilities around chairs.\nYour 22A is sitting inside a model that asks one question: how many of these booked humans will actually appear at the gate?\nAirlines don't overbook because they forgot to count. They overbook because they counted everyone — including the people they expect not to show up."
     }
   ],
   "words": [
     {
-      "start_ms": 190,
-      "end_ms": 210,
+      "start_ms": 200,
+      "end_ms": 400,
       "text": "Your",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 210,
-      "end_ms": 360,
+      "start_ms": 400,
+      "end_ms": 900,
       "text": "plane",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 520,
-      "end_ms": 560,
+      "start_ms": 900,
+      "end_ms": 1400,
       "text": "has",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 560,
-      "end_ms": 1000,
-      "text": "100",
+      "start_ms": 1400,
+      "end_ms": 2200,
+      "text": "180",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 1000,
-      "end_ms": 1790,
-      "text": "eddy",
-      "language": "en",
-      "segment_index": 0
-    },
-    {
-      "start_ms": 1790,
-      "end_ms": 3040,
+      "start_ms": 2200,
+      "end_ms": 2700,
       "text": "seats.",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 3040,
-      "end_ms": 3300,
+      "start_ms": 3000,
+      "end_ms": 3100,
       "text": "The",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 3300,
-      "end_ms": 3910,
+      "start_ms": 3100,
+      "end_ms": 3600,
       "text": "airline",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 3910,
-      "end_ms": 4340,
+      "start_ms": 3600,
+      "end_ms": 4000,
       "text": "sells",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 4340,
-      "end_ms": 5040,
+      "start_ms": 4000,
+      "end_ms": 5100,
       "text": "185",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 5120,
-      "end_ms": 5840,
+      "start_ms": 5100,
+      "end_ms": 5600,
       "text": "tickets.",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 5860,
-      "end_ms": 6210,
+      "start_ms": 5900,
+      "end_ms": 6300,
       "text": "No,",
       "language": "en",
       "segment_index": 0
     },
     {
       "start_ms": 6400,
-      "end_ms": 6720,
+      "end_ms": 6800,
       "text": "nobody",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 6720,
-      "end_ms": 7120,
+      "start_ms": 6800,
+      "end_ms": 7200,
       "text": "failed",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 7120,
-      "end_ms": 7910,
+      "start_ms": 7200,
+      "end_ms": 8200,
       "text": "kindergarten.",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 8290,
-      "end_ms": 8350,
+      "start_ms": 8300,
+      "end_ms": 8400,
       "text": "They",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 8350,
-      "end_ms": 8420,
+      "start_ms": 8400,
+      "end_ms": 8600,
       "text": "did",
       "language": "en",
       "segment_index": 0
     },
     {
       "start_ms": 8600,
-      "end_ms": 8680,
+      "end_ms": 8700,
       "text": "it",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 8680,
-      "end_ms": 8810,
+      "start_ms": 8700,
+      "end_ms": 8900,
       "text": "on",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 8810,
-      "end_ms": 9280,
-      "text": "purpose",
+      "start_ms": 8900,
+      "end_ms": 9400,
+      "text": "purpose.",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 9280,
-      "end_ms": 9880,
-      "text": "because,",
+      "start_ms": 9400,
+      "end_ms": 10000,
+      "text": "Because",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 9880,
-      "end_ms": 10010,
+      "start_ms": 10100,
+      "end_ms": 10200,
       "text": "on",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 10010,
-      "end_ms": 10410,
+      "start_ms": 10200,
+      "end_ms": 10600,
       "text": "almost",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 10410,
-      "end_ms": 10480,
+      "start_ms": 10600,
+      "end_ms": 10800,
       "text": "every",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 11090,
-      "end_ms": 11280,
+      "start_ms": 10800,
+      "end_ms": 11300,
       "text": "route,",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 11280,
-      "end_ms": 11560,
+      "start_ms": 11400,
+      "end_ms": 11700,
       "text": "some",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 11560,
+      "start_ms": 11700,
       "end_ms": 12300,
       "text": "passengers",
       "language": "en",
@@ -332,1427 +325,1448 @@
     },
     {
       "start_ms": 12300,
-      "end_ms": 12740,
+      "end_ms": 12700,
       "text": "cancel",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 12740,
-      "end_ms": 13040,
+      "start_ms": 12700,
+      "end_ms": 13100,
       "text": "late",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 13040,
-      "end_ms": 13460,
+      "start_ms": 13200,
+      "end_ms": 13700,
       "text": "or",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 13810,
-      "end_ms": 13960,
+      "start_ms": 13700,
+      "end_ms": 14100,
       "text": "simply",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 14120,
-      "end_ms": 14370,
+      "start_ms": 14100,
+      "end_ms": 14400,
       "text": "don't",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 14370,
-      "end_ms": 14650,
+      "start_ms": 14400,
+      "end_ms": 14700,
       "text": "show",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 14650,
-      "end_ms": 14990,
+      "start_ms": 14700,
+      "end_ms": 15000,
       "text": "up.",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 15000,
-      "end_ms": 15210,
+      "start_ms": 15300,
+      "end_ms": 15400,
       "text": "And",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 15210,
-      "end_ms": 15350,
+      "start_ms": 15400,
+      "end_ms": 15600,
       "text": "an",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 15350,
-      "end_ms": 15680,
+      "start_ms": 15600,
+      "end_ms": 16000,
       "text": "empty",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 15810,
-      "end_ms": 15980,
+      "start_ms": 16000,
+      "end_ms": 16300,
       "text": "seat",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 15980,
-      "end_ms": 16000,
+      "start_ms": 16300,
+      "end_ms": 16400,
       "text": "has",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 16060,
-      "end_ms": 16190,
+      "start_ms": 16400,
+      "end_ms": 16500,
       "text": "a",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 16620,
-      "end_ms": 16680,
+      "start_ms": 16500,
+      "end_ms": 16900,
       "text": "brutal",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 16680,
-      "end_ms": 17130,
+      "start_ms": 16900,
+      "end_ms": 17300,
       "text": "business",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 17240,
-      "end_ms": 17840,
-      "text": "model.",
+      "start_ms": 17300,
+      "end_ms": 17700,
+      "text": "model:",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 18060,
-      "end_ms": 18070,
-      "text": "The",
-      "language": "en",
-      "segment_index": 0
-    },
-    {
-      "start_ms": 18070,
-      "end_ms": 18540,
-      "text": "second",
-      "language": "en",
-      "segment_index": 0
-    },
-    {
-      "start_ms": 18540,
-      "end_ms": 18770,
+      "start_ms": 18000,
+      "end_ms": 18100,
       "text": "the",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 18770,
-      "end_ms": 19160,
+      "start_ms": 18100,
+      "end_ms": 18600,
+      "text": "second",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 18600,
+      "end_ms": 18700,
+      "text": "the",
+      "language": "en",
+      "segment_index": 0
+    },
+    {
+      "start_ms": 18700,
+      "end_ms": 19100,
       "text": "plane",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 19160,
-      "end_ms": 19780,
+      "start_ms": 19100,
+      "end_ms": 19700,
       "text": "leaves,",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 19780,
-      "end_ms": 19920,
+      "start_ms": 19800,
+      "end_ms": 19900,
       "text": "it",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 19920,
-      "end_ms": 20240,
+      "start_ms": 19900,
+      "end_ms": 20400,
       "text": "becomes",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 20240,
-      "end_ms": 20860,
+      "start_ms": 20400,
+      "end_ms": 20700,
       "text": "worth",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 20860,
-      "end_ms": 21370,
+      "start_ms": 20700,
+      "end_ms": 21400,
       "text": "exactly",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 21480,
-      "end_ms": 22000,
+      "start_ms": 21400,
+      "end_ms": 21900,
       "text": "zero.",
       "language": "en",
       "segment_index": 0
     },
     {
-      "start_ms": 22750,
-      "end_ms": 23210,
+      "start_ms": 22800,
+      "end_ms": 23400,
       "text": "Airlines",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 23210,
-      "end_ms": 23540,
+      "start_ms": 23400,
+      "end_ms": 23600,
       "text": "know",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 23540,
-      "end_ms": 23920,
-      "text": "this,",
+      "start_ms": 23600,
+      "end_ms": 24000,
+      "text": "this.",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 23920,
-      "end_ms": 24320,
-      "text": "so",
+      "start_ms": 24300,
+      "end_ms": 24400,
+      "text": "So",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 24320,
-      "end_ms": 24590,
+      "start_ms": 24400,
+      "end_ms": 24600,
       "text": "their",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 24590,
-      "end_ms": 25090,
+      "start_ms": 24600,
+      "end_ms": 25100,
       "text": "revenue",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 25200,
-      "end_ms": 25660,
+      "start_ms": 25100,
+      "end_ms": 25800,
       "text": "systems",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 25660,
-      "end_ms": 26140,
+      "start_ms": 25800,
+      "end_ms": 26200,
       "text": "study",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 26140,
-      "end_ms": 26750,
+      "start_ms": 26200,
+      "end_ms": 26800,
       "text": "historical",
       "language": "en",
       "segment_index": 1
     },
     {
       "start_ms": 26800,
-      "end_ms": 27300,
+      "end_ms": 27400,
       "text": "patterns",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 27340,
-      "end_ms": 27540,
+      "start_ms": 27400,
+      "end_ms": 27600,
       "text": "and",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 27540,
-      "end_ms": 28140,
+      "start_ms": 27600,
+      "end_ms": 28400,
       "text": "forecast",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 28350,
-      "end_ms": 28380,
+      "start_ms": 28400,
+      "end_ms": 28500,
       "text": "how",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 28580,
-      "end_ms": 28660,
+      "start_ms": 28500,
+      "end_ms": 28700,
       "text": "many",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 28660,
-      "end_ms": 29080,
+      "start_ms": 28700,
+      "end_ms": 29000,
       "text": "booked",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 29080,
-      "end_ms": 29620,
+      "start_ms": 29000,
+      "end_ms": 29700,
       "text": "passengers",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 30140,
-      "end_ms": 30340,
+      "start_ms": 29700,
+      "end_ms": 30100,
       "text": "probably",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 30340,
-      "end_ms": 30680,
+      "start_ms": 30100,
+      "end_ms": 30500,
       "text": "won't",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 30680,
-      "end_ms": 31260,
+      "start_ms": 30500,
+      "end_ms": 31000,
       "text": "board.",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 31260,
-      "end_ms": 31860,
+      "start_ms": 31400,
+      "end_ms": 31700,
       "text": "Imagine",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 31860,
-      "end_ms": 31940,
+      "start_ms": 31700,
+      "end_ms": 31800,
       "text": "a",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 31940,
-      "end_ms": 33130,
+      "start_ms": 31800,
+      "end_ms": 32900,
       "text": "180-seat",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 33130,
-      "end_ms": 33660,
+      "start_ms": 32900,
+      "end_ms": 33200,
       "text": "flight",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 33660,
-      "end_ms": 33820,
+      "start_ms": 33900,
+      "end_ms": 34000,
       "text": "where",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 33820,
-      "end_ms": 34030,
+      "start_ms": 34000,
+      "end_ms": 34200,
       "text": "the",
       "language": "en",
       "segment_index": 1
     },
     {
       "start_ms": 34200,
-      "end_ms": 34460,
+      "end_ms": 34600,
       "text": "airline",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 34670,
-      "end_ms": 35110,
+      "start_ms": 34600,
+      "end_ms": 35100,
       "text": "expects",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 35110,
-      "end_ms": 35570,
+      "start_ms": 35100,
+      "end_ms": 35400,
       "text": "about",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 35570,
+      "start_ms": 35400,
       "end_ms": 35800,
       "text": "five",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 36120,
-      "end_ms": 36950,
+      "start_ms": 35800,
+      "end_ms": 36600,
       "text": "no-shows.",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 36950,
-      "end_ms": 37600,
+      "start_ms": 37100,
+      "end_ms": 37400,
       "text": "Selling",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 37600,
-      "end_ms": 38440,
+      "start_ms": 37400,
+      "end_ms": 38400,
       "text": "185",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 38440,
-      "end_ms": 39090,
+      "start_ms": 38400,
+      "end_ms": 38900,
       "text": "tickets",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 39090,
-      "end_ms": 39370,
+      "start_ms": 38900,
+      "end_ms": 39200,
       "text": "can",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 39370,
-      "end_ms": 39740,
+      "start_ms": 39200,
+      "end_ms": 39600,
       "text": "still",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 39830,
-      "end_ms": 40540,
-      "text": "produce",
+      "start_ms": 39600,
+      "end_ms": 40200,
+      "text": "produce...",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 40540,
-      "end_ms": 41390,
+      "start_ms": 40700,
+      "end_ms": 41500,
       "text": "180",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 41390,
-      "end_ms": 41960,
+      "start_ms": 41500,
+      "end_ms": 41900,
       "text": "actual",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 41960,
-      "end_ms": 42720,
+      "start_ms": 41900,
+      "end_ms": 42500,
       "text": "humans.",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 42720,
-      "end_ms": 43340,
+      "start_ms": 42700,
+      "end_ms": 43200,
       "text": "Perfect.",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 43550,
-      "end_ms": 43820,
+      "start_ms": 43500,
+      "end_ms": 43800,
       "text": "Every",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 43820,
-      "end_ms": 44200,
+      "start_ms": 43800,
+      "end_ms": 44300,
       "text": "seat",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 44200,
-      "end_ms": 45260,
+      "start_ms": 44300,
+      "end_ms": 45000,
       "text": "occupied.",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 45260,
-      "end_ms": 45890,
+      "start_ms": 45400,
+      "end_ms": 45900,
       "text": "Everybody",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 46000,
-      "end_ms": 46550,
+      "start_ms": 45900,
+      "end_ms": 46400,
       "text": "happy.",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 46660,
-      "end_ms": 46810,
+      "start_ms": 46800,
+      "end_ms": 46900,
       "text": "The",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 46810,
-      "end_ms": 47510,
+      "start_ms": 46900,
+      "end_ms": 47600,
       "text": "spreadsheet",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 47510,
-      "end_ms": 47760,
+      "start_ms": 47600,
+      "end_ms": 47900,
       "text": "gets",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 47760,
-      "end_ms": 47820,
+      "start_ms": 47900,
+      "end_ms": 48100,
       "text": "a",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 47820,
-      "end_ms": 48070,
+      "start_ms": 48100,
+      "end_ms": 48400,
       "text": "tiny",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 48070,
-      "end_ms": 48860,
+      "start_ms": 48400,
+      "end_ms": 49000,
       "text": "promotion.",
       "language": "en",
       "segment_index": 1
     },
     {
-      "start_ms": 49850,
-      "end_ms": 49860,
+      "start_ms": 49900,
+      "end_ms": 50000,
       "text": "But",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 49860,
-      "end_ms": 50640,
+      "start_ms": 50000,
+      "end_ms": 50700,
       "text": "predictions",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 50640,
-      "end_ms": 50850,
+      "start_ms": 50700,
+      "end_ms": 50800,
       "text": "are",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 50850,
-      "end_ms": 50950,
+      "start_ms": 50800,
+      "end_ms": 51000,
       "text": "not",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 51080,
-      "end_ms": 51650,
+      "start_ms": 51000,
+      "end_ms": 51700,
       "text": "promises.",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 51650,
-      "end_ms": 52070,
+      "start_ms": 52100,
+      "end_ms": 52200,
       "text": "If",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 52070,
-      "end_ms": 52300,
+      "start_ms": 52200,
+      "end_ms": 52500,
       "text": "seven",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 52300,
-      "end_ms": 52660,
+      "start_ms": 52500,
+      "end_ms": 52800,
       "text": "people",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 52660,
-      "end_ms": 53130,
+      "start_ms": 52800,
+      "end_ms": 53200,
       "text": "vanish,",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 53240,
-      "end_ms": 53370,
+      "start_ms": 53200,
+      "end_ms": 53400,
       "text": "two",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 53370,
-      "end_ms": 53720,
+      "start_ms": 53400,
+      "end_ms": 53900,
       "text": "seats",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 53720,
-      "end_ms": 54120,
+      "start_ms": 53900,
+      "end_ms": 54200,
       "text": "still",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 54120,
-      "end_ms": 54520,
+      "start_ms": 54200,
+      "end_ms": 54600,
       "text": "fly",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 54520,
-      "end_ms": 55320,
+      "start_ms": 54600,
+      "end_ms": 54900,
       "text": "empty.",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 55320,
-      "end_ms": 55540,
+      "start_ms": 55600,
+      "end_ms": 55630,
       "text": "If",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 55540,
-      "end_ms": 56060,
+      "start_ms": 55630,
+      "end_ms": 56200,
       "text": "exactly",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 56060,
-      "end_ms": 56390,
+      "start_ms": 56200,
+      "end_ms": 56700,
       "text": "five",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 56390,
-      "end_ms": 57300,
+      "start_ms": 56700,
+      "end_ms": 57500,
       "text": "disappear,",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 57300,
-      "end_ms": 57330,
+      "start_ms": 57600,
+      "end_ms": 57630,
       "text": "the",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 57750,
-      "end_ms": 57870,
+      "start_ms": 57630,
+      "end_ms": 58000,
       "text": "math",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 57910,
-      "end_ms": 58260,
+      "start_ms": 58000,
+      "end_ms": 58300,
       "text": "looks",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 58320,
-      "end_ms": 59080,
+      "start_ms": 58300,
+      "end_ms": 59000,
       "text": "genius.",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 59080,
-      "end_ms": 59340,
+      "start_ms": 59300,
+      "end_ms": 59400,
       "text": "And",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 59340,
-      "end_ms": 59510,
+      "start_ms": 59400,
+      "end_ms": 59500,
       "text": "if",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 59620,
-      "end_ms": 60030,
+      "start_ms": 59500,
+      "end_ms": 60000,
       "text": "nobody",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 60030,
-      "end_ms": 61080,
-      "text": "disappears,",
+      "start_ms": 60000,
+      "end_ms": 60800,
+      "text": "disappears...",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 61190,
-      "end_ms": 62280,
+      "start_ms": 61200,
+      "end_ms": 62500,
       "text": "congratulations.",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 62280,
-      "end_ms": 62670,
+      "start_ms": 63100,
+      "end_ms": 63200,
       "text": "We",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 62670,
-      "end_ms": 63060,
+      "start_ms": 63200,
+      "end_ms": 63500,
       "text": "now",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 63060,
-      "end_ms": 63090,
+      "start_ms": 63500,
+      "end_ms": 63700,
       "text": "have",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 63090,
-      "end_ms": 63890,
+      "start_ms": 63700,
+      "end_ms": 64800,
       "text": "185",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 63890,
-      "end_ms": 64750,
+      "start_ms": 64800,
+      "end_ms": 65400,
       "text": "passengers",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 64750,
-      "end_ms": 64850,
+      "start_ms": 65400,
+      "end_ms": 65700,
       "text": "and",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 65270,
-      "end_ms": 65850,
+      "start_ms": 65700,
+      "end_ms": 66300,
       "text": "180",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 65850,
-      "end_ms": 66600,
+      "start_ms": 66300,
+      "end_ms": 66700,
       "text": "seats.",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 66600,
-      "end_ms": 66930,
+      "start_ms": 67400,
+      "end_ms": 67600,
       "text": "This",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 67140,
-      "end_ms": 67330,
+      "start_ms": 67600,
+      "end_ms": 67700,
       "text": "is",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 67330,
-      "end_ms": 67720,
+      "start_ms": 67700,
+      "end_ms": 67800,
       "text": "the",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 67720,
-      "end_ms": 68100,
+      "start_ms": 67800,
+      "end_ms": 68200,
       "text": "moment",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 68100,
-      "end_ms": 68130,
+      "start_ms": 68200,
+      "end_ms": 68300,
       "text": "a",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 68130,
-      "end_ms": 68710,
+      "start_ms": 68300,
+      "end_ms": 68800,
       "text": "calm",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 68710,
-      "end_ms": 68920,
+      "start_ms": 68800,
+      "end_ms": 69000,
       "text": "gate",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 68920,
-      "end_ms": 69880,
+      "start_ms": 69000,
+      "end_ms": 69700,
       "text": "announcement",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 70100,
-      "end_ms": 70350,
+      "start_ms": 70000,
+      "end_ms": 70500,
       "text": "suddenly",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 70350,
-      "end_ms": 70700,
+      "start_ms": 70500,
+      "end_ms": 70900,
       "text": "starts",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 70700,
-      "end_ms": 71170,
+      "start_ms": 70900,
+      "end_ms": 71300,
       "text": "sounding",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 71170,
-      "end_ms": 71400,
+      "start_ms": 71300,
+      "end_ms": 71500,
       "text": "like",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 71400,
-      "end_ms": 71510,
+      "start_ms": 71500,
+      "end_ms": 71600,
       "text": "an",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 71510,
-      "end_ms": 72120,
+      "start_ms": 71600,
+      "end_ms": 72000,
       "text": "auction.",
       "language": "en",
       "segment_index": 2
     },
     {
-      "start_ms": 72920,
-      "end_ms": 73050,
+      "start_ms": 72900,
+      "end_ms": 73300,
       "text": "First,",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 73280,
-      "end_ms": 73800,
+      "start_ms": 73300,
+      "end_ms": 73900,
       "text": "airlines",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 73840,
-      "end_ms": 74050,
+      "start_ms": 73900,
+      "end_ms": 74100,
       "text": "may",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 74050,
-      "end_ms": 74230,
+      "start_ms": 74100,
+      "end_ms": 74400,
       "text": "ask",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 74390,
-      "end_ms": 74510,
+      "start_ms": 74400,
+      "end_ms": 74500,
       "text": "for",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 74510,
-      "end_ms": 75180,
+      "start_ms": 74500,
+      "end_ms": 75200,
       "text": "volunteers",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 75300,
-      "end_ms": 75360,
+      "start_ms": 75200,
+      "end_ms": 75400,
       "text": "to",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 75440,
-      "end_ms": 75750,
+      "start_ms": 75400,
+      "end_ms": 75600,
       "text": "take",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 75750,
-      "end_ms": 75820,
+      "start_ms": 75600,
+      "end_ms": 75700,
       "text": "a",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 75820,
-      "end_ms": 76210,
+      "start_ms": 75700,
+      "end_ms": 76100,
       "text": "later",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 76210,
-      "end_ms": 76600,
+      "start_ms": 76100,
+      "end_ms": 76500,
       "text": "flight",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 76770,
-      "end_ms": 76820,
+      "start_ms": 76500,
+      "end_ms": 76600,
       "text": "in",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 76820,
-      "end_ms": 77420,
+      "start_ms": 76600,
+      "end_ms": 77100,
       "text": "exchange",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 77490,
-      "end_ms": 77610,
+      "start_ms": 77100,
+      "end_ms": 77300,
       "text": "for",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 77700,
-      "end_ms": 78680,
+      "start_ms": 77300,
+      "end_ms": 78100,
       "text": "compensation.",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 78680,
-      "end_ms": 78790,
+      "start_ms": 78600,
+      "end_ms": 78700,
       "text": "In",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 78940,
-      "end_ms": 78990,
+      "start_ms": 78700,
+      "end_ms": 78800,
       "text": "the",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 78990,
-      "end_ms": 79360,
+      "start_ms": 78800,
+      "end_ms": 79100,
       "text": "United",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 79360,
-      "end_ms": 79820,
+      "start_ms": 79100,
+      "end_ms": 79700,
       "text": "States,",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 79860,
-      "end_ms": 80040,
+      "start_ms": 79900,
+      "end_ms": 80000,
       "text": "the",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 80040,
-      "end_ms": 80670,
+      "start_ms": 80000,
+      "end_ms": 80400,
       "text": "Department",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 80670,
-      "end_ms": 80790,
+      "start_ms": 80400,
+      "end_ms": 80500,
       "text": "of",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 80790,
-      "end_ms": 81670,
+      "start_ms": 80500,
+      "end_ms": 81300,
       "text": "Transportation",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 81670,
-      "end_ms": 82080,
+      "start_ms": 81300,
+      "end_ms": 82000,
       "text": "requires",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 82200,
-      "end_ms": 82620,
+      "start_ms": 82000,
+      "end_ms": 82600,
       "text": "airlines",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 82620,
-      "end_ms": 82790,
+      "start_ms": 82600,
+      "end_ms": 82800,
       "text": "to",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 82790,
-      "end_ms": 83040,
+      "start_ms": 82800,
+      "end_ms": 83000,
       "text": "seek",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 83040,
-      "end_ms": 83630,
+      "start_ms": 83000,
+      "end_ms": 83800,
       "text": "volunteers",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 83720,
-      "end_ms": 84100,
+      "start_ms": 83800,
+      "end_ms": 84200,
       "text": "before",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 84380,
-      "end_ms": 85350,
+      "start_ms": 84200,
+      "end_ms": 85200,
       "text": "involuntarily",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 85350,
-      "end_ms": 86010,
+      "start_ms": 85200,
+      "end_ms": 85700,
       "text": "denying",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 86010,
-      "end_ms": 86770,
+      "start_ms": 85700,
+      "end_ms": 86100,
       "text": "boarding",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 86770,
-      "end_ms": 87430,
+      "start_ms": 86400,
+      "end_ms": 86600,
       "text": "because",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 87430,
-      "end_ms": 87520,
+      "start_ms": 86600,
+      "end_ms": 86700,
       "text": "of",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 87640,
-      "end_ms": 87810,
+      "start_ms": 86700,
+      "end_ms": 86900,
       "text": "an",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 87810,
-      "end_ms": 88880,
+      "start_ms": 86900,
+      "end_ms": 87600,
       "text": "oversale.",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 89060,
-      "end_ms": 89290,
+      "start_ms": 88500,
+      "end_ms": 89000,
       "text": "Exact",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 89520,
-      "end_ms": 89710,
+      "start_ms": 89000,
+      "end_ms": 89500,
       "text": "rules",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 89710,
-      "end_ms": 90030,
+      "start_ms": 89500,
+      "end_ms": 89800,
       "text": "vary",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 90030,
-      "end_ms": 90190,
+      "start_ms": 89800,
+      "end_ms": 90000,
       "text": "by",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 90190,
-      "end_ms": 91040,
+      "start_ms": 90000,
+      "end_ms": 90600,
       "text": "country.",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 91300,
-      "end_ms": 91310,
+      "start_ms": 91000,
+      "end_ms": 91100,
       "text": "This",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 91310,
-      "end_ms": 91430,
+      "start_ms": 91100,
+      "end_ms": 91200,
       "text": "is",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 91430,
-      "end_ms": 91660,
+      "start_ms": 91200,
+      "end_ms": 91400,
       "text": "why",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 91660,
-      "end_ms": 91850,
+      "start_ms": 91400,
+      "end_ms": 91600,
       "text": "you",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 91850,
-      "end_ms": 92470,
+      "start_ms": 91600,
+      "end_ms": 92200,
       "text": "sometimes",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 92470,
-      "end_ms": 92610,
+      "start_ms": 92200,
+      "end_ms": 92400,
       "text": "hear",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 92770,
-      "end_ms": 92940,
+      "start_ms": 92400,
+      "end_ms": 92700,
       "text": "the",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 92950,
-      "end_ms": 93230,
+      "start_ms": 92700,
+      "end_ms": 93000,
       "text": "offer",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 93300,
-      "end_ms": 93740,
-      "text": "climb,",
+      "start_ms": 93000,
+      "end_ms": 93500,
+      "text": "climb:",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 93820,
-      "end_ms": 94570,
-      "text": "$200,",
+      "start_ms": 93900,
+      "end_ms": 94104,
+      "text": "two",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 94570,
-      "end_ms": 95390,
-      "text": "$400,",
+      "start_ms": 94104,
+      "end_ms": 94579,
+      "text": "hundred",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 95390,
-      "end_ms": 95590,
+      "start_ms": 94579,
+      "end_ms": 95054,
+      "text": "dollars...",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 95054,
+      "end_ms": 95325,
+      "text": "four",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 95325,
+      "end_ms": 95800,
+      "text": "hundred...",
+      "language": "en",
+      "segment_index": 3
+    },
+    {
+      "start_ms": 96000,
+      "end_ms": 96200,
       "text": "and",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 95590,
-      "end_ms": 96230,
-      "text": "suddenly,",
+      "start_ms": 96200,
+      "end_ms": 96800,
+      "text": "suddenly",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 96260,
-      "end_ms": 96460,
+      "start_ms": 96800,
+      "end_ms": 97200,
       "text": "somebody",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 96990,
-      "end_ms": 97510,
+      "start_ms": 97200,
+      "end_ms": 97700,
       "text": "remembers",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 97510,
-      "end_ms": 97860,
+      "start_ms": 97700,
+      "end_ms": 97800,
       "text": "they",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 97860,
-      "end_ms": 98010,
+      "start_ms": 97800,
+      "end_ms": 98200,
       "text": "never",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 98220,
-      "end_ms": 98440,
+      "start_ms": 98200,
+      "end_ms": 98500,
       "text": "liked",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 98440,
-      "end_ms": 98680,
+      "start_ms": 98500,
+      "end_ms": 98700,
       "text": "this",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 98680,
-      "end_ms": 99350,
+      "start_ms": 98700,
+      "end_ms": 99300,
       "text": "destination",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 99350,
-      "end_ms": 99760,
+      "start_ms": 99300,
+      "end_ms": 99700,
       "text": "anyway.",
       "language": "en",
       "segment_index": 3
     },
     {
-      "start_ms": 100520,
-      "end_ms": 100720,
-      "text": "So,",
+      "start_ms": 100600,
+      "end_ms": 101000,
+      "text": "So",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 100720,
-      "end_ms": 100890,
+      "start_ms": 101000,
+      "end_ms": 101300,
       "text": "why",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 101050,
-      "end_ms": 101420,
+      "start_ms": 101300,
+      "end_ms": 101600,
       "text": "risk",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 101420,
-      "end_ms": 102030,
+      "start_ms": 101600,
+      "end_ms": 102100,
       "text": "paying",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 102030,
-      "end_ms": 102640,
+      "start_ms": 102100,
+      "end_ms": 102400,
       "text": "people",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 102640,
-      "end_ms": 102770,
+      "start_ms": 102400,
+      "end_ms": 102500,
       "text": "at",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 103140,
-      "end_ms": 103480,
+      "start_ms": 102500,
+      "end_ms": 102800,
       "text": "all?",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 103790,
-      "end_ms": 103990,
+      "start_ms": 103300,
+      "end_ms": 103600,
       "text": "Because",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 103990,
-      "end_ms": 104580,
+      "start_ms": 103600,
+      "end_ms": 104100,
       "text": "airlines",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 104580,
-      "end_ms": 104630,
+      "start_ms": 104100,
+      "end_ms": 104200,
       "text": "are",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 104900,
-      "end_ms": 105460,
+      "start_ms": 104200,
+      "end_ms": 104800,
       "text": "balancing",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 105460,
-      "end_ms": 105680,
+      "start_ms": 104800,
+      "end_ms": 105100,
       "text": "two",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 105680,
-      "end_ms": 106300,
+      "start_ms": 105100,
+      "end_ms": 105700,
       "text": "costs.",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 106610,
-      "end_ms": 106620,
+      "start_ms": 106100,
+      "end_ms": 106400,
       "text": "Cost",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 106620,
-      "end_ms": 106870,
-      "text": "one,",
+      "start_ms": 106400,
+      "end_ms": 106800,
+      "text": "one:",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 107020,
+      "start_ms": 107000,
       "end_ms": 107100,
       "text": "a",
       "language": "en",
@@ -1760,1239 +1774,1218 @@
     },
     {
       "start_ms": 107100,
-      "end_ms": 107420,
+      "end_ms": 107400,
       "text": "seat",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 107420,
-      "end_ms": 107910,
+      "start_ms": 107400,
+      "end_ms": 107700,
       "text": "leaves",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 107910,
-      "end_ms": 108320,
+      "start_ms": 107700,
+      "end_ms": 108200,
       "text": "empty",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 108320,
-      "end_ms": 108560,
+      "start_ms": 108300,
+      "end_ms": 108400,
       "text": "and",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 108560,
-      "end_ms": 108750,
+      "start_ms": 108400,
+      "end_ms": 108600,
       "text": "can",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 108750,
-      "end_ms": 109270,
+      "start_ms": 108600,
+      "end_ms": 108900,
       "text": "never",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 109270,
-      "end_ms": 109330,
+      "start_ms": 108900,
+      "end_ms": 109000,
       "text": "be",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 109390,
-      "end_ms": 109690,
+      "start_ms": 109000,
+      "end_ms": 109300,
       "text": "sold",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 109690,
-      "end_ms": 110420,
+      "start_ms": 109300,
+      "end_ms": 109700,
       "text": "again.",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 110420,
-      "end_ms": 110730,
+      "start_ms": 110200,
+      "end_ms": 110400,
       "text": "Cost",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 110730,
-      "end_ms": 110990,
-      "text": "two,",
+      "start_ms": 110400,
+      "end_ms": 110900,
+      "text": "two:",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 111140,
-      "end_ms": 111330,
+      "start_ms": 111300,
+      "end_ms": 111400,
       "text": "too",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 111330,
-      "end_ms": 111560,
+      "start_ms": 111400,
+      "end_ms": 111600,
       "text": "many",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 111840,
-      "end_ms": 112090,
+      "start_ms": 111600,
+      "end_ms": 112000,
       "text": "people",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 112090,
-      "end_ms": 112390,
+      "start_ms": 112000,
+      "end_ms": 112300,
       "text": "show",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 112390,
-      "end_ms": 112540,
+      "start_ms": 112300,
+      "end_ms": 112600,
       "text": "up",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 112540,
-      "end_ms": 112770,
+      "start_ms": 112600,
+      "end_ms": 112700,
       "text": "and",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 112770,
-      "end_ms": 112870,
+      "start_ms": 112700,
+      "end_ms": 112900,
       "text": "the",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 113390,
-      "end_ms": 113540,
+      "start_ms": 112900,
+      "end_ms": 113300,
       "text": "airline",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 113540,
-      "end_ms": 113840,
+      "start_ms": 113300,
+      "end_ms": 113700,
       "text": "pays",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 113840,
-      "end_ms": 113990,
+      "start_ms": 113700,
+      "end_ms": 113800,
       "text": "to",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 113990,
-      "end_ms": 114220,
+      "start_ms": 113800,
+      "end_ms": 114100,
       "text": "fix",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 114220,
-      "end_ms": 114450,
+      "start_ms": 114100,
+      "end_ms": 114200,
       "text": "the",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 114450,
-      "end_ms": 115220,
+      "start_ms": 114200,
+      "end_ms": 114800,
       "text": "problem.",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 115220,
-      "end_ms": 115610,
+      "start_ms": 115300,
+      "end_ms": 115330,
       "text": "The",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 115610,
-      "end_ms": 115870,
+      "start_ms": 115330,
+      "end_ms": 115600,
       "text": "goal",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 115870,
-      "end_ms": 116030,
+      "start_ms": 115600,
+      "end_ms": 115800,
       "text": "is",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 116030,
-      "end_ms": 116430,
+      "start_ms": 115800,
+      "end_ms": 116300,
       "text": "not,",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 116430,
-      "end_ms": 116760,
-      "text": "sell",
+      "start_ms": 116600,
+      "end_ms": 116800,
+      "text": "\"sell",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 116760,
-      "end_ms": 116920,
+      "start_ms": 116800,
+      "end_ms": 117000,
       "text": "as",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 116920,
-      "end_ms": 117250,
+      "start_ms": 117000,
+      "end_ms": 117300,
       "text": "many",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 117250,
-      "end_ms": 117750,
+      "start_ms": 117300,
+      "end_ms": 117600,
       "text": "tickets",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 117750,
-      "end_ms": 118280,
+      "start_ms": 117600,
+      "end_ms": 117900,
       "text": "as",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 118280,
-      "end_ms": 118940,
-      "text": "possible.",
+      "start_ms": 117900,
+      "end_ms": 118500,
+      "text": "possible.\"",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 119090,
-      "end_ms": 119390,
-      "text": "It's,",
+      "start_ms": 118800,
+      "end_ms": 119200,
+      "text": "It's:",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 119390,
-      "end_ms": 119700,
+      "start_ms": 119600,
+      "end_ms": 120000,
       "text": "sell",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 119700,
-      "end_ms": 120010,
+      "start_ms": 120000,
+      "end_ms": 120300,
       "text": "just",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 120010,
-      "end_ms": 120480,
+      "start_ms": 120300,
+      "end_ms": 120600,
       "text": "enough",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 120480,
-      "end_ms": 120830,
+      "start_ms": 120600,
+      "end_ms": 121000,
       "text": "extra",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 120880,
-      "end_ms": 121390,
+      "start_ms": 121000,
+      "end_ms": 121500,
       "text": "tickets",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 121390,
-      "end_ms": 121910,
+      "start_ms": 121500,
+      "end_ms": 121600,
       "text": "that",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 121910,
-      "end_ms": 121960,
+      "start_ms": 121600,
+      "end_ms": 121700,
       "text": "the",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 121960,
-      "end_ms": 122580,
+      "start_ms": 121700,
+      "end_ms": 122500,
       "text": "expected",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 122580,
-      "end_ms": 122980,
-      "text": "empty",
+      "start_ms": 122500,
+      "end_ms": 123100,
+      "text": "empty-seat",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 122980,
-      "end_ms": 123290,
-      "text": "seat",
-      "language": "en",
-      "segment_index": 4
-    },
-    {
-      "start_ms": 123290,
+      "start_ms": 123100,
       "end_ms": 123600,
       "text": "loss",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 123600,
-      "end_ms": 123750,
+      "start_ms": 123800,
+      "end_ms": 124000,
       "text": "is",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 123750,
-      "end_ms": 124060,
+      "start_ms": 124000,
+      "end_ms": 124500,
       "text": "smaller",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 124060,
-      "end_ms": 124495,
+      "start_ms": 124500,
+      "end_ms": 124600,
       "text": "than",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 124495,
-      "end_ms": 124930,
+      "start_ms": 124600,
+      "end_ms": 124800,
       "text": "the",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 124930,
-      "end_ms": 125400,
+      "start_ms": 124800,
+      "end_ms": 125500,
       "text": "expected",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 125400,
-      "end_ms": 126170,
+      "start_ms": 125500,
+      "end_ms": 126200,
       "text": "overbooking",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 126170,
+      "start_ms": 126200,
       "end_ms": 126700,
       "text": "cost.",
       "language": "en",
       "segment_index": 4
     },
     {
-      "start_ms": 127470,
-      "end_ms": 127510,
+      "start_ms": 127500,
+      "end_ms": 127600,
       "text": "And",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 127470,
-      "end_ms": 127680,
+      "start_ms": 127600,
+      "end_ms": 127630,
       "text": "the",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 127680,
-      "end_ms": 128080,
+      "start_ms": 127630,
+      "end_ms": 128000,
       "text": "number",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 128100,
-      "end_ms": 128250,
+      "start_ms": 128000,
+      "end_ms": 128200,
       "text": "is",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 128250,
-      "end_ms": 128460,
+      "start_ms": 128200,
+      "end_ms": 128600,
       "text": "not",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 128460,
-      "end_ms": 128670,
+      "start_ms": 128600,
+      "end_ms": 128700,
       "text": "the",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 128670,
-      "end_ms": 128950,
+      "start_ms": 128700,
+      "end_ms": 129100,
       "text": "same",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 128950,
-      "end_ms": 129120,
+      "start_ms": 129100,
+      "end_ms": 129300,
       "text": "for",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 129200,
-      "end_ms": 129520,
+      "start_ms": 129300,
+      "end_ms": 129600,
       "text": "every",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 129520,
-      "end_ms": 129970,
+      "start_ms": 129600,
+      "end_ms": 130100,
       "text": "flight.",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 130220,
-      "end_ms": 130270,
+      "start_ms": 130500,
+      "end_ms": 130530,
       "text": "A",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 130430,
-      "end_ms": 130620,
+      "start_ms": 130530,
+      "end_ms": 130800,
       "text": "Monday",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 130620,
-      "end_ms": 131030,
+      "start_ms": 130800,
+      "end_ms": 131200,
       "text": "morning",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 131030,
-      "end_ms": 131420,
+      "start_ms": 131200,
+      "end_ms": 131700,
       "text": "business",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 131560,
-      "end_ms": 131820,
+      "start_ms": 131700,
+      "end_ms": 132000,
       "text": "route",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 131820,
-      "end_ms": 131960,
+      "start_ms": 132000,
+      "end_ms": 132100,
       "text": "may",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 131970,
-      "end_ms": 132220,
+      "start_ms": 132100,
+      "end_ms": 132500,
       "text": "behave",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 132290,
-      "end_ms": 132860,
+      "start_ms": 132500,
+      "end_ms": 133000,
       "text": "differently",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 132860,
-      "end_ms": 132930,
+      "start_ms": 133000,
+      "end_ms": 133200,
       "text": "from",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 133110,
-      "end_ms": 133180,
+      "start_ms": 133200,
+      "end_ms": 133300,
       "text": "a",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 133420,
-      "end_ms": 133730,
+      "start_ms": 133300,
+      "end_ms": 133600,
       "text": "holiday",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 133730,
-      "end_ms": 134220,
+      "start_ms": 133600,
+      "end_ms": 134100,
       "text": "flight.",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 134430,
-      "end_ms": 134760,
+      "start_ms": 134400,
+      "end_ms": 134900,
       "text": "Airlines",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 134760,
-      "end_ms": 134960,
+      "start_ms": 134900,
+      "end_ms": 135100,
       "text": "use",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 134960,
-      "end_ms": 135370,
+      "start_ms": 135100,
+      "end_ms": 135500,
       "text": "demand",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 135370,
-      "end_ms": 136090,
+      "start_ms": 135500,
+      "end_ms": 136400,
       "text": "forecasts,",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 136160,
-      "end_ms": 136570,
+      "start_ms": 136400,
+      "end_ms": 136600,
       "text": "booking",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 136700,
-      "end_ms": 137420,
+      "start_ms": 136600,
+      "end_ms": 137200,
       "text": "behavior,",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 137420,
-      "end_ms": 138620,
+      "start_ms": 137600,
+      "end_ms": 138500,
       "text": "cancellations,",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 138830,
-      "end_ms": 138840,
+      "start_ms": 138800,
+      "end_ms": 139000,
       "text": "and",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 138840,
-      "end_ms": 139580,
+      "start_ms": 139000,
+      "end_ms": 139600,
       "text": "historical",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 139580,
-      "end_ms": 140080,
+      "start_ms": 139600,
+      "end_ms": 140100,
       "text": "no-show",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 140080,
-      "end_ms": 140620,
+      "start_ms": 140100,
+      "end_ms": 140700,
       "text": "patterns",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 140670,
-      "end_ms": 140810,
+      "start_ms": 140700,
+      "end_ms": 140800,
       "text": "to",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 140810,
-      "end_ms": 141250,
+      "start_ms": 140800,
+      "end_ms": 141200,
       "text": "decide",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 141250,
-      "end_ms": 141330,
+      "start_ms": 141200,
+      "end_ms": 141400,
       "text": "how",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 141330,
-      "end_ms": 141820,
+      "start_ms": 141400,
+      "end_ms": 141600,
       "text": "much",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 141820,
-      "end_ms": 142790,
-      "text": "overbooking,",
+      "start_ms": 141600,
+      "end_ms": 142400,
+      "text": "overbooking",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 142830,
-      "end_ms": 142970,
+      "start_ms": 142700,
+      "end_ms": 143000,
       "text": "if",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 143060,
-      "end_ms": 143580,
-      "text": "any,",
+      "start_ms": 143000,
+      "end_ms": 143400,
+      "text": "any",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 143580,
-      "end_ms": 143650,
+      "start_ms": 143800,
+      "end_ms": 143830,
       "text": "a",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 143650,
-      "end_ms": 144080,
+      "start_ms": 143830,
+      "end_ms": 144200,
       "text": "flight",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 144080,
-      "end_ms": 144300,
+      "start_ms": 144200,
+      "end_ms": 144400,
       "text": "can",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 144300,
-      "end_ms": 144860,
+      "start_ms": 144400,
+      "end_ms": 145000,
       "text": "tolerate.",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 144860,
-      "end_ms": 145630,
+      "start_ms": 145600,
+      "end_ms": 145800,
       "text": "Some",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 145630,
-      "end_ms": 145950,
+      "start_ms": 145800,
+      "end_ms": 146300,
       "text": "airlines",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 145950,
-      "end_ms": 146400,
+      "start_ms": 146300,
+      "end_ms": 146600,
       "text": "don't",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 146400,
-      "end_ms": 147120,
+      "start_ms": 146600,
+      "end_ms": 147200,
       "text": "oversell",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 147120,
-      "end_ms": 147280,
+      "start_ms": 147200,
+      "end_ms": 147300,
       "text": "at",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 147360,
-      "end_ms": 147770,
+      "start_ms": 147300,
+      "end_ms": 147700,
       "text": "all.",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 147900,
-      "end_ms": 148110,
+      "start_ms": 148100,
+      "end_ms": 148200,
       "text": "The",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 148110,
-      "end_ms": 148130,
+      "start_ms": 148200,
+      "end_ms": 148700,
       "text": "system",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 148620,
-      "end_ms": 148670,
+      "start_ms": 148700,
+      "end_ms": 148800,
       "text": "is",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 148670,
-      "end_ms": 148740,
+      "start_ms": 148800,
+      "end_ms": 148900,
       "text": "a",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 148740,
-      "end_ms": 149410,
+      "start_ms": 148900,
+      "end_ms": 149800,
       "text": "forecast,",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 149450,
-      "end_ms": 149650,
+      "start_ms": 149800,
+      "end_ms": 150000,
       "text": "not",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 149650,
-      "end_ms": 149720,
+      "start_ms": 150000,
+      "end_ms": 150030,
       "text": "a",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 149720,
-      "end_ms": 150220,
+      "start_ms": 150030,
+      "end_ms": 150400,
       "text": "rule.",
       "language": "en",
       "segment_index": 5
     },
     {
-      "start_ms": 151160,
-      "end_ms": 151540,
-      "text": "So,",
+      "start_ms": 151300,
+      "end_ms": 151800,
+      "text": "So",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 151540,
-      "end_ms": 151710,
+      "start_ms": 152100,
+      "end_ms": 152300,
       "text": "the",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 152110,
-      "end_ms": 152620,
+      "start_ms": 152300,
+      "end_ms": 152700,
       "text": "weird",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 152820,
-      "end_ms": 153510,
+      "start_ms": 152700,
+      "end_ms": 153200,
       "text": "truth",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 153510,
-      "end_ms": 153580,
+      "start_ms": 153200,
+      "end_ms": 153700,
       "text": "is",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 153950,
-      "end_ms": 154630,
-      "text": "this,",
+      "start_ms": 154100,
+      "end_ms": 154700,
+      "text": "this:",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 155130,
-      "end_ms": 155530,
+      "start_ms": 155100,
+      "end_ms": 155700,
       "text": "airlines",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 155530,
-      "end_ms": 155810,
+      "start_ms": 155700,
+      "end_ms": 155900,
       "text": "are",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 155810,
-      "end_ms": 156080,
+      "start_ms": 155900,
+      "end_ms": 156500,
       "text": "not",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 156090,
-      "end_ms": 156650,
+      "start_ms": 156500,
+      "end_ms": 156800,
       "text": "really",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 156650,
-      "end_ms": 157310,
+      "start_ms": 156800,
+      "end_ms": 157400,
       "text": "selling",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 157310,
-      "end_ms": 158800,
-      "text": "chairs,",
-      "language": "en",
-      "segment_index": 6
-    },
-    {
-      "start_ms": 158800,
-      "end_ms": 158930,
-      "text": "they",
-      "language": "en",
-      "segment_index": 6
-    },
-    {
-      "start_ms": 158930,
-      "end_ms": 159030,
-      "text": "are",
-      "language": "en",
-      "segment_index": 6
-    },
-    {
-      "start_ms": 159030,
-      "end_ms": 159320,
-      "text": "managing",
-      "language": "en",
-      "segment_index": 6
-    },
-    {
-      "start_ms": 159590,
-      "end_ms": 160110,
-      "text": "probabilities",
-      "language": "en",
-      "segment_index": 6
-    },
-    {
-      "start_ms": 160510,
-      "end_ms": 161020,
-      "text": "around",
-      "language": "en",
-      "segment_index": 6
-    },
-    {
-      "start_ms": 161220,
-      "end_ms": 161900,
+      "start_ms": 157400,
+      "end_ms": 158000,
       "text": "chairs.",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 162160,
-      "end_ms": 162320,
+      "start_ms": 158700,
+      "end_ms": 158900,
+      "text": "They're",
+      "language": "en",
+      "segment_index": 6
+    },
+    {
+      "start_ms": 158900,
+      "end_ms": 159400,
+      "text": "managing",
+      "language": "en",
+      "segment_index": 6
+    },
+    {
+      "start_ms": 159400,
+      "end_ms": 160300,
+      "text": "probabilities",
+      "language": "en",
+      "segment_index": 6
+    },
+    {
+      "start_ms": 160300,
+      "end_ms": 160600,
+      "text": "around",
+      "language": "en",
+      "segment_index": 6
+    },
+    {
+      "start_ms": 160600,
+      "end_ms": 161200,
+      "text": "chairs.",
+      "language": "en",
+      "segment_index": 6
+    },
+    {
+      "start_ms": 161800,
+      "end_ms": 162000,
       "text": "Your",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 162340,
-      "end_ms": 162690,
-      "text": "22",
+      "start_ms": 162400,
+      "end_ms": 163700,
+      "text": "22A",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 163090,
-      "end_ms": 163440,
-      "text": "Ayas",
-      "language": "en",
-      "segment_index": 6
-    },
-    {
-      "start_ms": 163440,
-      "end_ms": 163600,
+      "start_ms": 163700,
+      "end_ms": 163900,
       "text": "is",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 163800,
-      "end_ms": 164380,
+      "start_ms": 163900,
+      "end_ms": 164400,
       "text": "sitting",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 164380,
-      "end_ms": 165090,
+      "start_ms": 164400,
+      "end_ms": 164800,
       "text": "inside",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 165160,
-      "end_ms": 165200,
+      "start_ms": 164800,
+      "end_ms": 164900,
       "text": "a",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 165200,
-      "end_ms": 165420,
+      "start_ms": 164900,
+      "end_ms": 165500,
       "text": "model",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 166110,
-      "end_ms": 166190,
+      "start_ms": 165900,
+      "end_ms": 166100,
       "text": "that",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 166190,
-      "end_ms": 166620,
+      "start_ms": 166100,
+      "end_ms": 166600,
       "text": "asks",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 166630,
-      "end_ms": 166960,
+      "start_ms": 166600,
+      "end_ms": 167000,
       "text": "one",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 166960,
-      "end_ms": 168220,
-      "text": "question.",
+      "start_ms": 167000,
+      "end_ms": 167600,
+      "text": "question:",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 168220,
-      "end_ms": 168510,
-      "text": "How",
+      "start_ms": 168200,
+      "end_ms": 168300,
+      "text": "how",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 168510,
-      "end_ms": 168730,
+      "start_ms": 168300,
+      "end_ms": 168500,
       "text": "many",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 168730,
-      "end_ms": 168870,
+      "start_ms": 168500,
+      "end_ms": 168600,
       "text": "of",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 168870,
-      "end_ms": 169010,
+      "start_ms": 168600,
+      "end_ms": 168900,
       "text": "these",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 169410,
-      "end_ms": 169670,
+      "start_ms": 168900,
+      "end_ms": 169300,
       "text": "booked",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 169670,
-      "end_ms": 169920,
+      "start_ms": 169300,
+      "end_ms": 169800,
       "text": "humans",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 170120,
-      "end_ms": 170350,
+      "start_ms": 169800,
+      "end_ms": 170000,
       "text": "will",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 170450,
-      "end_ms": 170830,
+      "start_ms": 170000,
+      "end_ms": 170500,
       "text": "actually",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 171250,
-      "end_ms": 171410,
+      "start_ms": 170500,
+      "end_ms": 170800,
       "text": "appear",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 171480,
-      "end_ms": 171560,
+      "start_ms": 170800,
+      "end_ms": 171000,
       "text": "at",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 171560,
-      "end_ms": 171720,
+      "start_ms": 171000,
+      "end_ms": 171100,
       "text": "the",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 171720,
-      "end_ms": 172340,
+      "start_ms": 171100,
+      "end_ms": 171400,
       "text": "gate?",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 172610,
-      "end_ms": 172830,
+      "start_ms": 171900,
+      "end_ms": 172400,
       "text": "Airlines",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 172830,
-      "end_ms": 173120,
+      "start_ms": 172400,
+      "end_ms": 173000,
       "text": "don't",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 173120,
-      "end_ms": 173610,
+      "start_ms": 173100,
+      "end_ms": 173800,
       "text": "overbook",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 173610,
-      "end_ms": 174030,
+      "start_ms": 173800,
+      "end_ms": 174200,
       "text": "because",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 174030,
-      "end_ms": 174280,
+      "start_ms": 174200,
+      "end_ms": 174400,
       "text": "they",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 174280,
-      "end_ms": 174650,
+      "start_ms": 174400,
+      "end_ms": 174700,
       "text": "forgot",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 174650,
-      "end_ms": 174770,
+      "start_ms": 174700,
+      "end_ms": 174800,
       "text": "to",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 174770,
-      "end_ms": 175070,
-      "text": "count,",
+      "start_ms": 174800,
+      "end_ms": 175200,
+      "text": "count.",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 175360,
-      "end_ms": 175430,
-      "text": "they",
+      "start_ms": 175600,
+      "end_ms": 175800,
+      "text": "They",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 175430,
-      "end_ms": 175840,
+      "start_ms": 175800,
+      "end_ms": 176300,
       "text": "overbook",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 175840,
-      "end_ms": 176050,
+      "start_ms": 176300,
+      "end_ms": 176600,
       "text": "because",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 176550,
-      "end_ms": 176580,
+      "start_ms": 176600,
+      "end_ms": 176700,
       "text": "they",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 176580,
-      "end_ms": 177080,
+      "start_ms": 176700,
+      "end_ms": 177200,
       "text": "counted",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 177370,
-      "end_ms": 177720,
-      "text": "everyone,",
+      "start_ms": 177300,
+      "end_ms": 177900,
+      "text": "everyone",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 177720,
-      "end_ms": 177890,
+      "start_ms": 178300,
+      "end_ms": 178700,
       "text": "including",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 178290,
-      "end_ms": 178480,
+      "start_ms": 178700,
+      "end_ms": 178800,
       "text": "the",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 178480,
-      "end_ms": 178790,
+      "start_ms": 178800,
+      "end_ms": 179100,
       "text": "people",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 179000,
-      "end_ms": 179140,
+      "start_ms": 179100,
+      "end_ms": 179200,
       "text": "they",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 179140,
-      "end_ms": 179570,
+      "start_ms": 179200,
+      "end_ms": 179900,
       "text": "expect",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 179570,
-      "end_ms": 179760,
+      "start_ms": 179900,
+      "end_ms": 180100,
       "text": "not",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 180120,
-      "end_ms": 180130,
+      "start_ms": 180100,
+      "end_ms": 180200,
       "text": "to",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 180130,
-      "end_ms": 180490,
+      "start_ms": 180200,
+      "end_ms": 180500,
       "text": "show",
       "language": "en",
       "segment_index": 6
     },
     {
-      "start_ms": 180490,
-      "end_ms": 180740,
+      "start_ms": 180500,
+      "end_ms": 180800,
       "text": "up.",
       "language": "en",
       "segment_index": 6
     }
   ],
   "narration_source": {
-    "schema": 1,
+    "schema": 2,
     "provider": "qwen-modal",
     "voice": "Aiden",
     "source_repo": "addvaluewithai-hub/free-image-editing",
@@ -3001,6 +2994,9 @@
     "release_tag": "video-factory-audio-airline-overbooking-explainer-v2-v1",
     "bundle_url": "https://github.com/addvaluewithai-hub/free-image-editing/releases/download/video-factory-audio-airline-overbooking-explainer-v2-v1/audio-bundle.zip",
     "bundle_sha256": "dcce088dc24b3c5ef2904a58db5d86866c44486b4ac628944f3aa7f927d77ecc",
-    "approved_for_reuse": true
+    "approved_for_reuse": true,
+    "alignment_provider": "gemini-3.5-transcribe",
+    "alignment_mode": "whole-audio-verbatim-word-timestamps",
+    "alignment_request_version": 2
   }
 }

@@ -1,11 +1,11 @@
 {
-  "run_id": "33996460312",
+  "run_id": "33997037243",
   "run_attempt": "1",
   "event": "push",
   "active_job": "airline-overbooking-explainer-v2",
   "tts_provider": "qwen_modal_approved_release",
   "voice": "Aiden",
-  "alignment_provider": "hyperframes_whisper",
+  "alignment_provider": "gemini-3.5-transcribe",
   "factory_outcome": "success",
-  "recorded_at": "2026-09-05T22:42:50Z"
+  "recorded_at": "2026-09-05T22:51:17Z"
 }
