@@ -60,7 +60,7 @@ jobs:
 
       - name: Install client dependency
         if: steps.active.outputs.ready == 'true'
-        run: pip install requests>=2.32.0
+        run: pip install 'requests>=2.32.0'
 
       - name: Generate image batch
         if: steps.active.outputs.ready == 'true'
@@ -114,12 +114,13 @@ jobs:
                   'aspect_ratio': request.get('aspect_ratio', '16:9'),
                   'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
               })
+          now = datetime.now(timezone.utc).isoformat()
           manifest = {
               'schema': 1,
               'job': job,
               'provider': 'private-image-api',
               'base_url': 'https://agent.wpaikits.site/v1/workflow/jobs-images',
-              'generated_at': datetime.now(timezone.utc).isoformat(),
+              'generated_at': now,
               'items': items,
           }
           (out.parent / 'manifest.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
@@ -131,8 +132,12 @@ jobs:
               'job': job,
               'count': len(items),
               'manifest': str(out.parent / 'manifest.json'),
-              'recorded_at': datetime.now(timezone.utc).isoformat(),
+              'recorded_at': now,
           }, indent=2) + '\n', encoding='utf-8')
+
+          project = Path('productions') / job / 'video'
+          if project.is_dir():
+              (project / '.images-ready').write_text(now + '\n', encoding='utf-8')
           PY
 
       - name: Commit generated image assets
@@ -143,6 +148,9 @@ jobs:
         run: |
           set -euo pipefail
           git add "generated-assets/${JOB}" ".factory-status/images/${JOB}.json"
+          if [ -f "productions/${JOB}/video/.images-ready" ]; then
+            git add "productions/${JOB}/video/.images-ready"
+          fi
           if git diff --cached --quiet; then
             echo 'No generated image changes to commit.'
             exit 0
