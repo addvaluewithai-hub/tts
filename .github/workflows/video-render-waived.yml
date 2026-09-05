@@ -1,0 +1,188 @@
+name: Video Factory — Fast Final Render (User Waived QA)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'approvals/**/WAIVED'
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: video-factory-fast-final-render
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve active waived production
+        id: active
+        shell: bash
+        run: |
+          set -euo pipefail
+          JOB="$(grep -Ev '^\s*(#|$)' input/ACTIVE | head -1 || true)"
+          test -n "$JOB"
+          PROJECT="productions/${JOB}/video"
+          WAIVER="approvals/${JOB}/WAIVED"
+          test -d "$PROJECT"
+          test -f "$WAIVER"
+          test -s "final/${JOB}.wav"
+          test -s "final/${JOB}.transcript.json"
+          SOURCE_SHA=$(git log -1 --format=%H -- "$PROJECT")
+          echo "job=$JOB" >> "$GITHUB_OUTPUT"
+          echo "project=$PROJECT" >> "$GITHUB_OUTPUT"
+          echo "waiver=$WAIVER" >> "$GITHUB_OUTPUT"
+          echo "source_sha=$SOURCE_SHA" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Sync audio into production
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$PROJECT/assets/audio" "$PROJECT/fast-final"
+          AUDIO_SOURCE="final/${JOB}.wav"
+          if [ -s "final/${JOB}.mix.wav" ]; then AUDIO_SOURCE="final/${JOB}.mix.wav"; fi
+          cp "$AUDIO_SOURCE" "$PROJECT/assets/audio/${JOB}.wav"
+          cp "final/${JOB}.transcript.json" "$PROJECT/assets/audio/${JOB}.transcript.json"
+          if [ -f "final/${JOB}.transcript.vtt" ]; then cp "final/${JOB}.transcript.vtt" "$PROJECT/assets/audio/${JOB}.transcript.vtt"; fi
+          if [ -f "$PROJECT/scripts/prepare-assets.sh" ]; then (cd "$PROJECT" && bash scripts/prepare-assets.sh); fi
+
+      - name: Build exact-timing composition
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          FACTORY_JOB_ID="$JOB" node scripts/build-from-audio.mjs
+          test -s index.html
+          test -s build-meta.json
+
+      - name: Verify explicit user waiver matches source and audio
+        shell: bash
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+          WAIVER: ${{ steps.active.outputs.waiver }}
+          SOURCE_SHA: ${{ steps.active.outputs.source_sha }}
+        run: |
+          set -euo pipefail
+          TRANSCRIPT_SHA=$(node -e "console.log(require('./${PROJECT}/build-meta.json').transcript_sha256)")
+          grep -Fx "source_sha=${SOURCE_SHA}" "$WAIVER"
+          grep -Fx "transcript_sha256=${TRANSCRIPT_SHA}" "$WAIVER"
+          grep -Fx 'manual_visual_review=user_waived' "$WAIVER"
+
+      - name: Lint and check
+        shell: bash
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          npx --yes hyperframes@latest lint .
+          npx --yes hyperframes@latest check .
+
+      - name: Render final synchronized video
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          npx --yes hyperframes@latest render . -c ./index.html --workers 2 --output "${JOB}.mp4"
+
+      - name: Verify final media
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          test -s "${JOB}.mp4"
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,width,height,r_frame_rate -of json "${JOB}.mp4" > fast-final/ffprobe.json
+          python - <<PY
+          import json, yaml
+          from pathlib import Path
+          job = yaml.safe_load(Path('../../../input/${JOB}/job.yaml').read_text(encoding='utf-8')) or {}
+          video = job.get('video') or {}
+          expected_w = int(video.get('width', 1920))
+          expected_h = int(video.get('height', 1080))
+          expected_fps = float(video.get('fps', 30))
+          expected_duration = float(json.loads(Path('build-meta.json').read_text())['duration'])
+          probe = json.loads(Path('fast-final/ffprobe.json').read_text())
+          streams = probe.get('streams') or []
+          v = next((s for s in streams if s.get('width')), None)
+          assert v, 'No video stream found'
+          assert int(v['width']) == expected_w and int(v['height']) == expected_h
+          num, den = str(v['r_frame_rate']).split('/')
+          fps = float(num) / float(den)
+          assert abs(fps - expected_fps) < 0.01, (expected_fps, fps)
+          actual_duration = float((probe.get('format') or {})['duration'])
+          assert abs(expected_duration - actual_duration) < 0.15, (expected_duration, actual_duration)
+          PY
+
+      - name: Upload fast final artifact
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.active.outputs.job }}-fast-final
+          path: |
+            ${{ steps.active.outputs.project }}/${{ steps.active.outputs.job }}.mp4
+            ${{ steps.active.outputs.project }}/fast-final/ffprobe.json
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Publish fast-final manifest
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+          SOURCE_SHA: ${{ steps.active.outputs.source_sha }}
+          ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+        run: |
+          set -euo pipefail
+          TRANSCRIPT_SHA=$(node -e "console.log(require('./${PROJECT}/build-meta.json').transcript_sha256)")
+          mkdir -p ".factory-status/video/${JOB}"
+          cat > ".factory-status/video/${JOB}/fast-final-latest.json" <<EOF
+          {
+            "job": "${JOB}",
+            "source_sha": "${SOURCE_SHA}",
+            "transcript_sha256": "${TRANSCRIPT_SHA}",
+            "manual_visual_review": "user_waived",
+            "run_id": "${GITHUB_RUN_ID}",
+            "artifact_id": "${ARTIFACT_ID}",
+            "artifact_url": "${ARTIFACT_URL}",
+            "created_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          }
+          EOF
+          git config user.name 'video-factory-render[bot]'
+          git config user.email 'video-factory-render[bot]@users.noreply.github.com'
+          git add ".factory-status/video/${JOB}/fast-final-latest.json"
+          git commit -m "render: publish ${JOB} fast final artifact" || exit 0
+          git pull --rebase origin main
+          git push origin HEAD:main
