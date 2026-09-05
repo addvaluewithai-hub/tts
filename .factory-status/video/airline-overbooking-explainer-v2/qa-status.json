@@ -1,8 +1,8 @@
 {
-  "status": "started",
+  "status": "rendering",
   "job": "airline-overbooking-explainer-v2",
   "source_sha": "c08ac7ea02b86a2b44637357c0e0aa9bec2bebb0",
   "run_id": "33997845957",
   "run_attempt": "1",
-  "started_at": "2026-09-05T23:08:32Z"
+  "rendering_at": "2026-09-05T23:10:00Z"
 }
