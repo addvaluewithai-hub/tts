@@ -53,18 +53,12 @@ jobs:
           python-version: "3.12"
           cache: pip
 
-      - name: Set up Node for HyperFrames
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
       - name: Install alignment dependencies
         run: |
           set -euo pipefail
           pip install -r requirements.txt
           sudo apt-get update
           sudo apt-get install -y ffmpeg unzip
-          npx --yes hyperframes@latest --help >/dev/null
 
       - name: Download and verify approved Qwen bundle
         env:
@@ -77,7 +71,7 @@ jobs:
           set -euo pipefail
           STAGE=".factory-cache/approved-audio-import/${JOB}"
           rm -rf "$STAGE"
-          mkdir -p "$STAGE/source" "$STAGE/audio/${JOB}" "$STAGE/done/${JOB}" "$STAGE/final" "$STAGE/cache"
+          mkdir -p "$STAGE/source" "$STAGE/audio/${JOB}" "$STAGE/done/${JOB}" "$STAGE/final"
           curl --fail --location --retry 3 --output "$STAGE/audio-bundle.zip" "$BUNDLE_URL"
           printf '%s  %s\n' "$BUNDLE_SHA" "$STAGE/audio-bundle.zip" | sha256sum --check --strict
           unzip -q "$STAGE/audio-bundle.zip" -d "$STAGE/source"
@@ -104,19 +98,20 @@ jobs:
           cp "$STAGE/source/master.wav" "$STAGE/final/${JOB}.wav"
           ffmpeg -nostdin -loglevel error -y -i "$STAGE/final/${JOB}.wav" -codec:a libmp3lame -b:a 192k "$STAGE/final/${JOB}.mp3"
 
-      - name: Derive exact word timings from approved audio
+      - name: Derive exact word timings with Gemini Transcribe
         env:
           JOB: ${{ steps.audio.outputs.job }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         shell: bash
         run: |
           set -euo pipefail
+          test -n "$GEMINI_API_KEY" || { echo "GEMINI_API_KEY secret is required" >&2; exit 2; }
           STAGE=".factory-cache/approved-audio-import/${JOB}"
-          python scripts/transcribe_final_hyperframes.py \
+          python scripts/transcribe_final_gemini.py \
             --config tts_config.yaml \
             --final "$STAGE/final" \
             --audio "$STAGE/audio" \
-            --done "$STAGE/done" \
-            --cache "$STAGE/cache"
+            --done "$STAGE/done"
           test -s "$STAGE/final/${JOB}.transcript.json"
           test -s "$STAGE/final/${JOB}.transcript.vtt"
 
@@ -170,7 +165,7 @@ jobs:
             "active_job": "${JOB}",
             "tts_provider": "qwen_modal_approved_release",
             "voice": "${VOICE}",
-            "alignment_provider": "hyperframes_whisper",
+            "alignment_provider": "gemini-3.5-transcribe",
             "factory_outcome": "success",
             "recorded_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)"
           }
@@ -192,6 +187,6 @@ jobs:
             .factory-status/audio/latest.json
           git config user.name "video-factory-audio[bot]"
           git config user.email "video-factory-audio[bot]@users.noreply.github.com"
-          git commit -m "chore(factory): publish approved Qwen audio and exact timing" || exit 0
+          git commit -m "chore(factory): publish approved Qwen audio and Gemini timing" || exit 0
           git pull --rebase origin main
           git push origin HEAD:main
