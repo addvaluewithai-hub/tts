@@ -67,9 +67,7 @@ jobs:
         shell: bash
         env:
           IMAGE_API_TOKEN: ${{ secrets.IMAGE_API_TOKEN || vars.IMAGE_API_TOKEN }}
-          # The compatibility prefix returned 404 in live production on 2026-09-05.
-          # Use the API's documented preferred prefix; the request contract is identical.
-          IMAGE_API_BASE_URL: https://agent.wpaikits.site/v1/images
+          IMAGE_API_BASE_URL: https://agent.wpaikits.site/v1/workflow/jobs-images
           JOB: ${{ steps.active.outputs.job }}
           PLAN: ${{ steps.active.outputs.plan }}
         run: |
@@ -122,7 +120,7 @@ jobs:
               'schema': 1,
               'job': job,
               'provider': 'private-image-api',
-              'base_url': 'https://agent.wpaikits.site/v1/images',
+              'base_url': 'https://agent.wpaikits.site/v1/workflow/jobs-images',
               'generated_at': now,
               'items': items,
           }
