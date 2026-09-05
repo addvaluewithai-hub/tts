@@ -1,12 +1,14 @@
 {
-  "status": "complete",
   "job": "airline-overbooking-explainer-v2",
   "source_sha": "ecb7e0596168b56efbfbaaafefcf2cb5a93876d6",
   "transcript_sha256": "c83b1243afbebe755c6bd0d2aa6d929585180d5df689dc9390589bba4dc35bbb",
   "run_id": "33997737165",
+  "artifact_id": "9978570148",
+  "artifact_url": "https://github.com/addvaluewithai-hub/tts/actions/runs/33997737165/artifacts/9978570148",
   "lint_outcome": "failure",
   "check_outcome": "failure",
   "inspect_outcome": "success",
   "draft_outcome": "skipped",
-  "completed_at": "2026-09-05T23:07:03Z"
+  "manual_review_required": true,
+  "created_at": "2026-09-05T23:07:03Z"
 }
