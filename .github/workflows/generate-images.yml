@@ -1,0 +1,154 @@
+name: Video Factory — Images
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "input/ACTIVE"
+      - "input/*/visuals.json"
+      - "tools/image-gen/**"
+      - ".github/workflows/generate-images.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: video-factory-images
+  cancel-in-progress: false
+
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve active visual plan
+        id: active
+        shell: bash
+        run: |
+          set -euo pipefail
+          JOB="$(grep -Ev '^\s*(#|$)' input/ACTIVE | head -1 || true)"
+          if [ -z "$JOB" ]; then
+            echo 'No active job.'
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          PLAN="input/${JOB}/visuals.json"
+          if [ ! -f "$PLAN" ]; then
+            echo "No visual plan for ${JOB}: ${PLAN}"
+            echo "job=$JOB" >> "$GITHUB_OUTPUT"
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "job=$JOB" >> "$GITHUB_OUTPUT"
+          echo "plan=$PLAN" >> "$GITHUB_OUTPUT"
+          echo 'ready=true' >> "$GITHUB_OUTPUT"
+
+      - name: Set up Python
+        if: steps.active.outputs.ready == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install client dependency
+        if: steps.active.outputs.ready == 'true'
+        run: pip install requests>=2.32.0
+
+      - name: Generate image batch
+        if: steps.active.outputs.ready == 'true'
+        shell: bash
+        env:
+          IMAGE_API_TOKEN: ${{ secrets.IMAGE_API_TOKEN || vars.IMAGE_API_TOKEN }}
+          JOB: ${{ steps.active.outputs.job }}
+          PLAN: ${{ steps.active.outputs.plan }}
+        run: |
+          set -euo pipefail
+          if [ -z "${IMAGE_API_TOKEN:-}" ]; then
+            echo 'IMAGE_API_TOKEN is not configured as a repository secret or variable.' >&2
+            exit 2
+          fi
+          OUT="generated-assets/${JOB}/images"
+          rm -rf "$OUT"
+          mkdir -p "$OUT"
+          python tools/image-gen/client.py --timeout 5400 --poll-interval 2 batch \
+            --requests "$PLAN" \
+            --out-dir "$OUT" \
+            --output-format png
+
+      - name: Write generation manifest
+        if: steps.active.outputs.ready == 'true'
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PLAN: ${{ steps.active.outputs.plan }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib, json, os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          job = os.environ['JOB']
+          plan_path = Path(os.environ['PLAN'])
+          out = Path('generated-assets') / job / 'images'
+          plan = json.loads(plan_path.read_text(encoding='utf-8'))
+          requests = plan.get('requests', [])
+          files = sorted(out.glob('*.png'))
+          if len(files) != len(requests):
+              raise SystemExit(f'Expected {len(requests)} images, found {len(files)}')
+          items = []
+          for index, (request, path) in enumerate(zip(requests, files), start=1):
+              items.append({
+                  'index': index,
+                  'id': request.get('id', f'{index:02d}'),
+                  'file': path.name,
+                  'prompt': request['prompt'],
+                  'aspect_ratio': request.get('aspect_ratio', '16:9'),
+                  'sha256': hashlib.sha256(path.read_bytes()).hexdigest(),
+              })
+          manifest = {
+              'schema': 1,
+              'job': job,
+              'provider': 'private-image-api',
+              'base_url': 'https://agent.wpaikits.site/v1/workflow/jobs-images',
+              'generated_at': datetime.now(timezone.utc).isoformat(),
+              'items': items,
+          }
+          (out.parent / 'manifest.json').write_text(json.dumps(manifest, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+
+          status = Path('.factory-status/images')
+          status.mkdir(parents=True, exist_ok=True)
+          (status / f'{job}.json').write_text(json.dumps({
+              'status': 'complete',
+              'job': job,
+              'count': len(items),
+              'manifest': str(out.parent / 'manifest.json'),
+              'recorded_at': datetime.now(timezone.utc).isoformat(),
+          }, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Commit generated image assets
+        if: steps.active.outputs.ready == 'true'
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+        run: |
+          set -euo pipefail
+          git add "generated-assets/${JOB}" ".factory-status/images/${JOB}.json"
+          if git diff --cached --quiet; then
+            echo 'No generated image changes to commit.'
+            exit 0
+          fi
+          git config user.name 'video-factory-images[bot]'
+          git config user.email 'video-factory-images[bot]@users.noreply.github.com'
+          git commit -m "chore(images): publish ${JOB} generated assets"
+          git pull --rebase origin main
+          git push origin HEAD:main
