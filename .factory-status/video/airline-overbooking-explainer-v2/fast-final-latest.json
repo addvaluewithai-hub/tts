@@ -1,0 +1,10 @@
+{
+  "job": "airline-overbooking-explainer-v2",
+  "source_sha": "c08ac7ea02b86a2b44637357c0e0aa9bec2bebb0",
+  "transcript_sha256": "c83b1243afbebe755c6bd0d2aa6d929585180d5df689dc9390589bba4dc35bbb",
+  "manual_visual_review": "user_waived",
+  "run_id": "33998376623",
+  "artifact_id": "9978812801",
+  "artifact_url": "https://github.com/addvaluewithai-hub/tts/actions/runs/33998376623/artifacts/9978812801",
+  "created_at": "2026-09-05T23:26:10Z"
+}
