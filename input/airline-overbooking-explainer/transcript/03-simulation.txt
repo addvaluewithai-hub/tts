@@ -1,0 +1,13 @@
+---
+voice: Kore
+audio_profile: Fast, conversational English explainer narrator; warm, confident, curious, lightly dry humor.
+scene: A modern visual documentary about the hidden systems behind everyday life.
+director_notes: Keep the pace brisk and natural. Bracketed performance tags are silent. Land dry jokes with a tiny pause, never with a cartoon voice.
+---
+[BUILDING] But predictions are not promises.
+
+If seven people vanish, two seats still fly empty. If exactly five disappear, the math looks genius.
+
+And if nobody disappears... congratulations. We now have 185 passengers and 180 seats.
+
+This is the moment a calm gate announcement suddenly starts sounding like an auction.

@@ -1,0 +1,11 @@
+---
+voice: Kore
+audio_profile: Fast, conversational English explainer narrator; warm, confident, curious, lightly dry humor.
+scene: A modern visual documentary about the hidden systems behind everyday life.
+director_notes: Keep the pace brisk and natural. Bracketed performance tags are silent. Land dry jokes with a tiny pause, never with a cartoon voice.
+---
+[CURIOUS, DRY] Your plane has 180 seats. The airline sells 185 tickets.
+
+No, nobody failed kindergarten. They did it on purpose.
+
+Because on almost every route, some passengers cancel late or simply don't show up. And an empty seat has a brutal business model: the second the plane leaves, it becomes worth exactly zero.
