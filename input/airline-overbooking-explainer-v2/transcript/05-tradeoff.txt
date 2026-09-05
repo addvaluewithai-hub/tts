@@ -1,0 +1,15 @@
+---
+voice: Kore
+audio_profile: Fast, conversational English explainer narrator; warm, confident, curious, lightly dry humor.
+scene: A modern visual documentary about the hidden systems behind everyday life.
+director_notes: Keep the pace brisk and natural. Bracketed performance tags are silent. Land dry jokes with a tiny pause, never with a cartoon voice.
+---
+[REVEALING] So why risk paying people at all?
+
+Because airlines are balancing two costs.
+
+Cost one: a seat leaves empty and can never be sold again.
+
+Cost two: too many people show up and the airline pays to fix the problem.
+
+The goal is not, "sell as many tickets as possible." It's: sell just enough extra tickets that the expected empty-seat loss is smaller than the expected overbooking cost.
