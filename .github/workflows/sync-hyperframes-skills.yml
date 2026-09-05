@@ -1,0 +1,75 @@
+name: Sync HyperFrames Skills
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/sync-hyperframes-skills.yml'
+  schedule:
+    - cron: '17 4 * * 0'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-hyperframes-skills
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out Video Factory
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch current HyperFrames skills
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/hyperframes-upstream
+          git clone --depth 1 https://github.com/heygen-com/hyperframes.git /tmp/hyperframes-upstream
+
+          mkdir -p vendor/hyperframes .agents/skills
+          rm -rf vendor/hyperframes/skills
+          cp -a /tmp/hyperframes-upstream/skills vendor/hyperframes/skills
+          cp /tmp/hyperframes-upstream/LICENSE vendor/hyperframes/LICENSE
+          upstream_sha="$(git -C /tmp/hyperframes-upstream rev-parse HEAD)"
+          printf '%s\n' "$upstream_sha" > vendor/hyperframes/UPSTREAM_SHA
+
+          # Preserve unrelated local agent skills. Replace only links that point
+          # at the vendored HyperFrames skill set.
+          find .agents/skills -maxdepth 1 -type l -lname '../../vendor/hyperframes/skills/*' -delete || true
+          for skill_dir in vendor/hyperframes/skills/*; do
+            [ -d "$skill_dir" ] || continue
+            name="$(basename "$skill_dir")"
+            ln -s "../../vendor/hyperframes/skills/${name}" ".agents/skills/${name}"
+          done
+
+      - name: Validate required Video Factory skills exist
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in hyperframes hyperframes-core hyperframes-animation hyperframes-audio hyperframes-cli hyperframes-creative media-use faceless-explainer embedded-captions; do
+            test -f "vendor/hyperframes/skills/${name}/SKILL.md" || {
+              echo "Missing required HyperFrames skill: ${name}" >&2
+              exit 1
+            }
+          done
+
+      - name: Commit synced skills
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add vendor/hyperframes .agents/skills
+          if git diff --cached --quiet; then
+            echo 'HyperFrames skills already current.'
+            exit 0
+          fi
+          git config user.name 'video-factory-skills[bot]'
+          git config user.email 'video-factory-skills[bot]@users.noreply.github.com'
+          git commit -m 'chore(skills): sync HyperFrames upstream'
+          git pull --rebase origin main
+          git push origin HEAD:main
