@@ -11,7 +11,7 @@ Smart, fast, playful, adult, slightly dry humor. The narrator sounds amused by t
 ## Narration and synchronization
 Use the existing Qwen3-TTS 0.6B / Aiden narration. The rendered audio is the timing source of truth.
 
-Do **not** schedule visuals from estimated script timing or from the seven audio-part durations. HyperFrames local transcription must listen back to the generated Qwen audio and produce word-level timings. Every primary image cut and narration-linked overlay must resolve from an explicit word/phrase anchor in `final/airline-overbooking-explainer-v2.transcript.json`.
+Do **not** schedule visuals from estimated script timing or from the seven audio-part durations. HyperFrames local transcription must listen back to the generated Qwen audio and produce word-level timings. Every primary image cut and narration-linked HTML scene must resolve from an explicit word/phrase anchor in `final/airline-overbooking-explainer-v2.transcript.json`.
 
 If word alignment is unavailable or anchor resolution fails, stop the video build rather than rendering a visibly unsynchronized cut.
 
@@ -25,7 +25,7 @@ Use:
 - restrained dark navy plus muted red/amber accent shapes;
 - simplified airport, airplane, ticket, phone, desk and luggage props;
 - flat/lightly textured illustration with strong silhouettes;
-- clean editorial composition and negative space for controlled overlays.
+- clean editorial composition.
 
 Avoid:
 - photoreal people or environments;
@@ -36,16 +36,30 @@ Avoid:
 - embedded readable text, exact numbers or logos inside generated images;
 - accidental switching between anime, photoreal, 3D and flat illustration.
 
-Exact text/numbers such as `180`, `185`, `$200`, `$400`, legal notes and probability labels are added in post.
+## Hard rule: HTML never sits on the generated image
+Generated stickman images and HTML information design are **separate scenes**.
+
+When the narration needs exact text, numbers, a counter, legal note, chart or diagram, cut away from the image to a dedicated HTML scene with its own solid/gradient/pattern background.
+
+Examples:
+- `180 SEATS` is a separate kinetic-type scene.
+- `185 TICKETS` is a separate scene or direct matched cut.
+- `NO, NOBODY FAILED KINDERGARTEN` is a separate dry punchline card.
+- `$200 → $400` is a separate animated offer/counter scene.
+- `COST ONE` / `COST TWO` is a separate diagram scene.
+
+Then return to a clean stickman illustration. Do not put these readable HTML elements over the generated artwork.
+
+Use animated background motifs such as seat grids, ticket strips, dots, probability particles, subtle lines, paper texture, or channel-color geometric patterns. Keep them tasteful and fast.
 
 ## Shot cadence
 Generate **36 primary stickman images** for this ~3-minute piece. This is intentionally much denser than V2.
 
-Typical image hold: roughly 2.5–6 seconds. Avoid an uninterrupted primary still longer than ~7 seconds unless a deliberate internal word-timed overlay progression creates a new beat.
+Typical image hold: roughly 2.5–6 seconds. Avoid an uninterrupted primary still longer than ~7 seconds.
+
+The separate HTML information scenes are additional cuts, so the finished edit may naturally contain 40–50 total scenes even though only 36 are generated images.
 
 Cuts must correspond to new semantic beats, jokes, examples, comparisons or reveals — never arbitrary image churn.
-
-Text/pattern interludes and diagrams may add extra visual changes beyond the 36 generated images.
 
 ## HyperFrames workflow
 Before authoring/revising the composition, read the current vendored HyperFrames router and the `faceless-explainer` workflow under `vendor/hyperframes/skills/`, plus any routed core/audio/animation/creative/media skills.
@@ -63,10 +77,10 @@ Use HyperFrames as the deterministic authoring, timing, preview, QA and render s
 8. Close on the deeper insight: airlines are managing probabilities around chairs.
 
 ## Signature humor beats
-- `No, nobody failed kindergarten.` — stickman analyst/chalkboard visual, exact inequality added in post.
-- `The spreadsheet gets a tiny promotion.` — literal tiny stickman spreadsheet/trophy gag.
+- `No, nobody failed kindergarten.` — dedicated HTML punchline scene, then a stickman analyst looking mildly offended by the accusation.
+- `The spreadsheet gets a tiny promotion.` — clean stickman spreadsheet/trophy gag, no text overlay.
 - `starts sounding like an auction.` — gate agent briefly framed like an auctioneer.
-- `$200 → $400` — the volunteer hand and suitcase become increasingly enthusiastic.
+- `$200 → $400` — dedicated HTML counter scene, followed by a separate stickman volunteer/suitcase gag.
 - `never liked this destination anyway.` — stickman happily leaving while everyone else looks confused.
 
 ## Accuracy guardrails
@@ -83,10 +97,11 @@ A successful render is not approval.
 
 Reject the cut if:
 - a narration-linked image/text event is visibly early or late;
-- a primary image sits too long without a meaningful internal beat;
+- readable HTML is placed on top of generated artwork;
+- a primary image sits too long without a meaningful beat;
 - stickman style drifts;
 - generated images contain distracting artifacts or gibberish text;
-- an overlay collides/clips;
+- an HTML scene clips/collides;
 - a joke has no visual response;
 - image changes feel unrelated to the spoken idea.
 
