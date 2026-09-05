@@ -10,5 +10,6 @@
   "bundle_sha256": "dcce088dc24b3c5ef2904a58db5d86866c44486b4ac628944f3aa7f927d77ecc",
   "approved_for_reuse": true,
   "alignment_provider": "gemini-3.5-transcribe",
-  "alignment_mode": "verbatim-word-timestamps"
+  "alignment_mode": "whole-audio-verbatim-word-timestamps",
+  "alignment_request_version": 2
 }
