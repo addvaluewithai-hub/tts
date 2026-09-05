@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the complete audio stage (TTS → assemble → align → soundtrack) for Video Factory."""
+"""Run the complete audio stage (Qwen TTS → assemble → align → soundtrack)."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 STAGES = {
-    "tts": ROOT / "scripts" / "process_tts.py",
+    "tts": ROOT / "scripts" / "process_tts_qwen.py",
     "assemble": ROOT / "scripts" / "assemble_lessons.py",
     "align": ROOT / "scripts" / "transcribe_final.py",
     "soundtrack": ROOT / "scripts" / "run_soundtrack.py",
