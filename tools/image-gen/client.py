@@ -19,7 +19,7 @@ import os
 import time
 from pathlib import Path
 from typing import Any
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlsplit
 
 import requests
 
@@ -58,9 +58,18 @@ def encode_reference(path: Path) -> dict[str, str]:
 
 
 def resolve_url(value: str, *, base: str) -> str:
+    """Resolve API URLs without duplicating the compatibility prefix.
+
+    The VPS returns root-relative URLs such as
+    `/v1/workflow/jobs-images/jobs/<id>`. Those must resolve from the site origin,
+    not from the configured API prefix.
+    """
     if value.startswith("http://") or value.startswith("https://"):
         return value
-    return urljoin(base.rstrip("/") + "/", value.lstrip("/"))
+    if value.startswith("/"):
+        parsed = urlsplit(base)
+        return f"{parsed.scheme}://{parsed.netloc}{value}"
+    return urljoin(base.rstrip("/") + "/", value)
 
 
 def request_json(method: str, url: str, *, payload: dict[str, Any] | None = None, timeout: float = 120) -> dict[str, Any]:
