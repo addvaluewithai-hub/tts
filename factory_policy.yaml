@@ -1,11 +1,25 @@
 schema: 1
 
 cost:
-  # Repository-wide production policy. Keep generated/stock media spend at zero.
+  # Keep paid stock/media-library spend disabled by default. The approved private
+  # image-generation service below is a separate first-party production tool.
   target_incremental_media_cost_usd: 0
   paid_media_generation: false
 
+visuals:
+  strategy: image_first
+  generated_image_share_target: 0.75
+  allow_text_pattern_breaks: true
+  allow_explanatory_overlays: true
+  prefer_generated_images_over_html_scenes: true
+  image_provider: private_image_api
+  image_api_base_url: https://agent.wpaikits.site/v1/workflow/jobs-images
+  image_api_token_env: IMAGE_API_TOKEN
+  batch_max_requests: 20
+  temporary_hosting_hours: 24
+
 soundtrack:
-  # Paid music generation (including Lyria) is blocked while paid_media_generation=false.
+  # Paid music generation (including Lyria) remains blocked while
+  # paid_media_generation=false.
   prefer_local_or_cc0_music: true
   prefer_cc0_sfx: true
