@@ -19,7 +19,7 @@ class RunFactoryTests(unittest.TestCase):
         self.assertEqual(result, 0)
         command = mocked_run.call_args.args[0]
         self.assertEqual(command[0], sys.executable)
-        self.assertTrue(command[1].endswith("scripts/process_tts.py"))
+        self.assertTrue(command[1].endswith("scripts/process_tts_qwen.py"))
         self.assertEqual(command[-2:], ["--config", "tts_config.yaml"])
         self.assertEqual(mocked_run.call_args.kwargs["cwd"], run_factory.ROOT)
 
