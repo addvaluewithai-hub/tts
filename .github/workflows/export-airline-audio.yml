@@ -1,0 +1,28 @@
+name: Export Airline Audio Artifact
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/export-airline-audio.yml"
+
+permissions:
+  contents: read
+
+env:
+  AUDIO_FILE: final/airline-overbooking-explainer.mp3
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify audio
+        run: test -s "$AUDIO_FILE"
+      - name: Upload Gemini narration
+        uses: actions/upload-artifact@v4
+        with:
+          name: airline-overbooking-gemini-audio
+          path: ${{ env.AUDIO_FILE }}
+          if-no-files-found: error
+          retention-days: 1
