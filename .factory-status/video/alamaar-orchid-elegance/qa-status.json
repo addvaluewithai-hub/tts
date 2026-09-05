@@ -1,12 +1,8 @@
 {
-  "status": "complete",
+  "status": "started",
   "job": "alamaar-orchid-elegance",
   "source_sha": "b297971c0a8762ca29cb47f536306a3746854a61",
-  "transcript_sha256": "5e6ea415d423ba5495e09ab7ed4f7d32997f42263308d3194eb50de96592baf6",
-  "run_id": "32889313852",
-  "lint_outcome": "success",
-  "check_outcome": "success",
-  "inspect_outcome": "success",
-  "draft_outcome": "success",
-  "completed_at": "2026-08-25T19:27:03Z"
+  "run_id": "33974833438",
+  "run_attempt": "1",
+  "started_at": "2026-09-05T15:27:08Z"
 }
