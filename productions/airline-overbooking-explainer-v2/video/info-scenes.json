@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "scenes": [
+    {"id":"info-01","segment":1,"anchor":"180 seats","mode":"text","variant":"stat","headline":"180","subline":"SEATS","pattern":"seat-grid"},
+    {"id":"info-02","segment":1,"anchor":"185 tickets","mode":"text","variant":"stat","headline":"185","subline":"TICKETS","pattern":"ticket-strips"},
+    {"id":"info-03","segment":1,"anchor":"No nobody failed kindergarten","mode":"text","variant":"punch","headline":"NO.","subline":"NOBODY FAILED KINDERGARTEN.","pattern":"chalk-marks"},
+    {"id":"info-04","segment":1,"anchor":"worth exactly zero","mode":"text","variant":"stat","headline":"$0","subline":"EMPTY SEAT VALUE AFTER DEPARTURE","pattern":"departing-lines"},
+    {"id":"info-05","segment":2,"anchor":"Selling 185 tickets can still produce","mode":"diagram","variant":"flow","headline":"185 BOOKINGS","middle":"5 NO-SHOWS","subline":"180 HUMANS","pattern":"probability-dots"},
+    {"id":"info-06","segment":3,"anchor":"two seats still fly empty","mode":"diagram","variant":"ratio","headline":"7 NO-SHOWS","middle":"178 / 180","subline":"2 EMPTY SEATS","pattern":"seat-grid"},
+    {"id":"info-07","segment":3,"anchor":"the math looks genius","mode":"diagram","variant":"ratio","headline":"5 NO-SHOWS","middle":"180 / 180","subline":"PERFECT MATCH","pattern":"check-grid"},
+    {"id":"info-08","segment":3,"anchor":"We now have 185 passengers and 180 seats","mode":"diagram","variant":"ratio-danger","headline":"185 PASSENGERS","middle":">","subline":"180 SEATS","pattern":"overflow-dots"},
+    {"id":"info-09","segment":4,"anchor":"Department of Transportation requires airlines to seek volunteers","mode":"text","variant":"note","headline":"U.S. RULE","subline":"SEEK VOLUNTEERS BEFORE INVOLUNTARY DENIED BOARDING FOR AN OVERSALE","pattern":"rule-lines"},
+    {"id":"info-10","segment":4,"anchor":"two hundred dollars","mode":"text","variant":"offer","headline":"$200","subline":"VOLUNTEER OFFER","pattern":"auction-ticks"},
+    {"id":"info-11","segment":4,"anchor":"four hundred","mode":"text","variant":"offer-hot","headline":"$400","subline":"VOLUNTEER OFFER","pattern":"auction-ticks"},
+    {"id":"info-12","segment":5,"anchor":"Cost one","mode":"text","variant":"cost","headline":"COST ONE","subline":"AN EMPTY SEAT LEAVES","pattern":"left-weight"},
+    {"id":"info-13","segment":5,"anchor":"Cost two","mode":"text","variant":"cost","headline":"COST TWO","subline":"TOO MANY PEOPLE SHOW UP","pattern":"right-weight"},
+    {"id":"info-14","segment":5,"anchor":"The goal is not","mode":"text","variant":"punch","headline":"NOT","subline":"SELL AS MANY TICKETS AS POSSIBLE","pattern":"strike-grid"},
+    {"id":"info-15","segment":6,"anchor":"The system is a forecast not a rule","mode":"diagram","variant":"equation","headline":"FORECAST","middle":"≠","subline":"RULE","pattern":"probability-dots"},
+    {"id":"info-16","segment":7,"anchor":"not really selling chairs","mode":"text","variant":"punch","headline":"NOT REALLY","subline":"SELLING CHAIRS","pattern":"seat-grid"},
+    {"id":"info-17","segment":7,"anchor":"Your 22A","mode":"text","variant":"seat","headline":"22A","subline":"YOUR SEAT","pattern":"seat-map"},
+    {"id":"info-18","segment":7,"anchor":"Airlines don't overbook because they forgot to count","mode":"text","variant":"punch","headline":"NOT A","subline":"COUNTING ERROR","pattern":"count-marks"}
+  ]
+}
