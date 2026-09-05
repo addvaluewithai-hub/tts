@@ -27,6 +27,24 @@ class ImageGenClientTests(unittest.TestCase):
         with patch.dict(os.environ, {"IMAGE_API_BASE_URL": "https://example.test/root/"}, clear=True):
             self.assertEqual(image_gen_client.base_url(), "https://example.test/root")
 
+    def test_root_relative_status_url_resolves_from_origin(self):
+        self.assertEqual(
+            image_gen_client.resolve_url(
+                "/v1/workflow/jobs-images/jobs/abc",
+                base="https://agent.wpaikits.site/v1/workflow/jobs-images",
+            ),
+            "https://agent.wpaikits.site/v1/workflow/jobs-images/jobs/abc",
+        )
+
+    def test_relative_status_url_resolves_under_base(self):
+        self.assertEqual(
+            image_gen_client.resolve_url(
+                "jobs/abc",
+                base="https://agent.wpaikits.site/v1/workflow/jobs-images",
+            ),
+            "https://agent.wpaikits.site/v1/workflow/jobs-images/jobs/abc",
+        )
+
     def test_encode_reference(self):
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / "sample.png"
