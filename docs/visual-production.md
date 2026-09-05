@@ -23,15 +23,44 @@ Default prompt language should describe a coherent illustrated world:
 - flat or lightly textured 2D rendering;
 - no photoreal skin, cinematic photography, fake lens bokeh, or pseudo-stock-photo look;
 - no embedded critical text or exact numbers;
-- generous negative space when a controlled overlay will be added later.
+- generous clean composition.
 
 The goal is a recognizable channel language that looks intentionally illustrated, not like a failed attempt at real photography.
 
 Anime/cartoon directions are allowed when a job explicitly benefits from them, but **stickman is the channel default** because it is fast, readable, expressive, and consistent across abstract business/system topics.
 
+## Hard separation: generated images vs HTML information scenes
+
+**Do not place HTML text, exact numbers, labels, captions, counters, charts, or diagram typography on top of generated images.**
+
+Generated-image scenes and information/typography scenes are separate visual modes.
+
+Use an `image` scene when the job needs character, environment, emotion, metaphor, action, or a visual joke. Keep the generated image clean and let the illustration carry the beat.
+
+When the narration needs precise information such as:
+
+- `180 seats` / `185 tickets`;
+- `$200 → $400`;
+- a probability comparison;
+- a legal/jurisdiction note;
+- a cost-vs-cost diagram;
+- a punchline rendered as text;
+
+cut to a **separate HTML scene** with its own solid color, gradient, paper texture, grid, dots, lines, or animated background pattern. The HTML scene may use kinetic typography, counters, diagrams, arrows, icons, or controlled vector animation.
+
+Then cut back to a generated-image scene when the narrative returns to people/environment/action.
+
+Do not create hybrid text-over-photo/image cards as the default. A generated image may be composited with non-text atmospheric shapes/masks/transitions, but readable HTML content belongs on its own scene.
+
+This separation should create a deliberate rhythm:
+
+`illustration → information scene → illustration → diagram/text break → illustration`
+
+rather than making every frame a poster.
+
 ## Shot cadence
 
-A roughly three-minute narrated explainer should normally contain **at least 30 primary visual shots**. A good planning target is about 10–12 primary shots per minute.
+A roughly three-minute narrated explainer should normally contain **at least 30 primary generated-image shots**, plus separate HTML information scenes where needed. A good planning target is about 10–12 generated-image shots per minute, with additional text/diagram cuts increasing total visual changes.
 
 This is an editorial default, not a command to cut randomly. Create a new shot when the narration introduces a new:
 
@@ -46,15 +75,15 @@ This is an editorial default, not a command to cut randomly. Create a new shot w
 - counterexample;
 - conclusion turn.
 
-Typical primary still holds should land around **2.5–6 seconds**. Avoid leaving one primary image uninterrupted for more than ~7 seconds unless the stillness is deliberate and supported by meaningful internal overlays/motion.
+Typical primary image holds should land around **2.5–6 seconds**. Avoid leaving one primary image uninterrupted for more than ~7 seconds unless the stillness is deliberate.
 
-For a 3-minute script, 30 is the floor; 32–40 is often healthier when the narration is fast.
+Because HTML information scenes are separate cuts, total scene count will normally be higher than the generated-image count. A 3-minute piece with 30–36 generated images may naturally end up with 40–50 total scenes after typography/diagram breaks.
 
 ## Audio synchronization is mandatory
 
 The **rendered narration audio is the timing source of truth**.
 
-Do not time image cuts or punchline overlays from script estimates or from audio-part duration alone.
+Do not time image cuts or information scenes from script estimates or from audio-part duration alone.
 
 Production order:
 
@@ -63,7 +92,7 @@ Production order:
 3. HyperFrames local transcription listens back to the actual Qwen audio and creates word-level timestamps.
 4. Storyboard shots record a word/phrase anchor.
 5. The video build resolves each anchor against `final/<job>.transcript.json`.
-6. Cuts, text reveals, counters, jokes, and diagrams fire from those resolved timings.
+6. Image cuts and separate HTML information scenes fire from those resolved timings.
 
 If the final word-level transcript is missing or materially incomplete, visual production should stop. A technically valid MP4 with visibly wrong sync is a failed build.
 
@@ -87,11 +116,11 @@ Video Factory deliberately overrides upstream media providers where documented: 
 
 Use these as editorial defaults, not hard quotas:
 
-- roughly 75–85% generated-image-led illustrated shots;
-- roughly 10–15% text-led rhythm breaks with animated background patterns;
-- roughly 5–15% diagrams, arrows, labels, counters, charts, and explanatory overlays.
+- generated stickman images are the main narrative material;
+- separate HTML text/pattern scenes handle exact numbers, punchlines, pivots, and concise explanations;
+- separate HTML diagram scenes handle flows, comparisons, counters, charts, and precise relationships.
 
-A video may deviate when the topic genuinely benefits from more diagrams or typography.
+Do not interpret the mix as permission to layer readable HTML on top of generated images.
 
 ## Generated-image shots
 
@@ -106,31 +135,40 @@ Common treatments after generation:
 - foreground/background compositing;
 - masked reveals;
 - subtle parallax when the illustration supports it;
-- controlled labels/arrows/price tags/counters/highlights;
 - match cuts between neighboring stickman poses or props;
-- split-screen comparisons;
-- hold-and-punch timing for jokes.
+- hold-and-punch timing for visual jokes.
 
-Do not assume every generated image needs constant movement. Intentional stillness can make a reveal or joke land harder, but long passive holds are not the default.
+Do not add readable HTML text or exact numeric overlays on top of these images. When precision is needed, cut away to a separate information scene.
 
-## Text-led breaks
+## HTML text / pattern scenes
 
-Text-only scenes are allowed and encouraged as rhythm changes when they improve pacing. Typical uses:
+HTML text scenes are first-class visual beats, not overlays.
 
-- punchlines;
-- surprising numbers;
-- section pivots;
-- a short question before a reveal;
-- simple A/B comparisons;
-- one-line conclusions.
+Suitable backgrounds include:
 
-Use animated background patterns, restrained kinetic typography, and clean negative space. Avoid turning the whole video into a presentation deck.
+- solid channel colors;
+- animated dot/grid/line patterns;
+- paper texture;
+- abstract seat-map patterns;
+- ticket-strip motifs;
+- moving probability dots;
+- restrained geometric animation.
 
-A text break still needs a word/phrase timing anchor when it corresponds to narration.
+Typical uses:
 
-## Diagrams and UI-style graphics
+- `180 SEATS` → cut → `185 TICKETS`;
+- `NO, NOBODY FAILED KINDERGARTEN`;
+- `$200` → `$400`;
+- `EMPTY SEAT = $0 AFTER DEPARTURE`;
+- `COST 1` vs `COST 2`;
+- one-line reveal/conclusion;
+- section pivots/questions.
 
-Use diagrams when they clarify a system better than an illustration can, especially for:
+Keep each scene visually decisive. Favor one thought per screen over presentation-style bullet lists.
+
+## HTML diagram scenes
+
+Use separate diagram scenes when they clarify a system better than an illustration can, especially for:
 
 - flows of money or information;
 - probability/state changes;
@@ -139,7 +177,7 @@ Use diagrams when they clarify a system better than an illustration can, especia
 - comparisons;
 - quantities and ratios.
 
-Do not default to constructing complete narrative scenes in HTML/CSS/vector UI merely because the rendering stack can do it. Generated illustrations carry the story/context; controlled overlays carry precision.
+These scenes can use controlled HTML/CSS/SVG/vector animation because precision is the point. They should still feel like part of the same channel through palette, typography, spacing, and motion rhythm.
 
 ## Image-generation provider
 
@@ -155,7 +193,7 @@ Authentication is provided only through `IMAGE_API_TOKEN`. Never write tokens in
 
 The service supports prompt-only generation, optional reference images, arbitrary supported aspect ratios, asynchronous queued jobs, and **API batches of up to 20 requests**.
 
-The Video Factory client supports larger visual plans by automatically splitting them into multiple API batches while keeping global output numbering stable. A 32-shot plan therefore becomes a 20-image API batch plus a 12-image API batch without changing the storyboard contract.
+The Video Factory client supports larger visual plans by automatically splitting them into multiple API batches while keeping global output numbering stable. A 36-shot plan therefore becomes a 20-image API batch plus a 16-image API batch without changing the storyboard contract.
 
 Generated VPS files expire after 24 hours. Download required assets into production storage promptly.
 
@@ -171,11 +209,12 @@ Every prompt should repeat enough of the channel style contract to resist drift.
 4. camera/framing/composition;
 5. the channel palette and flat editorial rendering;
 6. continuity requirements from adjacent shots;
-7. required empty space for later labels/typography;
-8. no readable embedded text or logos;
-9. target aspect ratio through the API field, not by asking the model to fake a crop.
+7. no readable embedded text or logos;
+8. target aspect ratio through the API field, not by asking the model to fake a crop.
 
-Avoid asking the image model to render critical small text, exact numerical dashboards, boarding passes with readable data, or dense diagrams. Add those elements in post-production where they can be controlled precisely.
+Do not reserve image space for HTML copy. HTML copy lives on its own scene.
+
+Avoid asking the image model to render critical small text, exact numerical dashboards, boarding passes with readable data, or dense diagrams.
 
 ## Continuity and reference images
 
@@ -188,12 +227,14 @@ For recurring protagonists, consider generating an early clean character/key-sty
 A storyboard/visual-plan entry should identify:
 
 - `id` / ordered shot number;
-- visual mode: `image`, `text`, `diagram`, or `composite`;
+- visual mode: `image`, `text`, or `diagram`;
 - **anchor phrase** from the spoken script;
-- generation prompt for image/composite shots;
-- target aspect ratio;
-- intended overlay/punchline, if any;
+- generation prompt for `image` shots;
+- target aspect ratio for generated images;
+- HTML scene content/background concept for `text`/`diagram` scenes;
 - optional continuation/reference relationship to another shot.
+
+Do not use a `composite` mode for readable HTML-on-image layouts in normal channel production.
 
 Shot timecodes are derived after word alignment. Do not hard-code estimates in the creative plan when an anchor phrase can resolve the timing.
 
@@ -207,15 +248,15 @@ A generated visual should be rejected or regenerated when it:
 - cannot support the intended crop/motion;
 - breaks the established stickman style without editorial reason;
 - reads as generic AI photoreal/stock imagery;
-- makes a factual diagram or number visually ambiguous;
 - repeats essentially the same pose/composition for too many adjacent beats.
 
 A completed video should be rejected when:
 
 - narration-triggered visual events are visibly early/late;
+- readable HTML is laid over generated imagery instead of using a separate scene;
 - a primary image sits on screen too long without a narrative reason;
 - image changes feel arbitrary rather than beat-driven;
 - the visual style drifts between photoreal, 3D, anime, and flat illustration unintentionally;
 - important punchlines land without an intentional visual response.
 
-The goal is polished visual storytelling with fast semantic pacing, exact narration sync, and a recognizable illustrated identity.
+The goal is polished visual storytelling with fast semantic pacing, exact narration sync, a recognizable illustrated identity, and a clear separation between illustration and information design.
