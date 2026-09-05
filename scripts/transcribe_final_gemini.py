@@ -1,10 +1,14 @@
 #!/usr/bin/env python3
-"""Build exact word timings with Gemini 3.5 Transcribe.
+"""Build exact word timings with one Gemini 3.5 Transcribe request per final audio.
 
-The rendered Qwen audio is authoritative for timing. The source transcript is
-used only as a canonical-text layer after Gemini returns official word-level
-start/end offsets, so formatting differences such as "$200" vs "two hundred
-dollars" do not break visual anchors.
+The rendered Qwen master audio is authoritative for timing. Gemini returns
+official word-level offsets for the whole file in a single request. We then
+slice those recognized words back into the known Qwen part boundaries and map
+them onto the source transcript for canonical spelling and visual anchors.
+
+This deliberately avoids one API request per audio part: a three-minute video
+fits comfortably inside Gemini Transcribe's file-processing limits, and one
+master request is much friendlier to low request quotas.
 """
 
 from __future__ import annotations
@@ -52,9 +56,9 @@ def settings_from(config: dict[str, Any]) -> dict[str, Any]:
         "model": str(block.get("gemini_model", "gemini-3.5-transcribe")),
         "language_codes": list(block.get("language_codes", ["en-US"])),
         "min_reference_coverage": float(block.get("min_reference_coverage", 0.72)),
-        "attempts": int(block.get("gemini_attempts", 3)),
-        "initial_delay_seconds": float(block.get("initial_delay_seconds", 3)),
-        "max_delay_seconds": float(block.get("max_delay_seconds", 20)),
+        "attempts": int(block.get("gemini_attempts", 4)),
+        "initial_delay_seconds": float(block.get("initial_delay_seconds", 5)),
+        "max_delay_seconds": float(block.get("max_delay_seconds", 90)),
         "write_vtt": bool(block.get("write_vtt", True)),
     }
 
@@ -62,7 +66,7 @@ def settings_from(config: dict[str, Any]) -> dict[str, Any]:
 def config_fingerprint(settings: dict[str, Any]) -> str:
     stable = {
         "schema_version": SCHEMA_VERSION,
-        "alignment_mode": "per_part_gemini_transcribe",
+        "alignment_mode": "whole_audio_gemini_transcribe",
         **settings,
     }
     return hashlib.sha256(
@@ -80,8 +84,8 @@ def transcript_path(audio_path: Path) -> Path:
     return audio_path.with_name(f"{audio_path.stem}.transcript.json")
 
 
-def cache_path(part_audio: Path) -> Path:
-    return part_audio.with_suffix(".gemini-transcribe-timing.json")
+def raw_cache_path(audio_path: Path) -> Path:
+    return audio_path.with_name(f"{audio_path.stem}.gemini-transcribe-raw.json")
 
 
 def parse_offset_ms(value: Any) -> int:
@@ -136,6 +140,7 @@ def reference_tokens(reference: str) -> list[str]:
 
 
 def _distributed_words(tokens: list[str], start_ms: int, end_ms: int) -> list[dict[str, Any]]:
+    """Interpolate source-script tokens across one recognized replacement span."""
     if not tokens:
         return []
     span = max(len(tokens) * 30, end_ms - start_ms)
@@ -167,9 +172,12 @@ def canonicalize_to_reference(
     *,
     duration_ms: int,
 ) -> tuple[list[dict[str, Any]], float]:
+    """Map Gemini-recognized words to our source text without changing timing truth."""
     refs = reference_tokens(reference)
     if not refs:
         return raw_words, 1.0
+    if not raw_words:
+        raise TranscriptionError("No recognized words available for a referenced audio part")
 
     ref_norm = [normalize_token(token) for token in refs]
     raw_norm = [normalize_token(word["text"]) for word in raw_words]
@@ -187,8 +195,8 @@ def canonicalize_to_reference(
             continue
 
         if tag == "insert":
-            # Gemini heard an extra token. It has no source-script word, so do not
-            # expose it as a visual anchor.
+            # Extra recognized token: keep the audio truth internally but do not
+            # expose a visual anchor that does not exist in the approved script.
             continue
 
         if raw_slice:
@@ -202,7 +210,6 @@ def canonicalize_to_reference(
         canonical.extend(_distributed_words(ref_slice, start_ms, min(duration_ms, end_ms)))
 
     canonical.sort(key=lambda item: (item["start_ms"], item["end_ms"]))
-    # Clamp any interpolation edge cases while keeping monotonic timing.
     previous_end = 0
     for word in canonical:
         word["start_ms"] = max(previous_end, min(duration_ms, int(word["start_ms"])))
@@ -213,35 +220,26 @@ def canonicalize_to_reference(
     return canonical, coverage
 
 
-def load_cache(path: Path, *, audio_hash: str, config_hash: str) -> dict[str, Any] | None:
-    if not path.exists():
+def retry_delay_from_error(exc: Exception) -> float | None:
+    """Extract provider retry guidance such as 'Please retry in 47.9s'."""
+    match = re.search(r"retry in\s+([0-9.]+)s", str(exc), flags=re.IGNORECASE)
+    if not match:
         return None
     try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
+        return float(match.group(1))
+    except ValueError:
         return None
-    if (
-        data.get("schema_version") == SCHEMA_VERSION
-        and data.get("audio_sha256") == audio_hash
-        and data.get("transcription_config_sha256") == config_hash
-        and isinstance(data.get("words"), list)
-        and data.get("words")
-    ):
-        return data
-    return None
 
 
-def transcribe_part(
+def transcribe_master(
     client: genai.Client,
-    part_audio: Path,
+    audio_path: Path,
     *,
     settings: dict[str, Any],
     duration_ms: int,
 ) -> tuple[str, list[dict[str, Any]]]:
-    uploaded = client.files.upload(
-        file=str(part_audio),
-        config={"mime_type": "audio/wav", "display_name": part_audio.name},
-    )
+    """Upload and transcribe the full master in exactly one successful API call."""
+    uploaded = client.files.upload(file=str(audio_path))
     failures: list[str] = []
     try:
         for attempt in range(1, settings["attempts"] + 1):
@@ -252,7 +250,7 @@ def transcribe_part(
                         {
                             "type": "audio",
                             "uri": uploaded.uri,
-                            "mime_type": uploaded.mime_type or "audio/wav",
+                            "mime_type": uploaded.mime_type or "audio/mpeg",
                         }
                     ],
                     generation_config={
@@ -274,13 +272,13 @@ def transcribe_part(
                 retryable = status == 429 or (isinstance(status, int) and 500 <= status <= 599)
                 if not retryable or attempt >= settings["attempts"]:
                     break
-                delay = min(
-                    settings["max_delay_seconds"],
-                    settings["initial_delay_seconds"] * 2 ** (attempt - 1),
-                ) + random.uniform(0, 1)
-                print(f"      Gemini retrying in {delay:.1f}s")
+                exponential = settings["initial_delay_seconds"] * 2 ** (attempt - 1)
+                provider_hint = retry_delay_from_error(exc) or 0
+                delay = min(settings["max_delay_seconds"], max(exponential, provider_hint + 1))
+                delay += random.uniform(0, 1)
+                print(f"      Gemini retrying master request in {delay:.1f}s")
                 time.sleep(delay)
-        raise TranscriptionError("Gemini transcription failed: " + " | ".join(failures))
+        raise TranscriptionError("Gemini master transcription failed: " + " | ".join(failures))
     finally:
         try:
             if getattr(uploaded, "name", None):
@@ -289,7 +287,25 @@ def transcribe_part(
             print(f"Warning: could not delete uploaded Gemini file: {exc}", file=sys.stderr)
 
 
-def write_cache(
+def load_raw_cache(path: Path, *, audio_hash: str, config_hash: str) -> dict[str, Any] | None:
+    if not path.exists():
+        return None
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    if (
+        data.get("schema_version") == SCHEMA_VERSION
+        and data.get("audio_sha256") == audio_hash
+        and data.get("transcription_config_sha256") == config_hash
+        and isinstance(data.get("raw_words"), list)
+        and data.get("raw_words")
+    ):
+        return data
+    return None
+
+
+def write_raw_cache(
     path: Path,
     *,
     audio_hash: str,
@@ -298,9 +314,6 @@ def write_cache(
     duration_ms: int,
     recognized_text: str,
     raw_words: list[dict[str, Any]],
-    canonical_words: list[dict[str, Any]],
-    reference: str,
-    coverage: float,
 ) -> dict[str, Any]:
     data = {
         "schema_version": SCHEMA_VERSION,
@@ -309,12 +322,8 @@ def write_cache(
         "audio_sha256": audio_hash,
         "transcription_config_sha256": config_hash,
         "duration_ms": duration_ms,
-        "language": "en",
         "recognized_text": recognized_text,
-        "reference_text": reference,
-        "exact_reference_coverage": coverage,
         "raw_words": raw_words,
-        "words": canonical_words,
     }
     temp = path.with_suffix(path.suffix + ".tmp")
     temp.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
@@ -322,30 +331,68 @@ def write_cache(
     return data
 
 
-def consolidate(
-    parts: list[dict[str, Any]], caches: list[dict[str, Any]]
+def words_for_part(raw_words: list[dict[str, Any]], part: dict[str, Any]) -> list[dict[str, Any]]:
+    """Slice global timestamps by a known Qwen part boundary and make them relative."""
+    part_start = int(part["start_ms"])
+    part_end = int(part["end_ms"])
+    duration = int(part["duration_ms"])
+    selected: list[dict[str, Any]] = []
+    for word in raw_words:
+        midpoint = (int(word["start_ms"]) + int(word["end_ms"])) / 2
+        if midpoint < part_start or midpoint > part_end:
+            continue
+        start = max(0, int(word["start_ms"]) - part_start)
+        end = min(duration, int(word["end_ms"]) - part_start)
+        if end <= start:
+            end = min(duration, start + 20)
+        if end > start:
+            selected.append({**word, "start_ms": start, "end_ms": end})
+    return selected
+
+
+def build_part_alignment(
+    *,
+    parts: list[dict[str, Any]],
+    raw_words: list[dict[str, Any]],
+    references: dict[str, str],
+    settings: dict[str, Any],
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
     enriched_parts: list[dict[str, Any]] = []
     segments: list[dict[str, Any]] = []
     words: list[dict[str, Any]] = []
 
-    for index, (part, cache) in enumerate(zip(parts, caches, strict=True)):
-        segment_words = cache["words"]
-        reference_text = cache.get("reference_text") or " ".join(word["text"] for word in segment_words)
+    for index, part in enumerate(parts):
+        reference = references.get(Path(part["file"]).stem, "")
+        relative_raw = words_for_part(raw_words, part)
+        if not relative_raw:
+            raise TranscriptionError(f"{part['file']}: Gemini returned no words inside this part boundary")
+
+        canonical, coverage = canonicalize_to_reference(
+            relative_raw,
+            reference,
+            duration_ms=int(part["duration_ms"]),
+        )
+        if reference and coverage < settings["min_reference_coverage"]:
+            raise TranscriptionError(
+                f"{part['file']}: exact reference coverage {coverage:.0%} is below "
+                f"{settings['min_reference_coverage']:.0%}"
+            )
+
+        segment_text = reference or " ".join(word["text"] for word in canonical)
         segments.append(
             {
-                "start_ms": part["start_ms"],
-                "end_ms": part["end_ms"],
+                "start_ms": int(part["start_ms"]),
+                "end_ms": int(part["end_ms"]),
                 "speaker": "teacher",
                 "language": "en",
-                "text": reference_text,
+                "text": segment_text,
             }
         )
-        for word in segment_words:
+        for word in canonical:
             words.append(
                 {
-                    "start_ms": part["start_ms"] + int(word["start_ms"]),
-                    "end_ms": part["start_ms"] + int(word["end_ms"]),
+                    "start_ms": int(part["start_ms"]) + int(word["start_ms"]),
+                    "end_ms": int(part["start_ms"]) + int(word["end_ms"]),
                     "text": word["text"],
                     "language": "en",
                     "segment_index": index,
@@ -354,13 +401,16 @@ def consolidate(
         enriched = dict(part)
         enriched.update(
             provider="gemini",
-            model=cache.get("model"),
-            word_count=len(segment_words),
-            raw_word_count=len(cache.get("raw_words", [])),
-            exact_reference_coverage=cache.get("exact_reference_coverage"),
-            audio_sha256=cache.get("audio_sha256"),
+            model=settings["model"],
+            word_count=len(canonical),
+            raw_word_count=len(relative_raw),
+            exact_reference_coverage=coverage,
         )
         enriched_parts.append(enriched)
+        print(
+            f"    {part['file']}: {len(relative_raw)} Gemini words -> "
+            f"{len(canonical)} script words, exact coverage={coverage:.0%}"
+        )
 
     words.sort(key=lambda item: (item["start_ms"], item["end_ms"]))
     return enriched_parts, segments, words
@@ -377,10 +427,11 @@ def write_final_outputs(
     parts: list[dict[str, Any]],
     segments: list[dict[str, Any]],
     words: list[dict[str, Any]],
+    raw_word_count: int,
 ) -> None:
     output = {
         "schema_version": SCHEMA_VERSION,
-        "alignment_mode": "per_part_gemini_transcribe",
+        "alignment_mode": "whole_audio_gemini_transcribe",
         "alignment_provider": "gemini",
         "alignment_model": settings["model"],
         "lesson": lesson.as_posix(),
@@ -389,6 +440,7 @@ def write_final_outputs(
         "transcription_config_sha256": config_hash,
         "duration_ms": duration_ms,
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "raw_word_count": raw_word_count,
         "parts": parts,
         "segments": segments,
         "words": words,
@@ -434,7 +486,7 @@ def main() -> int:
     failures: list[tuple[Path, str]] = []
 
     print(f"Found {len(final_audio)} final lesson(s).")
-    print(f"Alignment: {settings['model']} with official word timestamps")
+    print(f"Alignment: one {settings['model']} master request with official word timestamps")
 
     for final_mp3 in final_audio:
         lesson = final_mp3.relative_to(args.final).with_suffix("")
@@ -445,57 +497,40 @@ def main() -> int:
             if not parts:
                 raise TranscriptionError(f"No source WAV parts found for {lesson}")
             references = reference_parts(args.done, lesson)
-            caches: list[dict[str, Any]] = []
 
-            print(f"- {lesson}: aligning {len(parts)} approved Qwen part(s)")
-            for part in parts:
-                part_audio = args.audio / lesson / part["file"]
-                part_hash = sha256_file(part_audio)
-                cache_file = cache_path(part_audio)
-                cache = load_cache(cache_file, audio_hash=part_hash, config_hash=config_hash)
-                if cache:
-                    print(f"    {part['file']}: cached ({len(cache['words'])} canonical words)")
-                    caches.append(cache)
-                    continue
-
-                reference = references.get(Path(part["file"]).stem, "")
-                recognized_text, raw_words = transcribe_part(
+            cache_file = raw_cache_path(final_mp3)
+            raw_cache = load_raw_cache(cache_file, audio_hash=final_hash, config_hash=config_hash)
+            if raw_cache:
+                recognized_text = str(raw_cache.get("recognized_text", ""))
+                raw_words = list(raw_cache["raw_words"])
+                print(f"- {lesson}: reusing cached master transcription ({len(raw_words)} raw words)")
+            else:
+                print(f"- {lesson}: transcribing full {duration_ms / 1000:.1f}s master in one API request")
+                recognized_text, raw_words = transcribe_master(
                     client,
-                    part_audio,
+                    final_mp3,
                     settings=settings,
-                    duration_ms=int(part["duration_ms"]),
+                    duration_ms=duration_ms,
                 )
-                canonical_words, coverage = canonicalize_to_reference(
-                    raw_words,
-                    reference,
-                    duration_ms=int(part["duration_ms"]),
-                )
-                if reference and coverage < settings["min_reference_coverage"]:
-                    raise TranscriptionError(
-                        f"{part['file']}: exact reference coverage {coverage:.0%} is below "
-                        f"{settings['min_reference_coverage']:.0%}"
-                    )
-                cache = write_cache(
+                write_raw_cache(
                     cache_file,
-                    audio_hash=part_hash,
+                    audio_hash=final_hash,
                     config_hash=config_hash,
                     settings=settings,
-                    duration_ms=int(part["duration_ms"]),
+                    duration_ms=duration_ms,
                     recognized_text=recognized_text,
                     raw_words=raw_words,
-                    canonical_words=canonical_words,
-                    reference=reference,
-                    coverage=coverage,
                 )
-                caches.append(cache)
-                print(
-                    f"    {part['file']}: {len(raw_words)} Gemini words -> "
-                    f"{len(canonical_words)} script words, exact coverage={coverage:.0%}"
-                )
+                print(f"  master: {len(raw_words)} Gemini word timestamps")
 
-            enriched_parts, segments, words = consolidate(parts, caches)
+            enriched_parts, segments, words = build_part_alignment(
+                parts=parts,
+                raw_words=raw_words,
+                references=references,
+                settings=settings,
+            )
             if not words:
-                raise TranscriptionError("No global word timings produced")
+                raise TranscriptionError("No canonical word timings produced")
             if words[-1]["end_ms"] > duration_ms:
                 raise TranscriptionError("Global word timing exceeds final audio duration")
 
@@ -509,6 +544,7 @@ def main() -> int:
                 parts=enriched_parts,
                 segments=segments,
                 words=words,
+                raw_word_count=len(raw_words),
             )
             print(
                 f"  complete: {len(segments)} segments, {len(words)} canonical timed words -> "
@@ -524,7 +560,7 @@ def main() -> int:
             print(f"- {lesson}: {reason}", file=sys.stderr)
         return 1
 
-    print("All Gemini word alignments are complete.")
+    print("All final-audio Gemini word alignments are complete.")
     return 0
 
 
