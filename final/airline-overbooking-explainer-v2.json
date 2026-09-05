@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "job": "airline-overbooking-explainer-v2",
+  "provider": "qwen-modal-approved-release",
+  "voice": "Aiden",
+  "duration_seconds": 181.0
+}
