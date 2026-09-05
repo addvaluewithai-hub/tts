@@ -6,26 +6,37 @@ const ROOT = path.resolve(process.cwd());
 const JOB_ID = process.env.FACTORY_JOB_ID || 'airline-overbooking-explainer-v2';
 const TRANSCRIPT = path.join(ROOT, `assets/audio/${JOB_ID}.transcript.json`);
 const TEMPLATE = path.join(ROOT, 'template.tpl');
+const INFO_SCENES = path.join(ROOT, 'info-scenes.json');
+const VISUALS = path.resolve(ROOT, `../../../input/${JOB_ID}/visuals.json`);
 
-if (!fs.existsSync(TRANSCRIPT)) throw new Error(`Missing ${TRANSCRIPT}`);
-if (!fs.existsSync(TEMPLATE)) throw new Error(`Missing ${TEMPLATE}`);
+for (const required of [TRANSCRIPT, TEMPLATE, INFO_SCENES, VISUALS]) {
+  if (!fs.existsSync(required)) throw new Error(`Missing required V3 source: ${required}`);
+}
 
-const raw = fs.readFileSync(TRANSCRIPT, 'utf8');
-const data = JSON.parse(raw);
-const parts = data.parts || [];
-const words = data.words || [];
-if (data.schema_version !== 2) throw new Error(`Expected transcript schema v2, got ${data.schema_version}`);
-if (parts.length !== 7) throw new Error(`Airline V2 expects 7 audio parts, got ${parts.length}`);
-if (!Number.isFinite(data.duration_ms) || data.duration_ms <= 0) throw new Error('Invalid duration_ms');
+const rawTranscript = fs.readFileSync(TRANSCRIPT, 'utf8');
+const transcript = JSON.parse(rawTranscript);
+const visualPlan = JSON.parse(fs.readFileSync(VISUALS, 'utf8'));
+const infoPlan = JSON.parse(fs.readFileSync(INFO_SCENES, 'utf8'));
+const words = transcript.words || [];
+
+if (transcript.schema_version !== 2) {
+  throw new Error(`Expected transcript schema v2, got ${transcript.schema_version}`);
+}
+if (!Number.isFinite(transcript.duration_ms) || transcript.duration_ms <= 0) {
+  throw new Error('Invalid transcript duration_ms');
+}
+if (!Array.isArray(words) || words.length < 50) {
+  throw new Error('V3 requires complete word-level timing; transcript.words is missing/incomplete');
+}
+if (!Array.isArray(visualPlan.requests) || visualPlan.requests.length < 30) {
+  throw new Error(`V3 requires at least 30 generated-image shots, got ${visualPlan.requests?.length || 0}`);
+}
+if (!Array.isArray(infoPlan.scenes) || !infoPlan.scenes.length) {
+  throw new Error('Missing separate HTML information scene plan');
+}
 
 const sec = (ms) => Number((ms / 1000).toFixed(3));
-const scenes = parts.map((p, i) => ({
-  index: i + 1,
-  file: p.file,
-  start: sec(p.start_ms),
-  end: sec(p.end_ms),
-  duration: sec(p.end_ms - p.start_ms),
-}));
+const duration = sec(transcript.duration_ms);
 
 function norm(value) {
   return String(value || '')
@@ -34,109 +45,154 @@ function norm(value) {
     .match(/[\p{L}\p{N}]+/gu)?.join('') || '';
 }
 
-function phraseStart(segmentIndex, phrase, fallbackOffset = 0.8) {
+function matchingStarts(phrase, segmentOneBased = null) {
   const target = norm(phrase);
-  const segmentWords = words.filter((w) => Number(w.segment_index) === segmentIndex);
-  for (let i = 0; i < segmentWords.length; i += 1) {
+  if (!target) throw new Error(`Empty anchor phrase: ${phrase}`);
+  const candidates = words
+    .map((word, index) => ({ ...word, __index: index }))
+    .filter((word) => segmentOneBased == null || Number(word.segment_index) === segmentOneBased - 1);
+
+  const matches = [];
+  for (let i = 0; i < candidates.length; i += 1) {
     let acc = '';
-    for (let j = i; j < segmentWords.length; j += 1) {
-      acc += norm(segmentWords[j].text);
-      if (acc === target) return sec(segmentWords[i].start_ms);
+    for (let j = i; j < candidates.length; j += 1) {
+      // Never bridge across audio parts when globally matching.
+      if (Number(candidates[j].segment_index) !== Number(candidates[i].segment_index)) break;
+      acc += norm(candidates[j].text);
+      if (acc === target) {
+        matches.push(sec(candidates[i].start_ms));
+        break;
+      }
       if (acc.length > target.length) break;
     }
   }
-  const fallback = Number((scenes[segmentIndex - 1].start + fallbackOffset).toFixed(3));
-  console.warn(`Cue fallback for segment ${segmentIndex}: ${phrase} -> ${fallback}s`);
-  return fallback;
+  return matches;
 }
 
-const cues = {
-  hook: {
-    seats: phraseStart(1, 'Your plane has 180 seats', 0.25),
-    tickets: phraseStart(1, 'The airline sells 185 tickets', 1.9),
-    kindergarten: phraseStart(1, 'No nobody failed kindergarten', 3.9),
-    zero: phraseStart(1, 'it becomes worth exactly zero', Math.max(1, scenes[0].duration - 3.2)),
-  },
-  forecast: {
-    model: phraseStart(2, "forecast how many booked passengers probably won't board", 1.0),
-    five: phraseStart(2, 'expects about five no-shows', 5.0),
-    humans: phraseStart(2, '180 actual humans', 8.0),
-    promotion: phraseStart(2, 'The spreadsheet gets a tiny promotion', Math.max(1, scenes[1].duration - 2.8)),
-  },
-  simulation: {
-    seven: phraseStart(3, 'If seven people vanish', 1.5),
-    five: phraseStart(3, 'If exactly five disappear', 4.5),
-    nobody: phraseStart(3, 'if nobody disappears', 7.5),
-    auction: phraseStart(3, 'starts sounding like an auction', Math.max(1, scenes[2].duration - 3.2)),
-  },
-  volunteers: {
-    ask: phraseStart(4, 'ask for volunteers', 0.8),
-    us: phraseStart(4, 'In the United States', 4.3),
-    two: phraseStart(4, 'two hundred dollars', 9.0),
-    four: phraseStart(4, 'four hundred', 10.5),
-    destination: phraseStart(4, 'never liked this destination anyway', Math.max(1, scenes[3].duration - 3.0)),
-  },
-  tradeoff: {
-    twoCosts: phraseStart(5, 'balancing two costs', 1.2),
-    one: phraseStart(5, 'Cost one', 3.0),
-    two: phraseStart(5, 'Cost two', 6.0),
-    goal: phraseStart(5, 'The goal is not', 9.0),
-  },
-  routes: {
-    monday: phraseStart(6, 'A Monday morning business route', 1.4),
-    holiday: phraseStart(6, 'holiday flight', 4.0),
-    some: phraseStart(6, "Some airlines don't oversell at all", Math.max(1, scenes[5].duration - 4.2)),
-    rule: phraseStart(6, 'The system is a forecast not a rule', Math.max(1, scenes[5].duration - 2.5)),
-  },
-  close: {
-    weird: phraseStart(7, 'So the weird truth is this', 0.4),
-    seat: phraseStart(7, 'Your 22A', 4.5),
-    forgot: phraseStart(7, "Airlines don't overbook because they forgot to count", 8.5),
-    counted: phraseStart(7, 'they counted everyone', Math.max(1, scenes[6].duration - 4.2)),
-  },
-};
+function resolveAnchor(anchor, segmentOneBased = null) {
+  const matches = matchingStarts(anchor, segmentOneBased);
+  if (matches.length !== 1) {
+    throw new Error(
+      `Anchor must resolve exactly once: ${JSON.stringify(anchor)} ` +
+      `(segment=${segmentOneBased ?? 'any'}, matches=${JSON.stringify(matches)})`,
+    );
+  }
+  return matches[0];
+}
 
-const duration = sec(data.duration_ms);
+function esc(value) {
+  return String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
+}
+
+const imageScenes = visualPlan.requests.map((request, index) => {
+  if (!request.anchor) throw new Error(`Image request ${request.id || index + 1} is missing anchor`);
+  return {
+    id: request.id || `img${String(index + 1).padStart(2, '0')}`,
+    mode: 'image',
+    anchor: request.anchor,
+    start: resolveAnchor(request.anchor),
+    asset: `assets/images/${String(index + 1).padStart(2, '0')}.png`,
+    motion: ['push-left', 'push-right', 'push-up', 'push-down'][index % 4],
+    sourceIndex: index + 1,
+  };
+});
+
+const informationScenes = infoPlan.scenes.map((scene) => ({
+  ...scene,
+  mode: scene.mode || 'text',
+  start: resolveAnchor(scene.anchor, Number(scene.segment)),
+}));
+
+const scenes = [...imageScenes, ...informationScenes]
+  .sort((a, b) => a.start - b.start || (a.mode === 'image' ? -1 : 1))
+  .map((scene, index, sorted) => {
+    const end = index + 1 < sorted.length ? sorted[index + 1].start : duration;
+    const sceneDuration = Number((end - scene.start).toFixed(3));
+    if (sceneDuration < 0.12) {
+      throw new Error(`Scene ${scene.id} is too short after exact anchor resolution: ${sceneDuration}s`);
+    }
+    return {
+      ...scene,
+      index: index + 1,
+      domId: `scene-${String(index + 1).padStart(2, '0')}`,
+      end: Number(end.toFixed(3)),
+      duration: sceneDuration,
+    };
+  });
+
+function patternMarkup() {
+  return '<div class="pattern-layer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>';
+}
+
+function infoMarkup(scene) {
+  const middle = scene.middle
+    ? `<div class="info-middle">${esc(scene.middle)}</div>`
+    : '';
+  return `
+    ${patternMarkup()}
+    <div class="info-content variant-${esc(scene.variant || 'default')}">
+      <div class="info-headline">${esc(scene.headline || '')}</div>
+      ${middle}
+      <div class="info-subline">${esc(scene.subline || '')}</div>
+    </div>`;
+}
+
+function sceneMarkup(scene) {
+  const common = `id="${scene.domId}" class="clip scene ${scene.mode}-scene pattern-${esc(scene.pattern || 'none')}" data-start="${scene.start}" data-duration="${scene.duration}" data-track-index="0" data-scene-mode="${scene.mode}"`;
+  if (scene.mode === 'image') {
+    return `<div ${common}>
+      <div class="image-shell ${esc(scene.motion)}"><img src="${esc(scene.asset)}" alt="" /></div>
+    </div>`;
+  }
+  return `<div ${common}>${infoMarkup(scene)}</div>`;
+}
+
+const sceneHtml = scenes.map(sceneMarkup).join('\n');
 let html = fs.readFileSync(TEMPLATE, 'utf8');
-html = html.replaceAll('{{DURATION}}', String(duration));
-html = html.replaceAll('{{AUDIO_FILE}}', `${JOB_ID}.wav`);
-for (const scene of scenes) {
-  const n = String(scene.index).padStart(2, '0');
-  html = html
-    .replaceAll(`{{SCENE_${n}_START}}`, String(scene.start))
-    .replaceAll(`{{SCENE_${n}_DURATION}}`, String(scene.duration));
-}
+html = html
+  .replaceAll('{{DURATION}}', String(duration))
+  .replaceAll('{{AUDIO_FILE}}', `${JOB_ID}.wav`)
+  .replaceAll('{{SCENES_HTML}}', sceneHtml);
 fs.writeFileSync(path.join(ROOT, 'index.html'), html);
+
+const timingPayload = {
+  schema: 3,
+  compositionId: 'airline-overbooking-v3',
+  duration,
+  scenes,
+  words,
+};
 fs.writeFileSync(
   path.join(ROOT, 'timing-data.js'),
-  `window.__AIRLINE_TIMING__ = ${JSON.stringify({ duration, scenes, cues, words }, null, 2)};\n`,
+  `window.__AIRLINE_TIMING__ = ${JSON.stringify(timingPayload, null, 2)};\n`,
 );
 
-const finalHolds = scenes.map((s) => Number(Math.max(s.start + 0.35, s.end - 0.7).toFixed(3)));
-const riskBeats = [
-  cues.hook.kindergarten,
-  cues.hook.zero,
-  cues.forecast.promotion,
-  cues.simulation.nobody,
-  cues.simulation.auction,
-  cues.volunteers.four,
-  cues.volunteers.destination,
-  cues.tradeoff.one,
-  cues.tradeoff.two,
-  cues.routes.rule,
-  cues.close.seat,
-  cues.close.counted,
-].map((v) => Number(v.toFixed(3)));
+const riskScenes = scenes.filter((scene) => scene.mode !== 'image');
+const imageCheckpoints = scenes.filter((scene) => scene.mode === 'image' && scene.sourceIndex % 3 === 1);
+const finalHolds = [...riskScenes, ...imageCheckpoints]
+  .sort((a, b) => a.start - b.start)
+  .map((scene) => Number(Math.min(scene.end - 0.08, scene.start + Math.max(0.12, scene.duration * 0.62)).toFixed(3)));
+const riskBeats = riskScenes.map((scene) => Number((scene.start + Math.min(0.2, scene.duration * 0.15)).toFixed(3)));
 
-const transcriptSha256 = crypto.createHash('sha256').update(raw).digest('hex');
+const transcriptSha256 = crypto.createHash('sha256').update(rawTranscript).digest('hex');
 const meta = {
-  schema: 2,
+  schema: 3,
   duration,
   transcript_sha256: transcriptSha256,
-  scenes,
-  cues,
+  timing_source: 'word-level-transcript-required',
+  generated_image_count: imageScenes.length,
+  information_scene_count: informationScenes.length,
+  scenes: scenes.map(({ words: ignored, ...scene }) => scene),
   finalHolds,
   riskBeats,
 };
 fs.writeFileSync(path.join(ROOT, 'build-meta.json'), JSON.stringify(meta, null, 2));
-console.log(`Built airline overbooking V2: ${duration}s, transcript ${transcriptSha256}`);
+
+console.log(
+  `Built airline overbooking V3: ${duration}s, ${imageScenes.length} images + ` +
+  `${informationScenes.length} separate HTML scenes, transcript ${transcriptSha256}`,
+);
