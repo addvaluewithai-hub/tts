@@ -6,12 +6,14 @@ on:
     branches:
       - main
     paths:
-      - "input/**"
+      - "input/ACTIVE"
+      - "input/*/job.yaml"
+      - "input/*/transcript/**"
+      - "input/*/pronunciation-map.json"
       - "tts_config.yaml"
       - "scripts/**"
       - "tests/**"
       - "requirements.txt"
-      - ".github/workflows/generate-tts.yml"
 
 permissions:
   contents: write
