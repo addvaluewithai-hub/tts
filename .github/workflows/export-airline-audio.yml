@@ -5,6 +5,10 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/export-airline-audio.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/export-trigger.txt"
 
 permissions:
   contents: read
