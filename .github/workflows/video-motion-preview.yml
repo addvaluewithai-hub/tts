@@ -70,7 +70,7 @@ jobs:
         run: |
           set -euo pipefail
           cd "$PROJECT"
-          npx --yes hyperframes@latest render . -c ./index.html --workers 2 --output motion-preview-with-audio.mp4
+          npx --yes hyperframes@latest render . -c ./index.html --quality draft --workers 2 --output motion-preview-with-audio.mp4
 
       - name: Create silent 720p preview
         shell: bash
@@ -82,7 +82,7 @@ jobs:
           ffmpeg -nostdin -loglevel error -y \
             -i motion-preview-with-audio.mp4 \
             -an -vf 'scale=1280:-2' -r 24 \
-            -c:v libx264 -preset medium -crf 24 -pix_fmt yuv420p -movflags +faststart \
+            -c:v libx264 -preset veryfast -crf 25 -pix_fmt yuv420p -movflags +faststart \
             airline-v4-motion-preview-silent-720p.mp4
           test -s airline-v4-motion-preview-silent-720p.mp4
 
