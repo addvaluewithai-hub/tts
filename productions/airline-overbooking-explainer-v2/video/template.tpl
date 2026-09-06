@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Why Airlines Sell More Tickets Than Seats</title>
   <style>
-    /* HyperFrames needs every named family declared deterministically. */
     @font-face {
       font-family: "Aptos";
       src: local("Aptos");
@@ -18,7 +17,7 @@
 </head>
 <body>
   <div id="stage"
-    data-composition-id="airline-overbooking-v3"
+    data-composition-id="airline-overbooking-v4"
     data-start="0"
     data-duration="{{DURATION}}"
     data-fps="30"
@@ -37,10 +36,8 @@
   </div>
 
   <script>
-    /* Static HyperFrames contract. timeline.js replaces this placeholder with
-       the real paused GSAP timeline after it is constructed. */
     window.__timelines = window.__timelines || {};
-    window.__timelines['airline-overbooking-v3'] = null;
+    window.__timelines['airline-overbooking-v4'] = null;
   </script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
   <script src="timing-data.js"></script>
