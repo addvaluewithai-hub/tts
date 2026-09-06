@@ -17,7 +17,7 @@ concurrency:
 jobs:
   preview:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 30
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -63,6 +63,24 @@ jobs:
           test -s index.html
           test -s build-meta.json
 
+      - name: Limit preview composition to first 45 seconds
+        shell: bash
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import re
+          from pathlib import Path
+          p = Path('${{ steps.active.outputs.project }}/index.html')
+          text = p.read_text(encoding='utf-8')
+          text, n1 = re.subn(r'(id="stage"[\s\S]*?data-duration=")[^"]+', r'\g<1>45', text, count=1)
+          text, n2 = re.subn(r'(<audio[\s\S]*?data-duration=")[^"]+', r'\g<1>45', text, count=1)
+          if n1 != 1 or n2 != 1:
+              raise SystemExit(f'preview duration rewrite failed: stage={n1} audio={n2}')
+          p.write_text(text, encoding='utf-8')
+          PY
+
       - name: Render V4 motion preview
         shell: bash
         env:
@@ -83,13 +101,13 @@ jobs:
             -i motion-preview-with-audio.mp4 \
             -an -vf 'scale=1280:-2' -r 24 \
             -c:v libx264 -preset veryfast -crf 25 -pix_fmt yuv420p -movflags +faststart \
-            airline-v4-motion-preview-silent-720p.mp4
-          test -s airline-v4-motion-preview-silent-720p.mp4
+            airline-v4-motion-preview-silent-45s-720p.mp4
+          test -s airline-v4-motion-preview-silent-45s-720p.mp4
 
       - name: Upload silent motion preview
         uses: actions/upload-artifact@v4
         with:
-          name: airline-v4-motion-preview-silent
-          path: ${{ steps.active.outputs.project }}/airline-v4-motion-preview-silent-720p.mp4
+          name: airline-v4-motion-preview-silent-45s
+          path: ${{ steps.active.outputs.project }}/airline-v4-motion-preview-silent-45s-720p.mp4
           if-no-files-found: error
           retention-days: 14
