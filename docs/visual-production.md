@@ -62,22 +62,11 @@ rather than making every frame a poster.
 
 A roughly three-minute narrated explainer should normally contain **at least 30 primary generated-image shots**, plus separate HTML information scenes where needed. A good planning target is about 10–12 generated-image shots per minute, with additional text/diagram cuts increasing total visual changes.
 
-This is an editorial default, not a command to cut randomly. Create a new shot when the narration introduces a new:
-
-- semantic beat;
-- actor/action;
-- location or state;
-- joke/punchline;
-- number or comparison;
-- reveal;
-- cause/effect step;
-- example;
-- counterexample;
-- conclusion turn.
+This is an editorial default, not a command to cut randomly. Create a new shot when the narration introduces a new semantic beat, actor/action, location/state, joke, number/comparison, reveal, cause/effect step, example, counterexample, or conclusion turn.
 
 Typical primary image holds should land around **2.5–6 seconds**. Avoid leaving one primary image uninterrupted for more than ~7 seconds unless the stillness is deliberate.
 
-Because HTML information scenes are separate cuts, total scene count will normally be higher than the generated-image count. A 3-minute piece with 30–36 generated images may naturally end up with 40–50 total scenes after typography/diagram breaks.
+Because HTML information scenes are separate cuts, total scene count will normally be higher than the generated-image count. A 3-minute piece with 30–36 generated images may naturally end up with 45–60 total scenes after typography/diagram breaks.
 
 ## Audio synchronization is mandatory
 
@@ -89,101 +78,87 @@ Production order:
 
 1. Qwen renders narration.
 2. The final WAV/MP3 is assembled.
-3. HyperFrames local transcription listens back to the actual Qwen audio and creates word-level timestamps.
-4. Storyboard shots record a word/phrase anchor.
-5. The video build resolves each anchor against `final/<job>.transcript.json`.
-6. Image cuts and separate HTML information scenes fire from those resolved timings.
+3. Gemini Transcribe listens to the actual master audio and returns word-level timestamps.
+4. The canonical authored transcript is matched back onto those timings.
+5. Storyboard shots record a word/phrase anchor.
+6. The video build resolves each anchor against `final/<job>.transcript.json`.
+7. Image cuts and separate HTML information scenes fire from those resolved timings.
 
 If the final word-level transcript is missing or materially incomplete, visual production should stop. A technically valid MP4 with visibly wrong sync is a failed build.
 
 ## HyperFrames skills are part of the production contract
 
-Before authoring a new composition, read the current vendored HyperFrames router and relevant workflow skills under:
+Before authoring a new composition, read the current vendored HyperFrames router and relevant workflow skills under `vendor/hyperframes/skills/`.
 
-`vendor/hyperframes/skills/`
-
-For this channel's narrated topic videos, start with:
-
-- `hyperframes/SKILL.md`;
-- `faceless-explainer/SKILL.md`;
-- then the domain skills it routes to (`hyperframes-core`, `hyperframes-animation`, `hyperframes-audio`, `hyperframes-creative`, `hyperframes-cli`, `media-use`, and captions when needed).
+For this channel's narrated topic videos, start with `hyperframes/SKILL.md`, `faceless-explainer/SKILL.md`, then the domain skills it routes to (`hyperframes-core`, `hyperframes-animation`, `hyperframes-audio`, `hyperframes-creative`, `hyperframes-cli`, `media-use`, and captions when needed).
 
 The vendored set is synced from `heygen-com/hyperframes` by `.github/workflows/sync-hyperframes-skills.yml` and linked into `.agents/skills/`.
 
 Video Factory deliberately overrides upstream media providers where documented: Qwen is narration, and the private Image Generation API is the image provider. Use HyperFrames' authoring/animation/QA grammar without silently replacing our approved providers.
 
-## Recommended composition mix
+## Generated-image motion: preserve the artwork
 
-Use these as editorial defaults, not hard quotas:
+A generated image should not be sacrificed merely to create motion. **Do not default to a large Ken Burns zoom that crops meaningful stickman characters, props, or composition.**
 
-- generated stickman images are the main narrative material;
-- separate HTML text/pattern scenes handle exact numbers, punchlines, pivots, and concise explanations;
-- separate HTML diagram scenes handle flows, comparisons, counters, charts, and precise relationships.
+Preferred current treatment:
 
-Do not interpret the mix as permission to layer readable HTML on top of generated images.
+1. keep the authored image fully visible as a foreground `contain` layer;
+2. duplicate the same image behind it as a blurred/dimmed full-bleed backdrop;
+3. animate the foreground only a few pixels with a tiny rotation/float and no scale;
+4. animate the backdrop more freely because it carries no unique information;
+5. optionally add non-text editorial accents (circles, lines, dots, hand-drawn marks) as deterministic motion layers.
 
-## Generated-image shots
+This produces life without cutting off the illustration.
 
-For each narrative beat, prefer one clear visual idea over dense explanatory layouts. Generate the asset at the final target aspect ratio whenever possible.
+For future image generation, request **motion-safe framing**: keep important characters/props away from the outer 8–12% of the frame and leave extra environmental breathing room. If a scene specifically needs a pan, generate overscan or a wider/taller source rather than cropping the only copy of the artwork.
 
-Common treatments after generation:
+Suitable image-scene motion includes:
 
-- quick editorial cuts;
-- slow push-in / pull-out;
-- horizontal or vertical pan;
-- crop/reframe animation;
-- foreground/background compositing;
-- masked reveals;
-- subtle parallax when the illustration supports it;
-- match cuts between neighboring stickman poses or props;
-- hold-and-punch timing for visual jokes.
+- 6–12px foreground drift;
+- tiny ±0.1° editorial tilt;
+- blurred backdrop drift;
+- slow light/texture movement;
+- line/dot accent reveals;
+- paper-card parallax;
+- match cuts between neighboring stickman poses;
+- masked transitions between scenes.
 
-Do not add readable HTML text or exact numeric overlays on top of these images. When precision is needed, cut away to a separate information scene.
+The movement should be visible enough to prevent slideshow feeling, but never so strong that the viewer notices the effect before the idea.
 
-## HTML text / pattern scenes
+## HTML text / pattern scenes are motion compositions
 
-HTML text scenes are first-class visual beats, not overlays.
+HTML text scenes are first-class visual beats, not static title cards and not overlays.
 
-Suitable backgrounds include:
+A text scene should normally have **three active layers**:
 
-- solid channel colors;
-- animated dot/grid/line patterns;
-- paper texture;
-- abstract seat-map patterns;
-- ticket-strip motifs;
-- moving probability dots;
-- restrained geometric animation.
+- a background system (grid, seat map, ticket strips, probability dots, line field, paper texture, gradient glow);
+- a primary information object (number, phrase, comparison, equation);
+- a secondary motion/detail layer (echo typography, rail, underline, marker dots, counters, accents).
 
-Typical uses:
+Avoid leaving one small text block in a corner with most of the canvas doing nothing. Empty space is allowed only when it creates intentional tension or emphasis.
 
-- `180 SEATS` → cut → `185 TICKETS`;
-- `NO, NOBODY FAILED KINDERGARTEN`;
-- `$200` → `$400`;
-- `EMPTY SEAT = $0 AFTER DEPARTURE`;
-- `COST 1` vs `COST 2`;
-- one-line reveal/conclusion;
-- section pivots/questions.
+Typical motion grammar:
 
-Keep each scene visually decisive. Favor one thought per screen over presentation-style bullet lists.
+- headline reveal by mask/clip, not a generic fade;
+- number or key word lands with a short scale/position impact;
+- subline follows 120–350ms later;
+- background pattern drifts across the full scene duration;
+- rails/lines draw on;
+- echo typography or geometry moves independently at low contrast;
+- diagrams assemble in semantic order;
+- no infinite screen-saver loops in the authoritative render.
+
+For example, `180 SEATS` should feel like a designed infographic moment: the number owns the canvas, the seat-grid participates in the beat, `SEATS` reveals as a secondary layer, and background geometry keeps moving subtly. The next `185 TICKETS` beat can visually introduce the surplus rather than merely replacing one static number with another.
 
 ## HTML diagram scenes
 
-Use separate diagram scenes when they clarify a system better than an illustration can, especially for:
-
-- flows of money or information;
-- probability/state changes;
-- timelines;
-- process steps;
-- comparisons;
-- quantities and ratios.
+Use separate diagram scenes when they clarify a system better than an illustration can, especially for flows of money/information, probability/state changes, timelines, process steps, comparisons, quantities, and ratios.
 
 These scenes can use controlled HTML/CSS/SVG/vector animation because precision is the point. They should still feel like part of the same channel through palette, typography, spacing, and motion rhythm.
 
 ## Image-generation provider
 
-Production image generation uses the private Image Generation API documented at:
-
-`tools/image-gen/README.md`
+Production image generation uses the private Image Generation API documented at `tools/image-gen/README.md`.
 
 Live base URL:
 
@@ -201,16 +176,7 @@ Generated VPS files expire after 24 hours. Download required assets into product
 
 Prompts should aim for a coherent stickman editorial universe rather than unrelated pretty pictures.
 
-Every prompt should repeat enough of the channel style contract to resist drift. When relevant specify:
-
-1. the single narrative idea the frame must communicate;
-2. stickman actor count, pose, gesture, and emotion;
-3. simplified environment/props;
-4. camera/framing/composition;
-5. the channel palette and flat editorial rendering;
-6. continuity requirements from adjacent shots;
-7. no readable embedded text or logos;
-8. target aspect ratio through the API field, not by asking the model to fake a crop.
+Every prompt should repeat enough of the channel style contract to resist drift. When relevant specify the single narrative idea, stickman actor count/pose/gesture/emotion, simplified environment/props, camera/framing/composition, channel palette/rendering, continuity requirements, no readable embedded text/logos, motion-safe breathing room, and target aspect ratio through the API field.
 
 Do not reserve image space for HTML copy. HTML copy lives on its own scene.
 
@@ -231,7 +197,7 @@ A storyboard/visual-plan entry should identify:
 - **anchor phrase** from the spoken script;
 - generation prompt for `image` shots;
 - target aspect ratio for generated images;
-- HTML scene content/background concept for `text`/`diagram` scenes;
+- HTML scene content/background/motion concept for `text`/`diagram` scenes;
 - optional continuation/reference relationship to another shot.
 
 Do not use a `composite` mode for readable HTML-on-image layouts in normal channel production.
@@ -240,23 +206,8 @@ Shot timecodes are derived after word alignment. Do not hard-code estimates in t
 
 ## Quality bar
 
-A generated visual should be rejected or regenerated when it:
+A generated visual should be rejected or regenerated when it contradicts the narration, contains distracting anatomy/object errors even within a simple illustration style, has accidental gibberish text in focal areas, cannot support intended motion, breaks the established stickman style without reason, reads as generic AI photoreal/stock imagery, or repeats essentially the same pose/composition for too many adjacent beats.
 
-- contradicts the narration;
-- contains distracting anatomy/object errors even within a simple illustration style;
-- has accidental gibberish text in focal areas;
-- cannot support the intended crop/motion;
-- breaks the established stickman style without editorial reason;
-- reads as generic AI photoreal/stock imagery;
-- repeats essentially the same pose/composition for too many adjacent beats.
-
-A completed video should be rejected when:
-
-- narration-triggered visual events are visibly early/late;
-- readable HTML is laid over generated imagery instead of using a separate scene;
-- a primary image sits on screen too long without a narrative reason;
-- image changes feel arbitrary rather than beat-driven;
-- the visual style drifts between photoreal, 3D, anime, and flat illustration unintentionally;
-- important punchlines land without an intentional visual response.
+A completed video should be rejected when narration-triggered visual events are visibly early/late, readable HTML is laid over generated imagery instead of using a separate scene, a primary image sits on screen too long without narrative reason, image changes feel arbitrary rather than beat-driven, text scenes read as mostly empty static cards, motion crops meaningful illustration content, the visual style drifts unintentionally, or important punchlines land without an intentional visual response.
 
 The goal is polished visual storytelling with fast semantic pacing, exact narration sync, a recognizable illustrated identity, and a clear separation between illustration and information design.
