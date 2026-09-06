@@ -10,7 +10,7 @@ const INFO_SCENES = path.join(ROOT, 'info-scenes.json');
 const VISUALS = path.resolve(ROOT, `../../../input/${JOB_ID}/visuals.json`);
 
 for (const required of [TRANSCRIPT, TEMPLATE, INFO_SCENES, VISUALS]) {
-  if (!fs.existsSync(required)) throw new Error(`Missing required V3 source: ${required}`);
+  if (!fs.existsSync(required)) throw new Error(`Missing required V4 source: ${required}`);
 }
 
 const rawTranscript = fs.readFileSync(TRANSCRIPT, 'utf8');
@@ -26,10 +26,10 @@ if (!Number.isFinite(transcript.duration_ms) || transcript.duration_ms <= 0) {
   throw new Error('Invalid transcript duration_ms');
 }
 if (!Array.isArray(words) || words.length < 50) {
-  throw new Error('V3 requires complete word-level timing; transcript.words is missing/incomplete');
+  throw new Error('V4 requires complete word-level timing; transcript.words is missing/incomplete');
 }
 if (!Array.isArray(visualPlan.requests) || visualPlan.requests.length < 30) {
-  throw new Error(`V3 requires at least 30 generated-image shots, got ${visualPlan.requests?.length || 0}`);
+  throw new Error(`V4 requires at least 30 generated-image shots, got ${visualPlan.requests?.length || 0}`);
 }
 if (!Array.isArray(infoPlan.scenes) || !infoPlan.scenes.length) {
   throw new Error('Missing separate HTML information scene plan');
@@ -56,7 +56,6 @@ function matchingStarts(phrase, segmentOneBased = null) {
   for (let i = 0; i < candidates.length; i += 1) {
     let acc = '';
     for (let j = i; j < candidates.length; j += 1) {
-      // Never bridge across audio parts when globally matching.
       if (Number(candidates[j].segment_index) !== Number(candidates[i].segment_index)) break;
       acc += norm(candidates[j].text);
       if (acc === target) {
@@ -96,7 +95,7 @@ const imageScenes = visualPlan.requests.map((request, index) => {
     anchor: request.anchor,
     start: resolveAnchor(request.anchor),
     asset: `assets/images/${String(index + 1).padStart(2, '0')}.png`,
-    motion: ['push-left', 'push-right', 'push-up', 'push-down'][index % 4],
+    motion: ['float-left', 'float-right', 'float-up', 'float-down'][index % 4],
     sourceIndex: index + 1,
   };
 });
@@ -132,21 +131,31 @@ function infoMarkup(scene) {
   const middle = scene.middle
     ? `<div class="info-middle">${esc(scene.middle)}</div>`
     : '';
+  const echoText = scene.middle || scene.headline || '';
   return `
     ${patternMarkup()}
+    <div class="info-echo" aria-hidden="true">${esc(echoText)}</div>
     <div class="info-content variant-${esc(scene.variant || 'default')}">
       <div class="info-headline">${esc(scene.headline || '')}</div>
       ${middle}
       <div class="info-subline">${esc(scene.subline || '')}</div>
-    </div>`;
+    </div>
+    <div class="info-rail" aria-hidden="true"><span></span><span></span><span></span></div>`;
+}
+
+function imageMarkup(scene) {
+  return `
+      <div class="image-shell ${esc(scene.motion)}">
+        <img class="image-backdrop" src="${esc(scene.asset)}" alt="" />
+        <div class="image-card"><img class="image-main" src="${esc(scene.asset)}" alt="" /></div>
+        <div class="image-accent" aria-hidden="true"><i></i><i></i><i></i></div>
+      </div>`;
 }
 
 function sceneMarkup(scene) {
-  const common = `id="${scene.domId}" class="clip scene ${scene.mode}-scene pattern-${esc(scene.pattern || 'none')}" data-start="${scene.start}" data-duration="${scene.duration}" data-track-index="0" data-scene-mode="${scene.mode}"`;
+  const common = `id="${scene.domId}" class="clip scene ${scene.mode}-scene pattern-${esc(scene.pattern || 'none')}" data-start="${scene.start}" data-duration="${scene.duration}" data-track-index="0" data-scene-mode="${scene.mode}" data-variant="${esc(scene.variant || '')}"`;
   if (scene.mode === 'image') {
-    return `<div ${common}>
-      <div class="image-shell ${esc(scene.motion)}"><img src="${esc(scene.asset)}" alt="" /></div>
-    </div>`;
+    return `<div ${common}>${imageMarkup(scene)}\n    </div>`;
   }
   return `<div ${common}>${infoMarkup(scene)}</div>`;
 }
@@ -160,8 +169,8 @@ html = html
 fs.writeFileSync(path.join(ROOT, 'index.html'), html);
 
 const timingPayload = {
-  schema: 3,
-  compositionId: 'airline-overbooking-v3',
+  schema: 4,
+  compositionId: 'airline-overbooking-v4',
   duration,
   scenes,
   words,
@@ -172,20 +181,20 @@ fs.writeFileSync(
 );
 
 const riskScenes = scenes.filter((scene) => scene.mode !== 'image');
-const imageCheckpoints = scenes.filter((scene) => scene.mode === 'image' && scene.sourceIndex % 3 === 1);
-const finalHolds = [...riskScenes, ...imageCheckpoints]
-  .sort((a, b) => a.start - b.start)
-  .map((scene) => Number(Math.min(scene.end - 0.08, scene.start + Math.max(0.12, scene.duration * 0.62)).toFixed(3)));
+const finalHolds = scenes.map((scene) => Number(
+  Math.min(scene.end - 0.08, scene.start + Math.max(0.12, scene.duration * 0.62)).toFixed(3),
+));
 const riskBeats = riskScenes.map((scene) => Number((scene.start + Math.min(0.2, scene.duration * 0.15)).toFixed(3)));
 
 const transcriptSha256 = crypto.createHash('sha256').update(rawTranscript).digest('hex');
 const meta = {
-  schema: 3,
+  schema: 4,
   duration,
   transcript_sha256: transcriptSha256,
   timing_source: 'word-level-transcript-required',
   generated_image_count: imageScenes.length,
   information_scene_count: informationScenes.length,
+  motion_policy: 'non-cropping-foreground-with-animated-backdrop',
   scenes: scenes.map(({ words: ignored, ...scene }) => scene),
   finalHolds,
   riskBeats,
@@ -193,6 +202,6 @@ const meta = {
 fs.writeFileSync(path.join(ROOT, 'build-meta.json'), JSON.stringify(meta, null, 2));
 
 console.log(
-  `Built airline overbooking V3: ${duration}s, ${imageScenes.length} images + ` +
-  `${informationScenes.length} separate HTML scenes, transcript ${transcriptSha256}`,
+  `Built airline overbooking V4: ${duration}s, ${imageScenes.length} images + ` +
+  `${informationScenes.length} animated HTML scenes, transcript ${transcriptSha256}`,
 );
