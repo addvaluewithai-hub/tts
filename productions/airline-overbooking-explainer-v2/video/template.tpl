@@ -12,6 +12,10 @@
       font-weight: 100 900;
       font-display: swap;
     }
+    /* Keep the outline-echo look while giving HyperFrames a real painted fill. */
+    .info-echo {
+      color: rgba(246, 239, 223, 0.035) !important;
+    }
   </style>
   <link rel="stylesheet" href="styles.css" />
 </head>
