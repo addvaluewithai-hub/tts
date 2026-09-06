@@ -1,0 +1,95 @@
+name: Video Factory — Silent Motion Preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/video-motion-preview.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: video-factory-motion-preview
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve active production
+        id: active
+        shell: bash
+        run: |
+          set -euo pipefail
+          JOB="$(grep -Ev '^\s*(#|$)' input/ACTIVE | head -1)"
+          PROJECT="productions/${JOB}/video"
+          test -d "$PROJECT"
+          test -s "final/${JOB}.wav"
+          test -s "final/${JOB}.transcript.json"
+          echo "job=$JOB" >> "$GITHUB_OUTPUT"
+          echo "project=$PROJECT" >> "$GITHUB_OUTPUT"
+
+      - name: Set up Node 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Install FFmpeg
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+
+      - name: Build exact-timing composition
+        shell: bash
+        env:
+          JOB: ${{ steps.active.outputs.job }}
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$PROJECT/assets/audio"
+          cp "final/${JOB}.wav" "$PROJECT/assets/audio/${JOB}.wav"
+          cp "final/${JOB}.transcript.json" "$PROJECT/assets/audio/${JOB}.transcript.json"
+          if [ -f "$PROJECT/scripts/prepare-assets.sh" ]; then
+            (cd "$PROJECT" && bash scripts/prepare-assets.sh)
+          fi
+          cd "$PROJECT"
+          FACTORY_JOB_ID="$JOB" node scripts/build-from-audio.mjs
+          test -s index.html
+          test -s build-meta.json
+
+      - name: Render V4 motion preview
+        shell: bash
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          npx --yes hyperframes@latest render . -c ./index.html --workers 2 --output motion-preview-with-audio.mp4
+
+      - name: Create silent 720p preview
+        shell: bash
+        env:
+          PROJECT: ${{ steps.active.outputs.project }}
+        run: |
+          set -euo pipefail
+          cd "$PROJECT"
+          ffmpeg -nostdin -loglevel error -y \
+            -i motion-preview-with-audio.mp4 \
+            -an -vf 'scale=1280:-2' -r 24 \
+            -c:v libx264 -preset medium -crf 24 -pix_fmt yuv420p -movflags +faststart \
+            airline-v4-motion-preview-silent-720p.mp4
+          test -s airline-v4-motion-preview-silent-720p.mp4
+
+      - name: Upload silent motion preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: airline-v4-motion-preview-silent
+          path: ${{ steps.active.outputs.project }}/airline-v4-motion-preview-silent-720p.mp4
+          if-no-files-found: error
+          retention-days: 14
