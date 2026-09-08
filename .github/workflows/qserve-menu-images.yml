@@ -1,0 +1,122 @@
+name: QServe — Nile Table Menu Images
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "input/qserve-nile-table-menu-v1/visuals.json"
+      - ".github/workflows/qserve-menu-images.yml"
+      - "tools/image-gen/**"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qserve-nile-table-menu-images
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      JOB: qserve-nile-table-menu-v1
+      PLAN: input/qserve-nile-table-menu-v1/visuals.json
+      OUT: generated-assets/qserve-nile-table-menu-v1/images
+      IMAGE_API_TOKEN: ${{ secrets.IMAGE_API_TOKEN || vars.IMAGE_API_TOKEN }}
+      IMAGE_API_BASE_URL: https://agent.wpaikits.site/v1/workflow/jobs-images
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install image client dependency
+        run: pip install 'requests>=2.32.0'
+
+      - name: Generate every Nile Table menu item
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${IMAGE_API_TOKEN:-}" ]; then
+            echo 'IMAGE_API_TOKEN is not configured.' >&2
+            exit 2
+          fi
+          rm -rf "$OUT"
+          mkdir -p "$OUT"
+          python tools/image-gen/client.py --timeout 7200 --poll-interval 2 batch \
+            --requests "$PLAN" \
+            --out-dir "$OUT" \
+            --output-format png
+
+      - name: Rename generated files to menu item ids and write manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import hashlib
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          job = os.environ['JOB']
+          plan_path = Path(os.environ['PLAN'])
+          out = Path(os.environ['OUT'])
+          plan = json.loads(plan_path.read_text(encoding='utf-8'))
+          requests = plan.get('requests', [])
+          numbered = sorted(out.glob('*.png'))
+          if len(numbered) != len(requests):
+              raise SystemExit(f'Expected {len(requests)} images, found {len(numbered)}')
+
+          items = []
+          for request, source in zip(requests, numbered):
+              item_id = request['id']
+              target = out / f'{item_id}.png'
+              if target.exists() and target != source:
+                  target.unlink()
+              source.rename(target)
+              items.append({
+                  'id': item_id,
+                  'file': target.name,
+                  'prompt': request['prompt'],
+                  'aspect_ratio': request.get('aspect_ratio', '1:1'),
+                  'sha256': hashlib.sha256(target.read_bytes()).hexdigest(),
+              })
+
+          manifest = {
+              'schema': 1,
+              'job': job,
+              'generated_at': datetime.now(timezone.utc).isoformat(),
+              'count': len(items),
+              'style_prefix': plan.get('style_prefix', ''),
+              'items': items,
+          }
+          (out.parent / 'manifest.json').write_text(
+              json.dumps(manifest, indent=2, ensure_ascii=False) + '\n',
+              encoding='utf-8',
+          )
+          PY
+
+      - name: Commit generated QServe assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add "generated-assets/${JOB}"
+          if git diff --cached --quiet; then
+            echo 'No generated image changes to commit.'
+            exit 0
+          fi
+          git config user.name 'qserve-menu-images[bot]'
+          git config user.email 'qserve-menu-images[bot]@users.noreply.github.com'
+          git commit -m "chore(images): publish QServe Nile Table menu assets"
+          git pull --rebase origin main
+          git push origin HEAD:main
