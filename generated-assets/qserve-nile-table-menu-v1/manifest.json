@@ -1,0 +1,289 @@
+{
+  "schema": 1,
+  "job": "qserve-nile-table-menu-v1",
+  "generated_at": "2026-09-08T10:10:28.889511+00:00",
+  "count": 40,
+  "style_prefix": "Premium realistic restaurant menu photography for a modern Egyptian restaurant in Cairo. Square 1:1 composition. One single named dish or drink as the clear hero, centered and fully visible, authentic ingredients and plating, warm natural window light, elegant cream or stone tableware, subtle teal and warm brass accents, shallow depth of field, appetizing true-to-life texture, polished editorial food photography, consistent visual language across the whole menu. No text, no typography, no logos, no people, no hands, no collage, no borders, no duplicated plates, no unrelated props. Depict the named item and described ingredients accurately.",
+  "items": [
+    {
+      "id": "foul-signature",
+      "file": "foul-signature.png",
+      "prompt": "Nile Table Foul: slow-cooked Egyptian fava beans with olive oil, diced tomato, parsley and warm baladi bread, refined contemporary Egyptian presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "eba07968ae89859623e21aa5cd472a3b94be539babb77d3fd90fe37fe5f90db7"
+    },
+    {
+      "id": "shakshuka-feta",
+      "file": "shakshuka-feta.png",
+      "prompt": "Feta Shakshuka: eggs baked in a rich spiced tomato and pepper sauce, crumbled feta on top, served hot in an elegant shallow pan.",
+      "aspect_ratio": "1:1",
+      "sha256": "2de25d30714cb7adbfbf2248260a3892d36f756187d4e006666b1b3c678d4c39"
+    },
+    {
+      "id": "pastrami-eggs",
+      "file": "pastrami-eggs.png",
+      "prompt": "Pastrami Eggs: soft eggs with Egyptian pastrami, cherry tomatoes and toasted bread, breakfast plating, warm and inviting.",
+      "aspect_ratio": "1:1",
+      "sha256": "c176344cbc9fa4d6057072eea1b1b60868ef6a05bf16da5ef37ec70efd6f2707"
+    },
+    {
+      "id": "falafel-board",
+      "file": "falafel-board.png",
+      "prompt": "Cairo Falafel Board: vivid green Egyptian falafel, tahini, pickles, baladi salad and fresh baladi bread arranged on a shareable board.",
+      "aspect_ratio": "1:1",
+      "sha256": "26e25fd9a0592c96395579f48712ffa754071b9c75a1e1e929f9053c09ed9b07"
+    },
+    {
+      "id": "honey-feteer",
+      "file": "honey-feteer.png",
+      "prompt": "Honey and Cream Feteer: warm flaky Egyptian feteer meshaltet with glossy raw honey and rich country cream, indulgent breakfast dessert presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "a5735523d36a54e52d4a3551fd4edaa6f8ac9e686800c47e03ee3ce01b1cc74b"
+    },
+    {
+      "id": "hummus-dukkah",
+      "file": "hummus-dukkah.png",
+      "prompt": "Dukkah Hummus: silky creamy hummus with Egyptian dukkah, olive oil and crisp bread, elegant mezze plating.",
+      "aspect_ratio": "1:1",
+      "sha256": "a3495a3926581f657419384d1a1587ee68877595554cd19774214dcde54c8627"
+    },
+    {
+      "id": "baba-ghanoush",
+      "file": "baba-ghanoush.png",
+      "prompt": "Smoked Baba Ghanoush: charred aubergine dip with tahini, pomegranate molasses and fresh herbs, smoky rustic-modern mezze presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "bc1f327e9e7f2b5779f0fc6e648b77c3812f7b4a93929801e31b9fc897d24ae9"
+    },
+    {
+      "id": "halloumi",
+      "file": "halloumi.png",
+      "prompt": "Grilled Halloumi: golden grilled halloumi slices with tomato, zaatar and a drizzle of hot honey, modern appetizer plating.",
+      "aspect_ratio": "1:1",
+      "sha256": "bc422b2f05bc77d6af9b7f8eb818d97e922436bcc7031307f1451c0bc1f34b82"
+    },
+    {
+      "id": "spiced-liver",
+      "file": "spiced-liver.png",
+      "prompt": "Alexandrian Liver: seared sliced liver with peppers, cumin, garlic and lemon, Egyptian street-food flavor presented in an upscale restaurant style.",
+      "aspect_ratio": "1:1",
+      "sha256": "c053f622daee5c413976a657b559f593b42c8d6b83851bba5f8547a55a09e442"
+    },
+    {
+      "id": "mezze-board",
+      "file": "mezze-board.png",
+      "prompt": "Nile Table Mezze: generous curated platter of hummus, baba ghanoush, labneh, muhammara, olives and warm bread, colorful shareable presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "db31a63cacc68b81af0130fe7a5a575c1e44005ed979d9774b20e900511a6e43"
+    },
+    {
+      "id": "kofta",
+      "file": "kofta.png",
+      "prompt": "Charcoal Kofta: juicy charcoal-grilled kofta skewers with vermicelli rice, fresh salad and tahini, visible grill char, premium Egyptian plating.",
+      "aspect_ratio": "1:1",
+      "sha256": "525c7646c024ce0392ca42f1e765a2fc8f273d1746279f41255afecb10c228f2"
+    },
+    {
+      "id": "shish-tawook",
+      "file": "shish-tawook.png",
+      "prompt": "Shish Tawook: yogurt-marinated chicken cubes grilled over charcoal until juicy with gentle char marks, served as a premium Egyptian grill plate.",
+      "aspect_ratio": "1:1",
+      "sha256": "238682f37c9cf1e166baa8f9ddb2ff0762a38378a0b1fedf06e23b5d83951f6e"
+    },
+    {
+      "id": "lamb-chops",
+      "file": "lamb-chops.png",
+      "prompt": "Lamb Chops: charcoal-grilled lamb chops with creamy mashed potato and glossy jus, refined restaurant presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "99c85e523b33e626b51cebfef2c94ed4f3d1bfaf01dc1aa8767fb9037f57050a"
+    },
+    {
+      "id": "mixed-grill",
+      "file": "mixed-grill.png",
+      "prompt": "Mixed Grill: generous Egyptian charcoal platter with kofta, shish tawook and kebab, served with rice and tahini, dramatic grill texture.",
+      "aspect_ratio": "1:1",
+      "sha256": "2961d93a22994f22a5f9600681ab9cd74782f6b8e9ee76a0f79d197ce8bcd825"
+    },
+    {
+      "id": "grilled-seabass",
+      "file": "grilled-seabass.png",
+      "prompt": "Grilled Seabass: whole grilled seabass with lemon, coriander, roasted potato and vegetables, fresh Mediterranean-Egyptian presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "c26b160bd9c9abb7cb58c65e6e9a1f7d6dd0d15b04d5169de24727a8713a3d42"
+    },
+    {
+      "id": "molokhia-chicken",
+      "file": "molokhia-chicken.png",
+      "prompt": "Molokhia and Chicken: vibrant green Egyptian molokhia with half grilled chicken and vermicelli rice, comforting yet premium presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "2166dac9d144cdef2816bcc6cae12e45d06946b6955dcfa80bea4afdbe6effa9"
+    },
+    {
+      "id": "short-rib-fattah",
+      "file": "short-rib-fattah.png",
+      "prompt": "Short Rib Fattah: layers of rice and crisp bread with garlic-vinegar tomato sauce and tender slow-cooked beef short rib, luxurious Egyptian presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "e1a6cf54557e2529faf97834d2be8ac507968443d8a5a34ed57014171a178f9c"
+    },
+    {
+      "id": "koshary",
+      "file": "koshary.png",
+      "prompt": "Nile Koshary: Egyptian koshary with rice, lentils, pasta, chickpeas, tomato sauce, dakka and a crown of crisp fried onions, clean modern bowl presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "ea5ed54be92791b953df65e53a53eed694e67d184dd93b7d1617cbd4ac3ff7a2"
+    },
+    {
+      "id": "duck-roqaq",
+      "file": "duck-roqaq.png",
+      "prompt": "Duck Roqaq: crisp layered Egyptian roqaq filled with tender duck confit and finished with pomegranate jus, elegant contemporary plating.",
+      "aspect_ratio": "1:1",
+      "sha256": "e6db083f3077845e631847f70382a7f7518105262dd74c111ce46a480aadc465"
+    },
+    {
+      "id": "okra-tagine",
+      "file": "okra-tagine.png",
+      "prompt": "Okra Tagine: Egyptian okra in rich tomato sauce with braised beef shank and white rice, served in a beautiful earthenware tagine dish.",
+      "aspect_ratio": "1:1",
+      "sha256": "ece2f6c0aae3ca9e72e51d0ade455c1f8b37aa65423143de463462b6a53a2a20"
+    },
+    {
+      "id": "stuffed-vegetables",
+      "file": "stuffed-vegetables.png",
+      "prompt": "Stuffed Vegetables: Egyptian mixed mahshi with vine leaves, courgette and peppers stuffed with herbed rice, abundant colorful platter.",
+      "aspect_ratio": "1:1",
+      "sha256": "1033f228db6e2eaf8b2e502fe925f9014c460a3c78957caf39b1f580445c5e38"
+    },
+    {
+      "id": "baladi-salad",
+      "file": "baladi-salad.png",
+      "prompt": "Baladi Salad: fresh Egyptian salad of tomato, cucumber, pepper, onion and parsley with lemon, crisp vibrant ingredients in a refined bowl.",
+      "aspect_ratio": "1:1",
+      "sha256": "4fdc059fa9bc744dd9e986beecd64bac9f4f0451e417d617280c43bdf4ac0b2f"
+    },
+    {
+      "id": "roasted-beet",
+      "file": "roasted-beet.png",
+      "prompt": "Roasted Beet and Feta Salad: roasted beetroot, feta, rocket, fresh orange and hazelnut, vivid modern salad presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "436a4955d32d2d4f3ed8189e8eb286f07dbba47088bfff6b461cf72950a9fcff"
+    },
+    {
+      "id": "chicken-caesar",
+      "file": "chicken-caesar.png",
+      "prompt": "Chicken Caesar: romaine lettuce, sliced grilled chicken, parmesan, crisp croutons and Caesar dressing, polished cafe salad plating.",
+      "aspect_ratio": "1:1",
+      "sha256": "4ae33ad86697ebc727367307ee2882289d6181d679344bafbbea03fab8c8f5c9"
+    },
+    {
+      "id": "lentil-soup",
+      "file": "lentil-soup.png",
+      "prompt": "Red Lentil Soup: velvety Egyptian red lentil soup with cumin, carrot and onion, lemon wedge beside the bowl, warm comforting presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "10c5df0c5fd56ec32106715dddd0bf18ac9a74b1b1b3867cbce10c58e2208ae4"
+    },
+    {
+      "id": "om-ali",
+      "file": "om-ali.png",
+      "prompt": "Om Ali: classic Egyptian baked pastry pudding with milk, cream, mixed nuts and raisins, golden bubbling top in an elegant baking dish.",
+      "aspect_ratio": "1:1",
+      "sha256": "eeb32066de1f58eff3515ce061945b28e544a4dbcc36da505e5bfbb213e53274"
+    },
+    {
+      "id": "basbousa",
+      "file": "basbousa.png",
+      "prompt": "Cream Basbousa: golden semolina cake with a creamy country-cream layer and light syrup sheen, neatly cut premium dessert portion.",
+      "aspect_ratio": "1:1",
+      "sha256": "129ebe0ce760dbb3e6d91e782c604e6a0a2cb65bbe2df33195b4d58f6ad62b70"
+    },
+    {
+      "id": "date-cake",
+      "file": "date-cake.png",
+      "prompt": "Warm Date Cake: moist warm date cake with glossy toffee sauce and a scoop of vanilla ice cream, luxurious dessert photography.",
+      "aspect_ratio": "1:1",
+      "sha256": "a28a447a0df2fd73da1a6f3fd7242bacb0df420945f2c57bfa80316a1c569a17"
+    },
+    {
+      "id": "mango-kunafa",
+      "file": "mango-kunafa.png",
+      "prompt": "Mango Kunafa: crisp golden kunafa layered with light cream and fresh ripe mango, bright elegant Egyptian dessert presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "292d5856f88214c5d6542fdf9aef5e339569713e612e12ad6680be7dad79b35f"
+    },
+    {
+      "id": "seasonal-fruit",
+      "file": "seasonal-fruit.png",
+      "prompt": "Seasonal Fruit: premium plate of freshly cut colorful seasonal fruit, naturally arranged and refreshing, no added sweets.",
+      "aspect_ratio": "1:1",
+      "sha256": "a03a27d560bf54394b2d44aac37973e1f7253d74a9becf73a1d39498d289a780"
+    },
+    {
+      "id": "turkish-coffee",
+      "file": "turkish-coffee.png",
+      "prompt": "Turkish Coffee: traditional small cup of rich dark Turkish coffee with subtle cardamom character, refined Cairo cafe setting, visible crema.",
+      "aspect_ratio": "1:1",
+      "sha256": "50241f47a222428405757eb23c0f0194450ad54002456d32e9cded44db0db3cd"
+    },
+    {
+      "id": "flat-white",
+      "file": "flat-white.png",
+      "prompt": "Flat White: double espresso with silky textured milk and precise minimalist latte art in a modern ceramic cup.",
+      "aspect_ratio": "1:1",
+      "sha256": "861a61e93a5d8aba9098590a461e24641ca2a804ba0f704da244276089a424b4"
+    },
+    {
+      "id": "pistachio-latte",
+      "file": "pistachio-latte.png",
+      "prompt": "Pistachio Latte: espresso and milk with roasted pistachio cream, pale pistachio tone, tasteful pistachio garnish, premium cafe presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "18442e12d01064825519f057d7b2b8d2be38a6914cb789223ee6d3efb398f461"
+    },
+    {
+      "id": "mint-tea",
+      "file": "mint-tea.png",
+      "prompt": "Fresh Mint Tea: Egyptian black tea with abundant fresh mint leaves in a clear elegant tea glass, warm amber color and gentle steam.",
+      "aspect_ratio": "1:1",
+      "sha256": "ceed5cfb8410ffa9b4e823b0ef125a2fc96211abc35c00c1e7029ec618c81893"
+    },
+    {
+      "id": "sahlab",
+      "file": "sahlab.png",
+      "prompt": "Nut Sahlab: thick creamy Egyptian sahlab topped with cinnamon, coconut and mixed nuts, warm winter drink in an elegant cup.",
+      "aspect_ratio": "1:1",
+      "sha256": "7d5fe7526f2a3ea123dcacf736af3f1a5cc13e712ad36e93484aff3cfe21e367"
+    },
+    {
+      "id": "mint-lemon",
+      "file": "mint-lemon.png",
+      "prompt": "Mint Lemonade: fresh lemon and mint blended over crushed ice, vibrant pale green chilled drink with condensation, premium cafe glassware.",
+      "aspect_ratio": "1:1",
+      "sha256": "8b64602695e071003c940f68aa42c1b1f5de798d39de4c538d1af8dc13bf77b3"
+    },
+    {
+      "id": "hibiscus",
+      "file": "hibiscus.png",
+      "prompt": "Iced Hibiscus: deep ruby cold-brewed hibiscus drink with a subtle rose touch, crystal ice and condensation, elegant refreshing presentation.",
+      "aspect_ratio": "1:1",
+      "sha256": "49c3706c74dc6953a346e0f301e3043a3fc33e29594cd067063a6df2fcf97250"
+    },
+    {
+      "id": "mango",
+      "file": "mango.png",
+      "prompt": "Fresh Mango: thick fresh mango juice blended with ice, intense natural mango color, chilled premium glass, no artificial garnish.",
+      "aspect_ratio": "1:1",
+      "sha256": "8f6ecdb39ad16ebf29d7a27ef39249f5f615330549cb764e1deb5de34e252b03"
+    },
+    {
+      "id": "tamarind",
+      "file": "tamarind.png",
+      "prompt": "Tamarind Cooler: natural tamarind drink with lime and soda, amber-brown refreshing cooler over ice in elegant glassware.",
+      "aspect_ratio": "1:1",
+      "sha256": "3f0f921b2492ed81dda2b9f0b26c906362d6988748609bdd9cb3a37d1c335868"
+    },
+    {
+      "id": "sparkling-water",
+      "file": "sparkling-water.png",
+      "prompt": "Sparkling Water: chilled premium clear glass bottle and poured sparkling water with lively bubbles and condensation, minimal elegant restaurant presentation, no readable brand label.",
+      "aspect_ratio": "1:1",
+      "sha256": "cfa2324a88e9e5a19348b8e1e205fb5a1d2ae56e7b8ed3e09be335584ccbbb46"
+    }
+  ]
+}
