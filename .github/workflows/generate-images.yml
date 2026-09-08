@@ -8,15 +8,15 @@ on:
     paths:
       - "input/ACTIVE"
       - "input/*/visuals.json"
+      - "!input/qserve-nile-table-menu-v1/visuals.json"
       - "tools/image-gen/**"
-      - ".github/workflows/generate-images.yml"
 
 permissions:
   contents: write
 
 concurrency:
   group: video-factory-images
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   images:
