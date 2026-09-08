@@ -3,13 +3,6 @@ name: QServe — Nile Table Menu Images
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - "input/qserve-nile-table-menu-v1/visuals.json"
-      - ".github/workflows/qserve-menu-images.yml"
-      - "tools/image-gen/**"
 
 permissions:
   contents: write
@@ -28,6 +21,7 @@ jobs:
       OUT: generated-assets/qserve-nile-table-menu-v1/images
       IMAGE_API_TOKEN: ${{ secrets.IMAGE_API_TOKEN || vars.IMAGE_API_TOKEN }}
       IMAGE_API_BASE_URL: https://agent.wpaikits.site/v1/workflow/jobs-images
+      PYTHONUNBUFFERED: "1"
 
     steps:
       - name: Check out repository
@@ -53,10 +47,12 @@ jobs:
           fi
           rm -rf "$OUT"
           mkdir -p "$OUT"
+          echo 'Generating QServe menu images manually in chunks of 10. Progress will stream to this log.'
           python tools/image-gen/client.py --timeout 7200 --poll-interval 2 batch \
             --requests "$PLAN" \
             --out-dir "$OUT" \
-            --output-format png
+            --output-format png \
+            --batch-size 10
 
       - name: Rename generated files to menu item ids and write manifest
         shell: bash
