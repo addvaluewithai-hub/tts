@@ -16,7 +16,7 @@ permissions:
 
 concurrency:
   group: video-factory-images
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   images:
@@ -37,6 +37,12 @@ jobs:
           JOB="$(grep -Ev '^\s*(#|$)' input/ACTIVE | head -1 || true)"
           if [ -z "$JOB" ]; then
             echo 'No active job.'
+            echo 'ready=false' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ "$JOB" = "qserve-nile-table-menu-v1" ]; then
+            echo 'QServe menu imagery is owned by the dedicated QServe workflow.'
+            echo "job=$JOB" >> "$GITHUB_OUTPUT"
             echo 'ready=false' >> "$GITHUB_OUTPUT"
             exit 0
           fi
